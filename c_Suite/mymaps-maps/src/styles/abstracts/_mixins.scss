@@ -1,0 +1,76 @@
+// ==============================================
+// MIXINS - Maps Visualization
+// ==============================================
+
+@use 'variables' as *;
+
+// Media queries
+@mixin mq($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+}
+
+// Flexbox
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-row($justify: flex-start, $align: center, $gap: 0) {
+  display: flex;
+  flex-direction: row;
+  justify-content: $justify;
+  align-items: $align;
+  @if $gap != 0 { gap: $gap; }
+}
+
+@mixin flex-col($justify: flex-start, $align: stretch, $gap: 0) {
+  display: flex;
+  flex-direction: column;
+  justify-content: $justify;
+  align-items: $align;
+  @if $gap != 0 { gap: $gap; }
+}
+
+// Glass morphism
+@mixin glass-panel {
+  background: $glass-bg;
+  backdrop-filter: blur($glass-blur) saturate(180%);
+  -webkit-backdrop-filter: blur($glass-blur) saturate(180%);
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-md, inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+@mixin glass-button {
+  @include glass-panel;
+  padding: $space-3 $space-4;
+  cursor: pointer;
+  transition: all $transition-fast;
+  color: $color-text;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Focus ring
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+    outline-offset: 2px;
+  }
+}

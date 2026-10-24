@@ -1,0 +1,57 @@
+// ===========================================
+// COMPONENT - TOOLTIP
+// ===========================================
+@use '../base/variables' as *;
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  color: $blue-400;
+  cursor: help;
+
+  &:hover {
+    color: $blue-600;
+  }
+
+  i {
+    font-size: $text-lg;
+  }
+}
+
+.tooltip__text {
+  visibility: hidden;
+  width: 140px;
+  background-color: $slate-700;
+  color: white;
+  text-align: center;
+  border-radius: $rounded-md;
+  padding: 5px;
+  position: absolute;
+  z-index: 50;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -70px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 10px;
+  font-weight: $font-normal;
+  pointer-events: none;
+  box-shadow: $shadow-md;
+
+  // Arrow
+  &::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: $slate-700 transparent transparent transparent;
+  }
+}
+
+.tooltip:hover .tooltip__text {
+  visibility: visible;
+  opacity: 1;
+}

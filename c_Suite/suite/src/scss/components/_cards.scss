@@ -1,0 +1,207 @@
+// ============================================
+// Glass Cards
+// container, login-card, header-card, apps-card, auth-card, info-card, config-card
+// ============================================
+@use '../abstracts/mixins' as *;
+
+// Main container
+.container {
+  position: relative;
+  z-index: 10;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  padding-bottom: 80px;
+  gap: 16px;
+}
+
+// Login card
+.login-card {
+  @include glass-card(24px);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 620px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  animation: slideUp 0.8s ease-out;
+}
+
+// Header card (title + selected app)
+.header-card {
+  @include glass-card;
+  padding: 24px 28px;
+  width: 100%;
+  max-width: 620px;
+  animation: slideUp 0.8s ease-out both;
+  text-align: center;
+
+  .logo-container {
+    margin-bottom: 16px;
+  }
+
+  .action-section {
+    margin-top: 0;
+  }
+}
+
+// Apps card
+.apps-card {
+  @include glass-card;
+  padding: 24px 28px;
+  width: 100%;
+  max-width: 620px;
+  animation: slideUp 0.8s ease-out 0.1s both;
+}
+
+// Secondary cards (auth-card, info-card)
+.auth-card,
+.info-card {
+  @include glass-card;
+  padding: 24px 28px;
+  width: 100%;
+  max-width: 620px;
+}
+
+.auth-card {
+  animation: slideUp 0.8s ease-out 0.2s both;
+}
+
+.info-card {
+  animation: slideUp 0.8s ease-out 0.3s both;
+}
+
+.card-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+  }
+}
+
+.info-card .description {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+// Config card
+.config-card {
+  @include glass-card;
+  padding: 24px 28px;
+  width: 100%;
+  max-width: 620px;
+  animation: slideUp 0.8s ease-out 0.2s both;
+
+  .tools-section {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+
+  .tools-section + .tools-section {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .server-control {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.config-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    opacity: 0.8;
+  }
+}
+
+// Logo area
+.logo-container {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.logo {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
+  border-radius: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: pulse-glow 3s infinite ease-in-out;
+
+  svg {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+.app-name {
+  font-size: 26px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.app-tagline {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: 6px;
+}
+
+// Security badge
+.security-info {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.security-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 20px;
+  color: #34d399;
+  font-size: 11px;
+  font-weight: 500;
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}

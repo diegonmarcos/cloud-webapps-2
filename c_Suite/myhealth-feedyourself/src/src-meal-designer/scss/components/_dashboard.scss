@@ -1,0 +1,110 @@
+// ===========================================
+// COMPONENT - DASHBOARD (Calculator Stats)
+// ===========================================
+@use '../base/variables' as *;
+
+.dashboard {
+  background-color: $slate-800;
+  color: white;
+  border-radius: $rounded-xl;
+  box-shadow: $shadow-md;
+  padding: $spacing-4;
+  margin-bottom: $spacing-4;
+}
+
+.dashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-4;
+  align-items: flex-start;
+  text-align: center;
+
+  @media (min-width: $breakpoint-md) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+.dashboard__stat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+
+  &--bordered {
+    grid-column: span 2;
+    border-left: 1px solid $slate-600;
+    border-right: 1px solid $slate-600;
+    padding: 0 $spacing-2;
+  }
+}
+
+.dashboard__label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $slate-400;
+  margin-bottom: $spacing-1;
+}
+
+.dashboard__value {
+  font-size: $text-xl;
+  font-weight: $font-bold;
+
+  &--blue {
+    color: $blue-300;
+  }
+
+  &--yellow {
+    color: $yellow-300;
+  }
+
+  &--green {
+    color: $green-400;
+  }
+
+  &--red {
+    color: $red-400;
+  }
+}
+
+// Protein select section
+.dashboard__select-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard__inputs {
+  display: flex;
+  align-items: center;
+  gap: $spacing-2;
+  justify-content: center;
+  margin-top: $spacing-1;
+}
+
+.dashboard__input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  span {
+    font-size: 9px;
+    color: $slate-500;
+  }
+}
+
+// Equals sign between stats
+.dashboard__equals {
+  position: absolute;
+  top: 50%;
+  right: -$spacing-2;
+  color: $slate-500;
+  display: none;
+
+  @media (min-width: $breakpoint-md) {
+    display: block;
+  }
+}
+
+.dashboard__stat--with-equals {
+  position: relative;
+}

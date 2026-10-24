@@ -1,0 +1,125 @@
+@use '../settings/colors' as *;
+@use '../settings/typography' as *;
+@use '../settings/breakpoints' as *;
+@use '../tools/mixins' as *;
+
+.apps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-lg;
+  max-width: 900px;
+  margin: 0 auto;
+
+  @include mq(md) { grid-template-columns: repeat(3, 1fr); }
+}
+
+.app-card {
+  position: relative;
+  @include flex-col($spacing-lg);
+  padding: $spacing-xl $spacing-lg;
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: $radius-xl;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-6px);
+    border-color: $border-accent;
+    &::before { opacity: 1; }
+  }
+  &:hover .app-card__glow { opacity: 1; }
+  &:hover .app-card__arrow { opacity: 1; transform: translateX(0); }
+}
+
+.app-card--navigation {
+  &::before { background: linear-gradient(90deg, transparent, $color-nav, transparent); }
+  &:hover { box-shadow: 0 8px 40px rgba($color-nav, 0.12); }
+  .app-card__icon { color: $color-nav; background: rgba($color-nav, 0.1); border-color: rgba($color-nav, 0.2); }
+  .app-card__glow { background: radial-gradient(ellipse at 50% 0%, rgba($color-nav, 0.08) 0%, transparent 60%); }
+}
+
+.app-card--maps {
+  &::before { background: linear-gradient(90deg, transparent, $color-maps, transparent); }
+  &:hover { box-shadow: 0 8px 40px rgba($color-maps, 0.12); }
+  .app-card__icon { color: $color-maps; background: rgba($color-maps, 0.1); border-color: rgba($color-maps, 0.2); }
+  .app-card__glow { background: radial-gradient(ellipse at 50% 0%, rgba($color-maps, 0.08) 0%, transparent 60%); }
+}
+
+.app-card--trips {
+  &::before { background: linear-gradient(90deg, transparent, $color-trips, transparent); }
+  &:hover { box-shadow: 0 8px 40px rgba($color-trips, 0.12); }
+  .app-card__icon { color: $color-trips; background: rgba($color-trips, 0.1); border-color: rgba($color-trips, 0.2); }
+  .app-card__glow { background: radial-gradient(ellipse at 50% 0%, rgba($color-trips, 0.08) 0%, transparent 60%); }
+}
+
+.app-card__glow {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.app-card__icon {
+  @include flex-center;
+  width: 52px; height: 52px;
+  border-radius: $radius-lg;
+  border: 1px solid;
+  flex-shrink: 0;
+  svg { width: 26px; height: 26px; }
+}
+
+.app-card__body { @include flex-col($spacing-sm); flex: 1; }
+
+.app-card__title {
+  font-size: $font-size-xl;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+}
+
+.app-card__desc {
+  font-size: $font-size-sm;
+  color: $text-muted;
+  line-height: 1.5;
+}
+
+.app-card__tags {
+  @include flex-row($spacing-sm);
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 2px $spacing-sm;
+  border-radius: 100px;
+  font-size: $font-size-xs;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid;
+
+  &--nav { color: $color-nav; border-color: rgba($color-nav, 0.3); background: rgba($color-nav, 0.08); }
+  &--maps { color: $color-maps; border-color: rgba($color-maps, 0.3); background: rgba($color-maps, 0.08); }
+  &--trips { color: $color-trips; border-color: rgba($color-trips, 0.3); background: rgba($color-trips, 0.08); }
+}
+
+.app-card__arrow {
+  position: absolute;
+  bottom: $spacing-lg; right: $spacing-lg;
+  color: $text-dim;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+  svg { width: 20px; height: 20px; }
+}

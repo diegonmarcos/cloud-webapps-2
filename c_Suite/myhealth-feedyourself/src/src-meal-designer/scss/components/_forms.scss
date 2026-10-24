@@ -1,0 +1,153 @@
+// ===========================================
+// COMPONENT - FORMS
+// ===========================================
+@use '../base/variables' as *;
+
+// Form group
+.form-group {
+  margin-bottom: 0;
+
+  label {
+    display: block;
+    font-size: $text-xs;
+    font-weight: $font-semibold;
+    color: $slate-700;
+    margin-bottom: $spacing-1;
+  }
+}
+
+// Input wrapper for suffix/prefix
+.input-wrapper {
+  position: relative;
+
+  input {
+    width: 100%;
+    padding: $spacing-1-5 $spacing-3;
+    padding-right: $spacing-10;
+    border: 1px solid $slate-300;
+    border-radius: $rounded;
+    font-size: $text-sm;
+    font-family: $font-mono;
+    outline: none;
+    transition: $transition-all;
+
+    &:focus {
+      border-color: $blue-500;
+      box-shadow: 0 0 0 2px rgba($blue-500, 0.2);
+    }
+  }
+
+  .input-suffix {
+    position: absolute;
+    right: $spacing-3;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $slate-400;
+    font-size: $text-xs;
+    font-weight: $font-medium;
+  }
+}
+
+// Select
+select {
+  font-size: $text-xs;
+  color: $slate-800;
+  background-color: $slate-100;
+  border-radius: $rounded;
+  padding: $spacing-1;
+  margin-bottom: $spacing-1;
+  width: 100%;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Dark theme inputs (for calculator)
+.input--dark {
+  text-align: center;
+  background-color: rgba($slate-700, 0.5);
+  border: 1px solid $slate-600;
+  border-radius: $rounded;
+  color: $slate-300;
+  padding: $spacing-0-5 0;
+  width: 4rem;
+  font-size: $text-xs;
+
+  &:focus {
+    outline: none;
+  }
+
+  &--editable {
+    background-color: $slate-700;
+    color: white;
+    font-weight: $font-bold;
+
+    &:focus {
+      border-color: $blue-500;
+    }
+  }
+}
+
+// Side input (in calculator table)
+.side-input {
+  width: 100%;
+  height: 100%;
+  text-align: right;
+  padding: $spacing-1 $spacing-3;
+  background-color: transparent;
+  font-weight: $font-bold;
+  color: $blue-800;
+  font-size: $text-sm;
+  border: none;
+
+  &::placeholder {
+    color: $blue-300;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: white;
+    box-shadow: inset 0 0 0 2px $blue-500;
+  }
+}
+
+// Result display box
+.result-box {
+  background-color: $blue-50;
+  border-radius: $rounded;
+  padding: $spacing-2;
+  border: 1px solid $blue-100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+  }
+
+  &__label {
+    font-size: 10px;
+    font-weight: $font-bold;
+    color: $blue-600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  &__value {
+    font-size: $text-xl;
+    font-weight: $font-bold;
+    color: $blue-800;
+    line-height: 1;
+  }
+
+  &__unit {
+    font-size: $text-xs;
+    color: $blue-600;
+  }
+}

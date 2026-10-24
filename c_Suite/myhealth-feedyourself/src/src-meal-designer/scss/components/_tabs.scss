@@ -1,0 +1,45 @@
+// ===========================================
+// COMPONENT - TABS
+// ===========================================
+@use '../base/variables' as *;
+
+.tabs-nav {
+  display: flex;
+  border-bottom: 1px solid $slate-200;
+  margin-bottom: $spacing-4;
+  overflow-x: auto;
+}
+
+.tab-btn {
+  padding: $spacing-2 $spacing-4;
+  font-size: $text-sm;
+  white-space: nowrap;
+  transition: $transition-all;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  color: $slate-500;
+
+  i {
+    margin-right: $spacing-2;
+  }
+
+  &:hover {
+    border-bottom-color: $slate-300;
+    color: $slate-600;
+  }
+
+  &.tab-active {
+    border-bottom-color: $blue-600;
+    color: $blue-800;
+    font-weight: $font-semibold;
+  }
+}
+
+// Tab content views
+.tab-view {
+  &.hidden {
+    display: none;
+  }
+}

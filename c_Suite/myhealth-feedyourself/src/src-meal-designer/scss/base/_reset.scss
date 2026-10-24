@@ -1,0 +1,52 @@
+// ===========================================
+// RESET & BASE STYLES
+// ===========================================
+@use 'variables' as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  font-size: $text-base;
+  color: $slate-800;
+  background-color: $slate-50;
+  min-height: 100vh;
+  padding: $spacing-2;
+
+  @media (min-width: $breakpoint-md) {
+    padding: $spacing-6;
+  }
+}
+
+// Remove spinner from number inputs
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+// Focus outline removal for buttons
+button:focus {
+  outline: none;
+}
+
+// Table reset
+table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: left;
+}

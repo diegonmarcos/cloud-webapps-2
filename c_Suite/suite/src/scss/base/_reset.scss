@@ -1,0 +1,75 @@
+// ============================================
+// Reset + Root Variables + Body
+// ============================================
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #6366f1;
+  --primary-dark: #4f46e5;
+  --github: #24292f;
+  --github-hover: #32383f;
+  --authelia: #0ea5e9;
+  --authelia-hover: #0284c7;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --sheets: #0f9d58;
+  --docs: #4285f4;
+  --photos: #e91e63;
+  --slides: #ff5722;
+  --files: #9c27b0;
+  --notes: #6880ff;
+  // Photo service colors
+  --photoprism: #ff9500;
+  --immich: #4250af;
+  --lychee: #1abc9c;
+  --piwigo: #ff7700;
+  // Slides service colors
+  --revealjs: #f2a03d;
+  --slidev: #3ab0a2;
+  --marp: #0288d1;
+  --impress: #7b1fa2;
+  // Sheets service colors
+  --ethercalc: #0f9d58;
+  --onlyoffice-sheets: #ff6f00;
+  --luckysheet: #00bcd4;
+  --nocodb: #7c4dff;
+  // Docs service colors
+  --etherpad: #4285f4;
+  --onlyoffice-docs: #2196f3;
+  --cryptpad: #673ab7;
+  --hedgedoc: #009688;
+  // Notes service colors
+  --affine: #6880ff;
+  // Files service colors
+  --filebrowser: #9c27b0;
+  --nextcloud: #0082c9;
+  --seafile: #f57c00;
+  --owncloud: #1976d2;
+  // LGTM (Grafana Labs) colors
+  --lgtm: #f46800;
+  --loki: #f46800;
+  --grafana: #f46800;
+  --tempo: #f46800;
+  --mimir: #f46800;
+  // PowerSheets colors
+  --powersheets: #7c4dff;
+  // Videos colors
+  --videos: #e91e63;
+  --kdenlive: #527eb2;
+  --openshot: #13aec2;
+  --shotcut: #00c853;
+  --olive: #8bc34a;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  background: linear-gradient(145deg, #1a1f35 0%, #0d1220 50%, #151a2e 100%);
+}
