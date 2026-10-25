@@ -1,9 +1,0 @@
-c_Suite/grist
-c_Suite/json-vision
-c_Suite/myhealth-feedyourself
-c_Suite/mymail
-c_Suite/mymaps
-c_Suite/mymaps-maps
-c_Suite/mymaps-navigation
-c_Suite/suite
-c_Suite/tldraw
