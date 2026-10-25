@@ -1,0 +1,157 @@
+// ============================================
+// Theme System - Full page theme switching
+// ============================================
+
+// SHEETS THEME - Green/Data focused
+body.theme-sheets {
+  background: linear-gradient(145deg, #0a1f1a 0%, #0d2818 50%, #0f2a1a 100%);
+}
+body.theme-sheets .iso-grid {
+  background:
+    linear-gradient(30deg, transparent 49.5%, rgba(15, 157, 88, 0.12) 49.5%, rgba(15, 157, 88, 0.12) 50.5%, transparent 50.5%),
+    linear-gradient(150deg, transparent 49.5%, rgba(46, 204, 113, 0.08) 49.5%, rgba(46, 204, 113, 0.08) 50.5%, transparent 50.5%),
+    linear-gradient(90deg, transparent 49.5%, rgba(39, 174, 96, 0.06) 49.5%, rgba(39, 174, 96, 0.06) 50.5%, transparent 50.5%);
+  background-size: 50px 30px;
+}
+body.theme-sheets .glow-spot:nth-child(1) { background: rgba(15, 157, 88, 0.35); }
+body.theme-sheets .glow-spot:nth-child(2) { background: rgba(46, 204, 113, 0.28); }
+body.theme-sheets .glow-spot:nth-child(3) { background: rgba(39, 174, 96, 0.22); }
+body.theme-sheets .glow-spot:nth-child(4) { background: rgba(15, 157, 88, 0.25); }
+body.theme-sheets .glow-spot:nth-child(5) { background: rgba(46, 204, 113, 0.18); }
+body.theme-sheets .logo { background: linear-gradient(135deg, #81c784 0%, #66bb6a 100%); }
+body.theme-sheets .logo svg { stroke: #1b5e20; }
+
+// DOCS THEME - Blue/Writing focused
+body.theme-docs {
+  background: linear-gradient(145deg, #0a1525 0%, #0d1a30 50%, #0f1f35 100%);
+}
+body.theme-docs .iso-grid {
+  background:
+    linear-gradient(30deg, transparent 49.5%, rgba(66, 133, 244, 0.12) 49.5%, rgba(66, 133, 244, 0.12) 50.5%, transparent 50.5%),
+    linear-gradient(150deg, transparent 49.5%, rgba(100, 181, 246, 0.08) 49.5%, rgba(100, 181, 246, 0.08) 50.5%, transparent 50.5%),
+    linear-gradient(90deg, transparent 49.5%, rgba(33, 150, 243, 0.06) 49.5%, rgba(33, 150, 243, 0.06) 50.5%, transparent 50.5%);
+  background-size: 50px 30px;
+}
+body.theme-docs .glow-spot:nth-child(1) { background: rgba(66, 133, 244, 0.35); }
+body.theme-docs .glow-spot:nth-child(2) { background: rgba(100, 181, 246, 0.28); }
+body.theme-docs .glow-spot:nth-child(3) { background: rgba(33, 150, 243, 0.22); }
+body.theme-docs .glow-spot:nth-child(4) { background: rgba(66, 133, 244, 0.25); }
+body.theme-docs .glow-spot:nth-child(5) { background: rgba(100, 181, 246, 0.18); }
+body.theme-docs .logo { background: linear-gradient(135deg, #90caf9 0%, #64b5f6 100%); }
+body.theme-docs .logo svg { stroke: #1565c0; }
+
+// SLIDES THEME - Orange/Presentation focused
+body.theme-slides {
+  background: linear-gradient(145deg, #1f150a 0%, #2a180d 50%, #2f1a0f 100%);
+}
+body.theme-slides .iso-grid {
+  background:
+    linear-gradient(30deg, transparent 49.5%, rgba(255, 87, 34, 0.12) 49.5%, rgba(255, 87, 34, 0.12) 50.5%, transparent 50.5%),
+    linear-gradient(150deg, transparent 49.5%, rgba(255, 167, 38, 0.08) 49.5%, rgba(255, 167, 38, 0.08) 50.5%, transparent 50.5%),
+    linear-gradient(90deg, transparent 49.5%, rgba(255, 112, 67, 0.06) 49.5%, rgba(255, 112, 67, 0.06) 50.5%, transparent 50.5%);
+  background-size: 50px 30px;
+}
+body.theme-slides .glow-spot:nth-child(1) { background: rgba(255, 87, 34, 0.35); }
+body.theme-slides .glow-spot:nth-child(2) { background: rgba(255, 167, 38, 0.28); }
+body.theme-slides .glow-spot:nth-child(3) { background: rgba(255, 112, 67, 0.22); }
+body.theme-slides .glow-spot:nth-child(4) { background: rgba(255, 87, 34, 0.25); }
+body.theme-slides .glow-spot:nth-child(5) { background: rgba(255, 167, 38, 0.18); }
+body.theme-slides .logo { background: linear-gradient(135deg, #ffcc80 0%, #ffab91 100%); }
+body.theme-slides .logo svg { stroke: #e65100; }
+
+// PHOTOS THEME - Pink/Vibrant like myphotos
+body.theme-photos {
+  background: linear-gradient(145deg, #1f0a1a 0%, #2a0d20 50%, #2f0f25 100%);
+}
+body.theme-photos .iso-grid {
+  background:
+    linear-gradient(30deg, transparent 49.5%, rgba(233, 30, 99, 0.12) 49.5%, rgba(233, 30, 99, 0.12) 50.5%, transparent 50.5%),
+    linear-gradient(150deg, transparent 49.5%, rgba(244, 143, 177, 0.08) 49.5%, rgba(244, 143, 177, 0.08) 50.5%, transparent 50.5%),
+    linear-gradient(90deg, transparent 49.5%, rgba(240, 98, 146, 0.06) 49.5%, rgba(240, 98, 146, 0.06) 50.5%, transparent 50.5%);
+  background-size: 50px 30px;
+}
+body.theme-photos .glow-spot:nth-child(1) { background: rgba(233, 30, 99, 0.35); }
+body.theme-photos .glow-spot:nth-child(2) { background: rgba(244, 143, 177, 0.28); }
+body.theme-photos .glow-spot:nth-child(3) { background: rgba(240, 98, 146, 0.22); }
+body.theme-photos .glow-spot:nth-child(4) { background: rgba(233, 30, 99, 0.25); }
+body.theme-photos .glow-spot:nth-child(5) { background: rgba(244, 143, 177, 0.18); }
+body.theme-photos .logo { background: linear-gradient(135deg, #f48fb1 0%, #f06292 100%); }
+body.theme-photos .logo svg { stroke: #ad1457; }
+
+// FILES THEME - Purple (default)
+body.theme-files {
+  background: linear-gradient(145deg, #1a0f25 0%, #1f1230 50%, #241535 100%);
+}
+body.theme-files .iso-grid {
+  background:
+    linear-gradient(30deg, transparent 49.5%, rgba(156, 39, 176, 0.12) 49.5%, rgba(156, 39, 176, 0.12) 50.5%, transparent 50.5%),
+    linear-gradient(150deg, transparent 49.5%, rgba(186, 104, 200, 0.08) 49.5%, rgba(186, 104, 200, 0.08) 50.5%, transparent 50.5%),
+    linear-gradient(90deg, transparent 49.5%, rgba(171, 71, 188, 0.06) 49.5%, rgba(171, 71, 188, 0.06) 50.5%, transparent 50.5%);
+  background-size: 50px 30px;
+}
+body.theme-files .glow-spot:nth-child(1) { background: rgba(156, 39, 176, 0.35); }
+body.theme-files .glow-spot:nth-child(2) { background: rgba(186, 104, 200, 0.28); }
+body.theme-files .glow-spot:nth-child(3) { background: rgba(171, 71, 188, 0.22); }
+body.theme-files .glow-spot:nth-child(4) { background: rgba(156, 39, 176, 0.25); }
+body.theme-files .glow-spot:nth-child(5) { background: rgba(186, 104, 200, 0.18); }
+body.theme-files .logo { background: linear-gradient(135deg, #ce93d8 0%, #ba68c8 100%); }
+body.theme-files .logo svg { stroke: #6a1b9a; }
+
+// LGTM THEME - Orange/Observability focused
+body.theme-lgtm {
+  background: linear-gradient(145deg, #1f1408 0%, #2a1a0a 50%, #1f150a 100%);
+}
+body.theme-lgtm .iso-grid {
+  background:
+    linear-gradient(30deg, transparent 49.5%, rgba(244, 104, 0, 0.12) 49.5%, rgba(244, 104, 0, 0.12) 50.5%, transparent 50.5%),
+    linear-gradient(-30deg, transparent 49.5%, rgba(255, 171, 64, 0.08) 49.5%, rgba(255, 171, 64, 0.08) 50.5%, transparent 50.5%);
+}
+body.theme-lgtm .glow-spot:nth-child(1) { background: rgba(244, 104, 0, 0.35); }
+body.theme-lgtm .glow-spot:nth-child(2) { background: rgba(255, 171, 64, 0.28); }
+body.theme-lgtm .glow-spot:nth-child(3) { background: rgba(255, 138, 101, 0.22); }
+body.theme-lgtm .glow-spot:nth-child(4) { background: rgba(244, 104, 0, 0.25); }
+body.theme-lgtm .glow-spot:nth-child(5) { background: rgba(255, 171, 64, 0.18); }
+body.theme-lgtm .logo { background: linear-gradient(135deg, #ffab40 0%, #ff9100 100%); }
+body.theme-lgtm .logo svg { stroke: #e65100; }
+
+// POWERSHEETS THEME - Purple/Database focused
+body.theme-powersheets {
+  background: linear-gradient(145deg, #150f25 0%, #1a1230 50%, #1f1535 100%);
+}
+body.theme-powersheets .iso-grid {
+  background:
+    linear-gradient(30deg, transparent 49.5%, rgba(124, 77, 255, 0.12) 49.5%, rgba(124, 77, 255, 0.12) 50.5%, transparent 50.5%),
+    linear-gradient(-30deg, transparent 49.5%, rgba(179, 136, 255, 0.08) 49.5%, rgba(179, 136, 255, 0.08) 50.5%, transparent 50.5%);
+}
+body.theme-powersheets .glow-spot:nth-child(1) { background: rgba(124, 77, 255, 0.35); }
+body.theme-powersheets .glow-spot:nth-child(2) { background: rgba(179, 136, 255, 0.28); }
+body.theme-powersheets .glow-spot:nth-child(3) { background: rgba(149, 117, 205, 0.22); }
+body.theme-powersheets .glow-spot:nth-child(4) { background: rgba(124, 77, 255, 0.25); }
+body.theme-powersheets .glow-spot:nth-child(5) { background: rgba(179, 136, 255, 0.18); }
+body.theme-powersheets .logo { background: linear-gradient(135deg, #b388ff 0%, #7c4dff 100%); }
+body.theme-powersheets .logo svg { stroke: #4527a0; }
+
+// VIDEOS THEME - Pink/Red video editing focused
+body.theme-videos {
+  background: linear-gradient(145deg, #1f0a15 0%, #2a0d1a 50%, #1f0a12 100%);
+}
+body.theme-videos .iso-grid {
+  background:
+    linear-gradient(30deg, transparent 49.5%, rgba(233, 30, 99, 0.12) 49.5%, rgba(233, 30, 99, 0.12) 50.5%, transparent 50.5%),
+    linear-gradient(-30deg, transparent 49.5%, rgba(244, 143, 177, 0.08) 49.5%, rgba(244, 143, 177, 0.08) 50.5%, transparent 50.5%);
+}
+body.theme-videos .glow-spot:nth-child(1) { background: rgba(233, 30, 99, 0.35); }
+body.theme-videos .glow-spot:nth-child(2) { background: rgba(244, 143, 177, 0.28); }
+body.theme-videos .glow-spot:nth-child(3) { background: rgba(236, 64, 122, 0.22); }
+body.theme-videos .glow-spot:nth-child(4) { background: rgba(233, 30, 99, 0.25); }
+body.theme-videos .glow-spot:nth-child(5) { background: rgba(244, 143, 177, 0.18); }
+body.theme-videos .logo { background: linear-gradient(135deg, #f48fb1 0%, #e91e63 100%); }
+body.theme-videos .logo svg { stroke: #880e4f; }
+
+// NOTES THEME - Not explicitly defined in original (uses default body bg)
+// No body.theme-notes override needed - falls through to default
+
+// Theme transition for smooth switching
+body, .iso-grid, .glow-spot, .logo {
+  transition: background 0.6s ease, background-color 0.6s ease;
+}

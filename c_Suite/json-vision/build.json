@@ -1,0 +1,17 @@
+{
+  "name": "JSON Vision",
+  "framework": "vue",
+  "port": 8017,
+  "src": "src",
+  "dist": "dist",
+
+  "build": [
+    { "mod": "vite" }
+  ],
+
+  "serve": {
+    "mode": "vite"
+  },
+
+  "deploy": {}
+}

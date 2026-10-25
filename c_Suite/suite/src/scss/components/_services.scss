@@ -1,0 +1,205 @@
+// ============================================
+// Services
+// service-table, service-option, radio, badges
+// ============================================
+
+// Tools section
+.tools-section {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tools-title {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+// Service options table
+.service-table {
+  display: none;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+
+  &.active {
+    display: flex;
+  }
+}
+
+.service-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 14px;
+  height: 40px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  flex: none;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  &.active {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--primary);
+  }
+
+  .radio {
+    display: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &.active .radio {
+    border-color: var(--primary);
+
+    &::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: var(--primary);
+      border-radius: 50%;
+    }
+  }
+}
+
+.service-info {
+  flex: none;
+}
+
+.service-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.service-desc {
+  display: none;
+}
+
+.service-icon {
+  width: 18px;
+  height: 18px;
+  background: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.8);
+
+  svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+  }
+}
+
+// Category-specific active colors
+[data-category="sheets"] .service-option.active {
+  background: rgba(15, 157, 88, 0.2);
+  border-color: var(--sheets);
+}
+[data-category="sheets"] .service-option.active .radio { border-color: var(--sheets); }
+[data-category="sheets"] .service-option.active .radio::after { background: var(--sheets); }
+
+[data-category="docs"] .service-option.active {
+  background: rgba(66, 133, 244, 0.2);
+  border-color: var(--docs);
+}
+[data-category="docs"] .service-option.active .radio { border-color: var(--docs); }
+[data-category="docs"] .service-option.active .radio::after { background: var(--docs); }
+
+[data-category="photos"] .service-option.active {
+  background: rgba(233, 30, 99, 0.2);
+  border-color: var(--photos);
+}
+[data-category="photos"] .service-option.active .radio { border-color: var(--photos); }
+[data-category="photos"] .service-option.active .radio::after { background: var(--photos); }
+
+[data-category="slides"] .service-option.active {
+  background: rgba(255, 87, 34, 0.2);
+  border-color: var(--slides);
+}
+[data-category="slides"] .service-option.active .radio { border-color: var(--slides); }
+[data-category="slides"] .service-option.active .radio::after { background: var(--slides); }
+
+[data-category="files"] .service-option.active {
+  background: rgba(156, 39, 176, 0.2);
+  border-color: var(--files);
+}
+[data-category="files"] .service-option.active .radio { border-color: var(--files); }
+[data-category="files"] .service-option.active .radio::after { background: var(--files); }
+
+[data-category="lgtm"] .service-option.active {
+  background: rgba(244, 104, 0, 0.2);
+  border-color: var(--lgtm);
+}
+[data-category="lgtm"] .service-option.active .radio { border-color: var(--lgtm); }
+[data-category="lgtm"] .service-option.active .radio::after { background: var(--lgtm); }
+
+[data-category="powersheets"] .service-option.active {
+  background: rgba(124, 77, 255, 0.2);
+  border-color: var(--powersheets);
+}
+[data-category="powersheets"] .service-option.active .radio { border-color: var(--powersheets); }
+[data-category="powersheets"] .service-option.active .radio::after { background: var(--powersheets); }
+
+[data-category="videos"] .service-option.active {
+  background: rgba(233, 30, 99, 0.2);
+  border-color: var(--videos);
+}
+[data-category="videos"] .service-option.active .radio { border-color: var(--videos); }
+[data-category="videos"] .service-option.active .radio::after { background: var(--videos); }
+
+// Badges
+.service-option.coming-soon {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.service-option.not-deployed {
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: grayscale(1);
+  pointer-events: none;
+}
+
+.not-deployed-badge {
+  font-size: 9px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.coming-soon-badge {
+  font-size: 9px;
+  padding: 2px 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

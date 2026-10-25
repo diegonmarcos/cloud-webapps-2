@@ -1,0 +1,58 @@
+// ===========================================
+// TYPOGRAPHY
+// ===========================================
+@use 'variables' as *;
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: $font-bold;
+}
+
+h1 {
+  font-size: $text-2xl;
+  color: $slate-900;
+}
+
+h2 {
+  font-size: $text-sm;
+  color: $slate-800;
+}
+
+h3 {
+  font-size: $text-sm;
+  color: $slate-700;
+}
+
+p {
+  margin: 0;
+}
+
+// Utility text classes
+.text-xs { font-size: $text-xs; }
+.text-sm { font-size: $text-sm; }
+.text-base { font-size: $text-base; }
+.text-lg { font-size: $text-lg; }
+.text-xl { font-size: $text-xl; }
+.text-2xl { font-size: $text-2xl; }
+
+.font-normal { font-weight: $font-normal; }
+.font-medium { font-weight: $font-medium; }
+.font-semibold { font-weight: $font-semibold; }
+.font-bold { font-weight: $font-bold; }
+
+.font-mono { font-family: $font-mono; }
+
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.uppercase { text-transform: uppercase; }
+.tracking-wider { letter-spacing: 0.05em; }
+.tracking-wide { letter-spacing: 0.025em; }
+.whitespace-nowrap { white-space: nowrap; }
+.leading-none { line-height: 1; }
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

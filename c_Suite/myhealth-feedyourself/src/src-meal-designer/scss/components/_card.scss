@@ -1,0 +1,102 @@
+// ===========================================
+// COMPONENT - CARD
+// ===========================================
+@use '../base/variables' as *;
+
+.card {
+  background-color: white;
+  border-radius: $rounded-xl;
+  box-shadow: $shadow-sm;
+  border: 1px solid $slate-200;
+  padding: $spacing-3;
+  margin-bottom: $spacing-4;
+}
+
+.card--rounded-lg {
+  border-radius: $rounded-lg;
+}
+
+.card--no-padding {
+  padding: 0;
+  overflow: hidden;
+}
+
+// Dark card variant (for calculator dashboard)
+.card--dark {
+  background-color: $slate-800;
+  color: white;
+  border-radius: $rounded-xl;
+  box-shadow: $shadow-md;
+  padding: $spacing-4;
+  margin-bottom: $spacing-4;
+}
+
+// Card header
+.card__header {
+  padding: $spacing-3;
+  border-bottom: 1px solid $slate-200;
+  background-color: $slate-50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &--slate {
+    background-color: $slate-100;
+  }
+}
+
+// Card footer
+.card__footer {
+  padding: $spacing-2;
+  background-color: $slate-50;
+  border-top: 1px solid $slate-200;
+  font-size: 10px;
+  color: $slate-500;
+  text-align: center;
+}
+
+// Meal cards in menu
+.meal-card {
+  background-color: white;
+  border-radius: $rounded-lg;
+  box-shadow: $shadow;
+  border: 1px solid $slate-200;
+  overflow: hidden;
+
+  &__header {
+    background-color: $slate-100;
+    padding: $spacing-2 $spacing-4;
+    border-bottom: 1px solid $slate-200;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__title {
+    font-weight: $font-bold;
+    color: $slate-700;
+    font-size: $text-sm;
+  }
+
+  &__kcal-badge {
+    font-size: $text-xs;
+    font-family: $font-mono;
+    color: $slate-500;
+    background-color: white;
+    padding: $spacing-0-5 $spacing-2;
+    border-radius: $rounded;
+    border: 1px solid $slate-200;
+  }
+}
+
+// Empty state
+.empty-state {
+  text-align: center;
+  color: $slate-400;
+  margin-top: $spacing-10;
+
+  i {
+    font-size: 2.25rem;
+    margin-bottom: $spacing-3;
+  }
+}

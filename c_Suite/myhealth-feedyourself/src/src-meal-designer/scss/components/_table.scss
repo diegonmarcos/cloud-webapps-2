@@ -1,0 +1,212 @@
+// ===========================================
+// COMPONENT - TABLE
+// ===========================================
+@use '../base/variables' as *;
+
+.table-wrapper {
+  overflow-x: auto;
+
+  // Custom scrollbar
+  &::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $slate-50;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $slate-300;
+    border-radius: $rounded;
+
+    &:hover {
+      background: $slate-400;
+    }
+  }
+}
+
+.table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  font-size: $text-xs;
+
+  // Table head
+  thead {
+    tr {
+      background-color: $slate-100;
+      border-bottom: 1px solid $slate-200;
+    }
+
+    th {
+      padding: $spacing-1 $spacing-3;
+      font-size: 10px;
+      font-weight: $font-bold;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: $slate-500;
+
+      &.sticky {
+        position: sticky;
+        left: 0;
+        background-color: $slate-100;
+        z-index: 10;
+      }
+
+      &--blue {
+        color: $blue-700;
+      }
+
+      &--orange {
+        color: $orange-700;
+      }
+
+      &--muted {
+        color: $slate-400;
+      }
+
+      &--highlight {
+        background-color: $blue-50;
+      }
+    }
+  }
+
+  // Table body
+  tbody {
+    tr {
+      transition: $transition-colors;
+      border-bottom: 1px solid $slate-100;
+
+      &:hover {
+        background-color: $slate-50;
+      }
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+
+    td {
+      padding: $spacing-1 $spacing-3;
+      border-bottom: 1px solid $slate-100;
+
+      &.sticky {
+        position: sticky;
+        left: 0;
+        background-color: white;
+        z-index: 10;
+      }
+
+      &--highlight {
+        padding: 0;
+        background-color: $blue-50;
+      }
+    }
+  }
+
+  // Table footer
+  tfoot {
+    tr {
+      background-color: $slate-50;
+      font-weight: $font-bold;
+      border-top: 1px solid $slate-200;
+    }
+
+    td {
+      padding: $spacing-2 $spacing-3;
+    }
+  }
+}
+
+// Category headers in table
+.table__category-row {
+  td {
+    padding: $spacing-1 $spacing-3;
+    font-weight: $font-bold;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: sticky;
+    left: 0;
+    z-index: 10;
+  }
+
+  &--slate {
+    background-color: $slate-100;
+    color: $slate-700;
+  }
+
+  &--green {
+    background-color: $green-50;
+    color: $green-700;
+  }
+
+  &--yellow {
+    background-color: $yellow-50;
+    color: $yellow-700;
+  }
+
+  &--red {
+    background-color: $red-50;
+    color: $red-700;
+  }
+
+  &--purple {
+    background-color: $purple-50;
+    color: $purple-700;
+  }
+}
+
+// Cell with group hover
+.table tbody tr:hover td.sticky {
+  background-color: $slate-50;
+}
+
+// Nutritionals table specific
+.table--nutritionals {
+  thead tr {
+    background-color: $slate-50;
+  }
+}
+
+// Badge cells
+.badge {
+  display: inline-block;
+  padding: $spacing-0-5 $spacing-2;
+  border-radius: $rounded;
+  font-size: $text-xs;
+  font-weight: $font-bold;
+
+  &--green {
+    background-color: $green-50;
+    color: $green-600;
+  }
+
+  &--orange {
+    background-color: $orange-50;
+    color: $orange-600;
+  }
+
+  &--red {
+    background-color: $red-50;
+    color: $red-600;
+  }
+}
+
+// Text colors for table cells
+.text-slate-400 { color: $slate-400; }
+.text-slate-500 { color: $slate-500; }
+.text-slate-600 { color: $slate-600; }
+.text-slate-700 { color: $slate-700; }
+.text-slate-800 { color: $slate-800; }
+
+.text-blue-600 { color: $blue-600; }
+.text-blue-700 { color: $blue-700; }
+.text-blue-800 { color: $blue-800; }
+
+.text-orange-600 { color: $orange-600; }
+.text-orange-700 { color: $orange-700; }
+
+.text-green-600 { color: $green-600; }
+.text-purple-600 { color: $purple-600; }

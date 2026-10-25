@@ -1,0 +1,16 @@
+@use '../settings/colors' as *;
+@use '../settings/typography' as *;
+@use '../settings/breakpoints' as *;
+
+.footer {
+  text-align: center;
+  padding: $spacing-3xl 0 $spacing-2xl;
+}
+
+.footer__text {
+  font-size: $font-size-sm;
+  color: $text-dim;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}

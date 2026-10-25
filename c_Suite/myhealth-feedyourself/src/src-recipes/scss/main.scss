@@ -1,0 +1,315 @@
+// Variables
+$primary: #00ff88;
+$secondary: #a855f7;
+$bg-primary: #0a0a0a;
+$bg-secondary: #141414;
+$bg-card: rgba(20, 20, 20, 0.8);
+$text-primary: #ffffff;
+$text-secondary: #888888;
+$border-color: rgba(255, 255, 255, 0.1);
+$border-radius: 0.5rem;
+$transition: 200ms ease;
+
+// Reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: $bg-primary;
+  color: $text-primary;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  background: $bg-primary;
+}
+
+// Container
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+// Header
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2.5rem;
+    background: linear-gradient(to right, $primary, $secondary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+  }
+
+  .app-subtitle {
+    color: $text-secondary;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+}
+
+// Navigation
+.header-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.nav-link {
+  padding: 0.5rem 1rem;
+  background: $bg-card;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  color: $text-secondary;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: all $transition;
+
+  &:hover {
+    border-color: $primary;
+    color: $primary;
+  }
+}
+
+// Glass Panel
+.glass-panel {
+  background: $bg-card;
+  backdrop-filter: blur(10px);
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  padding: 1.5rem;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: $primary;
+}
+
+// Tabs
+.tabs-nav {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  color: $text-secondary;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all $transition;
+
+  &:hover {
+    border-color: $primary;
+    color: $primary;
+  }
+
+  &.tab-active {
+    background: rgba($primary, 0.1);
+    border-color: $primary;
+    color: $primary;
+  }
+}
+
+// Recipe Grid
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+// Recipe Card
+.recipe-card {
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  padding: 1rem;
+  cursor: pointer;
+  transition: all $transition;
+
+  &:hover {
+    border-color: $primary;
+    transform: translateY(-2px);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+  }
+
+  &__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  &__time {
+    font-size: 0.75rem;
+    color: $text-secondary;
+    background: $bg-card;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+  }
+
+  &__macros {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.75rem;
+  }
+
+  &__tags {
+    display: flex;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+  }
+}
+
+// Macros
+.macro {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: $bg-card;
+
+  &--calories { color: #ffcc00; }
+  &--protein { color: #ff6b6b; }
+  &--carbs { color: #4ecdc4; }
+  &--fat { color: #a855f7; }
+}
+
+// Tags
+.tag {
+  font-size: 0.65rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  background: rgba($primary, 0.1);
+  color: $primary;
+}
+
+// Modal
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: $bg-secondary;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: $primary;
+  }
+
+  h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: $text-primary;
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: $text-secondary;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color $transition;
+
+  &:hover {
+    color: $primary;
+  }
+}
+
+.modal-macros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-macro {
+  background: $bg-card;
+  padding: 0.5rem 0.75rem;
+  border-radius: $border-radius;
+  font-size: 0.875rem;
+  color: $text-secondary;
+}
+
+.modal-section {
+  margin-bottom: 1.5rem;
+
+  ul, ol {
+    padding-left: 1.5rem;
+    color: $text-secondary;
+
+    li {
+      margin-bottom: 0.5rem;
+      line-height: 1.5;
+    }
+  }
+}
+
+// Tab view
+.tab-view {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+// Responsive
+@media (max-width: 640px) {
+  header h1 {
+    font-size: 1.75rem;
+  }
+
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs-nav {
+    justify-content: center;
+  }
+}

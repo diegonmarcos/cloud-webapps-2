@@ -1,0 +1,113 @@
+// ===========================================
+// LAYOUT - CONTAINER
+// ===========================================
+@use '../base/variables' as *;
+
+.container {
+  max-width: 80rem; // max-w-7xl
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Header
+.header {
+  margin-bottom: $spacing-4;
+  text-align: center;
+
+  @media (min-width: $breakpoint-md) {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+// Back link
+.back-link {
+  display: inline-block;
+  margin-top: $spacing-2;
+  color: $blue-600;
+  text-decoration: none;
+  font-size: $text-sm;
+  transition: $transition-colors;
+
+  i {
+    margin-right: $spacing-1;
+  }
+
+  &:hover {
+    color: $blue-800;
+  }
+}
+
+// Grid utilities
+.grid {
+  display: grid;
+}
+
+.grid-cols-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+@media (min-width: $breakpoint-md) {
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .md\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
+
+@media (min-width: $breakpoint-md) {
+  .md\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+}
+
+.gap-2 { gap: $spacing-2; }
+.gap-3 { gap: $spacing-3; }
+.gap-4 { gap: $spacing-4; }
+
+// Flex utilities
+.flex { display: flex; }
+.inline-block { display: inline-block; }
+.hidden { display: none; }
+
+.flex-col { flex-direction: column; }
+
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }
+.items-start { align-items: flex-start; }
+.items-baseline { align-items: baseline; }
+
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+
+.gap-1 { gap: $spacing-1; }
+
+// Spacing utilities
+.space-y-6 > * + * {
+  margin-top: $spacing-6;
+}
+
+// Visibility
+@media (min-width: $breakpoint-sm) {
+  .sm\:table-cell {
+    display: table-cell;
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .md\:flex { display: flex; }
+  .md\:block { display: block; }
+  .md\:table-cell { display: table-cell; }
+}
+
+@media (min-width: $breakpoint-lg) {
+  .lg\:table-cell { display: table-cell; }
+}

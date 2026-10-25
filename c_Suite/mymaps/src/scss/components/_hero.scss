@@ -1,0 +1,50 @@
+@use '../settings/colors' as *;
+@use '../settings/typography' as *;
+@use '../settings/breakpoints' as *;
+@use '../tools/mixins' as *;
+
+.hero {
+  @include flex-col($spacing-lg);
+  align-items: center;
+  text-align: center;
+  padding: $spacing-3xl 0 $spacing-2xl;
+  animation: hero-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero__icon {
+  @include flex-center;
+  width: 64px; height: 64px;
+  border-radius: $radius-lg;
+  background: rgba($teal, 0.1);
+  border: 1px solid rgba($teal, 0.2);
+  color: $teal;
+  filter: drop-shadow(0 0 20px rgba($teal, 0.25));
+
+  svg { width: 32px; height: 32px; }
+}
+
+.hero__title {
+  font-size: $font-size-3xl;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: linear-gradient(135deg, $text-primary, $teal);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
+  @include mq(md) { font-size: 4.5rem; }
+}
+
+.hero__tagline {
+  font-size: $font-size-md;
+  color: $text-muted;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}

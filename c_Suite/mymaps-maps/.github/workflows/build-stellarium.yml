@@ -1,0 +1,62 @@
+name: Build Stellarium Web Engine
+
+# Compiles Stellarium/stellarium-web-engine (C -> WASM via Emscripten) and commits
+# the resulting stellarium-web-engine.js/.wasm into static/stellarium/ so the app
+# can load it like any other static asset (no npm package exists for this engine).
+
+on:
+  workflow_dispatch:
+    inputs:
+      engine_ref:
+        description: 'stellarium-web-engine git ref to build (tag/branch/sha)'
+        required: false
+        default: 'master'
+  schedule:
+    - cron: '0 6 1 * *'  # monthly rebuild against upstream master
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout mymaps-maps
+        uses: actions/checkout@v4
+
+      - name: Checkout stellarium-web-engine
+        uses: actions/checkout@v4
+        with:
+          repository: Stellarium/stellarium-web-engine
+          ref: ${{ github.event.inputs.engine_ref || 'master' }}
+          path: engine-src
+          submodules: recursive
+
+      - name: Install Emscripten (pinned 1.39.17 — build breaks on emsdk 2.x)
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: 1.39.17
+          actions-cache-folder: emsdk-cache
+
+      - name: Install SCons
+        run: pip install scons
+
+      - name: Build wasm engine
+        working-directory: engine-src
+        run: make js
+
+      - name: Copy build output into static assets
+        run: |
+          mkdir -p static/stellarium
+          cp engine-src/build/stellarium-web-engine.js static/stellarium/
+          cp engine-src/build/stellarium-web-engine.wasm static/stellarium/
+          echo "Built from Stellarium/stellarium-web-engine@$(git -C engine-src rev-parse HEAD)" > static/stellarium/BUILD_INFO.txt
+
+      - name: Commit updated engine assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add static/stellarium/
+          git diff --cached --quiet && echo "No changes" && exit 0
+          git commit -m "chore: rebuild stellarium-web-engine wasm assets"
+          git push

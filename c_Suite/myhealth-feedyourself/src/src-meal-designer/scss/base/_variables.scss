@@ -1,0 +1,107 @@
+// ===========================================
+// VARIABLES
+// ===========================================
+
+// Colors - Slate palette
+$slate-50: #f8fafc;
+$slate-100: #f1f5f9;
+$slate-200: #e2e8f0;
+$slate-300: #cbd5e1;
+$slate-400: #94a3b8;
+$slate-500: #64748b;
+$slate-600: #475569;
+$slate-700: #334155;
+$slate-800: #1e293b;
+$slate-900: #0f172a;
+
+// Colors - Blue palette
+$blue-50: #eff6ff;
+$blue-100: #dbeafe;
+$blue-300: #93c5fd;
+$blue-400: #60a5fa;
+$blue-500: #3b82f6;
+$blue-600: #2563eb;
+$blue-700: #1d4ed8;
+$blue-800: #1e40af;
+
+// Colors - Green palette
+$green-50: #f0fdf4;
+$green-400: #4ade80;
+$green-600: #16a34a;
+$green-700: #15803d;
+$green-800: #166534;
+
+// Colors - Red palette
+$red-50: #fef2f2;
+$red-400: #f87171;
+$red-600: #dc2626;
+$red-700: #b91c1c;
+
+// Colors - Orange palette
+$orange-50: #fff7ed;
+$orange-600: #ea580c;
+$orange-700: #c2410c;
+
+// Colors - Yellow palette
+$yellow-50: #fefce8;
+$yellow-300: #fde047;
+$yellow-700: #a16207;
+$yellow-800: #854d0e;
+
+// Colors - Purple palette
+$purple-50: #faf5ff;
+$purple-600: #9333ea;
+$purple-700: #7e22ce;
+$purple-800: #6b21a8;
+
+// Typography
+$font-family-base: 'Inter', sans-serif;
+$font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas, monospace;
+
+// Font sizes
+$text-xs: 0.75rem;    // 12px
+$text-sm: 0.875rem;   // 14px
+$text-base: 1rem;     // 16px
+$text-lg: 1.125rem;   // 18px
+$text-xl: 1.25rem;    // 20px
+$text-2xl: 1.5rem;    // 24px
+
+// Font weights
+$font-normal: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+// Spacing
+$spacing-0: 0;
+$spacing-0-5: 0.125rem;  // 2px
+$spacing-1: 0.25rem;     // 4px
+$spacing-1-5: 0.375rem;  // 6px
+$spacing-2: 0.5rem;      // 8px
+$spacing-3: 0.75rem;     // 12px
+$spacing-4: 1rem;        // 16px
+$spacing-6: 1.5rem;      // 24px
+$spacing-10: 2.5rem;     // 40px
+
+// Border radius
+$rounded-sm: 0.125rem;
+$rounded: 0.25rem;
+$rounded-md: 0.375rem;
+$rounded-lg: 0.5rem;
+$rounded-xl: 0.75rem;
+$rounded-full: 9999px;
+
+// Shadows
+$shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+$shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+$shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+// Breakpoints
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+
+// Transitions
+$transition-all: all 0.15s ease-in-out;
+$transition-colors: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, color 0.15s ease-in-out;

@@ -1,0 +1,14 @@
+// tldraw needs a positioned, full-viewport container. No inline styles (repo rule);
+// the editor's own chrome is styled by the imported tldraw/tldraw.css.
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.tldraw-root {
+  position: fixed;
+  inset: 0;
+}
