@@ -1,0 +1,468 @@
+// sources-core.mjs — the pure half of the legal multi-source player.
+//
+// Shared by My Movies (this Vue app imports it) and cloud-media-center on
+// Android (its data/regen.py copies this file at a pinned commit and wraps it
+// as a plain script). No DOM, no network: every function that needs HTTP takes
+// a `get(url, headers) -> Promise<json|text>` so node's test runner drives it
+// with fixtures. Plain JS on purpose (no TS syntax) so both apps can load it.
+//
+// LEGAL SOURCES ONLY — see src/data/sources.json::_doc.
+
+export const KINDS = ['library', 'local', 'providers', 'trailer', 'catalogue', 'torrent']
+export const PROVIDER_CATEGORIES = ['flatrate', 'free', 'ads', 'rent', 'buy']
+export const CATEGORY_LABEL = { flatrate: 'Stream', free: 'Free', ads: 'Free with ads', rent: 'Rent', buy: 'Buy' }
+const TMDB = 'https://api.themoviedb.org/3'
+const TMDB_LOGO = 'https://image.tmdb.org/t/p/w92'
+
+// ── the declared list ──────────────────────────────────────────────────────
+export function parseSources(json, denylist) {
+  const doc = typeof json === 'string' ? JSON.parse(json) : json
+  if (!doc || !Array.isArray(doc.sources)) throw new Error('sources.json: `sources` must be an array')
+  const list = denylist || doc.denylist
+  const deny = Array.isArray(list) ? list.map((d) => String(d).toLowerCase()) : []
+  const seen = new Set()
+  const out = doc.sources.map((s, i) => {
+    if (!s || typeof s.id !== 'string' || !s.id) throw new Error('sources.json: source #' + i + ' has no id')
+    if (seen.has(s.id)) throw new Error('sources.json: duplicate id ' + s.id)
+    seen.add(s.id)
+    if (!KINDS.includes(s.kind)) throw new Error('sources.json: ' + s.id + ' has unknown kind ' + s.kind)
+    const blob = JSON.stringify(s).toLowerCase()
+    const hit = deny.find((d) => blob.includes(d))
+    if (hit) throw new Error('sources.json: ' + s.id + ' names a denied domain (' + hit + ')')
+    return { order: 100, enabled: true, settings: [], ...s, name: s.name || s.id }
+  })
+  return {
+    sources: out.filter((s) => s.enabled !== false).sort((a, b) => a.order - b.order),
+    providerLinks: doc.provider_links || {},
+    denylist: deny
+  }
+}
+
+export function isDenied(url, denylist) {
+  const u = String(url || '').toLowerCase()
+  return (denylist || []).some((d) => u.includes(d))
+}
+
+// ── IDs ────────────────────────────────────────────────────────────────────
+export const isImdbId = (s) => /^tt\d{6,10}$/.test(String(s || ''))
+export const tmdbType = (type) => (type === 'series' || type === 'episode' || type === 'tv' ? 'tv' : 'movie')
+
+export function findUrl(imdbId, key) {
+  return TMDB + '/find/' + encodeURIComponent(imdbId) + '?external_source=imdb_id&api_key=' + encodeURIComponent(key)
+}
+// TMDB /find response -> { tmdbId, mediaType } (prefers the asked type).
+export function tmdbFromFind(res, type) {
+  if (!res) return null
+  const want = tmdbType(type)
+  const lists = want === 'tv' ? [['tv', res.tv_results], ['movie', res.movie_results]] : [['movie', res.movie_results], ['tv', res.tv_results]]
+  for (const [mt, l] of lists) {
+    const r = Array.isArray(l) && l[0]
+    if (r && r.id) return { tmdbId: r.id, mediaType: mt, title: r.title || r.name || '', year: yearOf(r.release_date || r.first_air_date) }
+  }
+  return null
+}
+export function externalIdsUrl(tmdbId, type, key) {
+  return TMDB + '/' + tmdbType(type) + '/' + tmdbId + '/external_ids?api_key=' + encodeURIComponent(key)
+}
+export function imdbFromExternalIds(res) {
+  return res && isImdbId(res.imdb_id) ? res.imdb_id : null
+}
+export async function imdbToTmdb(get, imdbId, type, key) {
+  if (!isImdbId(imdbId) || !key) return null
+  return tmdbFromFind(await get(findUrl(imdbId, key)), type)
+}
+export async function tmdbToImdb(get, tmdbId, type, key) {
+  if (!tmdbId || !key) return null
+  return imdbFromExternalIds(await get(externalIdsUrl(tmdbId, type, key)))
+}
+
+// ── where to watch ─────────────────────────────────────────────────────────
+export function providersUrl(tmdbId, type, key) {
+  return TMDB + '/' + tmdbType(type) + '/' + tmdbId + '/watch/providers?api_key=' + encodeURIComponent(key)
+}
+export function fillTemplate(tpl, vars) {
+  return String(tpl).replace(/\{(\w+)\}/g, (m, k) => (k in vars ? encodeURIComponent(String(vars[k])) : m))
+}
+// TMDB watch/providers -> [{ category, label, services: [{ id, name, logo, link }] }]
+export function mapProviders(res, region, title, providerLinks) {
+  const r = res && res.results && res.results[String(region || 'US').toUpperCase()]
+  if (!r) return []
+  return PROVIDER_CATEGORIES.filter((c) => Array.isArray(r[c]) && r[c].length).map((c) => ({
+    category: c,
+    label: CATEGORY_LABEL[c],
+    services: r[c]
+      .slice()
+      .sort((a, b) => (a.display_priority ?? 99) - (b.display_priority ?? 99))
+      .map((p) => {
+        const tpl = providerLinks && providerLinks[String(p.provider_id)]
+        return {
+          id: p.provider_id,
+          name: p.provider_name,
+          logo: p.logo_path ? TMDB_LOGO + p.logo_path : '',
+          link: tpl ? fillTemplate(tpl, { title }) : r.link || ''
+        }
+      })
+  }))
+}
+
+// ── trailers ───────────────────────────────────────────────────────────────
+export function videosUrl(tmdbId, type, key) {
+  return TMDB + '/' + tmdbType(type) + '/' + tmdbId + '/videos?api_key=' + encodeURIComponent(key)
+}
+export function pickTrailer(res) {
+  const vs = ((res && res.results) || []).filter((v) => v.site === 'YouTube' && /^[A-Za-z0-9_-]{11}$/.test(v.key || ''))
+  const score = (v) => (v.type === 'Trailer' ? 4 : v.type === 'Teaser' ? 1 : 0) + (v.official ? 2 : 0)
+  const best = vs.filter((v) => score(v) > 0).sort((a, b) => score(b) - score(a))[0]
+  return best ? { key: best.key, name: best.name, embed: 'https://www.youtube-nocookie.com/embed/' + best.key + '?autoplay=1' } : null
+}
+
+// ── titles ─────────────────────────────────────────────────────────────────
+export function normTitle(s) {
+  return String(s || '').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(/&/g, 'and').replace(/[^a-z0-9]+/g, ' ').replace(/^the /, '').trim()
+}
+const yearOf = (y) => (String(y || '').match(/\d{4}/) || [''])[0]
+
+// ── Internet Archive ───────────────────────────────────────────────────────
+export function archiveSearchUrl(source, title) {
+  const q = String(source.query || 'title:({title})').replace('{title}', String(title).replace(/[():"\\]/g, ' ').trim())
+  return source.search.replace('{query}', encodeURIComponent(q))
+}
+// advancedsearch docs -> best identifier for title/year (year must agree when both known).
+export function matchArchive(res, title, year) {
+  const docs = (res && res.response && res.response.docs) || []
+  const t = normTitle(title), y = yearOf(year)
+  const scored = docs.map((d) => {
+    const dt = normTitle(String(d.title || '').replace(/\(\d{4}\)/, '')), dy = yearOf(d.year) || yearOf(d.title)
+    let s = 0
+    if (dt === t) s += 3
+    else if (dt.startsWith(t) || t.startsWith(dt)) s += 1
+    else return { d, s: 0 }
+    if (y && dy) s = dy === y ? s + 2 : 0
+    return { d, s }
+  }).filter((x) => x.s > 0).sort((a, b) => b.s - a.s)
+  return scored.length ? scored[0].d.identifier : null
+}
+export function archivePlayable(meta) {
+  const files = (meta && meta.files) || []
+  const pick = files.find((f) => /\.mp4$/i.test(f.name) && /h\.264|mpeg4/i.test(f.format || '')) || files.find((f) => /\.(mp4|webm|ogv)$/i.test(f.name))
+  return pick ? 'https://archive.org/download/' + meta.metadata.identifier + '/' + pick.name.split('/').map(encodeURIComponent).join('/') : null
+}
+export function archiveTorrentUrl(source, identifier) {
+  return source.torrent.replace(/\{identifier\}/g, encodeURIComponent(identifier))
+}
+// Torrent search is Internet Archive only: results carry a source badge.
+export function archiveTorrentResults(res, torrentSource) {
+  return ((res && res.response && res.response.docs) || []).map((d) => ({
+    title: d.title || d.identifier, year: yearOf(d.year), badge: 'Internet Archive',
+    torrent: archiveTorrentUrl(torrentSource, d.identifier), identifier: d.identifier
+  }))
+}
+
+// ── self-hosted libraries ──────────────────────────────────────────────────
+const trimSlash = (u) => String(u || '').replace(/\/+$/, '')
+export function jellyfinSearchUrl(src, cfg, imdbId) {
+  return trimSlash(cfg.url) + (src.prefix || '') + '/Items?Recursive=true&IncludeItemTypes=Movie,Series&Fields=ProviderIds&AnyProviderIdEquals=imdb.' + encodeURIComponent(imdbId) + '&api_key=' + encodeURIComponent(cfg.token)
+}
+export function jellyfinMatch(src, cfg, res, imdbId) {
+  const it = ((res && res.Items) || []).find((i) => !i.ProviderIds || !i.ProviderIds.Imdb || i.ProviderIds.Imdb === imdbId)
+  if (!it) return null
+  return { title: it.Name, url: trimSlash(cfg.url) + (src.prefix || '') + '/Videos/' + encodeURIComponent(it.Id) + '/stream?static=true&api_key=' + encodeURIComponent(cfg.token), series: it.Type === 'Series' }
+}
+export function plexSearchUrl(cfg, imdbId) {
+  return trimSlash(cfg.url) + '/library/all?guid=' + encodeURIComponent('imdb://' + imdbId) + '&X-Plex-Token=' + encodeURIComponent(cfg.token)
+}
+export function plexMatch(cfg, res) {
+  const md = ((res && res.MediaContainer && res.MediaContainer.Metadata) || [])[0]
+  const part = md && md.Media && md.Media[0] && md.Media[0].Part && md.Media[0].Part[0]
+  if (!part || !part.key) return md ? { title: md.title, url: null, series: md.type === 'show' } : null
+  return { title: md.title, url: trimSlash(cfg.url) + part.key + '?X-Plex-Token=' + encodeURIComponent(cfg.token), series: false }
+}
+
+// ── local files ────────────────────────────────────────────────────────────
+const VIDEO = /\.(mp4|m4v|mkv|webm|mov|avi|ogv)$/i
+export function matchLocalFile(paths, title, year, imdbId) {
+  const files = (paths || []).map((p) => (typeof p === 'string' ? p : p.path || p.name)).filter((p) => VIDEO.test(p || ''))
+  if (imdbId) { const byId = files.find((p) => p.toLowerCase().includes(imdbId.toLowerCase())); if (byId) return byId }
+  const t = normTitle(title), y = yearOf(year)
+  if (!t) return null
+  return files.find((p) => {
+    const base = normTitle(p.split('/').pop().replace(VIDEO, ''))
+    return (' ' + base + ' ').includes(' ' + t + ' ') && (!y || base.includes(y))
+  }) || null
+}
+export function driveIndexUrl(cfg) { return trimSlash(cfg.url) + '/index.json' }
+export function driveFileUrl(cfg, path) { return trimSlash(cfg.url) + '/' + String(path).replace(/^\/+/, '').split('/').map(encodeURIComponent).join('/') }
+
+// ── buffering ──────────────────────────────────────────────────────────────
+export const BUFFER_MODES = [
+  { id: '30s', label: '30 s', ahead: 30 },
+  { id: '2m', label: '2 min', ahead: 120 },
+  { id: '10m', label: '10 min', ahead: 600 },
+  { id: 'full', label: 'Full', ahead: Infinity },
+  { id: 'offline', label: 'Offline: download, then play', ahead: Infinity, offline: true }
+]
+export function bufferPolicy(id) {
+  const m = BUFFER_MODES.find((b) => b.id === id) || BUFFER_MODES[0]
+  return { ...m, preload: 'auto', startAhead: m.offline ? Infinity : Math.min(m.ahead, 30) }
+}
+// Seconds buffered contiguously ahead of `t` from a TimeRanges-like list.
+export function bufferedAhead(ranges, t) {
+  for (let i = 0; i < ranges.length; i++) {
+    const s = ranges.start(i), e = ranges.end(i)
+    if (t >= s - 0.5 && t <= e) return e - t
+  }
+  return 0
+}
+// Ready to (re)start: ahead >= policy (capped at what's left of the film).
+export function readyToPlay(policy, ahead, t, duration) {
+  if (policy.offline) return false
+  const left = duration && isFinite(duration) ? Math.max(0, duration - t) : Infinity
+  return ahead >= Math.min(policy.startAhead, left)
+}
+
+// ── torrents ───────────────────────────────────────────────────────────────
+// Only what the user pastes/opens or an Internet Archive .torrent. No index search.
+export function parseTorrentInput(s, denylist) {
+  const v = String(s || '').trim()
+  if (!v) return { error: 'Paste a magnet link or a .torrent URL.' }
+  if (isDenied(v, denylist)) return { error: 'That link points at a piracy index; it is blocked.' }
+  if (/^magnet:\?/i.test(v)) {
+    const ih = (v.match(/xt=urn:btih:([a-z0-9]{32,40})/i) || [])[1]
+    return ih ? { kind: 'magnet', uri: v, infoHash: ih.toLowerCase() } : { error: 'That magnet link has no info hash.' }
+  }
+  if (/^https?:\/\/\S+\.torrent(\?\S*)?$/i.test(v)) return { kind: 'torrent', uri: v }
+  return { error: 'Not a magnet link or a .torrent URL.' }
+}
+export function pickTorrentVideo(files) {
+  return (files || []).filter((f) => /\.(mp4|m4v|webm)$/i.test(f.name)).sort((a, b) => b.length - a.length)[0] || null
+}
+
+// ── probing: which sources have this title ─────────────────────────────────
+// title: { imdbId, tmdbId, type, title, year }. cfg: { tmdb_key, region,
+// jellyfin:{url,token}, emby:{...}, plex:{...}, drive:{url}, deviceFiles:[File-like] }.
+// Returns one entry per source that HAS the title: { source, kind, ... }.
+export async function probeSource(src, title, cfg, get, decl) {
+  const need = (k) => cfg[src.id] && cfg[src.id][k]
+  switch (src.kind) {
+    case 'library': {
+      if (!need('url') || !need('token') || !isImdbId(title.imdbId)) return null
+      const c = cfg[src.id]
+      if (src.api === 'plex') { const m = plexMatch(c, await get(plexSearchUrl(c, title.imdbId), { Accept: 'application/json' })); return m && m.url ? { play: m.url, note: m.title } : null }
+      const m = jellyfinMatch(src, c, await get(jellyfinSearchUrl(src, c, title.imdbId)), title.imdbId)
+      return m ? { play: m.url, note: m.series ? 'Series: plays the first item' : m.title } : null
+    }
+    case 'local': {
+      if (src.id === 'device') { const f = matchLocalFile((cfg.deviceFiles || []).map((x) => x.name), title.title, title.year, title.imdbId); return f ? { file: f } : null }
+      if (!need('url')) return null
+      const idx = await get(driveIndexUrl(cfg[src.id]))
+      const f = matchLocalFile(Array.isArray(idx) ? idx : idx.files, title.title, title.year, title.imdbId)
+      return f ? { play: driveFileUrl(cfg[src.id], f), note: f } : null
+    }
+    case 'trailer': {
+      if (!cfg.tmdb_key || !title.tmdbId) return null
+      const t = pickTrailer(await get(videosUrl(title.tmdbId, title.type, cfg.tmdb_key)))
+      return t ? { embed: t.embed, note: t.name } : null
+    }
+    case 'providers': {
+      if (!cfg.tmdb_key || !title.tmdbId) return null
+      const g = mapProviders(await get(providersUrl(title.tmdbId, title.type, cfg.tmdb_key)), cfg.region || 'US', title.title, decl.providerLinks)
+      return g.length ? { groups: g } : null
+    }
+    case 'catalogue': {
+      if (tmdbType(title.type) === 'tv') return null
+      if (src.items) { const it = src.items.find((i) => normTitle(i.title) === normTitle(title.title) && (!title.year || yearOf(title.year) === i.year)); return it ? { play: it.url } : null }
+      const id = matchArchive(await get(archiveSearchUrl(src, title.title)), title.title, title.year)
+      if (!id) return null
+      const url = archivePlayable(await get('https://archive.org/metadata/' + encodeURIComponent(id)))
+      return url ? { play: url, identifier: id, page: 'https://archive.org/details/' + id } : null
+    }
+    case 'torrent': {
+      if (tmdbType(title.type) === 'tv') return null
+      const arch = decl.sources.find((s) => s.id === 'archive')
+      if (!arch) return null
+      const id = matchArchive(await get(archiveSearchUrl(arch, title.title)), title.title, title.year)
+      return id ? { torrent: archiveTorrentUrl(src, id), identifier: id, badge: 'Internet Archive' } : null
+    }
+  }
+  return null
+}
+// Probe every source in parallel; a failing source is reported, never thrown.
+export async function probeAll(decl, title, cfg, get, onEach) {
+  const out = await Promise.all(decl.sources.map(async (src) => {
+    let r
+    try { r = await probeSource(src, title, cfg, get, decl); r = r ? { source: src, ok: true, ...r } : { source: src, ok: false } } catch (e) { r = { source: src, ok: false, error: String((e && e.message) || e) } }
+    if (onEach) onEach(r)
+    return r
+  }))
+  return out
+}
+
+// ── user-defined torrent sources ───────────────────────────────────────────
+// Configured by the user at runtime and stored on their device only; we ship
+// NO presets. Types: 'torznab' (Torznab/Jackett endpoint + API key), 'rss'
+// (a feed, filtered by the query) and 'template' (a search URL with {query},
+// opened in the browser). Searched only when the user types a query: never
+// auto-matched to catalogue titles. Results carry a "user source" badge.
+export const USER_SOURCE_TYPES = ['torznab', 'rss', 'template']
+export function validateUserSource(s) {
+  const src = { enabled: true, apikey: '', ...s, name: String((s && s.name) || '').trim(), url: String((s && s.url) || '').trim() }
+  if (!src.name) return { error: 'Give the source a name.' }
+  if (!USER_SOURCE_TYPES.includes(src.type)) return { error: 'Pick a type: Torznab/Jackett, RSS or URL template.' }
+  if (!/^https?:\/\/\S+$/i.test(src.url)) return { error: 'The URL must start with http:// or https://.' }
+  if (src.type === 'template' && !src.url.includes('{query}')) return { error: 'A URL template needs {query} where the search text goes.' }
+  if (src.type === 'torznab' && !src.apikey) return { error: 'A Torznab/Jackett source needs its API key.' }
+  return { source: src }
+}
+export function addUserSource(list, s, makeId) {
+  const v = validateUserSource(s)
+  if (v.error) return { list, error: v.error }
+  const id = v.source.id || (makeId ? makeId() : 'u' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6))
+  if (list.some((x) => x.id === id)) return { list, error: 'A source with that id exists.' }
+  return { list: [...list, { ...v.source, id }] }
+}
+export function updateUserSource(list, id, patch) {
+  const cur = list.find((x) => x.id === id)
+  if (!cur) return { list, error: 'No such source.' }
+  const v = validateUserSource({ ...cur, ...patch, id })
+  if (v.error) return { list, error: v.error }
+  return { list: list.map((x) => (x.id === id ? v.source : x)) }
+}
+export function removeUserSource(list, id) { return { list: list.filter((x) => x.id !== id) } }
+export function parseUserSources(json) {
+  let arr
+  try { arr = typeof json === 'string' ? JSON.parse(json || '[]') : json } catch { return [] }
+  return Array.isArray(arr) ? arr.filter((s) => !validateUserSource(s).error && s.id) : []
+}
+export function userSearchUrl(src, query) {
+  const q = encodeURIComponent(String(query || '').trim())
+  if (src.type === 'template') return src.url.split('{query}').join(q)
+  if (src.type === 'torznab') return src.url + (src.url.includes('?') ? '&' : '?') + 't=search&apikey=' + encodeURIComponent(src.apikey) + '&q=' + q
+  return src.url
+}
+function xmlText(s) {
+  return String(s || '').replace(/^\s*<!\[CDATA\[([\s\S]*?)\]\]>\s*$/, '$1').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&amp;/g, '&').trim()
+}
+function tag(item, name) { const m = item.match(new RegExp('<' + name + '(?:\\s[^>]*)?>([\\s\\S]*?)</' + name + '>', 'i')); return m ? xmlText(m[1]) : '' }
+function attr(el, name) { const m = el.match(new RegExp('\\s' + name + '\\s*=\\s*"([^"]*)"', 'i')); return m ? xmlText(m[1]) : '' }
+// RSS 2.0 and Torznab (RSS + torznab:attr) -> [{ title, link, magnet, torrent, size, seeders }]
+export function parseTorrentFeed(xml) {
+  const items = String(xml || '').match(/<item[\s>][\s\S]*?<\/item>/gi) || []
+  return items.map((it) => {
+    const attrs = {}
+    ;(it.match(/<(?:torznab|newznab):attr\b[^>]*>/gi) || []).forEach((a) => { attrs[attr(a, 'name').toLowerCase()] = attr(a, 'value') })
+    const enc = (it.match(/<enclosure\b[^>]*>/i) || [''])[0]
+    const link = tag(it, 'link'), encUrl = attr(enc, 'url'), guid = tag(it, 'guid')
+    const magnet = attrs.magneturl || [link, encUrl, guid].find((u) => /^magnet:\?/i.test(u)) || ''
+    const torrent = [encUrl, link].find((u) => /^https?:\/\//i.test(u) && (/\.torrent(\?|$)/i.test(u) || /bittorrent/i.test(attr(enc, 'type')) || u === encUrl)) || ''
+    return {
+      title: tag(it, 'title'), link: /^https?:/i.test(link) ? link : (tag(it, 'comments') || ''),
+      magnet, torrent, size: Number(attrs.size || attr(enc, 'length') || tag(it, 'size')) || 0,
+      seeders: attrs.seeders != null ? Number(attrs.seeders) : null
+    }
+  }).filter((r) => r.title)
+}
+// Search every ENABLED user source in parallel (text getter), merge, badge.
+export async function searchUserSources(list, query, getText) {
+  const q = String(query || '').trim()
+  if (!q) return { results: [], errors: [] }
+  const words = normTitle(q).split(' ').filter(Boolean)
+  const errors = [], results = []
+  await Promise.all(list.filter((s) => s.enabled !== false).map(async (s) => {
+    const badge = 'user source · ' + s.name
+    if (s.type === 'template') { results.push({ title: 'Search “' + q + '” on ' + s.name, open: userSearchUrl(s, q), badge, user: true }); return }
+    try {
+      let rows = parseTorrentFeed(await getText(userSearchUrl(s, q)))
+      if (s.type === 'rss') rows = rows.filter((r) => { const t = normTitle(r.title); return words.every((w) => t.includes(w)) })
+      rows.forEach((r) => results.push({ ...r, badge, user: true }))
+    } catch (e) { errors.push({ name: s.name, error: String((e && e.message) || e) }) }
+  }))
+  results.sort((a, b) => (b.seeders || 0) - (a.seeders || 0))
+  return { results, errors }
+}
+
+// ── movie configuration: ONE schema, two settings UIs ──────────────────────
+// My Movies' MovieConfig.vue and cloud-media-center's Configs → Movies page both
+// draw their form from MOVIE_CONFIG, so the two never diverge. Values live in
+// the user's own storage (browser / app webview) only; nothing is committed.
+// A field: { key: 'a.b' path, label, type: text|secret|number|bool|select|region, ... }.
+export const MOVIE_CONFIG = [
+  { id: 'sources', label: 'Sources', fields: [
+    { key: 'tmdb_key', label: 'TMDB API key', type: 'secret' },
+    { key: 'region', label: 'Where-to-watch region', type: 'region' },
+    { key: 'jellyfin.url', label: 'Jellyfin URL', type: 'text', placeholder: 'https://media.example' },
+    { key: 'jellyfin.token', label: 'Jellyfin token', type: 'secret' },
+    { key: 'emby.url', label: 'Emby URL', type: 'text', placeholder: 'https://media.example' },
+    { key: 'emby.token', label: 'Emby token', type: 'secret' },
+    { key: 'plex.url', label: 'Plex URL', type: 'text', placeholder: 'https://media.example' },
+    { key: 'plex.token', label: 'Plex token', type: 'secret' },
+    { key: 'drive.url', label: 'Drive / local media folder URL (serves index.json)', type: 'text', placeholder: 'https://…/media' }
+  ] },
+  { id: 'playback', label: 'Playback', fields: [
+    { key: 'buffer', label: 'Buffer ahead', type: 'select', options: 'buffer' },
+    { key: 'offline', label: 'Offline: download fully, then play', type: 'bool' }
+  ] },
+  { id: 'torrent', label: 'Torrents', fields: [
+    { key: 'torrent.folder', label: 'Download folder', type: 'text', placeholder: 'Movies' },
+    { key: 'torrent.max_conns', label: 'Max connections', type: 'number', min: 1, max: 500 },
+    { key: 'torrent.down_kbps', label: 'Download limit (KB/s, 0 = none)', type: 'number', min: 0 },
+    { key: 'torrent.up_kbps', label: 'Upload limit (KB/s, 0 = none)', type: 'number', min: 0 },
+    { key: 'torrent.seed_ratio', label: 'Stop seeding at ratio (0 = never seed)', type: 'number', min: 0, step: 0.1 },
+    { key: 'torrent.seed_minutes', label: 'Stop seeding after (minutes, 0 = no limit)', type: 'number', min: 0 },
+    { key: 'torrent.sequential', label: 'Sequential (stream) mode', type: 'bool' }
+  ] }
+]
+export function defaultMovieConfig(lang) {
+  return {
+    tmdb_key: '', region: (String(lang || 'en-US').split('-')[1] || 'US').toUpperCase(), buffer: '2m', offline: false,
+    jellyfin: { url: '', token: '' }, emby: { url: '', token: '' }, plex: { url: '', token: '' }, drive: { url: '' },
+    disabled: [],
+    torrent: { folder: 'Movies', max_conns: 55, down_kbps: 0, up_kbps: 0, seed_ratio: 1, seed_minutes: 0, sequential: true }
+  }
+}
+export function getPath(o, key) { return String(key).split('.').reduce((a, k) => (a == null ? a : a[k]), o) }
+export function setPath(o, key, v) { const ks = String(key).split('.'); let c = o; while (ks.length > 1) { const k = ks.shift(); if (!c[k] || typeof c[k] !== 'object') c[k] = {}; c = c[k] } c[ks[0]] = v; return o }
+// Saved JSON (or object) -> a complete config; unknown keys dropped, types coerced.
+export function normalizeMovieConfig(raw, lang) {
+  let s = raw
+  if (typeof s === 'string') { try { s = JSON.parse(s || '{}') } catch { s = {} } }
+  s = s && typeof s === 'object' ? s : {}
+  const c = defaultMovieConfig(lang)
+  for (const sec of MOVIE_CONFIG) for (const f of sec.fields) {
+    const v = getPath(s, f.key)
+    if (v == null || v === '') continue
+    if (f.type === 'bool') setPath(c, f.key, v === true || v === 'true' || v === 'on')
+    else if (f.type === 'number') { const n = Number(v); if (isFinite(n)) setPath(c, f.key, Math.min(f.max != null ? f.max : Infinity, Math.max(f.min || 0, n))) }
+    else if (f.type === 'region') setPath(c, f.key, String(v).trim().toUpperCase().slice(0, 2) || c.region)
+    else if (f.type === 'select') { if (BUFFER_MODES.some((b) => b.id === v)) setPath(c, f.key, v) }
+    else setPath(c, f.key, String(v).trim())
+  }
+  if (s.buffer === 'offline') { c.buffer = '2m'; c.offline = true }
+  if (Array.isArray(s.disabled)) c.disabled = s.disabled.filter((x) => typeof x === 'string')
+  return c
+}
+// Buffer modes offered in the select (offline is its own switch).
+export function streamBufferModes() { return BUFFER_MODES.filter((b) => !b.offline) }
+export function effectiveBuffer(cfg) { return cfg && cfg.offline ? 'offline' : (cfg && cfg.buffer) || '2m' }
+export function isSourceEnabled(cfg, id) { return !((cfg && cfg.disabled) || []).includes(id) }
+export function setSourceEnabled(cfg, id, on) {
+  const d = ((cfg && cfg.disabled) || []).filter((x) => x !== id)
+  return { ...cfg, disabled: on ? d : [...d, id] }
+}
+// The declared list minus what the user switched off.
+export function enabledSources(decl, cfg) { return { ...decl, sources: decl.sources.filter((s) => isSourceEnabled(cfg, s.id)) } }
+// WebTorrent client + add() options from the torrent section.
+export function torrentClientOptions(cfg) {
+  const t = (cfg && cfg.torrent) || defaultMovieConfig().torrent
+  return { maxConns: t.max_conns, downloadLimit: t.down_kbps > 0 ? t.down_kbps * 1024 : -1, uploadLimit: t.up_kbps > 0 ? t.up_kbps * 1024 : -1 }
+}
+export function torrentAddOptions(cfg) {
+  const t = (cfg && cfg.torrent) || defaultMovieConfig().torrent
+  return { strategy: t.sequential ? 'sequential' : 'rarest', path: t.folder || undefined }
+}
+// After the download completes: stop seeding once the ratio or the time limit is reached.
+export function seedingDone(cfg, ratio, seededSeconds) {
+  const t = (cfg && cfg.torrent) || defaultMovieConfig().torrent
+  if (!(t.seed_ratio > 0)) return true
+  if (ratio >= t.seed_ratio) return true
+  return t.seed_minutes > 0 && seededSeconds >= t.seed_minutes * 60
+}

@@ -1,0 +1,216 @@
+// ============================================
+// GLASS MORPHISM COMPONENTS
+// ============================================
+// Apple Glassy Pixel Art Enhanced Effects
+
+@use '../abstracts/variables' as *;
+
+// Standard Glass Card
+.glass-card {
+  background: $glass-bg;
+  backdrop-filter: blur($glass-blur) saturate(180%);
+  -webkit-backdrop-filter: blur($glass-blur) saturate(180%);
+  border: 1px solid $glass-border;
+  border-radius: 16px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all var(--duration-normal) var(--ease-apple);
+
+  // Pixel art accent border
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 17px;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba($violet-accent, 0.3) 0%,
+      transparent 50%,
+      rgba($pixel-cyan, 0.2) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity var(--duration-normal) var(--ease-apple);
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+// Enhanced Glass
+.glass-enhanced {
+  background: $glass-bg;
+  backdrop-filter: blur($glass-blur) saturate(200%);
+  -webkit-backdrop-filter: blur($glass-blur) saturate(200%);
+  border: 1px solid $glass-border;
+  border-radius: 16px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 0 1px rgba($violet-accent, 0.1);
+}
+
+// Strong Glass (for headers, important elements)
+.glass-strong {
+  background: $glass-bg-strong;
+  backdrop-filter: blur($glass-blur-strong) saturate(200%);
+  -webkit-backdrop-filter: blur($glass-blur-strong) saturate(200%);
+  border: 1px solid $glass-border-strong;
+  border-radius: 16px;
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15),
+    0 0 60px rgba($violet-accent, 0.15);
+}
+
+// Subtle Glass (for secondary elements)
+.glass-subtle {
+  background: rgba($obsidian-900, 0.35);
+  backdrop-filter: blur(12px) saturate(150%);
+  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+}
+
+// Glass Hover Effect
+.glass-hover {
+  transition: all var(--duration-normal) var(--ease-apple);
+
+  &:hover {
+    transform: translateY(-2px);
+    border-color: rgba($violet-accent, 0.4);
+    box-shadow:
+      0 12px 40px rgba(0, 0, 0, 0.3),
+      0 0 30px rgba($violet-accent, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+}
+
+// Glass Hover Effect with Lift
+.glass-hover-effect {
+  transition: all var(--duration-slow) var(--ease-apple);
+
+  &:hover {
+    transform: translateY(-4px) scale(1.01);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow:
+      0 16px 48px rgba(0, 0, 0, 0.35),
+      0 0 40px rgba($violet-accent, 0.25);
+  }
+}
+
+// Glow Effects
+.glow-purple {
+  box-shadow:
+    0 0 20px rgba($violet-accent, 0.4),
+    0 0 40px rgba($violet-accent, 0.2),
+    0 0 60px rgba($violet-accent, 0.1);
+}
+
+.glow-cyan {
+  box-shadow:
+    0 0 20px rgba($pixel-cyan, 0.4),
+    0 0 40px rgba($pixel-cyan, 0.2);
+}
+
+.glow-mixed {
+  box-shadow:
+    0 0 20px rgba($violet-accent, 0.3),
+    0 0 40px rgba($pixel-cyan, 0.15),
+    0 0 60px rgba($pixel-magenta, 0.1);
+}
+
+// ============================================
+// PIXEL ART GLASS VARIANTS
+// ============================================
+
+// Pixel Glass Card
+.glass-pixel-card {
+  background: $pixel-glass-bg;
+  backdrop-filter: blur($glass-blur) saturate(180%);
+  -webkit-backdrop-filter: blur($glass-blur) saturate(180%);
+  border: $pixel-border-width solid $pixel-glass-border;
+  border-radius: 12px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 0 30px $pixel-glass-glow;
+  position: relative;
+  overflow: hidden;
+
+  // Pixel corner accents
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(
+      135deg,
+      transparent 50%,
+      rgba($violet-accent, 0.3) 50%
+    );
+    pointer-events: none;
+  }
+}
+
+// Pixel Border Glass
+.glass-pixel-border {
+  background: $glass-bg;
+  backdrop-filter: blur($glass-blur) saturate(180%);
+  -webkit-backdrop-filter: blur($glass-blur) saturate(180%);
+  border: $pixel-border-width solid transparent;
+  border-radius: 12px;
+  background-clip: padding-box;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: $pixel-border-width;
+    background: linear-gradient(
+      135deg,
+      $violet-accent 0%,
+      $pixel-cyan 50%,
+      $violet-glow 100%
+    );
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+}
+
+// ============================================
+// APPLE-STYLE VIBRANCY
+// ============================================
+
+.vibrancy-light {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
+}
+
+.vibrancy-dark {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
+}
+
+.vibrancy-purple {
+  background: rgba($violet-accent, 0.15);
+  backdrop-filter: blur(40px) saturate(180%);
+  -webkit-backdrop-filter: blur(40px) saturate(180%);
+}

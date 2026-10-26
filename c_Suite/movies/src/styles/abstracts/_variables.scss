@@ -1,0 +1,61 @@
+// Film Noir Color Palette
+// Dark, moody, cinematic
+
+// Core Noir
+$noir-black: #0a0a0a;
+$noir-charcoal: #1a1a1a;
+$noir-smoke: #2d2d2d;
+$noir-ash: #3d3d3d;
+$noir-silver: #8a8a8a;
+$noir-steel: #6b6b6b;
+
+// Accent - Classic noir red
+$noir-red: #8B0000;          // Dark blood red
+$noir-crimson: #DC143C;      // Crimson
+$noir-wine: #722F37;         // Wine red
+
+// Highlights
+$noir-gold: #B8860B;         // Dark goldenrod
+$noir-amber: #FFBF00;        // Amber for highlights
+$noir-cream: #F5F5DC;        // Beige/cream for text
+
+// Cool tones
+$noir-blue: #1C3144;         // Dark slate blue
+$noir-teal: #2F4F4F;         // Dark slate gray
+
+// Base Theme
+$bg-color: $noir-black;
+$bg-gradient-start: #050505;
+$bg-gradient-end: #121212;
+$card-bg: rgba(26, 26, 26, 0.9);
+$card-bg-hover: rgba(45, 45, 45, 0.95);
+
+// Text
+$text-primary: $noir-cream;
+$text-secondary: $noir-silver;
+$text-muted: $noir-steel;
+
+// Accent
+$accent-color: $noir-red;
+$accent-hover: $noir-crimson;
+$accent-secondary: $noir-gold;
+
+// Inputs
+$input-bg: rgba(45, 45, 45, 0.6);
+$input-border: rgba(138, 138, 138, 0.3);
+$input-focus: $noir-crimson;
+
+// Layout
+$border-radius: 4px;
+$border-radius-lg: 8px;
+$max-width: 1200px;
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Shadows (dramatic noir shadows)
+$shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.5);
+$shadow-harsh: 0 10px 40px rgba(0, 0, 0, 0.8);
+$shadow-glow: 0 0 20px rgba(139, 0, 0, 0.3);
+$shadow-card: 0 8px 32px rgba(0, 0, 0, 0.6);

@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/composables/useMovieDatabase.ts","./src/composables/useMovies.ts","./src/composables/usePlayer.ts","./src/types/movie.ts","./src/App.vue","./src/components/AppHeader.vue","./src/components/MovieCard.vue","./src/components/WebPlayer.vue"],"version":"5.9.3"}

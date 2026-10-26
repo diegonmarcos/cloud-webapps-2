@@ -1,5 +1,8 @@
 c_Suite/grist
 c_Suite/json-vision
+c_Suite/movies
+c_Suite/music
+c_Suite/myfeed
 c_Suite/myhealth-feedyourself
 c_Suite/mymail
 c_Suite/mymaps

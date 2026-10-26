@@ -1,0 +1,17 @@
+{
+  "name": "Music",
+  "framework": "vue",
+  "port": 8016,
+  "src": "src",
+  "dist": "dist",
+
+  "build": [
+    { "mod": "vite" }
+  ],
+
+  "serve": {
+    "mode": "vite"
+  },
+
+  "deploy": {}
+}

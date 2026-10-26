@@ -1,0 +1,308 @@
+// ============================================
+// CUSTOM BASE STYLES
+// ============================================
+// Apple Glassy Pixel Art Theme
+
+@use '../abstracts/variables' as *;
+
+// Import Google Fonts for Pixel Art
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+  // Colors
+  --bg-primary: #{$obsidian-950};
+  --bg-secondary: #{$obsidian-900};
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+
+  // Pixel Art Colors
+  --pixel-primary: #{$violet-accent};
+  --pixel-glow: #{$violet-glow};
+  --pixel-cyan: #{$pixel-cyan};
+  --pixel-magenta: #{$pixel-magenta};
+
+  // Apple Glass
+  --glass-bg: #{$glass-bg};
+  --glass-border: #{$glass-border};
+
+  // Spacing
+  --container-max-width: #{$container-max-width};
+  --card-gap: #{$card-gap};
+
+  // Transitions
+  --ease-smooth: #{$ease-smooth};
+  --ease-apple: #{$ease-apple};
+  --duration-normal: #{$duration-normal};
+  --duration-slow: #{$duration-slow};
+}
+
+[data-theme='light'] {
+  --bg-primary: #{$obsidian-100};
+  --bg-secondary: #ffffff;
+  --text-primary: #{$obsidian-950};
+  --text-secondary: #{$obsidian-700};
+}
+
+// Base HTML/Body
+html {
+  background: $obsidian-950;
+  background-image:
+    radial-gradient(ellipse at top, rgba($violet-accent, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at bottom right, rgba($apple-blue, 0.1) 0%, transparent 40%);
+  background-attachment: fixed;
+}
+
+body {
+  font-family: $font-system;
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Custom scrollbar (Apple style with pixel accent)
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba($obsidian-950, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, $violet-accent, $obsidian-600);
+  border-radius: 4px;
+  border: 1px solid rgba($violet-accent, 0.3);
+
+  &:hover {
+    background: linear-gradient(180deg, $violet-glow, $obsidian-500);
+  }
+}
+
+// Selection (Pixel style)
+::selection {
+  background: rgba($violet-accent, 0.4);
+  color: white;
+}
+
+// Focus styles (Apple style)
+:focus-visible {
+  outline: 2px solid $violet-accent;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+// ============================================
+// PIXEL ART TYPOGRAPHY
+// ============================================
+
+.font-pixel {
+  font-family: $font-pixel;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.font-pixel-body {
+  font-family: $font-pixel-body;
+  letter-spacing: 0.5px;
+  font-size: 1rem;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, $violet-accent 0%, $pixel-cyan 50%, $violet-glow 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+// ============================================
+// PIXEL ART SCANLINES EFFECT
+// ============================================
+
+.pixel-scanlines {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 0, 0, 0.03) 2px,
+        rgba(0, 0, 0, 0.03) 4px
+      );
+    pointer-events: none;
+    z-index: 9999;
+  }
+}
+
+// ============================================
+// PIXEL ART BORDERS
+// ============================================
+
+.pixel-border {
+  border: $pixel-border-width solid $pixel-glass-border;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 0 20px $pixel-glass-glow;
+}
+
+.pixel-border-top {
+  border-top: $pixel-border-width solid $pixel-glass-border;
+  box-shadow: 0 -4px 20px $pixel-glass-glow;
+}
+
+// ============================================
+// PIXEL ART BADGES
+// ============================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge-pixel {
+  font-family: $font-pixel-body;
+  background: linear-gradient(135deg, rgba($violet-accent, 0.3), rgba($apple-blue, 0.2));
+  border: 1px solid rgba($violet-accent, 0.5);
+  color: $violet-glow;
+  box-shadow: 0 0 10px rgba($violet-accent, 0.3);
+
+  &:hover {
+    box-shadow: 0 0 15px rgba($violet-accent, 0.5);
+  }
+}
+
+.badge-purple {
+  background: rgba($violet-accent, 0.2);
+  border: 1px solid rgba($violet-accent, 0.4);
+  color: $violet-glow;
+}
+
+// ============================================
+// PIXEL ART BUTTONS
+// ============================================
+
+.btn-primary {
+  font-family: $font-pixel-body;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, $violet-accent, $obsidian-600);
+  border: 2px solid rgba($violet-glow, 0.5);
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-apple);
+  box-shadow:
+    0 4px 15px rgba($violet-accent, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 6px 20px rgba($violet-accent, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-glass {
+  font-family: $font-pixel-body;
+  padding: 0.75rem 1.5rem;
+  background: $glass-bg;
+  backdrop-filter: blur($glass-blur);
+  border: 1px solid $glass-border;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-apple);
+
+  &:hover {
+    background: rgba(45, 43, 78, 0.8);
+    border-color: rgba($violet-accent, 0.5);
+  }
+}
+
+// ============================================
+// PIXEL DOT SEPARATOR
+// ============================================
+
+.pixel-dot {
+  color: $violet-accent;
+  text-shadow: 0 0 10px rgba($violet-accent, 0.5);
+}
+
+// ============================================
+// PIXEL LOGO ANIMATION
+// ============================================
+
+.pixel-logo {
+  animation: pixel-pulse 2s ease-in-out infinite;
+  box-shadow:
+    0 0 20px rgba($violet-accent, 0.4),
+    inset 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+@keyframes pixel-pulse {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba($violet-accent, 0.4),
+      inset 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba($violet-accent, 0.6),
+      0 0 60px rgba($pixel-cyan, 0.2),
+      inset 0 0 15px rgba(255, 255, 255, 0.2);
+  }
+}
+
+// ============================================
+// GLASS PIXEL CARD STYLES
+// ============================================
+
+.glass-pixel {
+  background: $pixel-glass-bg;
+  backdrop-filter: blur($glass-blur) saturate(180%);
+  -webkit-backdrop-filter: blur($glass-blur) saturate(180%);
+  border: $pixel-border-width solid $pixel-glass-border;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 0 40px $pixel-glass-glow;
+}
+
+.glass-pixel-item {
+  background: rgba($obsidian-900, 0.4);
+  border: 1px solid rgba($violet-accent, 0.2);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+  &:hover {
+    background: rgba($obsidian-900, 0.6);
+    border-color: rgba($violet-accent, 0.4);
+    box-shadow:
+      0 4px 16px rgba(0, 0, 0, 0.3),
+      0 0 20px rgba($violet-accent, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+}

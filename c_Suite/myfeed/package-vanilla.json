@@ -1,0 +1,21 @@
+{
+  "name": "myfeed-vanilla",
+  "version": "2.0.0",
+  "description": "MyFeed - Multi-page vanilla app with Sass and TypeScript",
+  "type": "module",
+  "scripts": {
+    "build:css": "sass src_static/scss/main.scss style.css --style=compressed --no-source-map",
+    "build:bundle": "esbuild src_static/typescript/main.ts --bundle --outfile=script.js --format=iife --target=es2020 --minify",
+    "build": "npm run build:bundle && npm run build:css",
+    "dev:css": "sass src_static/scss/main.scss src_static/style.css --style=expanded --source-map --watch",
+    "dev:bundle": "esbuild src_static/typescript/main.ts --bundle --outfile=src_static/script.js --format=iife --target=es2020 --sourcemap --watch=forever",
+    "typecheck": "tsc --noEmit -p tsconfig-vanilla.json"
+  },
+  "author": "Diego Nepomuceno Marcos",
+  "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.20.2",
+    "sass": "^1.77.0",
+    "typescript": "^5.9.3"
+  }
+}

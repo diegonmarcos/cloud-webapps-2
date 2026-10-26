@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/data/staticLists.ts","./src/services/theAudioDb.ts","./src/types/index.ts","./src/App.vue","./src/components/MediaCard.vue","./src/components/SectionScroll.vue"],"version":"5.9.3"}

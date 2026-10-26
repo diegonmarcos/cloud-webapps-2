@@ -1,0 +1,62 @@
+{
+  "prestige20m": {
+    "title": "The $20M+ Per Episode Club (2026 Update)",
+    "description": "The \"20 Million Dollar Club\" represents the absolute peak of the streaming wars. As of 2026, many of these shows have moved into their second or final seasons, often seeing their budgets climb even higher due to cast renegotiations or technical ambitions.",
+    "columns": ["Series", "1st Ep Year", "Est. Price / Ep", "Platform", "Cost Drivers", "Brief"],
+    "rows": [
+      ["The Rings of Power", "2022", "$58M – $60M", "Prime Video", "Rights + Sets + VFX", "A massive prequel to The Lord of the Rings detailing the rise of Sauron."],
+      ["Citadel", "2023", "$50M", "Prime Video", "Reshoots + Talent", "A global spy thriller that became expensive due to major creative reboots."],
+      ["Stranger Things", "2016", "$50M+", "Netflix", "Cast Salaries + Length", "Season 5 spiked costs due to $7M+ per-actor salaries and feature-film runtimes."],
+      ["Andor", "2022", "$38M", "Disney+", "Practical Sets + Locations", "Opts for massive physical builds in the UK rather than digital \"Volume\" stages."],
+      ["Secret Invasion", "2023", "$35M", "Disney+", "Reshoots + Cast", "Significant production delays and a high-profile cast (Samuel L. Jackson, Olivia Colman)."],
+      ["Masters of the Air", "2024", "$28M", "Apple TV+", "CGI + Historical Realism", "WWII aerial combat rendered with cutting-edge tech and period-accurate planes."],
+      ["Marvel (WandaVision+)", "2021", "$25M", "Disney+", "Heavy VFX + Cast", "High-end CGI required to match the visual fidelity of the MCU theatrical films."],
+      ["Loki", "2021", "$23.5M", "Disney+", "CGI + Production Design", "Intricate multiverse visuals and high-concept \"Retro-Future\" sets."],
+      ["The Acolyte", "2024", "$22.5M", "Disney+", "Practical + Stunts", "Heavy investment in martial arts training and large physical sets for the High Republic."],
+      ["1923", "2022", "$22M", "Paramount+", "A-List Cast + Period", "Led by Harrison Ford and Helen Mirren with extensive filming in Africa and Montana."],
+      ["The Pacific", "2010", "$21.7M", "HBO / Max", "Practical FX + Extras", "The original \"Budget King,\" famous for recreating massive land battles without CGI."],
+      ["House of the Dragon", "2022", "$20M", "HBO / Max", "CGI (Dragons) + Design", "Each dragon is a \"bespoke\" digital asset; costumes are hand-crafted at scale."],
+      ["3 Body Problem", "2024", "$20M", "Netflix", "VFX + IP Rights", "Visualizing complex physics/VR worlds and the high cost of the novel's adaptation rights."],
+      ["Severance", "2022", "$20M", "Apple TV+", "Delays + Showrunner Changes", "Season 2 costs ballooned due to extensive production pauses and creative stalls."]
+    ],
+    "note": "While shows like The Pacific (2010) spent their money primarily on \"what you see\" (thousands of extras and real explosions), modern shows like Citadel and Severance often enter the $20M+ club due to inefficiency. When a production is \"stalled\" or \"rebooted\" mid-filming, the studio continues to pay for stage space and cast \"holding fees,\" which can add millions to the price tag without adding a single extra dragon or explosion to the screen."
+  },
+  "prestigepre22": {
+    "title": "The \"Legacy Prestige\" Tier (Pre-2022, Adjusted to 2026 Dollars)",
+    "description": "While the $20M+ club is a relatively new phenomenon (post-2022), \"Prestige TV\" has been pushing the limits of budgets for decades. When you adjust for inflation to 2026 dollars, several shows from the 90s and 2000s actually rival today's massive streaming expenditures.",
+    "columns": ["Series", "1st Ep Year", "Original Cost/Ep", "Adj. 2026 Cost/Ep", "Platform", "Cost Drivers", "Brief"],
+    "rows": [
+      ["The Pacific", "2010", "$21.7M", "~$31.4M", "HBO", "Practical FX + Scale", "Massive land battles recreated with real explosions and thousands of extras."],
+      ["ER (Peak Years)", "1994", "$13M (in '98)", "~$25.2M", "NBC", "Cast Salaries", "NBC paid a record premium in 1998 just to keep George Clooney and the ensemble."],
+      ["WandaVision", "2021", "$25M", "~$28.9M", "Disney+", "Heavy VFX + Talent", "The first Marvel series to bridge the visual gap between TV and cinema."],
+      ["Band of Brothers", "2001", "$12.5M", "~$22.3M", "HBO", "Historical Realism", "Cost driven by a massive \"boot camp\" for actors and period-accurate weaponry."],
+      ["Friends (S10)", "1994", "$10M (in '04)", "~$16.8M", "NBC", "Cast Salaries", "Famous for the $1M-per-episode-per-actor deal for the core six leads."],
+      ["The Mandalorian", "2019", "$15M", "~$18.6M", "Disney+", "\"The Volume\" VFX", "Pioneer of LED wall tech and high-end digital puppet character work (Grogu)."],
+      ["The Morning Show", "2019", "$15M", "~$18.6M", "Apple TV+", "Cast Salaries", "Massive upfront deals for Jennifer Aniston and Reese Witherspoon ($1.25M+ each)."],
+      ["See", "2019", "$15M", "~$18.6M", "Apple TV+", "Location + Sets", "Entire post-apocalyptic villages were built on remote, difficult-to-access locations."],
+      ["Game of Thrones (S8)", "2011", "$15M (in '19)", "~$18.6M", "HBO", "VFX + Battles", "The \"Long Night\" battle alone cost significantly more than the season average."],
+      ["The Crown", "2016", "$13M", "~$17.1M", "Netflix", "Period Design", "Precise replicas of royal jewelry and palaces, plus a high-profile rotating cast."],
+      ["Westworld (S1)", "2016", "$10M", "~$13.2M", "HBO", "Sci-Fi VFX + Talent", "High-end robotics VFX and a lead cast including Anthony Hopkins."]
+    ],
+    "note": "The \"ER\" Phenomenon: ER in 1998 was essentially as expensive as House of the Dragon is today — the cost wasn't on screen (VFX), but in the pockets of the stars. The Pacific remains the most expensive production in HBO history when adjusted. Pre-2022 shows like The Mandalorian were expensive because they invested in new technology (The Volume). Today that technology is the standard, requiring even more man-hours to stand out."
+  },
+  "prestigetier2": {
+    "title": "The \"High Stakes\" Tier (Pre-2022, Adjusted to 2026 Dollars)",
+    "description": "The \"Second Tier\" of high-budget television (roughly $12M – $23M adjusted for 2026 inflation) represents the era where streaming services began trying to outspend traditional cable giants like HBO. Defined by international location shooting and the first wave of high-fantasy world-building.",
+    "columns": ["Series", "1st Ep Year", "Original Cost/Ep", "Adj. 2026 Cost/Ep", "Platform", "Cost Drivers", "Brief"],
+    "rows": [
+      ["The Get Down", "2016", "$16M", "~$22.8M", "Netflix / Sony", "Music Rights + Reshoots", "Baz Luhrmann's 70s hip-hop epic saw costs explode due to music licensing and production halts."],
+      ["Wheel of Time (S1)", "2021", "$16.2M", "~$19.7M", "Prime Video / Sony", "CGI + Practical Sets", "Massive world-building costs to establish the \"Next Game of Thrones.\""],
+      ["Rome", "2005", "$10M", "~$17.9M", "HBO / BBC", "Practical Sets + Locations", "One of the largest standing sets in history (Cinecittà, Italy), recreating ancient Rome."],
+      ["Book of Boba Fett", "2021", "$15M", "~$18.2M", "Disney+ / Lucasfilm", "CGI + StageCraft", "Heavy use of the \"Volume\" LED technology and creature effects."],
+      ["Arcane (S1)", "2021", "$13.8M", "~$16.7M", "Netflix / Riot Games", "Animation Labor", "The highest-budget animated series, requiring years of hand-painted digital work."],
+      ["The Boys (S1-2)", "2019", "$11M", "~$14.5M", "Prime Video / Sony", "Stunts + Gore VFX", "Highly specialized practical effects and digital work for superhero action."],
+      ["Vinyl", "2016", "$10M", "~$14.2M", "HBO", "Music Rights + Talent", "A Scorsese-led project with massive costs for 1970s NYC recreation and soundtracks."],
+      ["The Witcher (S1)", "2019", "$10M", "~$13.2M", "Netflix", "CGI + Costumes", "Establishing the high-fantasy aesthetic and creature design for the franchise."],
+      ["Succession", "2018", "$10M", "~$13.2M", "HBO", "Luxury Locations", "Filming in high-end global locations (Italy, Iceland, NYC) and premium cast salaries."],
+      ["Sense8", "2015", "$9M", "~$12.6M", "Netflix", "Global Travel", "Filmed on location in dozens of cities worldwide rather than using green screens."],
+      ["Marco Polo", "2014", "$9M", "~$12.5M", "Netflix", "Period Design + Sets", "Lavish sets and period-accurate costuming for the Mongol Empire."]
+    ],
+    "note": "The \"Netflix Experiment\" (2014–2016): Shows like Marco Polo and The Get Down were Netflix's early attempts to prove they could play in the \"HBO Sandbox\" — often spending more on production inefficiency than actual on-screen assets. The Animation Breakthrough: Arcane at ~$17M (adjusted) proved that high-end animation could command the same budget as a live-action Marvel show."
+  }
+}

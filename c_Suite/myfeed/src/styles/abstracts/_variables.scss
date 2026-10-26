@@ -1,0 +1,60 @@
+// ============================================
+// MYFEED VARIABLES - Terminal Data Dashboard
+// ============================================
+// Midnight Terminal Color Palette
+
+// Background layers
+$bg-base: #0d1117;
+$bg-surface: #161b22;
+$bg-elevated: #21262d;
+$bg-hover: #30363d;
+
+// Text hierarchy
+$text-primary: #e6edf3;
+$text-secondary: #8b949e;
+$text-tertiary: #6e7681;
+$text-link: #58a6ff;
+
+// Accent colors (subtle)
+$accent-blue: #58a6ff;
+$accent-green: #3fb950;
+$accent-orange: #d29922;
+$accent-red: #f85149;
+$accent-purple: #a371f7;
+
+// Borders
+$border-default: #30363d;
+$border-muted: #21262d;
+
+// Grays
+$gray-950: #0d1117;
+$gray-900: #161b22;
+$gray-800: #21262d;
+$gray-700: #30363d;
+$gray-600: #484f58;
+$gray-500: #6e7681;
+$gray-400: #8b949e;
+$gray-300: #b1bac4;
+$gray-200: #c9d1d9;
+$gray-100: #e6edf3;
+
+// Typography
+$font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Consolas', monospace;
+$font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', sans-serif;
+
+// Font sizes (compact)
+$text-xxs: 0.6875rem;  // 11px
+$text-xs: 0.75rem;     // 12px
+$text-sm: 0.8125rem;   // 13px
+$text-base: 0.875rem;  // 14px
+$text-md: 1rem;        // 16px
+
+// Spacing
+$container-max-width: 1200px;
+$row-padding: 0.5rem 0.75rem;
+$section-gap: 0.5rem;
+
+// Transitions
+$ease-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+$duration-fast: 150ms;
+$duration-normal: 200ms;

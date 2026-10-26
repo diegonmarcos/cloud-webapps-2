@@ -1,0 +1,316 @@
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* MUSIC - WINAMP STYLE LIBRARY                                                 */
+/* Dual Skin System: Classic (Winamp 2.x) & Modern (Dark)                       */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* FONTS */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --wa-font-main: 'Share Tech Mono', 'Courier New', monospace;
+  --wa-font-lcd: 'VT323', 'Courier New', monospace;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* CLASSIC SKIN (Winamp 2.x Default)                                            */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.skin-classic {
+  /* Window */
+  --wa-bg: #232323;
+  --wa-border: 2px outset #4a4a4a;
+  --wa-shadow:
+    inset 1px 1px 0 #5a5a5a,
+    inset -1px -1px 0 #1a1a1a,
+    2px 2px 8px rgba(0,0,0,0.5);
+  --wa-inset-border: 1px solid #000;
+
+  /* Title Bar */
+  --wa-titlebar-bg: linear-gradient(to right, #000080, #1010b0 30%, #000080);
+  --wa-titlebar-text: #fff;
+  --wa-text-shadow: 1px 1px 0 #000;
+
+  /* Buttons */
+  --wa-btn-bg: linear-gradient(to bottom, #d0d0d0, #909090);
+  --wa-btn-border: 1px solid #fff;
+  --wa-btn-border-active: 1px solid #000;
+  --wa-btn-bg-active: #808080;
+
+  /* LCD Display */
+  --wa-lcd-color: #00ff00;
+  --wa-lcd-glow: rgba(0, 255, 0, 0.4);
+  --wa-viz-gradient: linear-gradient(to top, #00ff00, #ffff00 70%, #ff0000);
+
+  /* Text */
+  --wa-text: #c0c0c0;
+  --wa-text-dim: #808080;
+  --wa-text-active: #fff;
+  --wa-text-highlight: #00ff00;
+
+  /* Content Areas */
+  --wa-content-bg: #000;
+  --wa-toolbar-bg: #2a2a2a;
+  --wa-toolbar-border: 1px solid #3a3a3a;
+  --wa-statusbar-bg: #1a1a1a;
+
+  /* Controls */
+  --wa-slider-track: #000;
+  --wa-progress-fill: linear-gradient(to right, #00aa00, #00ff00);
+
+  /* Scrollbars */
+  --wa-scrollbar-track: #1a1a1a;
+  --wa-scrollbar-thumb: #4a4a4a;
+
+  /* Menus */
+  --wa-menu-bg: #d0d0d0;
+  --wa-highlight-bg: #000080;
+  --wa-highlight-text: #fff;
+
+  /* Cards */
+  --wa-card-bg: #1a1a1a;
+  --wa-card-border: 1px solid #3a3a3a;
+  --wa-card-hover-border: #00ff00;
+  --wa-card-title: #00ff00;
+  --wa-card-subtitle: #808080;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* MODERN SKIN (Dark/Sleek)                                                     */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+.skin-modern {
+  /* Window */
+  --wa-bg: #1e1e2e;
+  --wa-border: 1px solid #313244;
+  --wa-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --wa-inset-border: 1px solid #11111b;
+
+  /* Title Bar */
+  --wa-titlebar-bg: linear-gradient(to bottom, #313244, #1e1e2e);
+  --wa-titlebar-text: #cdd6f4;
+  --wa-text-shadow: none;
+
+  /* Buttons */
+  --wa-btn-bg: linear-gradient(to bottom, #45475a, #313244);
+  --wa-btn-border: 1px solid #585b70;
+  --wa-btn-border-active: 1px solid #89b4fa;
+  --wa-btn-bg-active: #45475a;
+
+  /* LCD Display */
+  --wa-lcd-color: #89b4fa;
+  --wa-lcd-glow: rgba(137, 180, 250, 0.3);
+  --wa-viz-gradient: linear-gradient(to top, #89b4fa, #cba6f7 50%, #f38ba8);
+
+  /* Text */
+  --wa-text: #cdd6f4;
+  --wa-text-dim: #6c7086;
+  --wa-text-active: #fff;
+  --wa-text-highlight: #89b4fa;
+
+  /* Content Areas */
+  --wa-content-bg: #11111b;
+  --wa-toolbar-bg: #181825;
+  --wa-toolbar-border: 1px solid #313244;
+  --wa-statusbar-bg: #11111b;
+
+  /* Controls */
+  --wa-slider-track: #11111b;
+  --wa-progress-fill: linear-gradient(to right, #74c7ec, #89b4fa);
+
+  /* Scrollbars */
+  --wa-scrollbar-track: #11111b;
+  --wa-scrollbar-thumb: #45475a;
+
+  /* Menus */
+  --wa-menu-bg: #313244;
+  --wa-highlight-bg: #89b4fa;
+  --wa-highlight-text: #1e1e2e;
+
+  /* Cards */
+  --wa-card-bg: #181825;
+  --wa-card-border: 1px solid #313244;
+  --wa-card-hover-border: #89b4fa;
+  --wa-card-title: #cdd6f4;
+  --wa-card-subtitle: #6c7086;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* GLOBAL RESET & BASE STYLES                                                   */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--wa-font-main);
+  font-size: 12px;
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Classic skin body */
+.skin-classic body,
+body:has(.skin-classic) {
+  background: #000;
+  background-image:
+    radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000 100%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 255, 0, 0.03) 2px,
+      rgba(0, 255, 0, 0.03) 4px
+    );
+}
+
+/* Modern skin body */
+.skin-modern body,
+body:has(.skin-modern) {
+  background: linear-gradient(135deg, #11111b 0%, #1e1e2e 50%, #181825 100%);
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* SCROLLBAR STYLES                                                             */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Classic Scrollbar */
+.skin-classic ::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.skin-classic ::-webkit-scrollbar-track {
+  background: #202020;
+  border: 1px solid #000;
+}
+
+.skin-classic ::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #c0c0c0, #808080);
+  border: 1px solid #fff;
+  border-right-color: #000;
+  border-bottom-color: #000;
+}
+
+.skin-classic ::-webkit-scrollbar-button {
+  background: #c0c0c0;
+  border: 1px solid #fff;
+  border-right-color: #000;
+  border-bottom-color: #000;
+  width: 16px;
+  height: 16px;
+}
+
+.skin-classic ::-webkit-scrollbar-corner {
+  background: #808080;
+}
+
+/* Modern Scrollbar */
+.skin-modern ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.skin-modern ::-webkit-scrollbar-track {
+  background: #11111b;
+  border-radius: 5px;
+}
+
+.skin-modern ::-webkit-scrollbar-thumb {
+  background: #45475a;
+  border-radius: 5px;
+}
+
+.skin-modern ::-webkit-scrollbar-thumb:hover {
+  background: #585b70;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* SELECTION STYLES                                                             */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+.skin-classic ::selection {
+  background: #000080;
+  color: #fff;
+}
+
+.skin-modern ::selection {
+  background: #89b4fa;
+  color: #1e1e2e;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* FOCUS STYLES                                                                 */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+.skin-classic :focus-visible {
+  outline: 1px dashed #00ff00;
+  outline-offset: 2px;
+}
+
+.skin-modern :focus-visible {
+  outline: 2px solid #89b4fa;
+  outline-offset: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* UTILITY CLASSES                                                              */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+.text-lcd {
+  color: var(--wa-lcd-color);
+  text-shadow: 0 0 8px var(--wa-lcd-glow);
+}
+
+.text-dim {
+  color: var(--wa-text-dim);
+}
+
+.text-highlight {
+  color: var(--wa-text-highlight);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════ */
+/* ANIMATIONS                                                                   */
+/* ═══════════════════════════════════════════════════════════════════════════ */
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* Scanline effect for classic skin */
+.skin-classic .scanline-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 1px,
+    rgba(0, 0, 0, 0.1) 1px,
+    rgba(0, 0, 0, 0.1) 2px
+  );
+  pointer-events: none;
+}
