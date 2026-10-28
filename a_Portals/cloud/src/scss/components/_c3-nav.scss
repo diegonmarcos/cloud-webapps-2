@@ -1,0 +1,207 @@
+// ============================================
+// c3-nav — left hamburger nav + slide-out drawer (Wave 2)
+// ============================================
+
+.c3-nav-hamburger {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 1200;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    cursor: pointer;
+
+    span {
+        display: block;
+        width: 18px;
+        height: 2px;
+        background: var(--text-primary);
+        border-radius: 1px;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 2px;
+    }
+
+    &:hover {
+        border-color: var(--accent-primary);
+    }
+}
+
+.c3-nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1300;
+
+    &[hidden] {
+        display: none;
+    }
+}
+
+.c3-nav-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(320px, 85vw);
+    background: var(--bg-card);
+    border-right: 1px solid var(--border-color);
+    z-index: 1400;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.25);
+
+    &[hidden] {
+        display: none;
+    }
+}
+
+.c3-nav-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.9rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    background: var(--bg-card);
+}
+
+.c3-nav-drawer-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+}
+
+.c3-nav-drawer-close {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.4rem;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0.1rem 0.4rem;
+
+    &:hover,
+    &:focus-visible {
+        color: var(--text-primary);
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 2px;
+        border-radius: var(--border-radius);
+    }
+}
+
+.c3-nav-drawer-body {
+    padding: 0.5rem 0.6rem 1.25rem;
+}
+
+.c3-nav-section {
+    margin-bottom: 0.6rem;
+}
+
+.c3-nav-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 0.5rem 0.3rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.c3-nav-section-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--accent-primary-transparent, rgba(99, 102, 241, 0.15));
+    color: var(--accent-primary);
+    font-size: 0.65rem;
+    font-weight: 800;
+}
+
+.c3-nav-section-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+}
+
+.c3-nav-tab-btn {
+    width: 100%;
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 0.45rem 0.6rem 0.45rem 1.9rem;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    cursor: pointer;
+
+    &:hover {
+        background: var(--bg-hover, rgba(255, 255, 255, 0.06));
+    }
+
+    &.active {
+        background: var(--accent-primary);
+        color: #fff;
+        font-weight: 600;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: -2px;
+    }
+}
+
+// The drawer is DOCKED on desktop (it opens by default there), so it must not
+// behave like a modal: no dimmed backdrop, no scroll-lock. Content is shifted
+// right by the drawer width instead of being covered.
+@media (min-width: 781px) {
+    body.c3-nav-open {
+        padding-left: min(320px, 85vw);
+    }
+
+    body.c3-nav-open .c3-nav-backdrop {
+        display: none;
+    }
+}
+
+// On narrow viewports it stays a true overlay drawer — there isn't room to
+// dock it — so keep the modal scroll-lock there.
+@media (max-width: 780px) {
+    body.c3-nav-open {
+        overflow: hidden;
+    }
+}
+
+// On narrow viewports the horizontal tab bar steps aside — the drawer becomes primary nav.
+@media (max-width: 780px) {
+    .nav-level2 {
+        display: none !important;
+    }
+
+    .c3-nav-hamburger {
+        display: flex;
+    }
+}

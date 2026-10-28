@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Architecture - Cloud Services Stack</title>
+
+    <!-- Matomo Tag Manager -->
+    <script>
+      var _mtm = window._mtm = window._mtm || [];
+      _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+      (function() {
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src='https://analytics.diegonmarcos.com/matomo/js/container_odwLIyPV.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Tag Manager -->
+
+    <style>
+        /* ============================================
+           ROOT VARIABLES & THEME
+           ============================================ */
+        :root {
+            --bg-color: #0a0a0f;
+            --bg-gradient: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+            --text-main: #e8e8f0;
+            --text-muted: #8888a0;
+            --text-dim: #555566;
+
+            /* Security Layer Colors */
+            --edge-color: #ff4757;
+            --edge-glow: rgba(255, 71, 87, 0.4);
+
+            --firewall-color: #ff6b35;
+            --firewall-glow: rgba(255, 107, 53, 0.4);
+
+            --proxy-color: #f39c12;
+            --proxy-glow: rgba(243, 156, 18, 0.4);
+
+            --auth-color: #a55eea;
+            --auth-glow: rgba(165, 94, 234, 0.4);
+
+            --network-color: #4a9eff;
+            --network-glow: rgba(74, 158, 255, 0.4);
+
+            --container-color: #00d084;
+            --container-glow: rgba(0, 208, 132, 0.4);
+
+            --vpn-color: #00cec9;
+            --vpn-glow: rgba(0, 206, 201, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Header */
+        .diagram-header {
+            text-align: center;
+            padding: 25px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .diagram-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--edge-color), var(--firewall-color), var(--proxy-color), var(--auth-color), var(--network-color), var(--container-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .diagram-header .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--edge-color), var(--auth-color));
+            color: white;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           LEGEND
+           ============================================ */
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.9); }
+        }
+
+        /* ============================================
+           VISUAL DIAGRAM
+           ============================================ */
+        .visual-diagram {
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-diagram::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 20%, var(--edge-glow) 0%, transparent 40%),
+                radial-gradient(circle at 80% 80%, var(--auth-glow) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, var(--container-glow) 0%, transparent 30%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .diagram-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-main);
+        }
+
+        /* ============================================
+           DEFENSE IN DEPTH - CONCENTRIC RINGS
+           ============================================ */
+        .defense-rings {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            position: relative;
+        }
+
+        .ring-container {
+            position: relative;
+            width: 700px;
+            height: 700px;
+        }
+
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .ring:hover {
+            transform: scale(1.02);
+        }
+
+        .ring-1 {
+            width: 700px;
+            height: 700px;
+            top: 0;
+            left: 0;
+            border: 3px solid var(--edge-color);
+            box-shadow: 0 0 40px var(--edge-glow), inset 0 0 60px var(--edge-glow);
+            background: radial-gradient(circle, transparent 60%, rgba(255, 71, 87, 0.05) 100%);
+        }
+
+        .ring-2 {
+            width: 580px;
+            height: 580px;
+            top: 60px;
+            left: 60px;
+            border: 3px solid var(--firewall-color);
+            box-shadow: 0 0 30px var(--firewall-glow), inset 0 0 50px var(--firewall-glow);
+            background: radial-gradient(circle, transparent 60%, rgba(255, 107, 53, 0.05) 100%);
+        }
+
+        .ring-3 {
+            width: 460px;
+            height: 460px;
+            top: 120px;
+            left: 120px;
+            border: 3px solid var(--proxy-color);
+            box-shadow: 0 0 25px var(--proxy-glow), inset 0 0 40px var(--proxy-glow);
+            background: radial-gradient(circle, transparent 60%, rgba(243, 156, 18, 0.05) 100%);
+        }
+
+        .ring-4 {
+            width: 340px;
+            height: 340px;
+            top: 180px;
+            left: 180px;
+            border: 3px solid var(--auth-color);
+            box-shadow: 0 0 20px var(--auth-glow), inset 0 0 30px var(--auth-glow);
+            background: radial-gradient(circle, transparent 60%, rgba(165, 94, 234, 0.05) 100%);
+        }
+
+        .ring-5 {
+            width: 220px;
+            height: 220px;
+            top: 240px;
+            left: 240px;
+            border: 3px solid var(--network-color);
+            box-shadow: 0 0 15px var(--network-glow), inset 0 0 25px var(--network-glow);
+            background: radial-gradient(circle, transparent 50%, rgba(74, 158, 255, 0.08) 100%);
+        }
+
+        .ring-6 {
+            width: 100px;
+            height: 100px;
+            top: 300px;
+            left: 300px;
+            border: 3px solid var(--container-color);
+            box-shadow: 0 0 20px var(--container-glow), inset 0 0 30px var(--container-glow);
+            background: radial-gradient(circle, rgba(0, 208, 132, 0.15) 0%, rgba(0, 208, 132, 0.05) 100%);
+        }
+
+        .ring-label {
+            position: absolute;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(0,0,0,0.8);
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+        }
+
+        .ring-1 .ring-label { top: 10px; left: 50%; transform: translateX(-50%); color: var(--edge-color); border: 1px solid var(--edge-color); }
+        .ring-2 .ring-label { top: 10px; left: 50%; transform: translateX(-50%); color: var(--firewall-color); border: 1px solid var(--firewall-color); }
+        .ring-3 .ring-label { top: 10px; left: 50%; transform: translateX(-50%); color: var(--proxy-color); border: 1px solid var(--proxy-color); }
+        .ring-4 .ring-label { top: 10px; left: 50%; transform: translateX(-50%); color: var(--auth-color); border: 1px solid var(--auth-color); }
+        .ring-5 .ring-label { top: 10px; left: 50%; transform: translateX(-50%); color: var(--network-color); border: 1px solid var(--network-color); }
+
+        .core-icon {
+            font-size: 40px;
+            filter: drop-shadow(0 0 15px var(--container-color));
+        }
+
+        /* Ring Service Icons */
+        .ring-services {
+            position: absolute;
+            display: flex;
+            gap: 8px;
+        }
+
+        .ring-1 .ring-services { bottom: 25px; left: 50%; transform: translateX(-50%); }
+        .ring-2 .ring-services { bottom: 20px; left: 50%; transform: translateX(-50%); }
+        .ring-3 .ring-services { bottom: 15px; left: 50%; transform: translateX(-50%); }
+        .ring-4 .ring-services { bottom: 12px; left: 50%; transform: translateX(-50%); }
+        .ring-5 .ring-services { bottom: 8px; left: 50%; transform: translateX(-50%); }
+
+        .service-chip {
+            font-size: 9px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            background: rgba(0,0,0,0.7);
+            border: 1px solid currentColor;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .service-chip.active {
+            background: rgba(46, 204, 113, 0.15);
+            border-color: #2ecc71;
+            color: #2ecc71;
+        }
+
+        /* ============================================
+           HORIZONTAL FLOW DIAGRAM
+           ============================================ */
+        .flow-diagram-horizontal {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 0;
+            padding: 30px 10px;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .flow-layer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 140px;
+            position: relative;
+        }
+
+        .flow-layer-box {
+            padding: 18px 12px;
+            border-radius: 16px;
+            border: 2px solid;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            width: 135px;
+            transition: all 0.3s ease;
+        }
+
+        .flow-layer-box:hover {
+            transform: scale(1.05);
+        }
+
+        .flow-layer-box .fl-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .flow-layer-box .fl-label {
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .flow-layer-box .fl-name {
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .flow-layer-box .fl-desc {
+            font-size: 9px;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        /* Flow Connectors */
+        .flow-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            position: relative;
+        }
+
+        .flow-connector::before {
+            content: '';
+            position: absolute;
+            width: 35px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--conn-color-start), var(--conn-color-end));
+        }
+
+        .flow-connector::after {
+            content: '>';
+            font-size: 16px;
+            color: var(--text-muted);
+            animation: arrow-pulse 1s infinite;
+        }
+
+        @keyframes arrow-pulse {
+            0%, 100% { opacity: 0.5; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(3px); }
+        }
+
+        .flow-connector .conn-label {
+            position: absolute;
+            top: -16px;
+            font-size: 8px;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }
+
+        /* Flow Layer Colors */
+        .fl-edge {
+            border-color: var(--edge-color);
+            box-shadow: 0 0 25px var(--edge-glow);
+        }
+        .fl-edge .fl-label { background: var(--edge-color); color: #fff; }
+        .fl-edge .fl-name { color: var(--edge-color); }
+
+        .fl-firewall {
+            border-color: var(--firewall-color);
+            box-shadow: 0 0 25px var(--firewall-glow);
+        }
+        .fl-firewall .fl-label { background: var(--firewall-color); color: #000; }
+        .fl-firewall .fl-name { color: var(--firewall-color); }
+
+        .fl-proxy {
+            border-color: var(--proxy-color);
+            box-shadow: 0 0 25px var(--proxy-glow);
+        }
+        .fl-proxy .fl-label { background: var(--proxy-color); color: #000; }
+        .fl-proxy .fl-name { color: var(--proxy-color); }
+
+        .fl-auth {
+            border-color: var(--auth-color);
+            box-shadow: 0 0 25px var(--auth-glow);
+        }
+        .fl-auth .fl-label { background: var(--auth-color); color: #fff; }
+        .fl-auth .fl-name { color: var(--auth-color); }
+
+        .fl-network {
+            border-color: var(--network-color);
+            box-shadow: 0 0 25px var(--network-glow);
+        }
+        .fl-network .fl-label { background: var(--network-color); color: #000; }
+        .fl-network .fl-name { color: var(--network-color); }
+
+        .fl-container {
+            border-color: var(--container-color);
+            box-shadow: 0 0 25px var(--container-glow);
+        }
+        .fl-container .fl-label { background: var(--container-color); color: #000; }
+        .fl-container .fl-name { color: var(--container-color); }
+
+        .fl-vpn {
+            border-color: var(--vpn-color);
+            box-shadow: 0 0 25px var(--vpn-glow);
+        }
+        .fl-vpn .fl-label { background: var(--vpn-color); color: #000; }
+        .fl-vpn .fl-name { color: var(--vpn-color); }
+
+        /* Providers Row */
+        .providers-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            justify-content: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .provider-chip {
+            font-size: 8px;
+            padding: 2px 6px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .provider-chip.active {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+
+        /* ============================================
+           STACKED LAYERS DIAGRAM
+           ============================================ */
+        .stacked-diagram {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stacked-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-muted);
+        }
+
+        .stack-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stack-layer {
+            display: flex;
+            align-items: stretch;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stack-layer:hover {
+            transform: scale(1.02);
+        }
+
+        .stack-label {
+            width: 120px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stack-label .sl-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .stack-content {
+            flex: 1;
+            padding: 15px 20px;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stack-content .sc-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .stack-content .sc-mental {
+            font-size: 11px;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .stack-providers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .sp-item {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sp-item.active {
+            background: rgba(46, 204, 113, 0.15);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+
+        /* Stack Layer Colors */
+        .stack-edge .stack-label { background: var(--edge-color); color: #fff; }
+        .stack-edge .sc-title { color: var(--edge-color); }
+
+        .stack-firewall .stack-label { background: var(--firewall-color); color: #000; }
+        .stack-firewall .sc-title { color: var(--firewall-color); }
+
+        .stack-proxy .stack-label { background: var(--proxy-color); color: #000; }
+        .stack-proxy .sc-title { color: var(--proxy-color); }
+
+        .stack-auth .stack-label { background: var(--auth-color); color: #fff; }
+        .stack-auth .sc-title { color: var(--auth-color); }
+
+        .stack-network .stack-label { background: var(--network-color); color: #000; }
+        .stack-network .sc-title { color: var(--network-color); }
+
+        .stack-container-layer .stack-label { background: var(--container-color); color: #000; }
+        .stack-container-layer .sc-title { color: var(--container-color); }
+
+        .stack-vpn .stack-label { background: var(--vpn-color); color: #000; }
+        .stack-vpn .sc-title { color: var(--vpn-color); }
+
+        /* Stack Connectors */
+        .stack-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 0;
+            margin-left: 60px;
+        }
+
+        .stack-connector .arrow-down {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .stack-connector .arrow-line {
+            width: 2px;
+            height: 12px;
+            background: linear-gradient(180deg, var(--from-color), var(--to-color));
+        }
+
+        .stack-connector .arrow-head {
+            width: 0;
+            height: 0;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 7px solid var(--to-color);
+        }
+
+        .stack-connector .arrow-label {
+            font-size: 9px;
+            color: var(--text-dim);
+            margin-left: 10px;
+        }
+
+        /* ============================================
+           SECURITY SERVICES TABLE
+           ============================================ */
+        .security-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        .security-table thead tr {
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+
+        .security-table th {
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .security-table td {
+            padding: 12px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .security-table .layer-badge {
+            padding: 3px 10px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 10px;
+            text-transform: uppercase;
+        }
+
+        .status-active {
+            color: #2ecc71;
+        }
+
+        .status-planned {
+            color: #f39c12;
+        }
+
+        /* ============================================
+           ATTACK FLOW DIAGRAM
+           ============================================ */
+        .attack-flow {
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 25px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .attack-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-muted);
+        }
+
+        .attack-scenarios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .attack-card {
+            background: rgba(0,0,0,0.4);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .attack-card h4 {
+            font-size: 14px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .attack-card .attack-icon {
+            font-size: 20px;
+        }
+
+        .attack-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .attack-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 11px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.03);
+        }
+
+        .attack-step .step-num {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--text-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .attack-step.blocked {
+            border: 1px solid var(--edge-color);
+            background: rgba(255, 71, 87, 0.1);
+        }
+
+        .attack-step.blocked .step-num {
+            background: var(--edge-color);
+        }
+
+        .attack-step .block-badge {
+            margin-left: auto;
+            font-size: 9px;
+            padding: 2px 8px;
+            border-radius: 8px;
+            background: var(--edge-color);
+            color: #fff;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 900px) {
+            .flow-diagram-horizontal {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .flow-connector {
+                width: 40px;
+                height: 40px;
+                transform: rotate(90deg);
+            }
+
+            .stack-layer {
+                flex-direction: column;
+            }
+
+            .stack-label {
+                width: 100%;
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .stack-connector {
+                margin-left: 0;
+            }
+
+            .ring-container {
+                width: 350px;
+                height: 350px;
+            }
+
+            .ring-1 { width: 350px; height: 350px; }
+            .ring-2 { width: 290px; height: 290px; top: 30px; left: 30px; }
+            .ring-3 { width: 230px; height: 230px; top: 60px; left: 60px; }
+            .ring-4 { width: 170px; height: 170px; top: 90px; left: 90px; }
+            .ring-5 { width: 110px; height: 110px; top: 120px; left: 120px; }
+            .ring-6 { width: 60px; height: 60px; top: 145px; left: 145px; }
+
+            .ring-label { font-size: 8px; padding: 4px 8px; }
+            .ring-services { display: none; }
+        }
+
+        @media (max-width: 600px) {
+            .diagram-header h1 {
+                font-size: 22px;
+            }
+
+            .flow-layer-box {
+                width: 120px;
+                padding: 12px 8px;
+            }
+
+            .legend {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .attack-scenarios {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<!-- Umami Analytics -->
+<script async src="https://analytics.diegonmarcos.com/umami/script.js" data-website-id="937cbde7-5ec2-450c-9d6a-8117423ac12f"></script>
+<!-- End Umami Analytics -->
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="diagram-header">
+            <h1>Security Architecture <span class="version-badge">v2.0</span></h1>
+            <p class="subtitle">Defense in Depth - Triple Auth (OAuth2 + TOTP + Passkey)</p>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--edge-color);"></div>
+                <span>Edge Security</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--firewall-color);"></div>
+                <span>Host Firewall</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--proxy-color);"></div>
+                <span>TLS/Proxy</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--auth-color);"></div>
+                <span>Authentication</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--network-color);"></div>
+                <span>Network Isolation</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--container-color);"></div>
+                <span>Container Security</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--vpn-color);"></div>
+                <span>VPN Tunnel</span>
+            </div>
+        </div>
+
+        <!-- ============================================
+             DEFENSE IN DEPTH - CONCENTRIC RINGS
+             ============================================ -->
+        <div class="visual-diagram">
+            <div class="diagram-title">Defense in Depth Architecture</div>
+
+            <div class="defense-rings">
+                <div class="ring-container">
+                    <!-- Layer 1: Edge -->
+                    <div class="ring ring-1">
+                        <span class="ring-label">Layer 1: Edge Security</span>
+                        <div class="ring-services">
+                            <span class="service-chip active" style="color: var(--edge-color);">OCI Security Lists</span>
+                            <span class="service-chip active" style="color: var(--edge-color);">GCP Firewall</span>
+                            <span class="service-chip" style="color: var(--edge-color);">Cloudflare</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 2: Firewall -->
+                    <div class="ring ring-2">
+                        <span class="ring-label">Layer 2: Host Firewall</span>
+                        <div class="ring-services">
+                            <span class="service-chip active" style="color: var(--firewall-color);">UFW</span>
+                            <span class="service-chip active" style="color: var(--firewall-color);">Fail2Ban</span>
+                            <span class="service-chip active" style="color: var(--firewall-color);">iptables</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 3: Proxy -->
+                    <div class="ring ring-3">
+                        <span class="ring-label">Layer 3: TLS/Proxy</span>
+                        <div class="ring-services">
+                            <span class="service-chip active" style="color: var(--proxy-color);">NPM</span>
+                            <span class="service-chip active" style="color: var(--proxy-color);">Let's Encrypt</span>
+                            <span class="service-chip active" style="color: var(--proxy-color);">HSTS</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 4: Authentication -->
+                    <div class="ring ring-4">
+                        <span class="ring-label">Layer 4: Auth</span>
+                        <div class="ring-services">
+                            <span class="service-chip active" style="color: var(--auth-color);">GitHub OAuth</span>
+                            <span class="service-chip active" style="color: var(--auth-color);">TOTP</span>
+                            <span class="service-chip active" style="color: var(--auth-color);">Passkey</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 5: Network -->
+                    <div class="ring ring-5">
+                        <span class="ring-label">Layer 5: Network</span>
+                        <div class="ring-services">
+                            <span class="service-chip active" style="color: var(--network-color);">Docker</span>
+                        </div>
+                    </div>
+
+                    <!-- Core: Application -->
+                    <div class="ring ring-6">
+                        <span class="core-icon">🔒</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             HORIZONTAL FLOW DIAGRAM
+             ============================================ -->
+        <div class="visual-diagram">
+            <div class="diagram-title">Request Security Flow</div>
+
+            <div class="flow-diagram-horizontal">
+                <!-- Internet -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-edge">
+                        <span class="fl-icon">🌐</span>
+                        <span class="fl-label">Internet</span>
+                        <div class="fl-name">Inbound Request</div>
+                        <div class="fl-desc">"Untrusted Traffic"</div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--edge-color); --conn-color-end: var(--firewall-color);">
+                    <span class="conn-label">HTTPS:443</span>
+                </div>
+
+                <!-- Cloud Firewall -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-firewall">
+                        <span class="fl-icon">🛡️</span>
+                        <span class="fl-label">Edge</span>
+                        <div class="fl-name">Cloud Firewall</div>
+                        <div class="fl-desc">"Security Lists"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">OCI</span>
+                            <span class="provider-chip active">GCP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--firewall-color); --conn-color-end: var(--proxy-color);">
+                    <span class="conn-label">Allowed</span>
+                </div>
+
+                <!-- UFW + Fail2Ban -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-proxy">
+                        <span class="fl-icon">🔥</span>
+                        <span class="fl-label">Host</span>
+                        <div class="fl-name">UFW + Fail2Ban</div>
+                        <div class="fl-desc">"Rate Limiting"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">UFW</span>
+                            <span class="provider-chip active">Fail2Ban</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--proxy-color); --conn-color-end: var(--proxy-color);">
+                    <span class="conn-label">Not Banned</span>
+                </div>
+
+                <!-- NPM + SSL -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-proxy">
+                        <span class="fl-icon">🔐</span>
+                        <span class="fl-label">TLS</span>
+                        <div class="fl-name">NGINX Proxy</div>
+                        <div class="fl-desc">"SSL Termination"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">NPM</span>
+                            <span class="provider-chip active">Let's Encrypt</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--proxy-color); --conn-color-end: var(--auth-color);">
+                    <span class="conn-label">Forward Auth</span>
+                </div>
+
+                <!-- Triple Auth -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-auth">
+                        <span class="fl-icon">🔑</span>
+                        <span class="fl-label">Triple Auth</span>
+                        <div class="fl-name">OAuth2 + Authelia</div>
+                        <div class="fl-desc">"Passwordless SSO"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">GitHub SSO</span>
+                            <span class="provider-chip active">TOTP</span>
+                            <span class="provider-chip active">Passkey</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--auth-color); --conn-color-end: var(--network-color);">
+                    <span class="conn-label">Verified</span>
+                </div>
+
+                <!-- Docker Network -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-network">
+                        <span class="fl-icon">🐳</span>
+                        <span class="fl-label">Isolated</span>
+                        <div class="fl-name">Docker Network</div>
+                        <div class="fl-desc">"No Cross-Talk"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">public_net</span>
+                            <span class="provider-chip active">private_net</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--network-color); --conn-color-end: var(--container-color);">
+                    <span class="conn-label">127.0.0.1</span>
+                </div>
+
+                <!-- Application -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-container">
+                        <span class="fl-icon">📦</span>
+                        <span class="fl-label">Container</span>
+                        <div class="fl-name">Application</div>
+                        <div class="fl-desc">"Least Privilege"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">read-only</span>
+                            <span class="provider-chip active">no-root</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             STACKED LAYERS DIAGRAM
+             ============================================ -->
+        <div class="stacked-diagram">
+            <div class="stacked-title">Security Stack Overview</div>
+
+            <div class="stack-container">
+                <!-- Edge Security -->
+                <div class="stack-layer stack-edge">
+                    <div class="stack-label">
+                        <span class="sl-icon">🛡️</span>
+                        <span>Edge</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Cloud Provider Security</div>
+                        <div class="sc-mental">"First line of defense" - Block malicious traffic before it reaches VM</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔵 Oracle Security Lists</span>
+                            <span class="sp-item active">🔵 GCP Firewall Rules</span>
+                            <span class="sp-item">☁️ Cloudflare DDoS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--edge-color); --to-color: var(--firewall-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Allowed ports only (22, 80, 443, 587, 993)</span>
+                </div>
+
+                <!-- Host Firewall -->
+                <div class="stack-layer stack-firewall">
+                    <div class="stack-label">
+                        <span class="sl-icon">🔥</span>
+                        <span>Firewall</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Host-Level Protection</div>
+                        <div class="sc-mental">"Local defense" - UFW rules + brute force protection</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔒 UFW (default deny)</span>
+                            <span class="sp-item active">🚫 Fail2Ban (SSH/Web)</span>
+                            <span class="sp-item active">⛓️ iptables (Docker bypass prevention)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--firewall-color); --to-color: var(--proxy-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Not rate-limited or banned</span>
+                </div>
+
+                <!-- TLS/Proxy Layer -->
+                <div class="stack-layer stack-proxy">
+                    <div class="stack-label">
+                        <span class="sl-icon">🔐</span>
+                        <span>TLS</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">TLS Termination & Reverse Proxy</div>
+                        <div class="sc-mental">"Encryption gate" - HTTPS only, security headers, rate limiting</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔀 NGINX Proxy Manager</span>
+                            <span class="sp-item active">📜 Let's Encrypt SSL</span>
+                            <span class="sp-item active">🛡️ HSTS + CSP Headers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--proxy-color); --to-color: var(--auth-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Forward auth to Authelia</span>
+                </div>
+
+                <!-- Authentication Layer -->
+                <div class="stack-layer stack-auth">
+                    <div class="stack-label">
+                        <span class="sl-icon">🔑</span>
+                        <span>Auth</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Triple Auth - Passwordless SSO</div>
+                        <div class="sc-mental">"Identity verification" - GitHub OAuth (primary) + TOTP/Passkey (backup)</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔗 OAuth2 Proxy (GitHub SSO)</span>
+                            <span class="sp-item active">🔐 Authelia TOTP (Backup)</span>
+                            <span class="sp-item active">🔑 Authelia WebAuthn/Passkey</span>
+                            <span class="sp-item active">🔑 SSH Key-Only Auth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--auth-color); --to-color: var(--vpn-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Cross-VM secure tunnel</span>
+                </div>
+
+                <!-- VPN Tunnel -->
+                <div class="stack-layer stack-vpn">
+                    <div class="stack-label">
+                        <span class="sl-icon">🔗</span>
+                        <span>VPN</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">WireGuard VPN Tunnel</div>
+                        <div class="sc-mental">"Private network" - Secure cross-VM communication (10.0.0.x)</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔵 WireGuard (GCP ↔ OCI)</span>
+                            <span class="sp-item">🌐 10.0.0.1 (GCP)</span>
+                            <span class="sp-item">🌐 10.0.0.2 (OCI)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--vpn-color); --to-color: var(--network-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Isolated Docker networks</span>
+                </div>
+
+                <!-- Network Isolation -->
+                <div class="stack-layer stack-network">
+                    <div class="stack-label">
+                        <span class="sl-icon">🐳</span>
+                        <span>Network</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Docker Network Isolation</div>
+                        <div class="sc-mental">"Micro-segmentation" - Services can't communicate across networks</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🌐 public_net (web services)</span>
+                            <span class="sp-item active">🔒 private_net (internal)</span>
+                            <span class="sp-item active">💾 db_bridge (databases)</span>
+                            <span class="sp-item active">📧 mail_net (email)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--network-color); --to-color: var(--container-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Container hardening</span>
+                </div>
+
+                <!-- Container Security -->
+                <div class="stack-layer stack-container-layer">
+                    <div class="stack-label">
+                        <span class="sl-icon">📦</span>
+                        <span>Container</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Container Security Hardening</div>
+                        <div class="sc-mental">"Least privilege" - Minimal attack surface per container</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔒 read_only: true</span>
+                            <span class="sp-item active">🚫 no-new-privileges</span>
+                            <span class="sp-item active">📁 tmpfs for temp data</span>
+                            <span class="sp-item active">🔑 127.0.0.1 binding only</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             ATTACK SCENARIOS
+             ============================================ -->
+        <div class="attack-flow">
+            <div class="attack-title">Attack Mitigation Scenarios</div>
+
+            <div class="attack-scenarios">
+                <!-- Brute Force Attack -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">🔨</span> SSH Brute Force Attack</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker sends SSH login attempts to port 22</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">2</span>
+                            <span>Cloud firewall allows port 22 (whitelisted)</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">3</span>
+                            <span>UFW allows SSH from any IP</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">4</span>
+                            <span>Fail2Ban detects 5+ failed attempts → IP banned</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Port Scan Attack -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">🔍</span> Port Scanning</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker scans all ports on VM IP</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">2</span>
+                            <span>Cloud firewall drops all non-whitelisted ports</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                        <div class="attack-step" style="opacity: 0.4;">
+                            <span class="step-num">3</span>
+                            <span>Only 22, 80, 443, 587, 993 visible</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Docker UFW Bypass -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">🐳</span> Docker UFW Bypass Attempt</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker finds container port (e.g., 8080)</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">2</span>
+                            <span>Attempts direct access to VM:8080</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">3</span>
+                            <span>Container bound to 127.0.0.1:8080 only</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unauthorized Admin Access -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">👤</span> Unauthorized Admin Access</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker finds admin panel URL</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">2</span>
+                            <span>NPM forwards to OAuth2 Proxy</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">3</span>
+                            <span>GitHub OAuth requires 2FA - attacker blocked</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                        <div class="attack-step" style="opacity: 0.5;">
+                            <span class="step-num">4</span>
+                            <span>Backup: Authelia TOTP/Passkey also requires 2FA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cross-VM Access -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">🔗</span> Cross-VM Service Access</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker discovers internal service on OCI VM</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">2</span>
+                            <span>Attempts direct IP access from internet</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">3</span>
+                            <span>Service bound to WireGuard IP (10.0.0.2) only</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Container Escape -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">📦</span> Container Escape Attempt</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker gains shell in container</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">2</span>
+                            <span>Attempts to write malicious files</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">3</span>
+                            <span>Container filesystem is read-only</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">4</span>
+                            <span>no-new-privileges prevents escalation</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             SECURITY SERVICES INVENTORY
+             ============================================ -->
+        <div class="stacked-diagram">
+            <div class="stacked-title">Security Services Inventory</div>
+            <table class="security-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Layer</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>OCI Security Lists</td>
+                        <td><span class="layer-badge" style="background: var(--edge-color); color: #fff;">Edge</span></td>
+                        <td>Cloud Firewall</td>
+                        <td>Ingress/egress rules at cloud level</td>
+                        <td>Oracle Cloud</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>GCP Firewall Rules</td>
+                        <td><span class="layer-badge" style="background: var(--edge-color); color: #fff;">Edge</span></td>
+                        <td>Cloud Firewall</td>
+                        <td>Network tags + firewall rules</td>
+                        <td>Google Cloud</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>UFW</td>
+                        <td><span class="layer-badge" style="background: var(--firewall-color); color: #000;">Firewall</span></td>
+                        <td>Host Firewall</td>
+                        <td>Default deny, explicit allow rules</td>
+                        <td>All VMs</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Fail2Ban</td>
+                        <td><span class="layer-badge" style="background: var(--firewall-color); color: #000;">Firewall</span></td>
+                        <td>IPS</td>
+                        <td>Brute force protection for SSH/Web</td>
+                        <td>All VMs</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>NGINX Proxy Manager</td>
+                        <td><span class="layer-badge" style="background: var(--proxy-color); color: #000;">TLS</span></td>
+                        <td>Reverse Proxy</td>
+                        <td>TLS termination, routing, headers</td>
+                        <td>GCP Micro 1</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Let's Encrypt</td>
+                        <td><span class="layer-badge" style="background: var(--proxy-color); color: #000;">TLS</span></td>
+                        <td>SSL/TLS</td>
+                        <td>Auto-renewed certificates</td>
+                        <td>NPM Container</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>OAuth2 Proxy</td>
+                        <td><span class="layer-badge" style="background: var(--auth-color); color: #fff;">Auth</span></td>
+                        <td>OAuth SSO</td>
+                        <td>GitHub OAuth (Primary) - 2FA via GitHub</td>
+                        <td>GCP Micro 1</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Authelia TOTP</td>
+                        <td><span class="layer-badge" style="background: var(--auth-color); color: #fff;">Auth</span></td>
+                        <td>2FA Backup</td>
+                        <td>Time-based OTP (Backup auth method)</td>
+                        <td>GCP Micro 1</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Authelia WebAuthn</td>
+                        <td><span class="layer-badge" style="background: var(--auth-color); color: #fff;">Auth</span></td>
+                        <td>Passkey</td>
+                        <td>FIDO2/WebAuthn passwordless auth</td>
+                        <td>GCP Micro 1</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>WireGuard</td>
+                        <td><span class="layer-badge" style="background: var(--vpn-color); color: #000;">VPN</span></td>
+                        <td>VPN Tunnel</td>
+                        <td>Secure cross-VM communication</td>
+                        <td>GCP ↔ OCI</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Docker Networks</td>
+                        <td><span class="layer-badge" style="background: var(--network-color); color: #000;">Network</span></td>
+                        <td>Micro-segmentation</td>
+                        <td>public_net, private_net, db_bridge</td>
+                        <td>OCI Flex 1</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>SSH Key Auth</td>
+                        <td><span class="layer-badge" style="background: var(--container-color); color: #000;">Container</span></td>
+                        <td>Access Control</td>
+                        <td>Key-only auth, no passwords</td>
+                        <td>All VMs</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>

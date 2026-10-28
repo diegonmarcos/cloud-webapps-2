@@ -1,0 +1,32 @@
+{
+  "_doc": "Suite > Browser > Linktree page — a small curated link-out board (groups of tiles), same shape convention as suite.cloud.tileGroups (title -> label, tiles -> {label,icon,href?}). Wired into the build exactly like mock-apps.json: front-data-json-js-wrapper.sh auto-wraps this as data-linktree.json.js -> globalThis.PORTAL_DATA.linktree, and generate-pages.mjs also reads it directly at build time to bake the real browser/linktree page. Tiles with no obvious real destination (internal-only services, no public site) omit href and render inert, same convention as every other placeholder tile in this build.",
+  "groups": [
+    { "id": "suite", "label": "Linktree · Suite", "tiles": [
+      { "label": "Cloud SuperApp", "icon": "suite", "href": "https://diegonmarcos.com" },
+      { "label": "Cloud Mail", "icon": "mail" },
+      { "label": "Cloud Chat", "icon": "chat" },
+      { "label": "Cloud IDE", "icon": "code" },
+      { "label": "Cloud Wallet", "icon": "wallet" }
+    ]},
+    { "id": "cloud", "label": "Linktree · Cloud", "tiles": [
+      { "label": "diegonmarcos.com", "icon": "home", "href": "https://diegonmarcos.com" },
+      { "label": "aa_cloud-superapp", "icon": "code", "href": "https://github.com/diegonmarcos/aa_cloud-superapp" },
+      { "label": "Projects (this site)", "icon": "code", "href": "https://github.com/diegonmarcos/Projects-___" },
+      { "label": "unix (tooling)", "icon": "code", "href": "https://github.com/diegonmarcos/cloud-infra-desktop" },
+      { "label": "WG Mesh", "icon": "mesh" }
+    ]},
+    { "id": "lab-tools", "label": "Linktree · Lab & Tools", "tiles": [
+      { "label": "MyData", "icon": "database", "href": "https://diegonmarcos.github.io/my-data/" },
+      { "label": "my-ai", "icon": "robot", "href": "https://github.com/diegonmarcos/my-ai" },
+      { "label": "Dagu Workflows", "icon": "workflow" },
+      { "label": "Grafana", "icon": "chart" },
+      { "label": "C3 Health", "icon": "heart" }
+    ]},
+    { "id": "circus", "label": "Linktree · Circus", "tiles": [
+      { "label": "Aero & Space", "icon": "rocket" },
+      { "label": "Quant & Markets", "icon": "chart" },
+      { "label": "Circus", "icon": "sparkles" },
+      { "label": "Side Quests", "icon": "cube" }
+    ]}
+  ]
+}

@@ -1,0 +1,55 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Smart Folders — suite/phone/all's rule-driven groups (Cloud/Play/F-Droid/
+// Uptodown/Direct/New/Recent/Top-7s), rendered as native <details> so the
+// list stays collapsed by default with zero extra JS.
+// ==========================================================================
+
+.smart-folders {
+    margin-bottom: 20px;
+}
+
+.smart-folder {
+    margin: 0 2px 8px;
+    padding: 4px 10px 10px;
+    border-radius: 14px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+}
+
+.smart-folder__summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 8px 2px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    cursor: pointer;
+    list-style: none;
+}
+
+.smart-folder__summary::-webkit-details-marker {
+    display: none;
+}
+
+.smart-folder__label {
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.smart-folder__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 999px;
+    background: var(--tile-blue-bg);
+    color: var(--tile-blue-fg);
+    font-size: 11px;
+    font-weight: 700;
+}

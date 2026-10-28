@@ -1,0 +1,10 @@
+{
+  "deploys": [
+    {
+      "ts": "2026-07-31T22:10:00Z",
+      "service": "c3-infra-api",
+      "commit": "a1b2c3d",
+      "status": "ok"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+// ==========================================================================
+// Cross-document View Transitions — makes the MPA (real, independent,
+// server-rendered pages, no client router — see scripts/generate-pages.mjs)
+// feel like the real app's own SPA fragment transitions. Browsers without
+// support simply ignore both the at-rule and the pseudo-elements below —
+// no feature-detection guard needed.
+// ==========================================================================
+
+@view-transition {
+    navigation: auto;
+}
+
+// Durations/easing mirror the app's own fade/slide tokens (see
+// _variables.scss's --duration-fade / --duration-slide-in / --ease-decelerate).
+::view-transition-old(root) {
+    animation-duration: 220ms;
+}
+
+::view-transition-new(root) {
+    animation-duration: 280ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}

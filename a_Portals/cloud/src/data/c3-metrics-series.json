@@ -1,0 +1,5 @@
+{
+ "target": "oci-apps",
+ "metric": "cpu",
+ "points": []
+}

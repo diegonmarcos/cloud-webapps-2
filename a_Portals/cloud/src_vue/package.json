@@ -1,0 +1,23 @@
+{
+  "name": "cloud-dashboard-vue",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 8006",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "sass": "^1.83.0",
+    "typescript": "~5.6.3",
+    "vite": "^6.0.3",
+    "vite-plugin-singlefile": "^2.0.3",
+    "vue-tsc": "^2.1.10"
+  }
+}

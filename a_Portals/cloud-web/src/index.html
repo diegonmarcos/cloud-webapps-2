@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0d10">
+  <title>Cloud Web</title>
+  <link rel="icon" href="public/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="app" aria-live="polite">
+    <header class="top">
+      <h1>Cloud Web</h1>
+      <p id="count" class="sub"></p>
+    </header>
+    <section id="grid" class="grid" aria-label="Cloud apps with a web page"></section>
+    <p id="empty" class="empty" hidden>No app ships a web page yet.</p>
+  </main>
+  <section id="viewer" class="viewer" hidden>
+    <button id="back" class="back" type="button">&larr; Cloud Web</button>
+    <iframe id="frame" title="Cloud app" allow="clipboard-read; clipboard-write" referrerpolicy="no-referrer"></iframe>
+  </section>
+  <script src="data-constellation-fleet.json.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+// ==========================================================================
+// Embed mode — SuperApp's Cloud > WebApps tab hosts this site and supplies its
+// OWN top bar and bottom island. `html.embed` (set by the inline head script in
+// every page: ?embed=1, UA "CloudSuperApp-Embed/", or sessionStorage) hides the
+// site's whole chrome and removes the space it reserved, so content fills the
+// viewport from top 0. Normal visitors never get the class: UI unchanged.
+// ==========================================================================
+
+.embed {
+    .shell {
+        --content-top: 0px;
+        --chrome-band-top: 0px;
+        --chrome-band-height: 0px;
+        --safe-area-top: 0px;
+        max-width: none;
+        box-shadow: none;
+    }
+
+    .shell::before,
+    .status-strip,
+    .app-top-bar,
+    .app-drawer,
+    .icon-btn,
+    .toolbar-action,
+    .music-island,
+    .dynamic-island,
+    .star,
+    .bottom-nav,
+    .page-tabs-bar,     // the page's own App / WebApps / Linktree / Configs strip: SuperApp draws its own
+    .site-footer {      // the APK download badge + chips row
+        display: none !important;
+    }
+
+    .content {
+        margin-top: 0;
+        padding-top: 0;
+        padding-bottom: 12px;
+    }
+
+    // One screen, no scrolling: initEmbedFit() (main.ts) wraps the content in #embed-fit and sets
+    // --embed-fit-scale so every section (headers, subtitles, tiles) fits window.innerHeight.
+    &, & body {
+        overflow: hidden;
+    }
+
+    .content {
+        overflow: hidden;
+    }
+
+    // Every tile of a group stays on screen: strips wrap instead of scrolling sideways (the fit scale does the rest).
+    .tile-grid--strip {
+        flex-wrap: wrap;
+        overflow-x: visible;
+    }
+
+    #embed-fit {
+        padding-top: 6px;
+        box-sizing: border-box;
+        width: calc(100% / var(--embed-fit-scale, 1));
+        transform: scale(var(--embed-fit-scale, 1));
+        transform-origin: 0 0;
+    }
+}

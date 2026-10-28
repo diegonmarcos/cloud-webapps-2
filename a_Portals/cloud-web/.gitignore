@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.tmp
+.build.pid
+
+# The Kotlin/Wasm pages are fetched from the cloud-u-android release at ship time
+# (scripts/fetch-wasm.sh) and deployed from the CI workspace; they are never committed.
+dist/apps/

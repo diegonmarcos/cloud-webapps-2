@@ -1,0 +1,344 @@
+{
+  "results": [
+    {
+      "target": "c3-infra-api",
+      "up": true,
+      "latency_ms": 12
+    },
+    {
+      "target": "c3-public-api",
+      "up": true,
+      "latency_ms": 13
+    },
+    {
+      "target": "c3-services-api",
+      "up": true,
+      "latency_ms": 14
+    },
+    {
+      "target": "c3-infra-mcp",
+      "up": true,
+      "latency_ms": 15
+    },
+    {
+      "target": "google-personal-mcp",
+      "up": true,
+      "latency_ms": 16
+    },
+    {
+      "target": "authelia",
+      "up": true,
+      "latency_ms": 17
+    },
+    {
+      "target": "caddy",
+      "up": true,
+      "latency_ms": 18
+    },
+    {
+      "target": "caddy-public",
+      "up": true,
+      "latency_ms": 19
+    },
+    {
+      "target": "crowdsec",
+      "up": true,
+      "latency_ms": 20
+    },
+    {
+      "target": "introspect-proxy",
+      "up": true,
+      "latency_ms": 21
+    },
+    {
+      "target": "dagu",
+      "up": true,
+      "latency_ms": 22
+    },
+    {
+      "target": "dbgate",
+      "up": true,
+      "latency_ms": 23
+    },
+    {
+      "target": "matomo",
+      "up": true,
+      "latency_ms": 24
+    },
+    {
+      "target": "umami",
+      "up": true,
+      "latency_ms": 25
+    },
+    {
+      "target": "openobserve",
+      "up": true,
+      "latency_ms": 26
+    },
+    {
+      "target": "ntfy",
+      "up": true,
+      "latency_ms": 27
+    },
+    {
+      "target": "cloud-spec",
+      "up": true,
+      "latency_ms": 28
+    },
+    {
+      "target": "postlite",
+      "up": true,
+      "latency_ms": 29
+    },
+    {
+      "target": "redis",
+      "up": true,
+      "latency_ms": 30
+    },
+    {
+      "target": "hickory-dns",
+      "up": true,
+      "latency_ms": 31
+    },
+    {
+      "target": "unbound-dns64",
+      "up": true,
+      "latency_ms": 32
+    },
+    {
+      "target": "wireguard-mesh",
+      "up": true,
+      "latency_ms": 33
+    },
+    {
+      "target": "wireguard-mesh-ws-tunnel",
+      "up": true,
+      "latency_ms": 34
+    },
+    {
+      "target": "wireguard-public",
+      "up": true,
+      "latency_ms": 35
+    },
+    {
+      "target": "gitea",
+      "up": true,
+      "latency_ms": 36
+    },
+    {
+      "target": "backup-borg",
+      "up": true,
+      "latency_ms": 37
+    },
+    {
+      "target": "backup-bup",
+      "up": true,
+      "latency_ms": 38
+    },
+    {
+      "target": "languagetool",
+      "up": true,
+      "latency_ms": 39
+    },
+    {
+      "target": "cloud-builder-x",
+      "up": true,
+      "latency_ms": 40
+    },
+    {
+      "target": "gha-runner",
+      "up": true,
+      "latency_ms": 41
+    },
+    {
+      "target": "cloudflare-worker",
+      "up": true,
+      "latency_ms": 42
+    },
+    {
+      "target": "gcloud",
+      "up": true,
+      "latency_ms": 43
+    },
+    {
+      "target": "my-ai-api",
+      "up": true,
+      "latency_ms": 44
+    },
+    {
+      "target": "hermes-agent",
+      "up": true,
+      "latency_ms": 45
+    },
+    {
+      "target": "kg-store",
+      "up": true,
+      "latency_ms": 46
+    },
+    {
+      "target": "session-memory",
+      "up": true,
+      "latency_ms": 47
+    },
+    {
+      "target": "db-agent",
+      "up": true,
+      "latency_ms": 48
+    },
+    {
+      "target": "claude-superset-api",
+      "up": true,
+      "latency_ms": 49
+    },
+    {
+      "target": "cloud-cgc-mcp",
+      "up": true,
+      "latency_ms": 50
+    },
+    {
+      "target": "chat-mattermost",
+      "up": true,
+      "latency_ms": 51
+    },
+    {
+      "target": "matrix-element",
+      "up": true,
+      "latency_ms": 12
+    },
+    {
+      "target": "matrix-mautrix-whatsapp",
+      "up": true,
+      "latency_ms": 13
+    },
+    {
+      "target": "snappymail",
+      "up": true,
+      "latency_ms": 14
+    },
+    {
+      "target": "maddy",
+      "up": true,
+      "latency_ms": 15
+    },
+    {
+      "target": "stalwart",
+      "up": true,
+      "latency_ms": 16
+    },
+    {
+      "target": "mail-puller",
+      "up": true,
+      "latency_ms": 17
+    },
+    {
+      "target": "cypht",
+      "up": true,
+      "latency_ms": 18
+    },
+    {
+      "target": "vaultwarden",
+      "up": true,
+      "latency_ms": 19
+    },
+    {
+      "target": "photoprism",
+      "up": true,
+      "latency_ms": 20
+    },
+    {
+      "target": "playlist-syncer",
+      "up": true,
+      "latency_ms": 21
+    },
+    {
+      "target": "news-gdelt",
+      "up": true,
+      "latency_ms": 22
+    },
+    {
+      "target": "calendar-radicale",
+      "up": true,
+      "latency_ms": 23
+    },
+    {
+      "target": "contacts-radicale",
+      "up": true,
+      "latency_ms": 24
+    },
+    {
+      "target": "code-server",
+      "up": true,
+      "latency_ms": 25
+    },
+    {
+      "target": "etherpad",
+      "up": true,
+      "latency_ms": 26
+    },
+    {
+      "target": "filebrowser",
+      "up": true,
+      "latency_ms": 27
+    },
+    {
+      "target": "grist",
+      "up": true,
+      "latency_ms": 28
+    },
+    {
+      "target": "hedgedoc",
+      "up": true,
+      "latency_ms": 29
+    },
+    {
+      "target": "paca",
+      "up": true,
+      "latency_ms": 30
+    },
+    {
+      "target": "revealmd",
+      "up": true,
+      "latency_ms": 31
+    },
+    {
+      "target": "send",
+      "up": true,
+      "latency_ms": 32
+    },
+    {
+      "target": "scrappers-api",
+      "up": true,
+      "latency_ms": 33
+    },
+    {
+      "target": "fin-api",
+      "up": true,
+      "latency_ms": 34
+    },
+    {
+      "target": "crawlee-cloud",
+      "up": true,
+      "latency_ms": 35
+    },
+    {
+      "target": "front-end",
+      "up": true,
+      "latency_ms": 36
+    },
+    {
+      "target": "matrix-continuwuity",
+      "up": true,
+      "latency_ms": 37
+    },
+    {
+      "target": "vaultwarden-mic",
+      "up": true,
+      "latency_ms": 38
+    },
+    {
+      "target": "alerts-api",
+      "up": true,
+      "latency_ms": 39
+    }
+  ]
+}

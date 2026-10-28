@@ -1,0 +1,106 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Fan menu — bottom-nav long-press popup (shell.json "longPress" entries)
+// ==========================================================================
+
+// absolute, not fixed — .fan-menu is now a descendant of .shell (see
+// generate-pages.mjs's renderShell); fan-menu.ts's left/top math is shell-
+// relative to match (see its buildFanMenu offset subtraction).
+//
+// display:none swapped for opacity/visibility so fade_in/out.xml's fade can
+// actually transition; visibility's transition-delay keeps it out of the
+// a11y/hit-test tree while hidden, same effect display:none had. display:
+// flex moves to the base rule since it now needs to stay laid out (just
+// invisible) while closed.
+// Triangle layout (HomeFanMenu.kt): one item centered above a row of up to
+// 3 — never a flat row — so the outer container is a column flex of
+// .fan-menu__row children (fan-menu.ts's appendFanMenuLayout), not the
+// items directly.
+.fan-menu {
+    position: absolute;
+    z-index: 45;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--duration-fade) ease, visibility 0s var(--duration-fade);
+}
+
+.fan-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity var(--duration-fade) ease;
+}
+
+.fan-menu__row {
+    display: flex;
+    gap: 10px;
+}
+
+.fan-menu__row--top {
+    justify-content: center;
+}
+
+.fan-menu__item {
+    @include flex-center;
+    flex-direction: column;
+    gap: 4px;
+    width: 52px;
+}
+
+// Circular icon background — bg_glass_icon.xml. Layered over the existing
+// --drawer-banner-app solid so the icon chip stays opaque while picking up
+// the violet-tinted glass sheen; border keeps its existing 2px weight
+// (--glass-icon-border is 1px, sized for smaller chips) but switches to the
+// glass token's color.
+.fan-menu__item-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: var(--glass-icon-radius);
+    background-color: var(--drawer-banner-app);
+    background-image: var(--glass-icon-gradient);
+    border: 2px solid rgba(255, 255, 255, 0.20);
+    @include flex-center;
+}
+
+.fan-menu__item-icon img {
+    width: 20px;
+    height: 20px;
+    filter: brightness(0) invert(1);
+}
+
+.fan-menu__item.is-highlighted .fan-menu__item-icon {
+    background: var(--drawer-avatar);
+    border-color: transparent;
+    transform: scale(1.12);
+}
+
+.fan-menu__item-label {
+    font-size: 10px;
+    color: var(--drawer-banner-text);
+    text-align: center;
+}
+
+.fan-menu-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 44;
+    display: block;
+    background: transparent;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--duration-fade) ease, visibility 0s var(--duration-fade);
+}
+
+.fan-menu-scrim.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity var(--duration-fade) ease;
+}

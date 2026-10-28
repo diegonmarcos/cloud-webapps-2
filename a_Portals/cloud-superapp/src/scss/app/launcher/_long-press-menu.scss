@@ -1,0 +1,89 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Long-press context menu — app-tile PopupMenu (header / App info / Uninstall)
+// ==========================================================================
+
+.long-press-menu-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 46;
+    background: transparent;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--duration-fade) ease, visibility 0s var(--duration-fade);
+}
+
+.long-press-menu-scrim.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity var(--duration-fade) ease;
+}
+
+// Liquid-glass panel — same tokens as .drawer's own background layering.
+.long-press-menu {
+    position: absolute;
+    z-index: 47;
+    display: flex;
+    flex-direction: column;
+    min-width: 160px;
+    padding: 6px;
+    border-radius: var(--glass-liquid-radius);
+    background-color: var(--gradient-mid);
+    background-image: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--duration-fade) ease, visibility 0s var(--duration-fade);
+}
+
+.long-press-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity var(--duration-fade) ease;
+}
+
+// Bold app-label header — identifies which tile the popup below belongs
+// to, not a control (AppLongPressMenu.kt's title row).
+.long-press-menu__header {
+    padding: 8px 12px 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.long-press-menu__divider {
+    height: 1px;
+    margin: 4px 6px;
+    background: var(--glass-border);
+}
+
+// App info / Uninstall both read as normal, enabled menu rows (both are
+// real actions on the APK) — [aria-disabled] here only marks them inert
+// for a11y/no-op purposes, it never dims or greys the row out.
+.long-press-menu__row {
+    all: unset;
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background var(--duration-press-up) ease-out;
+}
+
+.long-press-menu__row:hover {
+    background: var(--glass-border);
+}
+
+// Brief press flash on ACTION_DOWN, same idea as tile_press.xml — reads as
+// a real, responsive row even though the click itself is a no-op.
+.long-press-menu__row:active {
+    background: var(--glass-border);
+    transition: background var(--duration-press-down) ease-out;
+}

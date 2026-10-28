@@ -1,0 +1,101 @@
+@use '../mixins' as *;
+
+// ==========================================================================
+// Constellation AppStore — port of configs/ConstellationFragment.kt
+// ==========================================================================
+
+.constellation__title {
+    font-size: 21px;
+    font-weight: 700;
+    color: #fff;
+    margin: 4px 0 2px;
+}
+
+.constellation__caption {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 8px;
+}
+
+.constellation__btn-row {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    margin-bottom: 4px;
+}
+
+.constellation__btn {
+    flex: 1;
+    text-align: center;
+    padding: 7px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    background: #2a2a33;
+}
+
+.constellation__btn--accent {
+    background: #7c3aed;
+}
+
+.constellation__btn--blue {
+    background: #2b6cb0;
+}
+
+.constellation__btn--on {
+    background: #2f855a;
+}
+
+// Every constellation action (install/update/uninstall/open a native APK,
+// grant an Android permission) is something a website fundamentally cannot
+// do — inert/decorative rather than a fake-clickable button, same
+// treatment as every other real-device-only action elsewhere in this app.
+.constellation__btn--inert {
+    opacity: 0.7;
+    cursor: default;
+}
+
+.constellation__list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.constellation__card {
+    background: #1c1c24;
+    border-radius: 10px;
+    padding: 10px 12px;
+}
+
+.constellation__card-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 2px;
+}
+
+.constellation__mono {
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 3px;
+    word-break: break-all;
+}
+
+.constellation__status {
+    font-size: 12px;
+    margin: 0 0 8px;
+}
+
+.constellation__actions {
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+}
+
+.constellation__actions .constellation__btn {
+    padding: 7px 6px;
+    font-size: 11px;
+}

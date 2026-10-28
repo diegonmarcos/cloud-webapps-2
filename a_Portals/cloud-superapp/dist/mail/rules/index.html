@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <script>(function(){var d=document.documentElement,e=/[?&]embed=1(&|$)/.test(location.search)||/CloudSuperApp-Embed\//.test(navigator.userAgent);try{if(!e&&sessionStorage.getItem('cm-embed')==='1')e=true;else if(e)sessionStorage.setItem('cm-embed','1')}catch(x){}if(e)d.classList.add('embed')})()</script>
+    <title>Mail · Rules · Cloud SuperApp</title>
+    <link rel="icon" type="image/svg+xml" href="../../public/favicon.svg">
+    <link rel="manifest" href="../../manifest.webmanifest">
+    <meta name="theme-color" content="#000000">
+    <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"}]},"eagerness":"moderate"}]}</script>
+<script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  (function() {
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='https://analytics.diegonmarcos.com/matomo/js/container_odwLIyPV.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body data-section="mail">
+    <div class="shell">
+        
+        <div class="status-strip">
+            <div class="status-strip__row">
+                <div class="status-strip__cluster status-strip__cluster--left"><span class="status-strip__chip is-active">5G</span><span class="status-strip__chip is-active">WiFi</span><span class="status-strip__chip is-active">WG</span><span class="status-strip__chip">KDE</span><span class="status-strip__chip is-active">BT</span><span class="status-strip__chip">USB</span></div>
+                <span class="status-strip__camera" aria-hidden="true"></span>
+                <div class="status-strip__cluster status-strip__cluster--right"><span class="status-strip__chip">R 62%</span><span class="status-strip__chip">S 48%</span><span class="status-strip__chip">C 17%</span><span class="status-strip__chip is-active" role="img" aria-label="Battery 84%"><svg width="22" height="11" viewBox="0 0 24 12" aria-hidden="true" focusable="false"><rect x="0.5" y="0.5" width="19" height="11" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="13.4" height="8" rx="1" fill="currentColor"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+            </div>
+            <div class="status-strip__row status-strip__row--clock">
+                <button class="status-strip__clock" id="status-clock" type="button" aria-label="Calendar">--:--</button>
+            </div>
+            <div class="status-strip__hairline" aria-hidden="true"></div>
+        </div>
+        <div class="galaxy-backdrop" aria-hidden="true"></div>
+        
+
+        <button class="star star--sirius" id="star-sirius" type="button" aria-label="Open menu">✦</button>
+        <button class="star star--canopus" id="star-canopus" type="button" aria-label="Quick configs">✦</button>
+        <button class="star star--centauri" id="star-centauri" type="button" aria-label="Recent apps">✦</button>
+
+        <button class="icon-btn icon-btn--hamburger" id="hamburger-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+            <img class="" src="../../public/icons/menu.svg" alt="">
+        </button>
+
+        <div class="music-island" aria-hidden="true">
+            <img class="music-island__icon" src="../../public/icons/music.svg" alt="">
+            <span class="music-island__marquee"><span class="music-island__title">Weightless — Marconi Union</span></span>
+        </div>
+
+        <button class="dynamic-island" id="dynamic-island" type="button" aria-label="Notifications">
+            <span class="dynamic-island__wave-clip" aria-hidden="true">
+                <span class="dynamic-island__wave dynamic-island__wave--1"></span>
+                <span class="dynamic-island__wave dynamic-island__wave--2"></span>
+                <span class="dynamic-island__wave dynamic-island__wave--3"></span>
+                <span class="dynamic-island__wave dynamic-island__wave--4"></span>
+            </span>
+            <span class="dynamic-island__shimmer" aria-hidden="true"></span>
+        </button>
+
+        <a class="toolbar-action" href="/cloud-superapp/mail/" aria-label="Back"><img class="" src="../../public/icons/back.svg" alt=""></a>
+
+        <main class="content" id="content">
+            <div class="page-tabs-bar">
+                <div class="page-tabs" role="tablist">
+                <a class="page-tabs__item" href="/cloud-superapp/mail/folders/">Folders</a>
+                <a class="page-tabs__item" href="/cloud-superapp/mail/inbox/">Inbox</a>
+                <a class="page-tabs__item" href="/cloud-superapp/mail/accounts/">Accounts</a>
+                <a class="page-tabs__item" href="/cloud-superapp/mail/identities/">Identities</a>
+                <a class="page-tabs__item is-active" href="/cloud-superapp/mail/rules/">Rules</a>
+                <a class="page-tabs__item" href="/cloud-superapp/mail/answers/">Answers</a>
+                <a class="page-tabs__item" href="/cloud-superapp/mail/contacts/">Contacts</a>
+                <a class="page-tabs__item" href="/cloud-superapp/mail/settings/">Settings</a>
+                <a class="page-tabs__item" href="/cloud-superapp/mail/more/">More</a>
+                </div>
+            </div>
+            <div class="settings-list">
+                <div class="settings-list__group">Apply</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">Re-apply rules to all mail</span>
+                    <span class="settings-list__value">commit, push, deploy — then tap</span>
+                </div>
+                <div class="settings-list__group">How routing works</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">Order</span>
+                    <span class="settings-list__value">lowest priority number wins</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">First match</span>
+                    <span class="settings-list__value">stops — later rules never see the message</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">Rules</span>
+                    <span class="settings-list__value">100 total, 15 tags</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">Undeclared tags</span>
+                    <span class="settings-list__value">8 route to no real folder</span>
+                </div>
+                <div class="settings-list__group">11    🛡️ Admin · 1 rule</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">security accounts</span>
+                    <span class="settings-list__value">p90 · from: bitwarden.com, 1password.com +1</span>
+                </div>
+                <div class="settings-list__group">12    💰 Finance · 10 rules</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">banks es de</span>
+                    <span class="settings-list__value">p90 · from: ing.es, ing.de +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">payments</span>
+                    <span class="settings-list__value">p100 · from: paypal.com, stripe.com</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">subscriptions</span>
+                    <span class="settings-list__value">p100 · from: apple.com, spotify.com +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">insurance intl</span>
+                    <span class="settings-list__value">p100 · from: allianz.com, axa.com</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">bank neobank</span>
+                    <span class="settings-list__value">p100 · from: n26.com, revolut.com +1</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">marketplace</span>
+                    <span class="settings-list__value">p100 · from: amazon.com, amazon.de +5</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">bank es</span>
+                    <span class="settings-list__value">p100 · from: emailing.bancosantander-mail.es, cofidis.es +3</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">bank intl</span>
+                    <span class="settings-list__value">p100 · from: btgpactual.com, tcbs.com.vn +4</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">telecom utilities de</span>
+                    <span class="settings-list__value">p100 · from: congstar.de, news.congstar.de +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">insurance es de</span>
+                    <span class="settings-list__value">p100 · from: mapfre.com, huk.de</span>
+                </div>
+                <div class="settings-list__group">21    💼 Career & Network · 2 rules</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">platforms</span>
+                    <span class="settings-list__value">p100 · from: linkedin.com, indeed.com +3</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">career de</span>
+                    <span class="settings-list__value">p100 · from: indeed.de, xing.com +1</span>
+                </div>
+                <div class="settings-list__group">22    📰 Social & General · 13 rules</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">tech media</span>
+                    <span class="settings-list__value">p100 · from: theregister.com, arstechnica.com +1</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">news intl</span>
+                    <span class="settings-list__value">p100 · from: bbc.com, reuters.com +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">newsletters</span>
+                    <span class="settings-list__value">p100 · from: substack.com, medium.com +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">video music</span>
+                    <span class="settings-list__value">p100 · from: youtube.com, twitch.tv +5</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">books games</span>
+                    <span class="settings-list__value">p100 · from: goodreads.com, kindle.amazon.com +7</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">social</span>
+                    <span class="settings-list__value">p100 · from: twitter.com, x.com +5</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">platforms extra</span>
+                    <span class="settings-list__value">p100 · from: mail.instagram.com, facebookmail.com +3</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">lifestyle extra</span>
+                    <span class="settings-list__value">p100 · from: tidal.com, info.tidal.com +6</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">health eu</span>
+                    <span class="settings-list__value">p100 · from: doctolib.de, doctolib.com</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">news es de</span>
+                    <span class="settings-list__value">p100 · from: elpais.com, spiegel.de</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">wellness</span>
+                    <span class="settings-list__value">p110 · from: gympass.com, freeletics.com +1</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">events</span>
+                    <span class="settings-list__value">p110 · from: eventbrite.com, meetup.com +3</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">dating</span>
+                    <span class="settings-list__value">p110 · from: tinder.com, bumble.com +2</span>
+                </div>
+                <div class="settings-list__group">23    🧻 Government · 2 rules</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">tax authorities</span>
+                    <span class="settings-list__value">p80 · from: elster.de, agenciatributaria.es +1</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">agencies</span>
+                    <span class="settings-list__value">p96 · from_domain_suffix: .gov.br or from: dgt.es</span>
+                </div>
+                <div class="settings-list__group">24    🏠 House · 2 rules</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">housing rental de</span>
+                    <span class="settings-list__value">p100 · from: wg-gesucht.de, nachrichten.immobilienscout24.de +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">housing es de</span>
+                    <span class="settings-list__value">p100 · from: idealista.com, fotocasa.es +3</span>
+                </div>
+                <div class="settings-list__group">93    🚫 Junk · 1 rule</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">spam flagged</span>
+                    <span class="settings-list__value">p150 · X-Spam-Status: Yes or X-Spam-Flag: YES or X-Microsoft-Antispam-Message-Info: spam or Authentication-Results: dmarc=fail, spf=fail</span>
+                </div>
+                <div class="settings-list__group">cloud_gh_workflows — no such folder · 1 rule</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">github ci</span>
+                    <span class="settings-list__value">p95 · X-GitHub-Reason: ci_activity or subject: Run failed:, workflow run</span>
+                </div>
+                <div class="settings-list__group">cloud_reports_child — no such folder · 5 rules</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">homelab</span>
+                    <span class="settings-list__value">p90 · from: diegonmarcos.com</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">letsencrypt</span>
+                    <span class="settings-list__value">p100 · from: letsencrypt.org</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">registrars</span>
+                    <span class="settings-list__value">p100 · from: namecheap.com, gandi.net +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">hardware</span>
+                    <span class="settings-list__value">p100 · from: hetzner.com, hetzner.de +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">providers</span>
+                    <span class="settings-list__value">p100 · from: cloudflare.com, digitalocean.com</span>
+                </div>
+                <div class="settings-list__group">cloud_rss_notifications — no such folder · 1 rule</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">notifications</span>
+                    <span class="settings-list__value">p100 · from: ntfy.sh, resend.com</span>
+                </div>
+                <div class="settings-list__group">development — no such folder · 9 rules</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">42 school</span>
+                    <span class="settings-list__value">p50 · from: 42berlin.de, 42heilbronn.de +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">code hosting</span>
+                    <span class="settings-list__value">p100 · from: gitlab.com, bitbucket.org +10</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">saas productivity</span>
+                    <span class="settings-list__value">p100 · from: vercel.com, netlify.com +5</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">saas creative</span>
+                    <span class="settings-list__value">p100 · from: jetbrains.com, adobe.com +1</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">ai llm</span>
+                    <span class="settings-list__value">p100 · from: mail.anthropic.com, email.claude.com +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">tools extra</span>
+                    <span class="settings-list__value">p100 · from: unity3d.com, bitwarden.eu +8</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">cloud infra extra</span>
+                    <span class="settings-list__value">p100 · from: aws.com, amazonaws.com</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">misc</span>
+                    <span class="settings-list__value">p100 · from: omdbapi.com, outbound.developers.giphy.com +4</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">learning</span>
+                    <span class="settings-list__value">p110 · from: udemy.com, coursera.org +8</span>
+                </div>
+                <div class="settings-list__group">logistics — no such folder · 9 rules</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">travel air</span>
+                    <span class="settings-list__value">p100 · from: ryanair.com, easyjet.com +6</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">rideshare</span>
+                    <span class="settings-list__value">p100 · from: uber.com, bolt.eu +3</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">lodging</span>
+                    <span class="settings-list__value">p100 · from: airbnb.com, booking.com +1</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">postal intl</span>
+                    <span class="settings-list__value">p100 · from: dhl.com, dhl.de +4</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">food delivery</span>
+                    <span class="settings-list__value">p100 · from: deliveroo.com, ubereats.com +4</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">lodging extra</span>
+                    <span class="settings-list__value">p100 · from: info.hostelworld.com, email.hostelworld.com +11</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">transport extra</span>
+                    <span class="settings-list__value">p100 · from: e.alsa.com, alsa.es +11</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">travel misc</span>
+                    <span class="settings-list__value">p100 · from: findacrew.com, nomadmania.com +2</span>
+                </div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">postal es</span>
+                    <span class="settings-list__value">p100 · from: correos.es, seur.com +1</span>
+                </div>
+                <div class="settings-list__group">vps_git — no such folder · 1 rule</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">vps git</span>
+                    <span class="settings-list__value">p100 · from: github.com, noreply.github.com</span>
+                </div>
+                <div class="settings-list__group">vps_google — no such folder · 1 rule</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">vps google</span>
+                    <span class="settings-list__value">p100 · from: cloud.google.com, google.cloud</span>
+                </div>
+                <div class="settings-list__group">vps_oracle — no such folder · 1 rule</div>
+                <div class="settings-list__row">
+                    <span class="settings-list__label">vps oracle</span>
+                    <span class="settings-list__value">p100 · from: oraclecloud.com, oracle.com +1</span>
+                </div>
+            </div>
+            <footer class="site-footer">
+                <a class="footer-badge" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-SuperApp.apk" download>
+                    <img class="footer-badge__icon" src="../../public/icons/play-badge.svg" alt="">
+                    <span class="footer-badge__text">
+                        <span class="footer-badge__label">Cloud SuperApp</span>
+                        <span class="footer-badge__sub">Download APK · arm64</span>
+                    </span>
+                </a>
+                <div class="footer-constellation">
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/cloud-comms-mail.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/mail.svg" alt=""></span>
+                        <span class="footer-chip__label">Mail</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/cloud-comms-chat.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/chat.svg" alt=""></span>
+                        <span class="footer-chip__label">Chat</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/cloud-comms-matrix.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/chat.svg" alt=""></span>
+                        <span class="footer-chip__label">Messenger</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/cloud-comms-dialer.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/phone.svg" alt=""></span>
+                        <span class="footer-chip__label">Dialer</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-IDE-Hub.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/code.svg" alt=""></span>
+                        <span class="footer-chip__label">IDE</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Nav.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/mesh.svg" alt=""></span>
+                        <span class="footer-chip__label">Nav</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Calendar.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/calendar.svg" alt=""></span>
+                        <span class="footer-chip__label">Calendar</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-News.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/rss.svg" alt=""></span>
+                        <span class="footer-chip__label">News</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Keyboard.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/tools.svg" alt=""></span>
+                        <span class="footer-chip__label">Keyboard</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Wallet.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/wallet.svg" alt=""></span>
+                        <span class="footer-chip__label">Wallet</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Browser.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/browser.svg" alt=""></span>
+                        <span class="footer-chip__label">Browser</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Vault.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/lock.svg" alt=""></span>
+                        <span class="footer-chip__label">Vault</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/cloud-media-center.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/music.svg" alt=""></span>
+                        <span class="footer-chip__label">Media</span>
+                    </a>
+                </div>
+            </footer>
+        </main>
+
+        <nav class="bottom-nav" id="bottom-nav" aria-label="Primary">
+            <a class="bottom-nav__item" href="../../communication/" data-longpress="communication"><img class="" src="../../public/icons/chat.svg" alt=""><span>Notify</span></a>
+            <a class="bottom-nav__item" href="../../boards/" data-longpress="boards"><img class="" src="../../public/icons/briefcase.svg" alt=""><span>Boards</span></a>
+            <a class="bottom-nav__item" href="../../" data-longpress="home"><img class="" src="../../public/icons/home.svg" alt=""><span>Home</span></a>
+            <a class="bottom-nav__item" href="../../cloud/" data-longpress="cloud"><img class="" src="../../public/icons/suite.svg" alt=""><span>Cloud</span></a>
+            <a class="bottom-nav__item" href="../../phone/" data-longpress="phone"><img class="" src="../../public/icons/phone.svg" alt=""><span>Phone</span></a>
+        </nav>
+
+        <div class="drawer-scrim" id="drawer-scrim"></div>
+        <aside class="drawer" id="drawer" aria-hidden="true">
+            <div class="drawer__banner drawer__banner--app" id="drawer-app-banner">
+                <img class="drawer__banner-icon" src="../../public/icons/home.svg" alt="">
+                <div class="drawer__banner-text">
+                    <p class="drawer__title" id="drawer-app-name">Cloud SuperApp</p>
+                    <p class="drawer__meta" id="drawer-app-build">cloud-superapp · web</p>
+                    <p class="drawer__meta drawer__meta--ts" id="drawer-app-timestamp">2026-08-18 07:52</p>
+                </div>
+            </div>
+            <div class="drawer__separator"></div>
+            <div class="drawer__banner drawer__banner--user" id="drawer-user-banner">
+                <a class="drawer__avatar" id="drawer-user-avatar" href="/cloud-superapp/config/profile/">DCM</a>
+                <div class="drawer__banner-text">
+                    <p class="drawer__title" id="drawer-user-name">Diego Coelho Marcos</p>
+                    <p class="drawer__meta" id="drawer-user-email">me@diegonmarcos.com</p>
+                    <p class="drawer__mode" id="drawer-user-mode">Mode: Apps</p>
+                </div>
+            </div>
+            <nav class="drawer__nav" id="drawer-nav"></nav>
+        </aside>
+
+        <div class="radial-menu" id="radial-menu" hidden aria-hidden="true"></div>
+        <div class="fan-menu-scrim" id="fan-menu-scrim" hidden></div>
+        <div class="fan-menu" id="fan-menu" hidden aria-hidden="true"></div>
+        <div class="overlay-sheet" id="notification-center" hidden></div>
+        <div class="overlay-sheet overlay-sheet--full" id="update-overlay" hidden></div>
+        <div class="overlay-sheet" id="calendar-popup" hidden></div>
+    </div>
+
+    <script>window.PORTAL_DATA = window.PORTAL_DATA || {};</script>
+    <script src="../../data-shell.json.js"></script>
+    <script src="../../data-sections-core.json.js"></script>
+    <script src="../../data-sections-content.json.js"></script>
+    <script src="../../data-mock-apps.json.js"></script>
+    <script src="../../data-linktree.json.js"></script>
+    <script src="../../data-cloud-apps.json.js"></script>
+    <script src="../../script.js"></script>
+</body>
+</html>

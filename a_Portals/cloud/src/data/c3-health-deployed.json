@@ -1,0 +1,449 @@
+[
+ {
+  "vm": "oci-E2-f_0",
+  "alias": "oci-mail",
+  "containers": [
+   {
+    "name": "stalwart",
+    "status": "Up 8 hours (healthy)",
+    "image": "stalwartlabs/stalwart:v0.16.5",
+    "ports": "110/tcp, 143/tcp, 587/tcp, 995/tcp, 8080/tcp, 10.x.x.x:2025->25/tcp, 10.x.x.x:2025->25/tcp, 10.x.x.x:2443->443/tcp, 10.x.x.x:2443->443/tcp, 10.x.x.x:2465->465/tcp, 10.x.x.x:2465->465/tcp, 10.x.x.x:2993->993/tcp, 10.x.x.x:2993->993/tcp, 10.x.x.x:6190->4190/tcp, 10.x.x.x:6190->4190/tcp"
+   },
+   {
+    "name": "stalwart-sorter",
+    "status": "Up 18 hours",
+    "image": "python:3-alpine",
+    "ports": ""
+   },
+   {
+    "name": "mail-puller",
+    "status": "Up 18 hours",
+    "image": "ghcr.io/diegonmarcos/mail-puller-binaries:latest",
+    "ports": ""
+   },
+   {
+    "name": "snappymail",
+    "status": "Up 18 hours (healthy)",
+    "image": "ghcr.io/diegonmarcos/snappymail-binaries:latest",
+    "ports": ""
+   },
+   {
+    "name": "maddy",
+    "status": "Up 8 hours",
+    "image": "ghcr.io/diegonmarcos/maddy-binaries:latest"
+   }
+  ]
+ },
+ {
+  "vm": "oci-E2-f_1",
+  "alias": "oci-analytics",
+  "containers": [
+   {
+    "name": "unbound-dns64",
+    "status": "Up 21 minutes",
+    "image": "ghcr.io/diegonmarcos/unbound-dns64:latest",
+    "ports": ""
+   },
+   {
+    "name": "practical_pascal",
+    "status": "Up 23 hours",
+    "image": "ghcr.io/diegonmarcos/fluent-bit:latest",
+    "ports": "2020/tcp"
+   },
+   {
+    "name": "cf-worker-http-to-wg-public-bridge",
+    "status": "Up 24 hours",
+    "image": "ghcr.io/diegonmarcos/cf-worker-http-to-wg-public-bridge-binaries:latest",
+    "ports": ""
+   },
+   {
+    "name": "umami",
+    "status": "Up 24 hours (healthy)",
+    "image": "ghcr.io/diegonmarcos/umami:latest",
+    "ports": "3000/tcp, 10.x.x.x:3006->3006/tcp"
+   },
+   {
+    "name": "umami-db",
+    "status": "Up 24 hours (healthy)",
+    "image": "ghcr.io/diegonmarcos/umami-db:latest",
+    "ports": "5432/tcp, 5442/tcp"
+   },
+   {
+    "name": "alerts-api",
+    "status": "Up 4 weeks (healthy)",
+    "image": "ghcr.io/diegonmarcos/alerts-api:latest"
+   }
+  ]
+ },
+ {
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "containers": [
+   {
+    "name": "mattermost-mcp",
+    "status": "Up 5 minutes",
+    "image": "ghcr.io/diegonmarcos/mattermost-mcp-binaries:latest",
+    "ports": "10.x.x.x:3102->3102/tcp"
+   },
+   {
+    "name": "c3-services-mcp",
+    "status": "Up 10 minutes (healthy)",
+    "image": "109a8f7ed2a6",
+    "ports": "10.x.x.x:3101->3101/tcp"
+   },
+   {
+    "name": "google-personal-mcp",
+    "status": "Up 10 minutes (healthy)",
+    "image": "5ee35e075df8",
+    "ports": ""
+   },
+   {
+    "name": "c3-services-api",
+    "status": "Up 11 minutes (healthy)",
+    "image": "8415899c7bc5",
+    "ports": ""
+   },
+   {
+    "name": "c3-infra-mcp",
+    "status": "Up 18 minutes (healthy)",
+    "image": "ghcr.io/diegonmarcos/c3-infra-mcp:latest",
+    "ports": ""
+   },
+   {
+    "name": "c3-infra-api",
+    "status": "Up 18 minutes (healthy)",
+    "image": "41705584edb1",
+    "ports": ""
+   },
+   {
+    "name": "continuwuity",
+    "status": "Up 18 minutes",
+    "image": "a36e29fb7ca4",
+    "ports": ""
+   },
+   {
+    "name": "languagetool",
+    "status": "Up 25 minutes (healthy)",
+    "image": "erikvl87/languagetool:latest",
+    "ports": "0.0.0.0:8010->8010/tcp, :::8010->8010/tcp"
+   },
+   {
+    "name": "kg-store",
+    "status": "Up 13 hours (healthy)",
+    "image": "42b16b12e608",
+    "ports": ""
+   },
+   {
+    "name": "hermes-agent",
+    "status": "Up 13 hours",
+    "image": "ghcr.io/diegonmarcos/hermes-agent:latest",
+    "ports": ""
+   },
+   {
+    "name": "openobserve",
+    "status": "Up 13 hours",
+    "image": "5de1d34eec1b",
+    "ports": ""
+   },
+   {
+    "name": "crowdsec",
+    "status": "Up 13 hours (healthy)",
+    "image": "3d73b4c86d53",
+    "ports": ""
+   },
+   {
+    "name": "claude-superset-api",
+    "status": "Up 13 hours (healthy)",
+    "image": "ghcr.io/diegonmarcos/claude-superset-api-binaries:latest",
+    "ports": ""
+   },
+   {
+    "name": "dbgate",
+    "status": "Up 13 hours (healthy)",
+    "image": "abeb14763816",
+    "ports": ""
+   },
+   {
+    "name": "github-rss",
+    "status": "Up 13 hours",
+    "image": "python:3.11-slim",
+    "ports": ""
+   },
+   {
+    "name": "syslog-bridge",
+    "status": "Up 13 hours",
+    "image": "python:3.11-slim",
+    "ports": ""
+   },
+   {
+    "name": "ntfy",
+    "status": "Up 13 hours",
+    "image": "ghcr.io/diegonmarcos/ntfy-binaries:latest",
+    "ports": "80/tcp, 10.x.x.x:8090->8090/tcp"
+   },
+   {
+    "name": "matomo-hybrid",
+    "status": "Up 13 hours",
+    "image": "ghcr.io/diegonmarcos/matomo-binaries:latest",
+    "ports": "10.x.x.x:8084->8080/tcp"
+   },
+   {
+    "name": "gitea",
+    "status": "Up 13 hours (healthy)",
+    "image": "2bf7813efa4d",
+    "ports": ""
+   },
+   {
+    "name": "dagu",
+    "status": "Up 13 hours",
+    "image": "ghcr.io/diegonmarcos/dagu-binaries:latest",
+    "ports": ""
+   },
+   {
+    "name": "borg-server",
+    "status": "Up 13 hours",
+    "image": "1df37cf12d59",
+    "ports": ""
+   },
+   {
+    "name": "mail-mcp",
+    "status": "Up 14 hours",
+    "image": "d513acb3be4a",
+    "ports": "10.x.x.x:3103->3103/tcp"
+   },
+   {
+    "name": "oci-apps-arm64",
+    "status": "Up 34 minutes",
+    "image": "myoung34/github-runner:ubuntu-noble",
+    "ports": ""
+   },
+   {
+    "name": "oci-apps-arm64-unix",
+    "status": "Up 14 hours",
+    "image": "myoung34/github-runner:ubuntu-noble",
+    "ports": ""
+   },
+   {
+    "name": "my-ai-api",
+    "status": "Up 17 hours (healthy)",
+    "image": "856aa9ec69e5",
+    "ports": ""
+   },
+   {
+    "name": "cloud-cgc-mcp",
+    "status": "Up 35 hours (healthy)",
+    "image": "d3cb63d7d1a7",
+    "ports": ""
+   },
+   {
+    "name": "scrappers-api",
+    "status": "Up 2 weeks (healthy)",
+    "image": "cee0e6149127",
+    "ports": ""
+   },
+   {
+    "name": "send_app",
+    "status": "Up 3 weeks (healthy)",
+    "image": "registry.gitlab.com/timvisee/send:latest",
+    "ports": "1443/tcp, 10.x.x.x:3016->1234/tcp"
+   },
+   {
+    "name": "send_redis",
+    "status": "Up 3 weeks",
+    "image": "redis:7-alpine",
+    "ports": "6379/tcp"
+   },
+   {
+    "name": "matrix-element",
+    "status": "Up 3 weeks (healthy)",
+    "image": "97198437215d",
+    "ports": "8080/tcp, 10.x.x.x:8083->80/tcp"
+   },
+   {
+    "name": "grist_app",
+    "status": "Up 3 weeks (healthy)",
+    "image": "5a632f17da57",
+    "ports": "10.x.x.x:3011->3011/tcp, 8484/tcp"
+   },
+   {
+    "name": "fin-api",
+    "status": "Up 3 weeks",
+    "image": "134803a6bb9d",
+    "ports": ""
+   },
+   {
+    "name": "session-memory",
+    "status": "Up 4 weeks (healthy)",
+    "image": "25e4aee47d98",
+    "ports": ""
+   },
+   {
+    "name": "photoprism_rclone",
+    "status": "Up 4 weeks (healthy)",
+    "image": "rclone/rclone:latest",
+    "ports": ""
+   },
+   {
+    "name": "photoprism_mariadb",
+    "status": "Up 4 weeks (healthy)",
+    "image": "mariadb:11",
+    "ports": ""
+   },
+   {
+    "name": "news-gdelt",
+    "status": "Up 4 weeks (healthy)",
+    "image": "d860486ece4f",
+    "ports": ""
+   },
+   {
+    "name": "filebrowser_app",
+    "status": "Up 4 weeks (healthy)",
+    "image": "0324dfeb2633",
+    "ports": "80/tcp, 10.x.x.x:3015->8080/tcp"
+   },
+   {
+    "name": "etherpad_app",
+    "status": "Up 4 weeks (healthy)",
+    "image": "e64d98222acf",
+    "ports": ""
+   },
+   {
+    "name": "etherpad_postgres",
+    "status": "Up 4 weeks (healthy)",
+    "image": "0ab885cf7191",
+    "ports": ""
+   },
+   {
+    "name": "vaultwarden",
+    "status": "Up 4 weeks (healthy)",
+    "image": "ed65a07385c6",
+    "ports": ""
+   },
+   {
+    "name": "hedgedoc_app",
+    "status": "Up 4 weeks (healthy)",
+    "image": "0b9713b10897",
+    "ports": "3000/tcp, 10.x.x.x:3018->3018/tcp"
+   },
+   {
+    "name": "hedgedoc_postgres",
+    "status": "Up 4 weeks (healthy)",
+    "image": "0ab885cf7191",
+    "ports": "5432/tcp"
+   },
+   {
+    "name": "contacts-radicale",
+    "status": "Up 4 weeks (healthy)",
+    "image": "bae0b328cd26",
+    "ports": "5232/tcp, 10.x.x.x:5233->5233/tcp"
+   },
+   {
+    "name": "code-server",
+    "status": "Up 4 weeks",
+    "image": "95352b13800f",
+    "ports": ""
+   },
+   {
+    "name": "calendar-radicale",
+    "status": "Up 4 weeks (healthy)",
+    "image": "bae0b328cd26",
+    "ports": "10.x.x.x:5232->5232/tcp"
+   },
+   {
+    "name": "paca-gateway",
+    "status": "Up 4 weeks",
+    "image": "nginx:1.27-alpine",
+    "ports": "0.0.0.0:8095->80/tcp, [::]:8095->80/tcp"
+   },
+   {
+    "name": "paca-web",
+    "status": "Up 4 weeks",
+    "image": "pacaai/paca-web:latest",
+    "ports": "80/tcp, 3000/tcp"
+   },
+   {
+    "name": "paca-realtime",
+    "status": "Up 4 weeks (healthy)",
+    "image": "pacaai/paca-realtime:latest",
+    "ports": "3001/tcp"
+   },
+   {
+    "name": "paca-api",
+    "status": "Up 4 weeks (healthy)",
+    "image": "pacaai/paca-api:latest",
+    "ports": "8080/tcp"
+   },
+   {
+    "name": "paca-postgres",
+    "status": "Up 4 weeks (healthy)",
+    "image": "4db228bee7e7",
+    "ports": "5432/tcp"
+   },
+   {
+    "name": "paca-valkey",
+    "status": "Up 4 weeks (healthy)",
+    "image": "valkey/valkey:8-alpine",
+    "ports": "6379/tcp"
+   }
+  ]
+ },
+ {
+  "vm": "gcp-E2-f_0",
+  "alias": "gcp-proxy",
+  "containers": [
+   {
+    "name": "introspect-proxy",
+    "status": "Up 19 hours (healthy)",
+    "image": "ghcr.io/diegonmarcos/introspect-proxy-binaries:latest",
+    "ports": ""
+   },
+   {
+    "name": "caddy",
+    "status": "Up 19 hours",
+    "image": "ghcr.io/diegonmarcos/caddy-l4",
+    "ports": ""
+   },
+   {
+    "name": "http-to-smtp-proxy-api",
+    "status": "Up 19 hours",
+    "image": "ghcr.io/diegonmarcos/http-to-smtp-proxy-api-binaries:latest",
+    "ports": ""
+   },
+   {
+    "name": "authelia",
+    "status": "Up 19 hours (healthy)",
+    "image": "ghcr.io/diegonmarcos/authelia-binaries:latest",
+    "ports": "10.x.x.x:9091->9091/tcp"
+   },
+   {
+    "name": "authelia-redis",
+    "status": "Up 19 hours (healthy)",
+    "image": "redis:7-bookworm",
+    "ports": "6379/tcp"
+   },
+   {
+    "name": "wireguard-mesh-ws-tunnel",
+    "status": "Up 19 hours",
+    "image": "ghcr.io/erebe/wstunnel:latest",
+    "ports": ""
+   },
+   {
+    "name": "hickory-dns",
+    "status": "Up 19 hours",
+    "image": "ghcr.io/diegonmarcos/hickory-dns:latest",
+    "ports": ""
+   },
+   {
+    "name": "redis",
+    "status": "Up 19 hours (healthy)",
+    "image": "ghcr.io/diegonmarcos/redis-binaries:latest"
+   }
+  ]
+ },
+ {
+  "vm": "vast-RTX-p_0",
+  "alias": "vast-ollama",
+  "containers": [],
+  "error": "ssh: Could not resolve hostname vast-ollama: Name or service not known\r\n"
+ }
+]

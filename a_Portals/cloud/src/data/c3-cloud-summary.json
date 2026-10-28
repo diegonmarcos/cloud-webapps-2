@@ -1,0 +1,44 @@
+{
+  "oci": {
+    "instances": [
+      {
+        "id": "oci-mail",
+        "shape": "VM.Standard.E2.1.Micro",
+        "state": "RUNNING"
+      },
+      {
+        "id": "oci-analytics",
+        "shape": "VM.Standard.E2.1.Micro",
+        "state": "RUNNING"
+      },
+      {
+        "id": "oci-apps",
+        "shape": "VM.Standard.A1.Flex",
+        "state": "RUNNING"
+      }
+    ],
+    "resources": {
+      "count": 3
+    },
+    "costs": {
+      "monthly_usd": 0.0,
+      "note": "Always Free tier"
+    }
+  },
+  "gcp": {
+    "instances": [
+      {
+        "id": "gcp-f-micro_1",
+        "machineType": "e2-micro",
+        "state": "RUNNING"
+      }
+    ],
+    "resources": {
+      "count": 1
+    },
+    "costs": {
+      "monthly_usd": 0.0,
+      "note": "Free tier e2-micro"
+    }
+  }
+}

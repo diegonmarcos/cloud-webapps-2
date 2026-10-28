@@ -1,0 +1,2205 @@
+{
+ "events": [
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:27Z",
+   "summary": "ssh vast-ollama: \"docker ps --format \"{{.Names}}\t{{.Status}}\t{{.Image}}\t{{.Ports}}\"\": exit 255",
+   "detail": {
+    "tool": "ssh",
+    "target": "vast-ollama: \"docker ps --format \"{{.Names}}\t{{.Status}}\t{{.Image}}\t{{.Ports}}\"\"",
+    "result": "exit 255",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:27Z",
+   "summary": "ssh gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/redis-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/redis-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:25Z",
+   "summary": "ssh gcp-proxy: \"docker inspect redis --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect redis --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:23Z",
+   "summary": "ssh gcp-proxy: \"docker inspect redis --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect redis --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:22Z",
+   "summary": "ssh gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/hickory-dns:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/hickory-dns:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:20Z",
+   "summary": "ssh gcp-proxy: \"docker inspect hickory-dns --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect hickory-dns --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:18Z",
+   "summary": "ssh gcp-proxy: \"docker inspect hickory-dns --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect hickory-dns --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:17Z",
+   "summary": "ssh gcp-proxy: \"docker manifest inspect ghcr.io/erebe/wstunnel:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker manifest inspect ghcr.io/erebe/wstunnel:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:12Z",
+   "summary": "ssh gcp-proxy: \"docker inspect wireguard-mesh-ws-tunnel --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect wireguard-mesh-ws-tunnel --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:11Z",
+   "summary": "ssh gcp-proxy: \"docker inspect wireguard-mesh-ws-tunnel --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect wireguard-mesh-ws-tunnel --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:09Z",
+   "summary": "ssh gcp-proxy: \"docker manifest inspect redis:7-bookworm 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker manifest inspect redis:7-bookworm 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:02Z",
+   "summary": "ssh gcp-proxy: \"docker inspect authelia-redis --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect authelia-redis --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:12:01Z",
+   "summary": "ssh gcp-proxy: \"docker inspect authelia-redis --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect authelia-redis --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:59Z",
+   "summary": "ssh gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/authelia-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/authelia-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:57Z",
+   "summary": "ssh gcp-proxy: \"docker inspect authelia --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect authelia --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:56Z",
+   "summary": "ssh gcp-proxy: \"docker inspect authelia --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect authelia --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:54Z",
+   "summary": "ssh gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/http-to-smtp-proxy-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' \": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/http-to-smtp-proxy-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' \"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:52Z",
+   "summary": "ssh gcp-proxy: \"docker inspect http-to-smtp-proxy-api --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect http-to-smtp-proxy-api --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:51Z",
+   "summary": "ssh gcp-proxy: \"docker inspect http-to-smtp-proxy-api --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect http-to-smtp-proxy-api --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:49Z",
+   "summary": "ssh gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/caddy-l4@sha256:d8309fad8a32c393ddf7a258b8dbfc990ea928372284804a08bd071a13d\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/caddy-l4@sha256:d8309fad8a32c393ddf7a258b8dbfc990ea928372284804a08bd071a13d\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:47Z",
+   "summary": "ssh gcp-proxy: \"docker inspect caddy --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect caddy --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:45Z",
+   "summary": "ssh gcp-proxy: \"docker inspect caddy --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect caddy --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:44Z",
+   "summary": "ssh gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/introspect-proxy-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker manifest inspect ghcr.io/diegonmarcos/introspect-proxy-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:41Z",
+   "summary": "ssh gcp-proxy: \"docker inspect introspect-proxy --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect introspect-proxy --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:40Z",
+   "summary": "ssh gcp-proxy: \"docker inspect introspect-proxy --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker inspect introspect-proxy --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:38Z",
+   "summary": "ssh gcp-proxy: \"docker ps --format \"{{.Names}}\t{{.Status}}\t{{.Image}}\t{{.Ports}}\"\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "gcp-proxy: \"docker ps --format \"{{.Names}}\t{{.Status}}\t{{.Image}}\t{{.Ports}}\"\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:36Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect valkey/valkey:8-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect valkey/valkey:8-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:28Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-valkey --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-valkey --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:28Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-valkey --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-valkey --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:27Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect postgres:16-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 255",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect postgres:16-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 255",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:07Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-postgres --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-postgres --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:07Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-postgres --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-postgres --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:11:07Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect pacaai/paca-api:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect pacaai/paca-api:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:58Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-api --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-api --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:58Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-api --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-api --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:57Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect pacaai/paca-realtime:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect pacaai/paca-realtime:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:49Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-realtime --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-realtime --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:49Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-realtime --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-realtime --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:49Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect pacaai/paca-web:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect pacaai/paca-web:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:41Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-web --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-web --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:40Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-web --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-web --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:40Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect nginx:1.27-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 255",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect nginx:1.27-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 255",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:20Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-gateway --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-gateway --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:20Z",
+   "summary": "ssh oci-apps: \"docker inspect paca-gateway --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect paca-gateway --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:19Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/calendar-radicale-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/calendar-radicale-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:16Z",
+   "summary": "ssh oci-apps: \"docker inspect calendar-radicale --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect calendar-radicale --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:16Z",
+   "summary": "ssh oci-apps: \"docker inspect calendar-radicale --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect calendar-radicale --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:15Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/code-server-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/code-server-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:12Z",
+   "summary": "ssh oci-apps: \"docker inspect code-server --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect code-server --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:12Z",
+   "summary": "ssh oci-apps: \"docker inspect code-server --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect code-server --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:12Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/contacts-radicale-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/contacts-radicale-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:09Z",
+   "summary": "ssh oci-apps: \"docker inspect contacts-radicale --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect contacts-radicale --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:09Z",
+   "summary": "ssh oci-apps: \"docker inspect contacts-radicale --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect contacts-radicale --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:10:05Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect postgres:16-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 255",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect postgres:16-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 255",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:45Z",
+   "summary": "ssh oci-apps: \"docker inspect hedgedoc_postgres --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect hedgedoc_postgres --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:44Z",
+   "summary": "ssh oci-apps: \"docker inspect hedgedoc_postgres --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect hedgedoc_postgres --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:44Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/hedgedoc-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/hedgedoc-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:41Z",
+   "summary": "ssh oci-apps: \"docker inspect hedgedoc_app --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect hedgedoc_app --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:41Z",
+   "summary": "ssh oci-apps: \"docker inspect hedgedoc_app --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect hedgedoc_app --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:41Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/vaultwarden-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/vaultwarden-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:38Z",
+   "summary": "ssh oci-apps: \"docker inspect vaultwarden --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect vaultwarden --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:37Z",
+   "summary": "ssh oci-apps: \"docker inspect vaultwarden --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect vaultwarden --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:37Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect postgres:16-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 255",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect postgres:16-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 255",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:17Z",
+   "summary": "ssh oci-apps: \"docker inspect etherpad_postgres --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect etherpad_postgres --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:17Z",
+   "summary": "ssh oci-apps: \"docker inspect etherpad_postgres --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect etherpad_postgres --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:16Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/etherpad-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/etherpad-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:13Z",
+   "summary": "ssh oci-apps: \"docker inspect etherpad_app --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect etherpad_app --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:13Z",
+   "summary": "ssh oci-apps: \"docker inspect etherpad_app --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect etherpad_app --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:13Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/filebrowser-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/filebrowser-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:10Z",
+   "summary": "ssh oci-apps: \"docker inspect filebrowser_app --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect filebrowser_app --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:10Z",
+   "summary": "ssh oci-apps: \"docker inspect filebrowser_app --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect filebrowser_app --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:09Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/news-gdelt-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/news-gdelt-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:07Z",
+   "summary": "ssh oci-apps: \"docker inspect news-gdelt --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect news-gdelt --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:06Z",
+   "summary": "ssh oci-apps: \"docker inspect news-gdelt --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect news-gdelt --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:09:06Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect mariadb:11 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect mariadb:11 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:53Z",
+   "summary": "ssh oci-apps: \"docker inspect photoprism_mariadb --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect photoprism_mariadb --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:53Z",
+   "summary": "ssh oci-apps: \"docker inspect photoprism_mariadb --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect photoprism_mariadb --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:52Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect rclone/rclone:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect rclone/rclone:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:43Z",
+   "summary": "ssh oci-apps: \"docker inspect photoprism_rclone --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect photoprism_rclone --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:43Z",
+   "summary": "ssh oci-apps: \"docker inspect photoprism_rclone --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect photoprism_rclone --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:43Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/session-memory-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/session-memory-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:40Z",
+   "summary": "ssh oci-apps: \"docker inspect session-memory --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect session-memory --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:40Z",
+   "summary": "ssh oci-apps: \"docker inspect session-memory --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect session-memory --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:39Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/fin-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/fin-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:35Z",
+   "summary": "ssh oci-apps: \"docker inspect fin-api --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect fin-api --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:35Z",
+   "summary": "ssh oci-apps: \"docker inspect fin-api --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect fin-api --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:35Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/grist-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/grist-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:31Z",
+   "summary": "ssh oci-apps: \"docker inspect grist_app --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect grist_app --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:31Z",
+   "summary": "ssh oci-apps: \"docker inspect grist_app --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect grist_app --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:30Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/matrix-element-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/matrix-element-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:27Z",
+   "summary": "ssh oci-apps: \"docker inspect matrix-element --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect matrix-element --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:26Z",
+   "summary": "ssh oci-apps: \"docker inspect matrix-element --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect matrix-element --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:26Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect redis:7-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 255",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect redis:7-alpine 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 255",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:06Z",
+   "summary": "ssh oci-apps: \"docker inspect send_redis --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect send_redis --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:06Z",
+   "summary": "ssh oci-apps: \"docker inspect send_redis --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect send_redis --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:08:05Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect registry.gitlab.com/timvisee/send:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect registry.gitlab.com/timvisee/send:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:57Z",
+   "summary": "ssh oci-apps: \"docker inspect send_app --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect send_app --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:56Z",
+   "summary": "ssh oci-apps: \"docker inspect send_app --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect send_app --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:56Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/scrappers-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/scrappers-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:53Z",
+   "summary": "ssh oci-apps: \"docker inspect scrappers-api --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect scrappers-api --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:53Z",
+   "summary": "ssh oci-apps: \"docker inspect scrappers-api --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect scrappers-api --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:53Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/cloud-cgc-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/cloud-cgc-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:50Z",
+   "summary": "ssh oci-apps: \"docker inspect cloud-cgc-mcp --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect cloud-cgc-mcp --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:50Z",
+   "summary": "ssh oci-apps: \"docker inspect cloud-cgc-mcp --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect cloud-cgc-mcp --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:49Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/my-ai-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/my-ai-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:47Z",
+   "summary": "ssh oci-apps: \"docker inspect my-ai-api --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect my-ai-api --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:46Z",
+   "summary": "ssh oci-apps: \"docker inspect my-ai-api --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect my-ai-api --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:46Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/google-workspace-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/google-workspace-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:43Z",
+   "summary": "ssh oci-apps: \"docker inspect google-workspace-mcp --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect google-workspace-mcp --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:43Z",
+   "summary": "ssh oci-apps: \"docker inspect google-workspace-mcp --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect google-workspace-mcp --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:42Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect myoung34/github-runner:ubuntu-noble 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect myoung34/github-runner:ubuntu-noble 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:35Z",
+   "summary": "ssh oci-apps: \"docker inspect oci-apps-arm64-unix --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect oci-apps-arm64-unix --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:34Z",
+   "summary": "ssh oci-apps: \"docker inspect oci-apps-arm64-unix --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect oci-apps-arm64-unix --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:34Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect myoung34/github-runner:ubuntu-noble 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect myoung34/github-runner:ubuntu-noble 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:26Z",
+   "summary": "ssh oci-apps: \"docker inspect oci-apps-arm64 --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect oci-apps-arm64 --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:25Z",
+   "summary": "ssh oci-apps: \"docker inspect oci-apps-arm64 --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect oci-apps-arm64 --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:25Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/mail-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/mail-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:22Z",
+   "summary": "ssh oci-apps: \"docker inspect mail-mcp --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect mail-mcp --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:22Z",
+   "summary": "ssh oci-apps: \"docker inspect mail-mcp --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect mail-mcp --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:21Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/mattermost-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/mattermost-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:19Z",
+   "summary": "ssh oci-apps: \"docker inspect mattermost-mcp --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect mattermost-mcp --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:18Z",
+   "summary": "ssh oci-apps: \"docker inspect mattermost-mcp --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect mattermost-mcp --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:18Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/backup-borg-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/backup-borg-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:15Z",
+   "summary": "ssh oci-apps: \"docker inspect borg-server --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect borg-server --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:15Z",
+   "summary": "ssh oci-apps: \"docker inspect borg-server --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect borg-server --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:14Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/dagu-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/dagu-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:12Z",
+   "summary": "ssh oci-apps: \"docker inspect dagu --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect dagu --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:11Z",
+   "summary": "ssh oci-apps: \"docker inspect dagu --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect dagu --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:11Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/gitea-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/gitea-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:08Z",
+   "summary": "ssh oci-apps: \"docker inspect gitea --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect gitea --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:08Z",
+   "summary": "ssh oci-apps: \"docker inspect gitea --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect gitea --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:08Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/matomo-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/matomo-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:04Z",
+   "summary": "ssh oci-apps: \"docker inspect matomo-hybrid --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect matomo-hybrid --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:04Z",
+   "summary": "ssh oci-apps: \"docker inspect matomo-hybrid --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect matomo-hybrid --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:07:03Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/ntfy-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/ntfy-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:59Z",
+   "summary": "ssh oci-apps: \"docker inspect ntfy --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect ntfy --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:59Z",
+   "summary": "ssh oci-apps: \"docker inspect ntfy --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect ntfy --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:58Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect python:3.11-slim 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 255",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect python:3.11-slim 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 255",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:38Z",
+   "summary": "ssh oci-apps: \"docker inspect syslog-bridge --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect syslog-bridge --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:38Z",
+   "summary": "ssh oci-apps: \"docker inspect syslog-bridge --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect syslog-bridge --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:37Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect python:3.11-slim 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 255",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect python:3.11-slim 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 255",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:17Z",
+   "summary": "ssh oci-apps: \"docker inspect github-rss --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect github-rss --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:16Z",
+   "summary": "ssh oci-apps: \"docker inspect github-rss --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect github-rss --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:16Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/dbgate-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/dbgate-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:13Z",
+   "summary": "ssh oci-apps: \"docker inspect dbgate --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect dbgate --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:13Z",
+   "summary": "ssh oci-apps: \"docker inspect dbgate --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect dbgate --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:13Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/claude-superset-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/claude-superset-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:09Z",
+   "summary": "ssh oci-apps: \"docker inspect claude-superset-api --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect claude-superset-api --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:08Z",
+   "summary": "ssh oci-apps: \"docker inspect claude-superset-api --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect claude-superset-api --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:08Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/crowdsec-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/crowdsec-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:05Z",
+   "summary": "ssh oci-apps: \"docker inspect crowdsec --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect crowdsec --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:05Z",
+   "summary": "ssh oci-apps: \"docker inspect crowdsec --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect crowdsec --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:05Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/openobserve-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/openobserve-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:02Z",
+   "summary": "ssh oci-apps: \"docker inspect openobserve --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect openobserve --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:01Z",
+   "summary": "ssh oci-apps: \"docker inspect openobserve --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect openobserve --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:06:01Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/hermes-agent:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/hermes-agent:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:52Z",
+   "summary": "ssh oci-apps: \"docker inspect hermes-agent --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect hermes-agent --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:52Z",
+   "summary": "ssh oci-apps: \"docker inspect hermes-agent --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect hermes-agent --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:52Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/kg-store-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/kg-store-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:49Z",
+   "summary": "ssh oci-apps: \"docker inspect kg-store --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect kg-store --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:48Z",
+   "summary": "ssh oci-apps: \"docker inspect kg-store --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect kg-store --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:48Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect erikvl87/languagetool:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect erikvl87/languagetool:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:39Z",
+   "summary": "ssh oci-apps: \"docker inspect languagetool --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect languagetool --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:39Z",
+   "summary": "ssh oci-apps: \"docker inspect languagetool --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect languagetool --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:39Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/matrix-continuwuity-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/matrix-continuwuity-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:36Z",
+   "summary": "ssh oci-apps: \"docker inspect continuwuity --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect continuwuity --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:36Z",
+   "summary": "ssh oci-apps: \"docker inspect continuwuity --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect continuwuity --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:35Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/c3-infra-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/c3-infra-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:32Z",
+   "summary": "ssh oci-apps: \"docker inspect c3-infra-api --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect c3-infra-api --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:32Z",
+   "summary": "ssh oci-apps: \"docker inspect c3-infra-api --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect c3-infra-api --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:31Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/c3-infra-mcp:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/c3-infra-mcp:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:29Z",
+   "summary": "ssh oci-apps: \"docker inspect c3-infra-mcp --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect c3-infra-mcp --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:28Z",
+   "summary": "ssh oci-apps: \"docker inspect c3-infra-mcp --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect c3-infra-mcp --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:28Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/c3-services-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/c3-services-api-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:25Z",
+   "summary": "ssh oci-apps: \"docker inspect c3-services-api --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect c3-services-api --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:25Z",
+   "summary": "ssh oci-apps: \"docker inspect c3-services-api --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect c3-services-api --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:24Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/google-personal-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/google-personal-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:22Z",
+   "summary": "ssh oci-apps: \"docker inspect google-personal-mcp --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect google-personal-mcp --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:21Z",
+   "summary": "ssh oci-apps: \"docker inspect google-personal-mcp --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect google-personal-mcp --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:21Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/c3-services-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/c3-services-mcp-binaries:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:18Z",
+   "summary": "ssh oci-apps: \"docker inspect c3-services-mcp --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect c3-services-mcp --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:18Z",
+   "summary": "ssh oci-apps: \"docker inspect c3-services-mcp --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect c3-services-mcp --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:18Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/cloud-builder-x-deb-nixhm:arm64 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/cloud-builder-x-deb-nixhm:arm64 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:15Z",
+   "summary": "ssh oci-apps: \"docker inspect nervous_kilby --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect nervous_kilby --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:14Z",
+   "summary": "ssh oci-apps: \"docker inspect nervous_kilby --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect nervous_kilby --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:14Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/cloud-builder-x-deb-nixhm:arm64 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/cloud-builder-x-deb-nixhm:arm64 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:11Z",
+   "summary": "ssh oci-apps: \"docker inspect zealous_shamir --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect zealous_shamir --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:11Z",
+   "summary": "ssh oci-apps: \"docker inspect zealous_shamir --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect zealous_shamir --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:11Z",
+   "summary": "ssh oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/cloud-builder-x-deb-nixhm:arm64 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker manifest inspect ghcr.io/diegonmarcos/cloud-builder-x-deb-nixhm:arm64 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:08Z",
+   "summary": "ssh oci-apps: \"docker inspect serene_albattani --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect serene_albattani --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:08Z",
+   "summary": "ssh oci-apps: \"docker inspect serene_albattani --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker inspect serene_albattani --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:07Z",
+   "summary": "ssh oci-apps: \"docker ps --format \"{{.Names}}\t{{.Status}}\t{{.Image}}\t{{.Ports}}\"\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-apps: \"docker ps --format \"{{.Names}}\t{{.Status}}\t{{.Image}}\t{{.Ports}}\"\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:05:06Z",
+   "summary": "ssh oci-analytics: \"docker manifest inspect ghcr.io/diegonmarcos/alerts-api:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-analytics: \"docker manifest inspect ghcr.io/diegonmarcos/alerts-api:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:04:57Z",
+   "summary": "ssh oci-analytics: \"docker inspect alerts-api --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-analytics: \"docker inspect alerts-api --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:04:54Z",
+   "summary": "ssh oci-analytics: \"docker inspect alerts-api --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-analytics: \"docker inspect alerts-api --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:04:48Z",
+   "summary": "ssh oci-analytics: \"docker manifest inspect ghcr.io/diegonmarcos/umami-db:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-analytics: \"docker manifest inspect ghcr.io/diegonmarcos/umami-db:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:04:42Z",
+   "summary": "ssh oci-analytics: \"docker inspect umami-db --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-analytics: \"docker inspect umami-db --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:04:39Z",
+   "summary": "ssh oci-analytics: \"docker inspect umami-db --format '{{ .Config.Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-analytics: \"docker inspect umami-db --format '{{ .Config.Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:04:36Z",
+   "summary": "ssh oci-analytics: \"docker manifest inspect ghcr.io/diegonmarcos/umami:latest 2>/dev/null | sha256sum | cut -d' ' -f1\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-analytics: \"docker manifest inspect ghcr.io/diegonmarcos/umami:latest 2>/dev/null | sha256sum | cut -d' ' -f1\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  },
+  {
+   "type": "ops",
+   "ts": "2026-08-02T09:04:31Z",
+   "summary": "ssh oci-analytics: \"docker inspect umami --format '{{ index .Image }}'\": exit 0",
+   "detail": {
+    "tool": "ssh",
+    "target": "oci-analytics: \"docker inspect umami --format '{{ index .Image }}'\"",
+    "result": "exit 0",
+    "source": "mcp"
+   }
+  }
+ ],
+ "count": 200
+}

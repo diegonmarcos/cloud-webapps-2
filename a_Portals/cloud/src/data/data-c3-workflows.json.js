@@ -1,0 +1,130 @@
+// GENERATED FROM c3-workflows.json by front-data-json-js-wrapper.sh — DO NOT EDIT BY HAND.
+// Re-generate with: bash a_Portals/linktree/src/data/build.sh
+(function () {
+  var g = (typeof globalThis !== "undefined") ? globalThis : (typeof window !== "undefined" ? window : this);
+  g.PORTAL_DATA = g.PORTAL_DATA || {};
+  g.PORTAL_DATA["c3-workflows"] = {
+ "runs": [
+  {
+   "name": "Ship",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "failure",
+   "created_at": "2026-08-02T08:53:31Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30740662045"
+  },
+  {
+   "name": "Ship",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "failure",
+   "created_at": "2026-08-02T08:42:24Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30740296982"
+  },
+  {
+   "name": "Ship",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "failure",
+   "created_at": "2026-08-02T08:42:22Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30740295702"
+  },
+  {
+   "name": "Cloud Health Reports",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-08-02T08:38:48Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30740179899"
+  },
+  {
+   "name": "Cloud Health Reports (x86 GHA)",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-08-02T08:37:29Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30740138680"
+  },
+  {
+   "name": "Cloud Health Reports (ARM oci-apps)",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-08-02T08:36:08Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30740095798"
+  },
+  {
+   "name": "Auto-sync submodules",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-08-02T07:28:12Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30737867482"
+  },
+  {
+   "name": "cgc-db (octocode incremental update \u2192 GHCR \u2192 oci-apps)",
+   "branch": "main",
+   "status": "in_progress",
+   "conclusion": null,
+   "created_at": "2026-08-02T06:23:52Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30735838786"
+  },
+  {
+   "name": "Auto-sync submodules",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-08-02T04:49:38Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30733037885"
+  },
+  {
+   "name": "Auto-sync submodules",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-08-02T01:05:14Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30726417666"
+  },
+  {
+   "name": "Auto-sync submodules",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-08-01T23:26:26Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30723333893"
+  },
+  {
+   "name": "Auto-sync submodules",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-08-01T22:24:47Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30721200361"
+  },
+  {
+   "name": "Auto-sync submodules",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-08-01T21:22:15Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30718989085"
+  },
+  {
+   "name": "Auto-sync submodules",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "success",
+   "created_at": "2026-08-01T20:11:04Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30716415985"
+  },
+  {
+   "name": "Ship",
+   "branch": "main",
+   "status": "completed",
+   "conclusion": "failure",
+   "created_at": "2026-08-01T19:06:33Z",
+   "url": "https://github.com/diegonmarcos/cloud-infra/actions/runs/30714050240"
+  }
+ ]
+};
+})();

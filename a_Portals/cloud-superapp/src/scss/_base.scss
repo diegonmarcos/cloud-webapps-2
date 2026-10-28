@@ -1,0 +1,194 @@
+// ==========================================================================
+// Base — reset, typography, shell scaffold
+// ==========================================================================
+
+@use 'mixins' as *;
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    // Roboto first (no Segoe UI ahead of it) so the web shell picks the same
+    // typeface the Android app does wherever Roboto exists.
+    font-family: Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: var(--text-primary);
+    background: var(--gradient-mid);
+    -webkit-font-smoothing: antialiased;
+}
+
+button {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+ul,
+ol {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+p {
+    margin: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+// ── Shell ─────────────────────────────────────────────────────────────
+// Full-bleed on phones; centers into a phone-proportioned column on wider
+// viewports so the launcher UI still reads as a phone screen on desktop.
+//
+// height (not min-height) is load-bearing: the toolbar/bottom-nav islands
+// are position:absolute within .shell, meant to stay visually fixed while
+// only .content scrolls internally. A flex column's height defaults to
+// "as tall as its content", so with only min-height the whole .shell (and
+// the islands riding along with it) grew past the viewport and the BODY
+// scrolled instead — islands drifting off-screen, plus the same sizing
+// slop let wide inner content overflow horizontally. A hard height bound
+// (+ overflow:hidden here and min-height/min-width:0 on .content, see
+// components/content.scss) forces .content to be the only scroll surface.
+.shell {
+    // ── Top chrome band geometry — single source of truth ────────────────
+    // The status strip, the two toolbar icons, the music island and the
+    // dynamic island are all position:absolute (see launcher/_islands.scss),
+    // so they take no space and .content has to reserve it by hand. That
+    // reservation used to be a hardcoded 118px that no longer matched the
+    // band it was supposed to clear (icons: top 68px + height 48px = 116px,
+    // i.e. 2px of slack), and nothing accounted for env(safe-area-inset-top)
+    // — with viewport-fit=cover the chrome shifts down by the notch inset on
+    // a real phone while the 118px did not, so the .page-tabs pill row ended
+    // up underneath the toolbar icons. Everything now derives from these
+    // four tokens instead: move the band and the content padding follows.
+    //
+    // FLATTENED ON PURPOSE — do not re-nest these. The first version built
+    // --content-top as a three-deep chain
+    //   env() -> --safe-area-top -> --chrome-band-top -> --content-top
+    // and every consumer (this file's .content padding AND all four island
+    // top: values in launcher/_islands.scss) bottomed out in that one chain
+    // with no fallback anywhere. var() substitution is a token-paste: if the
+    // env() at the root of the chain fails to substitute — which several
+    // mobile Chromium forks get wrong specifically for env() nested inside a
+    // var() inside a calc(), and which desktop never reproduces because
+    // there is no notch to exercise it — the pasted result is garbage and
+    // EVERY property built on it goes invalid-at-computed-value-time at
+    // once: .content's padding falls to 0 and the islands' top: falls to
+    // auto (static position, i.e. the top of the shell). Content and chrome
+    // then land on the same coordinate, which is exactly the "tabs render
+    // under the toolbar icons" symptom, on the phone only.
+    // So: env() sits DIRECTLY inside each calc(), one substitution level,
+    // and every consumption site passes a pixel fallback (see the paired
+    // plain-px declarations in app/_content.scss and launcher/_islands.scss).
+    --safe-area-top: env(safe-area-inset-top, 0px);
+    // 44px, not 36px: the status strip closes with its hairline at ~35px
+    // (4px top padding + chips row + 2px gap + clock row + the 1px rule), so
+    // a 36px band top parked the toolbar icons directly ON that hairline.
+    // 44px leaves the ~8px of breathing room the real app's toolbar has
+    // below the system status bar.
+    --chrome-band-top: calc(env(safe-area-inset-top, 0px) + 44px);
+    --chrome-band-height: 48px; // .icon-btn / .toolbar-action, the tallest members of the band
+    // 44px band top + 48px band height + 12px gap.
+    --content-top: calc(env(safe-area-inset-top, 0px) + 104px);
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-mid), var(--gradient-bottom));
+
+    @include mq(sm) {
+        max-width: var(--phone-max-width);
+        margin: 0 auto;
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
+    }
+}
+
+// ── Top chrome band mask ────────────────────────────────────────────────
+// The islands float over the shell gradient with no background of their own
+// (see launcher/_islands.scss), so anything that ends up inside the band —
+// a page's .page-tabs pill row, a long page scrolled far enough that a row
+// creeps above the scrollport edge, any future layout slip — shows THROUGH
+// the toolbar icons. .content's margin-top (app/_content.scss) prevents the
+// common case, but only as long as every offset resolves correctly; this
+// opaque layer makes the failure invisible instead of merely unlikely,
+// which is what the Android app gets for free by laying content out below
+// an opaque app bar rather than under a transparent one.
+//
+// Exactly the band: 0 → --chrome-band-top (44px) + --chrome-band-height
+// (48px) = 92px, plus the notch inset. Paired plain-px + env() declarations
+// per this file's FLATTENED ON PURPOSE note, so a browser that drops the
+// env() line at parse time still masks the full 92px.
+//
+// z-index 2 threads the existing stack: above .content (1) so scrolled rows
+// are covered, below the stars (5) and the toolbar/status islands (10/11)
+// so the chrome itself still paints on top. The stars never reach up here
+// anyway — sirius sits at top:50%, centauri at 75% - 45px, canopus at
+// bottom:90px, and all three are home-only.
+//
+// .shell is a flex column, but position:absolute takes this out of the flex
+// flow, so it adds no track. The fill is the shell's own gradient scaled to
+// the shell's own height, so the band shows the identical top slice and the
+// seam at its bottom edge is invisible; the flat --gradient-top ahead of it
+// covers browsers without dvh units.
+.shell::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 92px;
+    height: calc(env(safe-area-inset-top, 0px) + 92px);
+    z-index: 2;
+    pointer-events: none;
+    background: var(--gradient-top);
+    background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-mid), var(--gradient-bottom)) top / 100% 100dvh no-repeat;
+}
+
+// ── Reduced motion ───────────────────────────────────────────────────────
+// Neutralizes the animation-tokens additions (see _variables.scss's
+// --duration-*/--ease-*/--scale-press): the tile press bounce collapses to
+// a near-instant transition instead of scaling, and every slide-in/slide-
+// out/fade this design system added (drawer, overlay sheet, fan menu) drops
+// to a near-instant transition too, so the end state still lands but
+// without the animated motion.
+@media (prefers-reduced-motion: reduce) {
+    .tile,
+    .tile:active {
+        transition-duration: 0.01ms;
+    }
+
+    .drawer-scrim,
+    .drawer,
+    .drawer.is-open,
+    .overlay-sheet,
+    .overlay-sheet.is-open,
+    .overlay-sheet__panel,
+    .overlay-sheet.is-open .overlay-sheet__panel,
+    .fan-menu,
+    .fan-menu.is-open,
+    .fan-menu-scrim,
+    .fan-menu-scrim.is-open {
+        transition-duration: 0.01ms;
+    }
+}

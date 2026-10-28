@@ -1,0 +1,934 @@
+{
+ "_meta": {
+  "generated_by": "1_front-configs/build.sh derive",
+  "schema": "front-topology/v1",
+  "project_count": 48
+ },
+ "projects": [
+  {
+   "name": "Leafy",
+   "slug": "leafy",
+   "path": "a_Companies/leafy",
+   "category": "a_Companies",
+   "framework": "vanilla",
+   "port": 8021,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "tsc",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 2,
+   "has_dist": true,
+   "deploy_name": "leafy"
+  },
+  {
+   "name": "Nexus",
+   "slug": "nexus",
+   "path": "a_Companies/nexus",
+   "category": "a_Companies",
+   "framework": "vanilla",
+   "port": 8005,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy",
+    "inline",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 2,
+   "has_dist": true,
+   "deploy_name": "nexus"
+  },
+  {
+   "name": "Stark",
+   "slug": "stark",
+   "path": "a_Companies/stark",
+   "category": "a_Companies",
+   "framework": "vanilla",
+   "port": 8022,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "tsc",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "stark"
+  },
+  {
+   "name": "CV PDF",
+   "slug": "cv_pdf",
+   "path": "b_Profiles/cv_pdf",
+   "category": "b_Profiles",
+   "framework": "vanilla",
+   "port": 8012,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "copy",
+    "symlink",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "cv_pdf"
+  },
+  {
+   "name": "CV Web",
+   "slug": "cv_web",
+   "path": "b_Profiles/cv_web",
+   "category": "b_Profiles",
+   "framework": "vanilla",
+   "port": 8002,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "esbuild",
+    "sass",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 3,
+   "has_dist": true,
+   "deploy_name": "cv_web"
+  },
+  {
+   "name": "Landpage",
+   "slug": "landpage",
+   "path": "b_Profiles/landpage",
+   "category": "b_Profiles",
+   "framework": "vanilla",
+   "port": 8000,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "tsc",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "landpage"
+  },
+  {
+   "name": "Cloud",
+   "slug": "cloud",
+   "path": "a_Portals/cloud",
+   "category": "a_Portals",
+   "framework": "vanilla",
+   "port": 8006,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 8,
+   "has_dist": true,
+   "deploy_name": "cloud"
+  },
+  {
+   "name": "Linktree",
+   "slug": "linktree",
+   "path": "Lnktree/linktree",
+   "category": "Lnktree",
+   "framework": "vanilla",
+   "port": 8001,
+   "build_steps": [
+    "data_wrap",
+    "pwa_icons",
+    "qrcode_gen",
+    "esbuild",
+    "sass",
+    "copy",
+    "copy",
+    "copy",
+    "copy",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 12,
+   "has_dist": true,
+   "deploy_name": "linktree"
+  },
+  {
+   "name": "Linktree Mindmap",
+   "slug": "linktree_mindmap",
+   "path": "Lnktree/linktree_mindmap",
+   "category": "Lnktree",
+   "framework": "vanilla",
+   "port": 8018,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "esbuild",
+    "sass",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 3,
+   "has_dist": true,
+   "deploy_name": "linktree_mindmap"
+  },
+  {
+   "name": "Linktree Pixel World",
+   "slug": "linktree_pixel-world",
+   "path": "Lnktree/linktree_pixel-world",
+   "category": "Lnktree",
+   "framework": "vanilla",
+   "port": 8019,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "esbuild",
+    "sass",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 4,
+   "has_dist": true,
+   "deploy_name": "linktree_pixel-world"
+  },
+  {
+   "name": "SlabTwin 3D Warehouse",
+   "slug": "Warehouse",
+   "path": "a_Companies/Warehouse",
+   "category": "a_Companies",
+   "framework": "vanilla",
+   "port": 8020,
+   "build_steps": [
+    "copy",
+    "symlink",
+    "symlink"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "Warehouse"
+  },
+  {
+   "name": "myAstro",
+   "slug": "myAstro",
+   "path": "c_Circus/myAstro",
+   "category": "c_Circus",
+   "framework": "vanilla",
+   "port": 8019,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "esbuild",
+    "sass",
+    "copy",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 5,
+   "has_dist": true,
+   "deploy_name": "myAstro"
+  },
+  {
+   "name": "MyFeed",
+   "slug": "myfeed",
+   "path": "c_Suite/myfeed",
+   "category": "c_Suite",
+   "framework": "vue",
+   "port": 8003,
+   "build_steps": [
+    "vite"
+   ],
+   "dep_count": 47,
+   "has_dist": true,
+   "deploy_name": "myfeed"
+  },
+  {
+   "name": "mySocials",
+   "slug": "mySocials",
+   "path": "b_Profiles/mySocials",
+   "category": "b_Profiles",
+   "framework": "vanilla",
+   "port": 8028,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "copy",
+    "sass",
+    "sass",
+    "sass",
+    "sass",
+    "sass",
+    "sass",
+    "sass",
+    "sass",
+    "sass",
+    "sass",
+    "sass",
+    "sass",
+    "esbuild",
+    "copy",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "mySocials"
+  },
+  {
+   "name": "My Financials",
+   "slug": "my-fin",
+   "path": "b_MyData/my-fin",
+   "category": "b_MyData",
+   "framework": "vanilla",
+   "port": 8030,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "esbuild",
+    "sass",
+    "copy",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "my-fin"
+  },
+  {
+   "name": "MyTrackers",
+   "slug": "myTrackers",
+   "path": "b_MyData/myTrackers",
+   "category": "b_MyData",
+   "framework": "vanilla",
+   "port": 8026,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy"
+   ],
+   "dep_count": 0,
+   "has_dist": false,
+   "deploy_name": "myTrackers"
+  },
+  {
+   "name": "MyHealth",
+   "slug": "myhealth",
+   "path": "b_MyData/myhealth",
+   "category": "b_MyData",
+   "framework": "vanilla",
+   "port": 8026,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "myhealth"
+  },
+  {
+   "name": "MyHealth Profile",
+   "slug": "myhealth-profile",
+   "path": "b_MyData/myhealth-profile",
+   "category": "b_MyData",
+   "framework": "vanilla",
+   "port": 8009,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "myhealth-profile"
+  },
+  {
+   "name": "MyHealth Tracker",
+   "slug": "myhealth-tracker",
+   "path": "b_MyData/myhealth-tracker",
+   "category": "b_MyData",
+   "framework": "vanilla",
+   "port": 8025,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "myhealth-tracker"
+  },
+  {
+   "name": "myID",
+   "slug": "myid",
+   "path": "b_MyData/myid",
+   "category": "b_MyData",
+   "framework": "vanilla",
+   "port": 8031,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "esbuild",
+    "sass",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "myid"
+  },
+  {
+   "name": "MyMaps MyTrips",
+   "slug": "mymaps-mytrips",
+   "path": "b_MyData/mymaps-mytrips",
+   "category": "b_MyData",
+   "framework": "vue",
+   "port": 8022,
+   "build_steps": [
+    "vite"
+   ],
+   "dep_count": 20,
+   "has_dist": true,
+   "deploy_name": "mymaps-mytrips"
+  },
+  {
+   "name": "MyPhotos",
+   "slug": "myphotos",
+   "path": "b_MyData/myphotos",
+   "category": "b_MyData",
+   "framework": "vanilla",
+   "port": 8019,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "copy",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "myphotos"
+  },
+  {
+   "name": "MyProfile",
+   "slug": "myprofile",
+   "path": "b_Profiles/myprofile",
+   "category": "b_Profiles",
+   "framework": "sveltekit",
+   "port": 8013,
+   "build_steps": [
+    "sveltekit"
+   ],
+   "dep_count": 8,
+   "has_dist": true,
+   "deploy_name": "myprofile"
+  },
+  {
+   "name": "Galaxy",
+   "slug": "galaxy",
+   "path": "b_Projects/galaxy",
+   "category": "b_Projects",
+   "framework": "sveltekit",
+   "port": 8024,
+   "build_steps": [
+    "sveltekit"
+   ],
+   "dep_count": 7,
+   "has_dist": true,
+   "deploy_name": "galaxy"
+  },
+  {
+   "name": "Galaxy-Earth",
+   "slug": "galaxy-earth",
+   "path": "b_Projects/galaxy-earth",
+   "category": "b_Projects",
+   "framework": "sveltekit",
+   "port": 8025,
+   "build_steps": [
+    "sveltekit"
+   ],
+   "dep_count": 11,
+   "has_dist": true,
+   "deploy_name": "galaxy-earth"
+  },
+  {
+   "name": "Galaxy-X1",
+   "slug": "galaxy-x1",
+   "path": "b_Projects/galaxy-x1",
+   "category": "b_Projects",
+   "framework": "sveltekit",
+   "port": 8023,
+   "build_steps": [
+    "sveltekit"
+   ],
+   "dep_count": 11,
+   "has_dist": true,
+   "deploy_name": "galaxy-x1"
+  },
+  {
+   "name": "Carto",
+   "slug": "carto",
+   "path": "c_Circus/carto",
+   "category": "c_Circus",
+   "framework": "vanilla",
+   "port": 8020,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "tsc",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "carto"
+  },
+  {
+   "name": "Games",
+   "slug": "games",
+   "path": "c_Circus/games",
+   "category": "c_Circus",
+   "framework": "sveltekit",
+   "port": 8004,
+   "build_steps": [
+    "sveltekit"
+   ],
+   "dep_count": 13,
+   "has_dist": true,
+   "deploy_name": "games"
+  },
+  {
+   "name": "Movies",
+   "slug": "movies",
+   "path": "c_Suite/movies",
+   "category": "c_Suite",
+   "framework": "vue",
+   "port": 8015,
+   "build_steps": [
+    "vite",
+    "copy"
+   ],
+   "dep_count": 10,
+   "has_dist": true,
+   "deploy_name": "movies"
+  },
+  {
+   "name": "Music",
+   "slug": "music",
+   "path": "c_Suite/music",
+   "category": "c_Suite",
+   "framework": "vue",
+   "port": 8016,
+   "build_steps": [
+    "vite"
+   ],
+   "dep_count": 10,
+   "has_dist": true,
+   "deploy_name": "music"
+  },
+  {
+   "name": "LMMS",
+   "slug": "Music_DAW_LLMS",
+   "path": "a-Lfy_CG-Zirkus/Music_DAW_LLMS",
+   "category": "a-Lfy_CG-Zirkus",
+   "framework": "vanilla",
+   "port": 8035,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "Music_DAW_LLMS"
+  },
+  {
+   "name": "Mixxx",
+   "slug": "Music_DJ-Mixer_Mixxx",
+   "path": "a-Lfy_CG-Zirkus/Music_DJ-Mixer_Mixxx",
+   "category": "a-Lfy_CG-Zirkus",
+   "framework": "vanilla",
+   "port": 8034,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "Music_DJ-Mixer_Mixxx"
+  },
+  {
+   "name": "CentralBank",
+   "slug": "central_bank",
+   "path": "b-Nxs_PA/central_bank",
+   "category": "b-Nxs_PA",
+   "framework": "vanilla",
+   "port": 8011,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "vite"
+   ],
+   "dep_count": 8,
+   "has_dist": true,
+   "deploy_name": "central_bank"
+  },
+  {
+   "name": "FinTerminal",
+   "slug": "fin-terminal",
+   "path": "b-Nxs_Blmmbrg/fin-terminal",
+   "category": "b-Nxs_Blmmbrg",
+   "framework": "vanilla",
+   "port": 8024,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 7,
+   "has_dist": true,
+   "deploy_name": "fin-terminal"
+  },
+  {
+   "name": "MarketWatch",
+   "slug": "market_watch",
+   "path": "b-Nxs_Blmmbrg/market_watch",
+   "category": "b-Nxs_Blmmbrg",
+   "framework": "vanilla",
+   "port": 8010,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 8,
+   "has_dist": true,
+   "deploy_name": "market_watch"
+  },
+  {
+   "name": "GDELTNews",
+   "slug": "news",
+   "path": "b-Nxs_Blmmbrg/news",
+   "category": "b-Nxs_Blmmbrg",
+   "framework": "vanilla",
+   "port": 8029,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 3,
+   "has_dist": true,
+   "deploy_name": "news"
+  },
+  {
+   "name": "Sailyng",
+   "slug": "sailytics",
+   "path": "c-Stk_DsX/sailytics",
+   "category": "c-Stk_DsX",
+   "framework": "vanilla",
+   "port": 8023,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 2,
+   "has_dist": true,
+   "deploy_name": "sailytics"
+  },
+  {
+   "name": "Sheets (Grist)",
+   "slug": "grist",
+   "path": "c_Suite/grist",
+   "category": "c_Suite",
+   "framework": "vanilla",
+   "port": 8033,
+   "build_steps": [
+    "copy"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "grist"
+  },
+  {
+   "name": "JSON Vision",
+   "slug": "json-vision",
+   "path": "c_Suite/json-vision",
+   "category": "c_Suite",
+   "framework": "vue",
+   "port": 8017,
+   "build_steps": [
+    "vite"
+   ],
+   "dep_count": 9,
+   "has_dist": true,
+   "deploy_name": "json-vision"
+  },
+  {
+   "name": "MyHealth FeedYourself",
+   "slug": "myhealth-feedyourself",
+   "path": "c_Suite/myhealth-feedyourself",
+   "category": "c_Suite",
+   "framework": "vanilla",
+   "port": 8007,
+   "build_steps": [
+    "npm",
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "sass",
+    "esbuild",
+    "sass",
+    "esbuild",
+    "copy",
+    "copy",
+    "copy",
+    "copy",
+    "symlink",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 6,
+   "has_dist": true,
+   "deploy_name": "myhealth-feedyourself"
+  },
+  {
+   "name": "MyMail",
+   "slug": "mymail",
+   "path": "c_Suite/mymail",
+   "category": "c_Suite",
+   "framework": "vanilla",
+   "port": 8018,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "copy",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "mymail"
+  },
+  {
+   "name": "MyMaps",
+   "slug": "mymaps",
+   "path": "c_Suite/mymaps",
+   "category": "c_Suite",
+   "framework": "vanilla",
+   "port": 8027,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "sass",
+    "esbuild",
+    "copy",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "mymaps"
+  },
+  {
+   "name": "MyMaps Maps",
+   "slug": "mymaps-maps",
+   "path": "c_Suite/mymaps-maps",
+   "category": "c_Suite",
+   "framework": "sveltekit",
+   "port": 8014,
+   "build_steps": [
+    "sveltekit"
+   ],
+   "dep_count": 15,
+   "has_dist": true,
+   "deploy_name": "mymaps-maps"
+  },
+  {
+   "name": "MyMaps Navigation",
+   "slug": "mymaps-navigation",
+   "path": "c_Suite/mymaps-navigation",
+   "category": "c_Suite",
+   "framework": "sveltekit",
+   "port": 8018,
+   "build_steps": [
+    "sveltekit"
+   ],
+   "dep_count": 17,
+   "has_dist": true,
+   "deploy_name": "mymaps-navigation"
+  },
+  {
+   "name": "Suite",
+   "slug": "suite",
+   "path": "c_Suite/suite",
+   "category": "c_Suite",
+   "framework": "vanilla",
+   "port": 8021,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "esbuild",
+    "sass",
+    "copy",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "suite"
+  },
+  {
+   "name": "tldraw",
+   "slug": "tldraw",
+   "path": "c_Suite/tldraw",
+   "category": "c_Suite",
+   "framework": "react",
+   "port": 8032,
+   "build_steps": [
+    "vite"
+   ],
+   "dep_count": 8,
+   "has_dist": true,
+   "deploy_name": "tldraw"
+  },
+  {
+   "name": "Others",
+   "slug": "others",
+   "path": "c_Circus/others",
+   "category": "c_Circus",
+   "framework": "vanilla",
+   "port": 8008,
+   "build_steps": [
+    "data_wrap",
+    "copy",
+    "copy",
+    "sw_register",
+    "console_log",
+    "esbuild_sw"
+   ],
+   "dep_count": 0,
+   "has_dist": true,
+   "deploy_name": "others"
+  },
+  {
+   "name": "c_root",
+   "slug": "e-Root",
+   "path": "e-Root",
+   "category": "-",
+   "framework": "vue",
+   "port": 5173,
+   "build_steps": [
+    "vite",
+    "strip-module",
+    "copy",
+    "copy"
+   ],
+   "dep_count": 7,
+   "has_dist": true,
+   "deploy_name": "e-Root"
+  }
+ ]
+}

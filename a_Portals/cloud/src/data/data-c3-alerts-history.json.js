@@ -1,0 +1,13 @@
+// GENERATED FROM c3-alerts-history.json by front-data-json-js-wrapper.sh — DO NOT EDIT BY HAND.
+// Re-generate with: bash a_Portals/linktree/src/data/build.sh
+(function () {
+  var g = (typeof globalThis !== "undefined") ? globalThis : (typeof window !== "undefined" ? window : this);
+  g.PORTAL_DATA = g.PORTAL_DATA || {};
+  g.PORTAL_DATA["c3-alerts-history"] = [
+  { "id": 102, "ruleId": 7, "target": "gcp-mesh", "metric": "disk", "value": 88.0, "status": "fired", "ts": "2026-08-01T08:30:00Z", "acked": true },
+  { "id": 101, "ruleId": 3, "target": "oci-apps", "metric": "cpu", "value": 91.2, "status": "fired", "ts": "2026-08-01T08:50:00Z", "acked": false },
+  { "id": 98, "ruleId": 1, "target": "oci-apps", "metric": "cpu", "value": 79.4, "status": "resolved", "ts": "2026-07-31T22:10:00Z", "acked": true },
+  { "id": 95, "ruleId": 1, "target": "oci-apps", "metric": "cpu", "value": 88.1, "status": "resolved", "ts": "2026-07-31T21:40:00Z", "acked": true }
+]
+;
+})();

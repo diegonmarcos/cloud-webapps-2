@@ -1,0 +1,88 @@
+@use '../mixins' as *;
+
+// ==========================================================================
+// Global site footer — every generated page, very bottom of .content: a
+// Google-Play-style APK download badge (dynamic-island-pill glass button)
+// plus the 13-app Constellation fleet as small glass icon chips. Data-driven
+// from shell.json's "footer" key (see scripts/generate-pages.mjs's footerHtml()).
+// ==========================================================================
+
+.site-footer {
+    margin-top: 32px; // flows at the natural end of content — never pinned to the viewport floor on short pages
+    padding: 20px 0 12px;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+// Dynamic-island-pill glass button, centered — same pill tokens the status
+// strip's clock / bottom-nav islands use (_variables.scss's --glass-pill-*).
+.footer-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px 10px 16px;
+    border-radius: var(--glass-pill-radius);
+    background: var(--glass-pill-bg);
+    border: var(--glass-pill-border);
+}
+
+.footer-badge__icon {
+    width: 22px;
+    height: 22px;
+}
+
+.footer-badge__text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.footer-badge__label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.footer-badge__sub {
+    font-size: 11px;
+    color: var(--text-secondary);
+}
+
+// One wrapping row of small glass icon chips — the 13-app Constellation fleet.
+.footer-constellation {
+    @include flex-row(center, flex-start, 10px);
+    flex-wrap: wrap;
+    max-width: 420px;
+}
+
+.footer-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 44px;
+}
+
+.footer-chip__icon-wrap {
+    @include flex-center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--glass-icon-radius);
+    background: var(--glass-icon-gradient);
+    border: var(--glass-icon-border);
+}
+
+.footer-chip__icon {
+    width: 20px;
+    height: 20px;
+}
+
+.footer-chip__label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    text-align: center;
+    line-height: 1.2;
+}

@@ -1,0 +1,142 @@
+@use '../mixins' as *;
+
+// ==========================================================================
+// Universal search bottom sheet — opened from the /home-apps/ .search-pill
+// (see src/app/search/search-sheet.ts). Same liquid-glass + slide-up chrome
+// as the other 2 overlay sheets (_overlay-sheet.scss), a dedicated partial
+// since this container isn't part of the generated HTML shell.
+// ==========================================================================
+
+.search-sheet {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--duration-fade) ease, visibility 0s var(--duration-fade);
+}
+
+.search-sheet.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity var(--duration-fade) ease;
+}
+
+.search-sheet__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.94);
+}
+
+.search-sheet__panel {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    max-height: 78vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+    border-radius: var(--glass-liquid-radius) var(--glass-liquid-radius) 0 0;
+    backdrop-filter: blur(16px);
+    padding: 14px;
+    padding-bottom: max(14px, env(safe-area-inset-bottom, 0px));
+    transform: translateY(100%);
+    transition: transform var(--duration-slide-out) var(--ease-accelerate);
+}
+
+.search-sheet.is-open .search-sheet__panel {
+    transform: translateY(0);
+    transition: transform var(--duration-slide-in) var(--ease-decelerate);
+}
+
+.search-sheet__input {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 12px;
+    border-radius: 999px;
+    background: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+    color: var(--text-primary);
+    font-size: 14px;
+
+    &::placeholder {
+        color: var(--text-secondary);
+    }
+
+    &:focus {
+        outline: none;
+        border-color: var(--island-accent);
+    }
+}
+
+.search-sheet__chips {
+    @include flex-row(flex-start, center, 8px);
+    margin-bottom: 12px;
+    overflow-x: auto;
+}
+
+.search-sheet__chip {
+    flex: 0 0 auto;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+    color: var(--text-secondary);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.search-sheet__chip.is-active {
+    background: rgba(183, 148, 244, .33);
+    color: #fff;
+}
+
+.search-sheet__results {
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.search-sheet__group {
+    margin-bottom: 14px;
+}
+
+.search-sheet__group-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--text-secondary);
+    margin: 0 4px 8px;
+}
+
+.search-sheet__row {
+    @include flex-row(flex-start, center, 10px);
+    padding: 10px 12px;
+    border-radius: 14px;
+    margin-bottom: 4px;
+    color: var(--text-primary);
+}
+
+.search-sheet__row--inert {
+    opacity: .5;
+    cursor: default;
+}
+
+.search-sheet__row-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.search-sheet__row-label {
+    font-size: 14px;
+}
+
+.search-sheet__empty {
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-align: center;
+    padding: 24px 12px;
+}

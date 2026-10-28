@@ -1,0 +1,75 @@
+// GENERATED FROM c3-wireguard-peers.json by front-data-json-js-wrapper.sh — DO NOT EDIT BY HAND.
+// Re-generate with: bash a_Portals/linktree/src/data/build.sh
+(function () {
+  var g = (typeof globalThis !== "undefined") ? globalThis : (typeof window !== "undefined" ? window : this);
+  g.PORTAL_DATA = g.PORTAL_DATA || {};
+  g.PORTAL_DATA["c3-wireguard-peers"] = {
+ "_generated": "2026-08-02T09:15:09.393Z",
+ "_source": "_cloud-data-consolidated.json via /cloud-data/wireguard-peers",
+ "hub": "gcp-E2-f_0",
+ "peers": [
+  {
+   "name": "oci-mail",
+   "wg_ip": "10.x.x.x",
+   "wg_public_key": "8Fqo4ct/jR2D3ZJ4AT8AVxiemuRSFk9LriBJhK7ukQs=",
+   "endpoint": "vm-oci-obs:51820",
+   "role": "spoke",
+   "wg_ipv6": "fd0c:1d00::3"
+  },
+  {
+   "name": "oci-analytics",
+   "wg_ip": "10.x.x.x",
+   "wg_public_key": "ugc3YpOgw9DokiM8yqT0uADF8UUkSTGad9WSODX1kC0=",
+   "endpoint": "vm-oci-apps:51820",
+   "role": "spoke",
+   "wg_ipv6": "fd0c:1d00::4"
+  },
+  {
+   "name": "oci-apps",
+   "wg_ip": "10.x.x.x",
+   "wg_public_key": "+LHoOzNYA92eJalYEQDzbEDDEi0FfT2jYhBUpz7RxHQ=",
+   "endpoint": "82.70.229.129:51820",
+   "role": "spoke",
+   "wg_ipv6": "fd0c:1d00::6"
+  },
+  {
+   "name": "gcp-proxy",
+   "wg_ip": "10.x.x.x",
+   "wg_public_key": "vV/phXUwnCjxACQ5Df11Uw47BzJaK4r85jPYMu2HmDc=",
+   "endpoint": "35.226.147.64:51820",
+   "role": "hub",
+   "wg_ipv6": "fd0c:1d00::1"
+  }
+ ],
+ "mesh_peers": [
+  {
+   "vm_id": "oci-E2-f_0",
+   "name": "oci-mail",
+   "wg_ip": "10.x.x.x",
+   "public_ip": "vm-oci-obs",
+   "user": "ubuntu"
+  },
+  {
+   "vm_id": "oci-E2-f_1",
+   "name": "oci-analytics",
+   "wg_ip": "10.x.x.x",
+   "public_ip": "vm-oci-apps",
+   "user": "ubuntu"
+  },
+  {
+   "vm_id": "oci-A1-f_0",
+   "name": "oci-apps",
+   "wg_ip": "10.x.x.x",
+   "public_ip": "82.70.229.129",
+   "user": "ubuntu"
+  },
+  {
+   "vm_id": "gcp-E2-f_0",
+   "name": "gcp-proxy",
+   "wg_ip": "10.x.x.x",
+   "public_ip": "35.226.147.64",
+   "user": "diego"
+  }
+ ]
+};
+})();

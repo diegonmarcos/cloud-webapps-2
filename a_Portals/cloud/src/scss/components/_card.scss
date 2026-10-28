@@ -1,0 +1,583 @@
+// Grid layout with configurable columns via --grid-cols (default: 2)
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols, 2), 1fr);
+    gap: calc(1.5rem * var(--zoom-scale, 1));
+    animation: fadeIn 0.8s ease-out;
+    width: 100%;
+}
+
+[data-theme="blurred"] .cards-grid {
+    gap: calc(2rem * var(--zoom-scale, 1));
+}
+
+// Mobile: allow cards to grow to fit content
+@media (max-width: 768px) {
+    .card {
+        aspect-ratio: auto;
+    }
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: calc(0.5rem * var(--zoom-scale, 1));
+    cursor: pointer;
+    transition: all 0.3s ease, transform 0.3s ease;
+    position: relative;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    transform-origin: center center;
+    z-index: 1;
+    // Uniform card sizing - wide rectangular
+    aspect-ratio: 5 / 2;
+    min-height: 0;
+    overflow: hidden;
+
+    &:hover {
+        background: var(--bg-card-hover);
+        border-color: var(--border-highlight);
+        transform: scale(var(--hover-scale, 2));
+        z-index: 100;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+
+        .card-icon {
+            color: var(--accent-primary);
+        }
+
+        h3 {
+            color: var(--accent-primary);
+        }
+
+        .card-status.online {
+            background: var(--accent-green);
+            color: #000;
+        }
+    }
+
+    &.card-link {
+        text-decoration: none;
+        color: inherit;
+    }
+}
+
+// Blurred theme card enhancements
+[data-theme="blurred"] .card {
+    border-radius: var(--border-radius-lg);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    // Uniform card sizing - same aspect ratio as base
+    aspect-ratio: 5 / 2;
+    min-height: 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        pointer-events: none;
+    }
+
+    &:hover {
+        transform: scale(var(--hover-scale, 2));
+        box-shadow: 0 25px 80px var(--shadow), 0 0 50px var(--glow);
+        border-color: var(--accent-blue);
+
+        &::before {
+            opacity: 0.1;
+        }
+
+        &::after {
+            opacity: 1;
+        }
+
+        .card-icon {
+            filter: drop-shadow(0 0 12px var(--accent-blue));
+        }
+
+        h3 {
+            color: var(--accent-blue);
+        }
+
+        p {
+            color: var(--text-primary);
+        }
+
+        .card-status.online {
+            background: rgba(16, 185, 129, 0.25);
+            color: var(--accent-green);
+            box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+        }
+    }
+
+    & > * {
+        position: relative;
+        z-index: 1;
+    }
+}
+
+.card-icon {
+    width: calc(32px * var(--zoom-scale, 1));
+    height: calc(32px * var(--zoom-scale, 1));
+    margin-bottom: calc(0.75rem * var(--zoom-scale, 1));
+    color: var(--accent-blue);
+    transition: all var(--transition-speed) ease;
+
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+[data-theme="blurred"] .card-icon {
+    width: calc(60px * var(--zoom-scale, 1));
+    height: calc(60px * var(--zoom-scale, 1));
+    margin-bottom: calc(1.5rem * var(--zoom-scale, 1));
+}
+
+.card h3 {
+    font-size: calc(0.95rem * var(--zoom-scale, 1));
+    margin-bottom: calc(0.25rem * var(--zoom-scale, 1));
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: color var(--transition-speed) ease;
+}
+
+[data-theme="blurred"] .card h3 {
+    font-size: calc(1.5rem * var(--zoom-scale, 1));
+    text-transform: none;
+    letter-spacing: normal;
+    margin-bottom: calc(0.75rem * var(--zoom-scale, 1));
+}
+
+.card p {
+    color: var(--text-secondary);
+    font-size: calc(0.8rem * var(--zoom-scale, 1));
+    margin-bottom: calc(0.75rem * var(--zoom-scale, 1));
+    transition: color var(--transition-speed) ease;
+}
+
+[data-theme="blurred"] .card p {
+    font-size: calc(0.95rem * var(--zoom-scale, 1));
+    line-height: 1.6;
+    margin-bottom: calc(1.5rem * var(--zoom-scale, 1));
+}
+
+.card-status {
+    display: inline-block;
+    padding: calc(0.2rem * var(--zoom-scale, 1)) calc(0.5rem * var(--zoom-scale, 1));
+    font-size: calc(0.7rem * var(--zoom-scale, 1));
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all var(--transition-speed) ease;
+    border-radius: var(--border-radius);
+    margin-top: auto; // Push to bottom of flex container
+
+    &.online {
+        background: transparent;
+        color: var(--accent-green);
+        border: 1px solid var(--accent-green);
+    }
+
+    &.pending {
+        background: transparent;
+        color: var(--accent-yellow);
+        border: 1px solid var(--accent-yellow);
+    }
+}
+
+[data-theme="blurred"] .card-status {
+    padding: calc(0.4rem * var(--zoom-scale, 1)) calc(1rem * var(--zoom-scale, 1));
+    font-size: calc(0.85rem * var(--zoom-scale, 1));
+    border-radius: 20px;
+
+    &.online {
+        background: rgba(16, 185, 129, 0.15);
+        border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    &.pending {
+        background: rgba(251, 191, 36, 0.15);
+        border-color: rgba(251, 191, 36, 0.3);
+    }
+}
+
+// Placeholder Cards (for empty categories)
+.card-placeholder {
+    border-style: dashed;
+    opacity: 0.6;
+
+    &:hover {
+        opacity: 0.8;
+        transform: none;
+    }
+}
+
+[data-theme="blurred"] .card-placeholder {
+    border-style: dashed;
+    background: rgba(255, 255, 255, 0.02);
+    opacity: 0.5;
+
+    &:hover {
+        opacity: 0.7;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+// Card Actions (SSH commands, buttons)
+.card-actions {
+    margin-top: calc(0.5rem * var(--zoom-scale, 1));
+    padding-top: calc(0.5rem * var(--zoom-scale, 1));
+    border-top: 1px solid var(--border-color);
+}
+
+[data-theme="blurred"] .card-actions {
+    margin-top: calc(1rem * var(--zoom-scale, 1));
+    padding-top: calc(1rem * var(--zoom-scale, 1));
+}
+
+.code-with-copy {
+    display: flex;
+    align-items: center;
+    gap: calc(0.5rem * var(--zoom-scale, 1));
+    background: var(--bg-primary);
+    padding: calc(0.4rem * var(--zoom-scale, 1)) calc(0.5rem * var(--zoom-scale, 1));
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+[data-theme="blurred"] .code-with-copy {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    padding: calc(0.75rem * var(--zoom-scale, 1)) calc(1rem * var(--zoom-scale, 1));
+}
+
+// Card code: smaller than title (h3 is 0.95rem, so code is 0.65rem - ~68% of title)
+.card-code {
+    font-family: var(--font-mono);
+    font-size: calc(0.65rem * var(--zoom-scale, 1));
+    color: var(--accent-orange);
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// Blurred theme: h3 is 1.5rem, code should be ~0.75rem (~50% of title)
+[data-theme="blurred"] .card-code {
+    color: var(--accent-green);
+    font-size: calc(0.75rem * var(--zoom-scale, 1));
+}
+
+.copy-icon {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: calc(0.25rem * var(--zoom-scale, 1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color var(--transition-speed) ease;
+
+    svg {
+        width: calc(14px * var(--zoom-scale, 1));
+        height: calc(14px * var(--zoom-scale, 1));
+    }
+
+    &:hover {
+        color: var(--accent-primary);
+    }
+
+    &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+}
+
+// VM Buttons
+.vm-buttons {
+    display: flex;
+    gap: calc(0.5rem * var(--zoom-scale, 1));
+    margin-top: calc(0.5rem * var(--zoom-scale, 1));
+}
+
+// VM button text: smaller than title (h3 is 0.95rem, btn is 0.55rem - ~58% of title)
+.vm-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: calc(0.25rem * var(--zoom-scale, 1));
+    padding: calc(0.4rem * var(--zoom-scale, 1));
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: calc(0.55rem * var(--zoom-scale, 1));
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+
+    svg {
+        width: calc(12px * var(--zoom-scale, 1));
+        height: calc(12px * var(--zoom-scale, 1));
+    }
+
+    &:hover:not(:disabled) {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+    }
+
+    &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+}
+
+[data-theme="blurred"] .vm-btn {
+    border-radius: 8px;
+    padding: calc(0.5rem * var(--zoom-scale, 1)) calc(0.75rem * var(--zoom-scale, 1));
+    backdrop-filter: blur(5px);
+    background: rgba(255, 255, 255, 0.05);
+    font-size: calc(0.6rem * var(--zoom-scale, 1));
+
+    &:hover:not(:disabled) {
+        background: rgba(74, 158, 255, 0.1);
+        border-color: var(--accent-blue);
+        color: var(--accent-blue);
+        box-shadow: 0 0 15px rgba(74, 158, 255, 0.2);
+    }
+}
+
+// Card animation delays
+.card:nth-child(1) { animation: fadeIn 0.4s ease-out 0.1s backwards; }
+.card:nth-child(2) { animation: fadeIn 0.4s ease-out 0.2s backwards; }
+.card:nth-child(3) { animation: fadeIn 0.4s ease-out 0.3s backwards; }
+.card:nth-child(4) { animation: fadeIn 0.4s ease-out 0.4s backwards; }
+.card:nth-child(5) { animation: fadeIn 0.4s ease-out 0.5s backwards; }
+.card:nth-child(6) { animation: fadeIn 0.4s ease-out 0.6s backwards; }
+.card:nth-child(7) { animation: fadeIn 0.4s ease-out 0.7s backwards; }
+.card:nth-child(8) { animation: fadeIn 0.4s ease-out 0.8s backwards; }
+.card:nth-child(9) { animation: fadeIn 0.4s ease-out 0.9s backwards; }
+.card:nth-child(10) { animation: fadeIn 0.4s ease-out 1s backwards; }
+
+// Category sections (folders) with border
+.category-section {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.02);
+    container-type: inline-size;
+
+    // Cards inside folders: always 2 per row
+    .cards-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+    }
+
+    // Cards inside folders: smaller sizing and text overflow handling
+    .card {
+        padding: 0.3rem;
+
+        h3 {
+            font-size: 0.65rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+        }
+
+        p {
+            font-size: 0.55rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            margin-bottom: 0;
+        }
+    }
+
+    .card-icon {
+        width: 20px;
+        height: 20px;
+        margin-bottom: 0.2rem;
+    }
+
+    .card-status {
+        display: none; // Hide status in folder cards to save space
+    }
+}
+
+[data-theme="blurred"] .category-section {
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
+}
+
+.category-title {
+    margin: 0 0 0.5rem 0.25rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+// Categories container - CSS Grid for folder layout
+.categories-row {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols, 2), 1fr);
+    gap: 1rem;
+    width: 100%;
+    transition: grid-template-columns 0.3s ease;
+}
+
+// Grid mode scaling - adjust folder card sizes based on folders per row
+// 2 folders per row = larger cards
+html[data-grid-cols="2"] .category-section {
+    .card-icon {
+        width: 28px;
+        height: 28px;
+        margin-bottom: 0.3rem;
+    }
+    .card h3 {
+        font-size: 0.8rem;
+    }
+    .card p {
+        font-size: 0.65rem;
+    }
+}
+
+// 4 folders per row = smaller cards
+html[data-grid-cols="4"] .category-section {
+    .card-icon {
+        width: 14px;
+        height: 14px;
+        margin-bottom: 0.15rem;
+    }
+    .card h3 {
+        font-size: 0.5rem;
+    }
+    .card p {
+        font-size: 0.4rem;
+    }
+}
+
+// Channels section (shown below folders when Feed is clicked)
+.channels-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: transparent;
+    border-top: 1px solid var(--border-color);
+    border-radius: 0;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.channels-title {
+    margin: 0 0 1rem 0;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.channels-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+
+    th, td {
+        padding: 0.4rem 0.5rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+        color: var(--text-secondary);
+        font-weight: 500;
+        font-size: 0.65rem;
+        text-transform: uppercase;
+    }
+
+    td {
+        color: var(--text-primary);
+    }
+
+    td:first-child {
+        width: 24px;
+        text-align: center;
+    }
+
+    td:last-child {
+        text-align: right;
+        width: 60px;
+    }
+
+    .lock-icon {
+        font-size: 0.7rem;
+        opacity: 0.7;
+    }
+}
+
+.open-btn {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+    color: var(--accent-blue);
+    text-decoration: none;
+    border: 1px solid var(--accent-blue);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: var(--accent-blue);
+        color: #000;
+    }
+}
+
+[data-theme="blurred"] .channels-section {
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.channel-admin-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+
+    &:hover {
+        color: var(--accent-blue);
+    }
+}

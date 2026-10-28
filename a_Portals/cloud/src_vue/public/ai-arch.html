@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Architecture - Cloud Services Stack</title>
+    <style>
+        /* ============================================
+           ROOT VARIABLES & THEME
+           ============================================ */
+        :root {
+            --bg-color: #0a0a0f;
+            --bg-gradient: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+            --text-main: #e8e8f0;
+            --text-muted: #8888a0;
+            --text-dim: #555566;
+
+            /* Layer Colors */
+            --orchestrator-color: #ff6d5a;
+            --orchestrator-glow: rgba(255, 109, 90, 0.4);
+
+            --brain-color: #00d084;
+            --brain-glow: rgba(0, 208, 132, 0.4);
+
+            --logic-color: #ff9f43;
+            --logic-glow: rgba(255, 159, 67, 0.4);
+
+            --memory-color: #3ecf8e;
+            --memory-glow: rgba(62, 207, 142, 0.4);
+
+            --sandbox-color: #a55eea;
+            --sandbox-glow: rgba(165, 94, 234, 0.4);
+
+            --iaas-color: #4a9eff;
+            --iaas-glow: rgba(74, 158, 255, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-gradient);
+            background-attachment: fixed;
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Header */
+        .diagram-header {
+            text-align: center;
+            padding: 25px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .diagram-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--orchestrator-color), var(--brain-color), var(--logic-color), var(--sandbox-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .diagram-header .subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .version-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--brain-color), var(--logic-color));
+            color: white;
+            padding: 3px 12px;
+            border-radius: 12px;
+            font-size: 11px;
+            margin-left: 10px;
+            font-weight: 600;
+        }
+
+        /* ============================================
+           VISUAL ARCHITECTURE DIAGRAM
+           ============================================ */
+        .visual-diagram {
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .visual-diagram::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 30%, var(--orchestrator-glow) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, var(--brain-glow) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, var(--logic-glow) 0%, transparent 30%);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .diagram-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-main);
+        }
+
+        /* Architecture SVG Container */
+        .arch-svg-container {
+            position: relative;
+            width: 100%;
+            min-height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .arch-svg {
+            width: 100%;
+            max-width: 1000px;
+            height: auto;
+        }
+
+        /* Node Boxes */
+        .node-box {
+            position: absolute;
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 2px solid;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            min-width: 140px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .node-box:hover {
+            transform: scale(1.05);
+            z-index: 20;
+        }
+
+        .node-box .node-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .node-box .node-name {
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .node-box .node-desc {
+            font-size: 10px;
+            color: var(--text-muted);
+        }
+
+        /* Node Colors */
+        .node-orchestrator {
+            border-color: var(--orchestrator-color);
+            box-shadow: 0 0 25px var(--orchestrator-glow);
+        }
+        .node-orchestrator .node-name { color: var(--orchestrator-color); }
+
+        .node-brain {
+            border-color: var(--brain-color);
+            box-shadow: 0 0 25px var(--brain-glow);
+        }
+        .node-brain .node-name { color: var(--brain-color); }
+
+        .node-logic {
+            border-color: var(--logic-color);
+            box-shadow: 0 0 25px var(--logic-glow);
+        }
+        .node-logic .node-name { color: var(--logic-color); }
+
+        .node-sandbox {
+            border-color: var(--sandbox-color);
+            box-shadow: 0 0 25px var(--sandbox-glow);
+        }
+        .node-sandbox .node-name { color: var(--sandbox-color); }
+
+        .node-memory {
+            border-color: var(--memory-color);
+            box-shadow: 0 0 25px var(--memory-glow);
+        }
+        .node-memory .node-name { color: var(--memory-color); }
+
+        /* Grid-based Layout */
+        .diagram-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, auto);
+            gap: 20px;
+            position: relative;
+            padding: 20px;
+        }
+
+        .grid-node {
+            padding: 18px;
+            border-radius: 14px;
+            border: 2px solid;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .grid-node:hover {
+            transform: translateY(-5px);
+        }
+
+        .grid-node .g-icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .grid-node .g-name {
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .grid-node .g-desc {
+            font-size: 10px;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        .grid-node .g-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            font-size: 9px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .g-badge.active {
+            background: var(--brain-color);
+            color: #000;
+        }
+
+        .g-badge.planned {
+            background: rgba(241, 196, 15, 0.8);
+            color: #000;
+        }
+
+        /* Grid Node Colors */
+        .grid-node.c-orchestrator {
+            border-color: var(--orchestrator-color);
+            box-shadow: 0 0 30px var(--orchestrator-glow);
+            grid-column: 3;
+            grid-row: 1;
+        }
+        .grid-node.c-orchestrator .g-name { color: var(--orchestrator-color); }
+
+        .grid-node.c-brain {
+            border-color: var(--brain-color);
+            box-shadow: 0 0 30px var(--brain-glow);
+        }
+        .grid-node.c-brain .g-name { color: var(--brain-color); }
+
+        .grid-node.c-logic {
+            border-color: var(--logic-color);
+            box-shadow: 0 0 30px var(--logic-glow);
+        }
+        .grid-node.c-logic .g-name { color: var(--logic-color); }
+
+        .grid-node.c-sandbox {
+            border-color: var(--sandbox-color);
+            box-shadow: 0 0 30px var(--sandbox-glow);
+        }
+        .grid-node.c-sandbox .g-name { color: var(--sandbox-color); }
+
+        .grid-node.c-memory {
+            border-color: var(--memory-color);
+            box-shadow: 0 0 30px var(--memory-glow);
+        }
+        .grid-node.c-memory .g-name { color: var(--memory-color); }
+
+        /* Connection SVG Overlay */
+        .connections-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .connection-path {
+            fill: none;
+            stroke-width: 2;
+            stroke-dasharray: 8, 4;
+            animation: dash-flow 1s linear infinite;
+        }
+
+        @keyframes dash-flow {
+            to {
+                stroke-dashoffset: -12;
+            }
+        }
+
+        .connection-label {
+            font-size: 10px;
+            fill: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* Animated Particles */
+        .particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: particle-move 3s infinite;
+            opacity: 0;
+        }
+
+        @keyframes particle-move {
+            0% { opacity: 0; transform: translate(0, 0); }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { opacity: 0; transform: translate(var(--move-x), var(--move-y)); }
+        }
+
+        /* Layer Labels */
+        .layer-label {
+            position: absolute;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 5px 12px;
+            border-radius: 6px;
+            background: rgba(0,0,0,0.8);
+        }
+
+        /* ============================================
+           HORIZONTAL FLOW DIAGRAM
+           ============================================ */
+        .flow-diagram-horizontal {
+            display: flex;
+            align-items: stretch;
+            justify-content: center;
+            gap: 0;
+            padding: 30px 10px;
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .flow-layer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 160px;
+            position: relative;
+        }
+
+        .flow-layer-box {
+            padding: 20px 15px;
+            border-radius: 16px;
+            border: 2px solid;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            text-align: center;
+            width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .flow-layer-box:hover {
+            transform: scale(1.05);
+        }
+
+        .flow-layer-box .fl-icon {
+            font-size: 36px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .flow-layer-box .fl-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .flow-layer-box .fl-name {
+            font-weight: 600;
+            font-size: 13px;
+            margin-bottom: 4px;
+        }
+
+        .flow-layer-box .fl-desc {
+            font-size: 9px;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        /* Flow Connectors */
+        .flow-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            position: relative;
+        }
+
+        .flow-connector::before {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--conn-color-start), var(--conn-color-end));
+        }
+
+        .flow-connector::after {
+            content: '→';
+            font-size: 20px;
+            color: var(--text-muted);
+            animation: arrow-pulse 1s infinite;
+        }
+
+        @keyframes arrow-pulse {
+            0%, 100% { opacity: 0.5; transform: translateX(0); }
+            50% { opacity: 1; transform: translateX(5px); }
+        }
+
+        .flow-connector .conn-label {
+            position: absolute;
+            top: -18px;
+            font-size: 9px;
+            color: var(--text-dim);
+            white-space: nowrap;
+        }
+
+        /* Flow Layer Colors */
+        .fl-orchestrator {
+            border-color: var(--orchestrator-color);
+            box-shadow: 0 0 30px var(--orchestrator-glow);
+        }
+        .fl-orchestrator .fl-label {
+            background: var(--orchestrator-color);
+            color: #000;
+        }
+        .fl-orchestrator .fl-name { color: var(--orchestrator-color); }
+
+        .fl-brain {
+            border-color: var(--brain-color);
+            box-shadow: 0 0 30px var(--brain-glow);
+        }
+        .fl-brain .fl-label {
+            background: var(--brain-color);
+            color: #000;
+        }
+        .fl-brain .fl-name { color: var(--brain-color); }
+
+        .fl-logic {
+            border-color: var(--logic-color);
+            box-shadow: 0 0 30px var(--logic-glow);
+        }
+        .fl-logic .fl-label {
+            background: var(--logic-color);
+            color: #000;
+        }
+        .fl-logic .fl-name { color: var(--logic-color); }
+
+        .fl-sandbox {
+            border-color: var(--sandbox-color);
+            box-shadow: 0 0 30px var(--sandbox-glow);
+        }
+        .fl-sandbox .fl-label {
+            background: var(--sandbox-color);
+            color: #fff;
+        }
+        .fl-sandbox .fl-name { color: var(--sandbox-color); }
+
+        .fl-memory {
+            border-color: var(--memory-color);
+            box-shadow: 0 0 30px var(--memory-glow);
+        }
+        .fl-memory .fl-label {
+            background: var(--memory-color);
+            color: #000;
+        }
+        .fl-memory .fl-name { color: var(--memory-color); }
+
+        /* Providers Row */
+        .providers-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .provider-chip {
+            font-size: 9px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            white-space: nowrap;
+        }
+
+        .provider-chip.active {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+
+        /* ============================================
+           STACKED LAYERS DIAGRAM
+           ============================================ */
+        .stacked-diagram {
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .stacked-title {
+            text-align: center;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: var(--text-muted);
+        }
+
+        .stack-container {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .stack-layer {
+            display: flex;
+            align-items: stretch;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stack-layer:hover {
+            transform: scale(1.02);
+        }
+
+        .stack-label {
+            width: 100px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stack-label .sl-icon {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .stack-content {
+            flex: 1;
+            padding: 15px 20px;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stack-content .sc-title {
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .stack-content .sc-mental {
+            font-size: 11px;
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        .stack-providers {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 5px;
+        }
+
+        .sp-item {
+            font-size: 11px;
+            padding: 4px 10px;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.08);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .sp-item.active {
+            background: rgba(46, 204, 113, 0.15);
+            border: 1px solid rgba(46, 204, 113, 0.3);
+        }
+
+        /* Stack Layer Colors */
+        .stack-orchestrator .stack-label {
+            background: var(--orchestrator-color);
+            color: #000;
+        }
+        .stack-orchestrator .sc-title { color: var(--orchestrator-color); }
+
+        .stack-brain .stack-label {
+            background: var(--brain-color);
+            color: #000;
+        }
+        .stack-brain .sc-title { color: var(--brain-color); }
+
+        .stack-logic .stack-label {
+            background: var(--logic-color);
+            color: #000;
+        }
+        .stack-logic .sc-title { color: var(--logic-color); }
+
+        .stack-sandbox .stack-label {
+            background: var(--sandbox-color);
+            color: #fff;
+        }
+        .stack-sandbox .sc-title { color: var(--sandbox-color); }
+
+        .stack-memory .stack-label {
+            background: var(--memory-color);
+            color: #000;
+        }
+        .stack-memory .sc-title { color: var(--memory-color); }
+
+        /* ============================================
+           CONNECTION ARROWS BETWEEN STACKS
+           ============================================ */
+        .stack-connector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px 0;
+            margin-left: 50px;
+        }
+
+        .stack-connector .arrow-down {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .stack-connector .arrow-line {
+            width: 2px;
+            height: 15px;
+            background: linear-gradient(180deg, var(--from-color), var(--to-color));
+        }
+
+        .stack-connector .arrow-head {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 8px solid var(--to-color);
+        }
+
+        .stack-connector .arrow-label {
+            font-size: 9px;
+            color: var(--text-dim);
+            margin-left: 10px;
+        }
+
+        /* ============================================
+           LEGEND
+           ============================================ */
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.9); }
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 900px) {
+            .flow-diagram-horizontal {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .flow-connector {
+                width: 40px;
+                height: 40px;
+                transform: rotate(90deg);
+            }
+
+            .stack-layer {
+                flex-direction: column;
+            }
+
+            .stack-label {
+                width: 100%;
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .stack-connector {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .diagram-header h1 {
+                font-size: 22px;
+            }
+
+            .flow-layer-box {
+                width: 130px;
+                padding: 15px 10px;
+            }
+
+            .legend {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+<!-- Matomo Tag Manager --><script>var _mtm = window._mtm = window._mtm || [];_mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});(function() {  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];  g.async=true; g.src='https://analytics.diegonmarcos.com/matomo/js/container_odwLIyPV.js';  s.parentNode.insertBefore(g,s);})();</script><!-- End Matomo Tag Manager -->
+<!-- Umami Analytics -->
+<script async src="https://analytics.diegonmarcos.com/umami/script.js" data-website-id="937cbde7-5ec2-450c-9d6a-8117423ac12f"></script>
+<!-- End Umami Analytics -->
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="diagram-header">
+            <h1>AI Infrastructure Architecture <span class="version-badge">v1.0</span></h1>
+            <p class="subtitle">Serverless AI Stack - From Orchestration to Execution</p>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--orchestrator-color);"></div>
+                <span>PaaS - Orchestrator</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--brain-color);"></div>
+                <span>MaaS - Brain/API</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--logic-color);"></div>
+                <span>FaaS - Logic/GPU</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--sandbox-color);"></div>
+                <span>AaaS - Agent Sandbox</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot" style="background: var(--memory-color);"></div>
+                <span>Database - Memory</span>
+            </div>
+        </div>
+
+        <!-- ============================================
+             MAIN VISUAL DIAGRAM - Horizontal Flow
+             ============================================ -->
+        <div class="visual-diagram">
+            <div class="diagram-title">Data Flow Architecture</div>
+
+            <div class="flow-diagram-horizontal">
+                <!-- Orchestrator -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-orchestrator">
+                        <span class="fl-icon">🎯</span>
+                        <span class="fl-label">PaaS</span>
+                        <div class="fl-name">Orchestrator</div>
+                        <div class="fl-desc">"Managed App Host"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">n8n</span>
+                            <span class="provider-chip">HF Spaces</span>
+                            <span class="provider-chip">Railway</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector 1 -->
+                <div class="flow-connector" style="--conn-color-start: var(--orchestrator-color); --conn-color-end: var(--brain-color);">
+                    <span class="conn-label">HTTP</span>
+                </div>
+
+                <!-- Brain -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-brain">
+                        <span class="fl-icon">🧠</span>
+                        <span class="fl-label">MaaS</span>
+                        <div class="fl-name">The Brain</div>
+                        <div class="fl-desc">"Inference API"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip">Groq</span>
+                            <span class="provider-chip">Together</span>
+                            <span class="provider-chip">OpenRouter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector 2 -->
+                <div class="flow-connector" style="--conn-color-start: var(--brain-color); --conn-color-end: var(--logic-color);">
+                    <span class="conn-label">Webhook</span>
+                </div>
+
+                <!-- Logic -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-logic">
+                        <span class="fl-icon">⚡</span>
+                        <span class="fl-label">FaaS</span>
+                        <div class="fl-name">Logic Host</div>
+                        <div class="fl-desc">"Serverless GPU"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">GCloud</span>
+                            <span class="provider-chip">Modal</span>
+                            <span class="provider-chip">Beam</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector 3 -->
+                <div class="flow-connector" style="--conn-color-start: var(--logic-color); --conn-color-end: var(--sandbox-color);">
+                    <span class="conn-label">Execute</span>
+                </div>
+
+                <!-- Sandbox -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-sandbox">
+                        <span class="fl-icon">🦾</span>
+                        <span class="fl-label">AaaS</span>
+                        <div class="fl-name">Agent Sandbox</div>
+                        <div class="fl-desc">"Code Execution"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip">E2B</span>
+                            <span class="provider-chip">Relevance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector 4 -->
+                <div class="flow-connector" style="--conn-color-start: var(--sandbox-color); --conn-color-end: var(--memory-color);">
+                    <span class="conn-label">Store</span>
+                </div>
+
+                <!-- Memory -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-memory">
+                        <span class="fl-icon">💾</span>
+                        <span class="fl-label">DB</span>
+                        <div class="fl-name">Memory</div>
+                        <div class="fl-desc">"Vector + SQL"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip">Supabase</span>
+                            <span class="provider-chip">Pinecone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             STACKED LAYERS DIAGRAM
+             ============================================ -->
+        <div class="stacked-diagram">
+            <div class="stacked-title">Service Stack Overview</div>
+
+            <div class="stack-container">
+                <!-- PaaS Layer -->
+                <div class="stack-layer stack-orchestrator">
+                    <div class="stack-label">
+                        <span class="sl-icon">🎯</span>
+                        <span>PaaS</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Platform-as-a-Service</div>
+                        <div class="sc-mental">"Managed App Host" - Deploy without infrastructure management</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">⚙️ n8n (Self-Hosted)</span>
+                            <span class="sp-item">🤗 HuggingFace Spaces</span>
+                            <span class="sp-item">🚂 Koyeb / Railway</span>
+                            <span class="sp-item">🎨 Render</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--orchestrator-color); --to-color: var(--brain-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Send prompt (HTTP)</span>
+                </div>
+
+                <!-- MaaS Layer -->
+                <div class="stack-layer stack-brain">
+                    <div class="stack-label">
+                        <span class="sl-icon">🧠</span>
+                        <span>MaaS</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Model-as-a-Service (Inference API)</div>
+                        <div class="sc-mental">"The Brain / API" - LLM inference without hosting</div>
+                        <div class="stack-providers">
+                            <span class="sp-item">🤗 HuggingFace API</span>
+                            <span class="sp-item">⚡ Groq (LPU)</span>
+                            <span class="sp-item">🤝 Together AI</span>
+                            <span class="sp-item">🔀 OpenRouter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--brain-color); --to-color: var(--logic-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Trigger job (Webhook)</span>
+                </div>
+
+                <!-- FaaS Layer -->
+                <div class="stack-layer stack-logic">
+                    <div class="stack-label">
+                        <span class="sl-icon">⚡</span>
+                        <span>FaaS</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Function-as-a-Service (Serverless GPU)</div>
+                        <div class="sc-mental">"Agent Logic Host" - Run code on-demand with GPU</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔵 Google Cloud Functions</span>
+                            <span class="sp-item">⚡ Modal</span>
+                            <span class="sp-item">☁️ Beam.cloud</span>
+                            <span class="sp-item">🚀 RunPod Serverless</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--logic-color); --to-color: var(--sandbox-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Execute agent code</span>
+                </div>
+
+                <!-- AaaS Layer -->
+                <div class="stack-layer stack-sandbox">
+                    <div class="stack-label">
+                        <span class="sl-icon">🦾</span>
+                        <span>AaaS</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Agent-as-a-Service (Agent Infrastructure)</div>
+                        <div class="sc-mental">"Agent Sandbox" - Safe execution environments for AI</div>
+                        <div class="stack-providers">
+                            <span class="sp-item">📦 E2B (Code Execution)</span>
+                            <span class="sp-item">🤖 Relevance AI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--sandbox-color); --to-color: var(--memory-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Store/Retrieve data</span>
+                </div>
+
+                <!-- Database Layer -->
+                <div class="stack-layer stack-memory">
+                    <div class="stack-label">
+                        <span class="sl-icon">💾</span>
+                        <span>DB</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Database & Vector Storage</div>
+                        <div class="sc-mental">"The Memory Layer" - Persistent state and embeddings</div>
+                        <div class="stack-providers">
+                            <span class="sp-item">🗄️ Supabase (PostgreSQL + pgvector)</span>
+                            <span class="sp-item">🔍 Pinecone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Reference Table -->
+        <div class="stacked-diagram">
+            <div class="stacked-title">Service Category Quick Reference</div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                <thead>
+                    <tr style="border-bottom: 2px solid rgba(255,255,255,0.1);">
+                        <th style="padding: 12px; text-align: left;">Category</th>
+                        <th style="padding: 12px; text-align: left;">Mental Model</th>
+                        <th style="padding: 12px; text-align: left;">Technical Term</th>
+                        <th style="padding: 12px; text-align: left;">Top Providers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 12px;"><span style="background: var(--iaas-color); color: #000; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;">IaaS</span></td>
+                        <td style="padding: 12px; color: var(--text-muted);">"Raw VPS"</td>
+                        <td style="padding: 12px;">Infrastructure-as-a-Service</td>
+                        <td style="padding: 12px; color: var(--text-muted);">Vast.ai, Oracle (Free), DigitalOcean</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 12px;"><span style="background: var(--orchestrator-color); color: #000; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;">PaaS</span></td>
+                        <td style="padding: 12px; color: var(--text-muted);">"Managed App Host"</td>
+                        <td style="padding: 12px;">Platform-as-a-Service</td>
+                        <td style="padding: 12px; color: var(--text-muted);">HuggingFace Spaces, Koyeb, Railway, Render</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 12px;"><span style="background: var(--logic-color); color: #000; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;">FaaS</span></td>
+                        <td style="padding: 12px; color: var(--text-muted);">"Agent Logic Host"</td>
+                        <td style="padding: 12px;">Serverless GPU</td>
+                        <td style="padding: 12px; color: var(--text-muted);">Modal, Beam.cloud, RunPod Serverless</td>
+                    </tr>
+                    <tr style="border-bottom: 1px solid rgba(255,255,255,0.05);">
+                        <td style="padding: 12px;"><span style="background: var(--brain-color); color: #000; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;">MaaS</span></td>
+                        <td style="padding: 12px; color: var(--text-muted);">"The Brain / API"</td>
+                        <td style="padding: 12px;">Inference-as-a-Service</td>
+                        <td style="padding: 12px; color: var(--text-muted);">HuggingFace API, Groq, Together AI, OpenRouter</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px;"><span style="background: var(--sandbox-color); color: #fff; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;">AaaS</span></td>
+                        <td style="padding: 12px; color: var(--text-muted);">"Agent Sandbox"</td>
+                        <td style="padding: 12px;">Agent Infrastructure</td>
+                        <td style="padding: 12px; color: var(--text-muted);">E2B (Code Execution), Relevance AI</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+</html>

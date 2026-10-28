@@ -1,0 +1,162 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Overlay sheet — shared chrome for notification-center / update-overlay
+// ==========================================================================
+
+// absolute, not fixed — .overlay-sheet is now a descendant of .shell (see
+// generate-pages.mjs's renderShell), same fix as drawer/radial-menu/fan-menu.
+//
+// display:none swapped for opacity/visibility so the fade (fade_in/out.xml)
+// and the panel's slide (slide_in/out_*.xml, below) can actually transition
+// instead of hard-cutting; visibility's transition-delay keeps it out of
+// the a11y/hit-test tree while hidden, same effect display:none had.
+.overlay-sheet {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity var(--duration-fade) ease, visibility 0s var(--duration-fade);
+}
+
+.overlay-sheet.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: opacity var(--duration-fade) ease;
+}
+
+.overlay-sheet__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+// Liquid-glass surface (bg_glass_liquid.xml) + slide-up-on-open/
+// slide-down-on-close, same open/close transition-swap pattern as the
+// drawer panel (_drawer.scss): the base rule is the closing leg (wins once
+// .is-open is removed), the `.is-open …` rule is the opening leg (wins once
+// .is-open is added).
+.overlay-sheet__panel {
+    position: relative;
+    margin: 6px 12px 0;
+    background: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+    border-radius: var(--glass-liquid-radius);
+    backdrop-filter: blur(16px);
+    padding: 14px;
+    max-height: 70vh;
+    overflow-y: auto;
+    transform: translateY(24px);
+    transition: transform var(--duration-slide-out) var(--ease-accelerate);
+}
+
+.overlay-sheet.is-open .overlay-sheet__panel {
+    transform: translateY(0);
+    transition: transform var(--duration-slide-in) var(--ease-decelerate);
+}
+
+.overlay-sheet--full .overlay-sheet__panel {
+    margin: 0;
+    height: 100%;
+    max-height: none;
+    border-radius: 0;
+    padding: env(safe-area-inset-top, 0) 12px 12px;
+}
+
+.overlay-sheet__header {
+    @include flex-row(space-between, center, 8px);
+    padding: 4px 4px 12px;
+}
+
+.overlay-sheet__title {
+    color: var(--drawer-banner-text);
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.overlay-sheet__action {
+    color: var(--island-accent);
+    font-size: 13px;
+}
+
+.overlay-sheet__empty {
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-align: center;
+    padding: 24px 12px;
+    white-space: pre-line;
+}
+
+// Notification Center groups — Android notification-shade parity: a group
+// header ("Cloud SA · Alerts") followed by its rows.
+.overlay-sheet__group {
+    margin-bottom: 14px;
+}
+
+.overlay-sheet__group-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--text-secondary);
+    margin: 0 4px 8px;
+}
+
+.overlay-sheet__row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 12px;
+    border-radius: 14px;
+    background-color: var(--glass-bg);
+    background-image: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+    margin-bottom: 6px;
+}
+
+.overlay-sheet__row-title {
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.overlay-sheet__row-subtitle {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.overlay-sheet__progress {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    margin: 12px 0;
+}
+
+.overlay-sheet__progress-bar {
+    height: 100%;
+    background: var(--island-accent);
+    width: 40%;
+}
+
+// Update overlay's "checking"/"installing" phases have no real percentage
+// to show — a pulsing bar instead of a static/frozen one, same intent as
+// the row-list's own liquid-glass surface (_page-views.scss).
+.overlay-sheet__progress-bar--indeterminate {
+    animation: overlay-progress-pulse 1.2s ease-in-out infinite;
+}
+
+@keyframes overlay-progress-pulse {
+    0% {
+        width: 30%;
+    }
+
+    50% {
+        width: 70%;
+    }
+
+    100% {
+        width: 30%;
+    }
+}

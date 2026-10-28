@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cloud Control Center | Cloud Portal</title>
+
+    <!-- Matomo Tag Manager -->
+    <script>
+      var _mtm = window._mtm = window._mtm || [];
+      _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+      (function() {
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src='https://analytics.diegonmarcos.com/matomo/js/container_odwLIyPV.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Tag Manager -->
+
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Apply saved theme immediately
+        (function() {
+            var theme = localStorage.getItem('cloud-dashboard-theme') || 'blurred';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+<!-- Umami Analytics -->
+<script async src="https://analytics.diegonmarcos.com/umami/script.js" data-website-id="937cbde7-5ec2-450c-9d6a-8117423ac12f"></script>
+<!-- End Umami Analytics -->
+
+    <!-- Data-driven framework: PORTAL_DATA["c3-<key>"] hydrated by front-data-json-js-wrapper.sh (data_wrap build mod) -->
+    <script src="data-c3-alerts-active.json.js"></script>
+    <script src="data-c3-alerts-history.json.js"></script>
+    <script src="data-c3-alerts-rules.json.js"></script>
+    <script src="data-c3-backup-targets.json.js"></script>
+    <script src="data-c3-caddy-routes.json.js"></script>
+    <script src="data-c3-cloudflare-dns.json.js"></script>
+    <script src="data-c3-cloud-summary.json.js"></script>
+    <script src="data-c3-container-exec.json.js"></script>
+    <script src="data-c3-container-inspect.json.js"></script>
+    <script src="data-c3-container-logs.json.js"></script>
+    <script src="data-c3-container-resources.json.js"></script>
+    <script src="data-c3-container-stats.json.js"></script>
+    <script src="data-c3-db-audit.json.js"></script>
+    <script src="data-c3-db-deploy-history.json.js"></script>
+    <script src="data-c3-db-health-history.json.js"></script>
+    <script src="data-c3-db-uptime.json.js"></script>
+    <script src="data-c3-dns-services.json.js"></script>
+    <script src="data-c3-events.json.js"></script>
+    <script src="data-c3-firewall-rules.json.js"></script>
+    <script src="data-c3-gcp-costs.json.js"></script>
+    <script src="data-c3-health-declared.json.js"></script>
+    <script src="data-c3-health-deployed.json.js"></script>
+    <script src="data-c3-health-drift.json.js"></script>
+    <script src="data-c3-health-tier1.json.js"></script>
+    <script src="data-c3-home-manager.json.js"></script>
+    <script src="data-c3-metrics-series.json.js"></script>
+    <script src="data-c3-metrics-top.json.js"></script>
+    <script src="data-c3-oci-costs.json.js"></script>
+    <script src="data-c3-profiling-all.json.js"></script>
+    <script src="data-c3-security-docker.json.js"></script>
+    <script src="data-c3-security-scan.json.js"></script>
+    <script src="data-c3-security-ssh.json.js"></script>
+    <script src="data-c3-security-tokens.json.js"></script>
+    <script src="data-c3-security-wireguard.json.js"></script>
+    <script src="data-c3-services.json.js"></script>
+    <script src="data-c3-slo.json.js"></script>
+    <script src="data-c3-specs.json.js"></script>
+    <script src="data-c3-topology-drift.json.js"></script>
+    <script src="data-c3-topology.json.js"></script>
+    <script src="data-c3-topology-network.json.js"></script>
+    <script src="data-c3-up-all.json.js"></script>
+    <script src="data-c3-wireguard-peers.json.js"></script>
+    <script src="data-c3-workflows-dagu.json.js"></script>
+    <script src="data-c3-workflows.json.js"></script>
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle" title="Switch theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <span class="theme-label">Blurred</span>
+    </button>
+
+    <div class="container">
+        <header class="main-header">
+            <h1>Cloud Portal</h1>
+            <!-- Level 1: Main Navigation Links -->
+            <div class="nav-level1">
+                <a href="products.html" class="nav-main-btn">User</a>
+                <a href="cloud_control.html" class="nav-main-btn">Cloud Control</a>
+                <a href="cloud_control_center.html" class="nav-main-btn active">Cloud Control Center</a>
+                <a href="architecture.html" class="nav-main-btn">Architecture</a>
+            </div>
+
+            <div id="c3-root">
+                <div class="c3-header-bar">
+                    <div class="dashboard-title">
+                        <span class="status-dot"></span>
+                        <h2>Cloud Control Center</h2>
+                        <span class="c3-mode-badge mock" id="c3-mode-badge">MOCK</span>
+                    </div>
+                    <div class="c3-header-actions">
+                        <button class="wake-btn" id="c3-live-btn">↻ Live</button>
+                        <button class="wake-btn" id="c3-mock-btn">Mock</button>
+                    </div>
+                </div>
+                <div class="c3-banner" id="c3-banner"></div>
+
+                <!-- Level 2: Dashboard Tabs — rendered from the single section->tabs taxonomy in c3-nav.ts (initC3Nav), which also drives the hamburger drawer. -->
+                <div class="nav-level2 active" id="c3-tabbar"></div>
+
+                <div class="c3-tab-content active" id="c3-tab-topology">
+                    <h2 class="nav-level3-title">Topology</h2>
+                    <div class="card-box"><strong>topology</strong><div id="c3-table-topology"></div></div>
+                    <div class="card-box"><strong>topology-network</strong><div id="c3-table-topology-network"></div></div>
+                    <div class="card-box"><strong>topology-drift</strong><div id="c3-table-topology-drift"></div></div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-health">
+                    <h2 class="nav-level3-title">Health</h2>
+                    <div class="card-box"><strong>health-declared</strong><div id="c3-table-health-declared"></div></div>
+                    <div class="card-box"><strong>health-deployed</strong><div id="c3-table-health-deployed"></div></div>
+                    <div class="card-box"><strong>health-drift</strong><div id="c3-table-health-drift"></div></div>
+                    <div class="card-box"><strong>health-tier1</strong><div id="c3-table-health-tier1"></div></div>
+                    <div class="card-box"><strong>up-all</strong><div id="c3-table-up-all"></div></div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-resources">
+                    <h2 class="nav-level3-title">Resources</h2>
+                    <div class="card-box"><strong>container-resources</strong><div id="c3-table-container-resources"></div></div>
+                    <div class="card-box"><strong>services</strong><div id="c3-table-services"></div></div>
+                    <div class="card-box"><strong>specs</strong><div id="c3-table-specs"></div></div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-profiling">
+                    <h2 class="nav-level3-title">Profiling</h2>
+                    <div class="card-box"><strong>profiling-all</strong><div id="c3-table-profiling-all"></div></div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-security">
+                    <h2 class="nav-level3-title">Security</h2>
+                    <div class="card-box"><strong>security-scan</strong><div id="c3-table-security-scan"></div></div>
+                    <div class="card-box"><strong>security-docker</strong><div id="c3-table-security-docker"></div></div>
+                    <div class="card-box"><strong>security-ssh</strong><div id="c3-table-security-ssh"></div></div>
+                    <div class="card-box"><strong>security-tokens</strong><div id="c3-table-security-tokens"></div></div>
+                    <div class="card-box"><strong>security-wireguard</strong><div id="c3-table-security-wireguard"></div></div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-cost">
+                    <h2 class="nav-level3-title">Cost</h2>
+                    <div class="card-box"><strong>cloud-summary</strong><div id="c3-table-cloud-summary"></div></div>
+                    <div class="card-box"><strong>oci-costs</strong><div id="c3-table-oci-costs"></div></div>
+                    <div class="card-box"><strong>gcp-costs</strong><div id="c3-table-gcp-costs"></div></div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-workflows">
+                    <h2 class="nav-level3-title">Workflows</h2>
+                    <div class="card-box"><strong>workflows (GHA)</strong><div id="c3-table-workflows"></div></div>
+                    <div class="card-box"><strong>workflows-dagu</strong><div id="c3-table-workflows-dagu"></div></div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-audit">
+                    <h2 class="nav-level3-title">Audit</h2>
+                    <div class="card-box"><strong>db-audit</strong><div id="c3-table-db-audit"></div></div>
+                    <div class="card-box"><strong>db-deploy-history</strong><div id="c3-table-db-deploy-history"></div></div>
+                    <div class="card-box"><strong>db-health-history</strong><div id="c3-table-db-health-history"></div></div>
+                    <div class="card-box"><strong>db-uptime</strong><div id="c3-table-db-uptime"></div></div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-infra">
+                    <h2 class="nav-level3-title">Infra</h2>
+                    <div class="card-box"><strong>caddy-routes</strong><div id="c3-table-caddy-routes"></div></div>
+                    <div class="card-box"><strong>cloudflare-dns</strong><div id="c3-table-cloudflare-dns"></div></div>
+                    <div class="card-box"><strong>firewall-rules</strong><div id="c3-table-firewall-rules"></div></div>
+                    <div class="card-box"><strong>wireguard-peers</strong><div id="c3-table-wireguard-peers"></div></div>
+                    <div class="card-box"><strong>dns-services</strong><div id="c3-table-dns-services"></div></div>
+                    <div class="card-box"><strong>backup-targets</strong><div id="c3-table-backup-targets"></div></div>
+                    <div class="card-box"><strong>home-manager</strong><div id="c3-table-home-manager"></div></div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-apps">
+                    <h2 class="nav-level3-title">Apps</h2>
+                    <div id="c3-apps-cards"></div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-metrics">
+                    <h2 class="nav-level3-title">Metrics</h2>
+                    <div class="card-box">
+                        <strong>Top by CPU</strong>
+                        <div id="c3-table-metrics-top"></div>
+                    </div>
+                    <div class="card-box">
+                        <strong>Series (oci-apps · cpu)</strong>
+                        <div id="c3-metrics-series"></div>
+                    </div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-alerts">
+                    <h2 class="nav-level3-title">Alerts</h2>
+                    <div class="card-box">
+                        <strong>Active</strong>
+                        <div id="c3-alerts-active"></div>
+                    </div>
+                    <div class="card-box">
+                        <strong>Rules</strong>
+                        <div id="c3-table-alerts-rules"></div>
+                    </div>
+                    <div class="card-box">
+                        <strong>History</strong>
+                        <div id="c3-table-alerts-history"></div>
+                    </div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-events">
+                    <h2 class="nav-level3-title">Events</h2>
+                    <div class="card-box">
+                        <div class="c3-events-filter">
+                            <label for="c3-events-type-filter">Type</label>
+                            <select id="c3-events-type-filter">
+                                <option value="">All</option>
+                                <option value="deploy">Deploy</option>
+                                <option value="alert">Alert</option>
+                                <option value="ops">Ops</option>
+                                <option value="ci">CI</option>
+                            </select>
+                        </div>
+                        <div id="c3-events-timeline"></div>
+                    </div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-slo">
+                    <h2 class="nav-level3-title">SLO</h2>
+                    <div class="card-box">
+                        <div id="c3-slo-view"></div>
+                    </div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-ops">
+                    <h2 class="nav-level3-title">Ops</h2>
+                    <div class="card-box">
+                        <div id="c3-ops-table"></div>
+                    </div>
+                </div>
+
+                <div class="c3-tab-content" id="c3-tab-reports">
+                    <h2 class="nav-level3-title">Reports</h2>
+                    <div class="card-box">
+                        <div id="c3-reports-root"></div>
+                    </div>
+                </div>
+
+                <!-- Per-container drawer: opened from a Resources-tab row -->
+                <div class="c3-drawer-backdrop" id="c3-drawer-backdrop" hidden></div>
+                <div class="c3-drawer" id="c3-drawer" hidden role="dialog" aria-modal="true" aria-labelledby="c3-drawer-title">
+                    <div class="c3-drawer-header">
+                        <h3 id="c3-drawer-title">Container</h3>
+                        <button class="c3-drawer-close" id="c3-drawer-close" aria-label="Close">×</button>
+                    </div>
+                    <div class="c3-drawer-tabs">
+                        <button class="c3-drawer-tab-btn active" data-c3-drawer-tab="inspect">Inspect</button>
+                        <button class="c3-drawer-tab-btn" data-c3-drawer-tab="stats">Stats</button>
+                        <button class="c3-drawer-tab-btn" data-c3-drawer-tab="logs">Logs</button>
+                        <button class="c3-drawer-tab-btn" data-c3-drawer-tab="exec">Exec</button>
+                    </div>
+                    <div class="c3-drawer-body">
+                        <div class="c3-drawer-panel active" id="c3-drawer-panel-inspect"></div>
+                        <div class="c3-drawer-panel" id="c3-drawer-panel-stats">
+                            <button class="c3-action-btn" id="c3-drawer-stats-refresh">Refresh</button>
+                            <div id="c3-drawer-stats-body"></div>
+                        </div>
+                        <div class="c3-drawer-panel" id="c3-drawer-panel-logs">
+                            <div class="c3-drawer-logs" id="c3-drawer-logs-body"></div>
+                        </div>
+                        <div class="c3-drawer-panel" id="c3-drawer-panel-exec">
+                            <div class="c3-drawer-exec-controls" id="c3-drawer-exec-controls"></div>
+                            <pre class="c3-drawer-exec-output" id="c3-drawer-exec-output" readonly></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TypeScript compiled bundle (zoom, theme, card effects, c3 control center) -->
+    <script src="script.js"></script>
+
+    <!-- Footer -->
+    <footer class="cloud-footer">
+        <a href="https://linktree.diegonmarcos.com" target="_blank" title="diegonmarcos" class="linktree-footer-btn">
+            <span class="link-icon">🔗</span>
+            <span class="link-text">LINKTREE</span>
+        </a>
+    </footer>
+</body>
+</html>

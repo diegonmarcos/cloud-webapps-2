@@ -1,0 +1,146 @@
+@use '../mixins' as *;
+
+// ==========================================================================
+// Content — scrollable main area: home title/grid, or page tabs + body
+// ==========================================================================
+
+.content {
+    flex: 1;
+    min-height: 0; // let this actually scroll internally instead of stretching .shell
+    min-width: 0;  // let wide inner content (tab strips, grids) clip/scroll here, not overflow the page
+    overflow-y: auto;
+    overflow-x: hidden;
+    // Android scrollbars fade out instead of parking a persistent track.
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // Reserves the whole absolutely-positioned top chrome band + a 12px gap,
+    // derived from the --chrome-band-* tokens on .shell (see _base.scss) so
+    // the first child (.page-tabs on tabbed pages) always starts below the
+    // toolbar icons instead of under them. z-index:1 vs the islands' 10/11
+    // keeps content scrolling UNDER the chrome, like the Android toolbar.
+    //
+    // This offset is a MARGIN, not scroll-area padding: padding-top would
+    // sit *inside* the scrollport, so on long pages (suite/phone) scrolled
+    // content slides up past y:0 and passes behind the chrome band, which
+    // has no background to hide it — visibly sliding under the toolbar
+    // icons. Short pages (suite/cloud) never scroll far enough to expose
+    // this, which is why the bug only showed up on long pages. margin-top
+    // instead shrinks .content's own flex-basis inside .shell (a flex
+    // column) — the scrollport itself starts below the band, so scrolled
+    // content clips at the band edge instead of sliding under it, matching
+    // how the Android app lays content out below the app bar. Bottom stays
+    // padding (96px, in-scroll) since the bottom nav floats over the END of
+    // the scroll area and content should still scroll under it, matching
+    // pre-existing bottom behavior.
+    //
+    // Two declarations, three failure modes covered: the plain-px one wins
+    // if the browser drops the env()/var() line at PARSE time (no support at
+    // all); the var() fallback covers --content-top being undefined (any
+    // future .content rendered outside .shell, where the token doesn't
+    // inherit); and _base.scss keeps env() one level deep so the token
+    // itself can't substitute to garbage. Never collapse this to a single
+    // var()-only declaration — see the FLATTENED ON PURPOSE note in
+    // _base.scss for what that regression looks like on a real phone.
+    margin-top: 104px;
+    margin-top: var(--content-top, 104px);
+    padding: 12px 12px 96px;
+    position: relative;
+    z-index: 1;
+    // Flex column so .site-footer (last child, see generate-pages.mjs's
+    // renderShell) can margin-top:auto itself to the bottom of the viewport
+    // on short pages, while still flowing after long content on tall ones.
+    display: flex;
+    flex-direction: column;
+}
+
+// Home Apps page — real app: a search bar sits above the section tile grid
+// (AppDrawerSheetFragment). No live index behind it here, so it's a static
+// decorative pill rather than a fake-functional input — matches how the
+// status-strip's device-stat chips are real markup without live data.
+.search-pill {
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    border-radius: 999px;
+    background: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+    color: var(--text-secondary);
+    font-size: 14px;
+}
+
+// Sticky tab strip — TabbedSectionFragment anchors the tab strip directly
+// below the app bar and scrolls content under the TABS, not under the app
+// bar. The scrollport already starts below the chrome band (.content's
+// margin-top above), so top:0 here parks the strip flush against the band's
+// bottom edge and it never reaches the toolbar icons no matter how far a
+// long page (suite/phone) scrolls.
+//
+// The wrapper exists because position:sticky and overflow-x:auto can't share
+// an element usefully: an element that scrolls its own children still needs
+// an ANCESTOR scrollport to stick within, and giving the pill row both roles
+// makes its horizontal scrolling and its sticking fight over the same box.
+// So .page-tabs-bar sticks + paints, .page-tabs (inside) keeps the
+// horizontal overflow. See renderShell's page-tabs emit in
+// scripts/generate-pages.mjs.
+//
+// The backdrop must be fully opaque or scrolled rows read through it. Same
+// gradient-slice trick as .shell::before: paint the shell's own gradient at
+// the shell's own height, offset up by --content-top so the slice shown is
+// exactly the one the shell would have painted at this y — seamless with the
+// page backdrop at the strip's parked position, and no translucency for
+// content to bleed through. Paired plain-px + token declarations per the
+// FLATTENED ON PURPOSE note in _base.scss.
+//
+// z-index 3: above .content's own flow (1) and the band mask (2), below the
+// stars (5) and the toolbar/status islands (10/11).
+//
+// Negative side margins bleed the backdrop across .content's 12px side
+// padding, so nothing scrolls past in the gutters; the negative top margin
+// cancels .content's 12px top padding so the strip parks flush.
+.page-tabs-bar {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    margin: -12px -12px 12px;
+    padding: 8px 12px;
+    background: var(--gradient-top);
+    background: linear-gradient(to bottom, var(--gradient-top), var(--gradient-mid), var(--gradient-bottom)) 0 -104px / 100% 100dvh no-repeat;
+    background-position: 0 calc(-1 * var(--content-top, 104px));
+}
+
+.page-tabs {
+    @include flex-row(center, center, 8px);
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.page-tabs__item {
+    padding: 8px 14px;
+    border-radius: var(--glass-pill-radius);
+    background: var(--glass-liquid-gradient);
+    border: var(--glass-pill-border);
+    color: var(--text-secondary);
+    font-size: 13px;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+// --island-accent (#b794f4) tinted fill, matching the violet hairline the
+// inactive pills already use for their border.
+.page-tabs__item.is-active {
+    background: rgba(183, 148, 244, 0.33);
+    color: #fff;
+    border-color: transparent;
+}
+
+.page-tabs__item--inert {
+    opacity: .5;
+}
+

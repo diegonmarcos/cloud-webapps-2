@@ -1,0 +1,480 @@
+{
+  "containers": [
+    {
+      "name": "c3-infra-api",
+      "cpu_pct": 5,
+      "mem_mb": 80,
+      "restarts": 0,
+      "uptime_s": 3600
+    },
+    {
+      "name": "c3-public-api",
+      "cpu_pct": 6,
+      "mem_mb": 81,
+      "restarts": 1,
+      "uptime_s": 7200
+    },
+    {
+      "name": "c3-services-api",
+      "cpu_pct": 7,
+      "mem_mb": 82,
+      "restarts": 2,
+      "uptime_s": 10800
+    },
+    {
+      "name": "c3-infra-mcp",
+      "cpu_pct": 8,
+      "mem_mb": 83,
+      "restarts": 0,
+      "uptime_s": 14400
+    },
+    {
+      "name": "google-personal-mcp",
+      "cpu_pct": 9,
+      "mem_mb": 84,
+      "restarts": 1,
+      "uptime_s": 18000
+    },
+    {
+      "name": "authelia",
+      "cpu_pct": 10,
+      "mem_mb": 85,
+      "restarts": 2,
+      "uptime_s": 21600
+    },
+    {
+      "name": "caddy",
+      "cpu_pct": 11,
+      "mem_mb": 86,
+      "restarts": 0,
+      "uptime_s": 25200
+    },
+    {
+      "name": "caddy-public",
+      "cpu_pct": 12,
+      "mem_mb": 87,
+      "restarts": 1,
+      "uptime_s": 28800
+    },
+    {
+      "name": "crowdsec",
+      "cpu_pct": 13,
+      "mem_mb": 88,
+      "restarts": 2,
+      "uptime_s": 32400
+    },
+    {
+      "name": "introspect-proxy",
+      "cpu_pct": 14,
+      "mem_mb": 89,
+      "restarts": 0,
+      "uptime_s": 36000
+    },
+    {
+      "name": "dagu",
+      "cpu_pct": 15,
+      "mem_mb": 90,
+      "restarts": 1,
+      "uptime_s": 39600
+    },
+    {
+      "name": "dbgate",
+      "cpu_pct": 16,
+      "mem_mb": 91,
+      "restarts": 2,
+      "uptime_s": 43200
+    },
+    {
+      "name": "matomo",
+      "cpu_pct": 17,
+      "mem_mb": 92,
+      "restarts": 0,
+      "uptime_s": 46800
+    },
+    {
+      "name": "umami",
+      "cpu_pct": 18,
+      "mem_mb": 93,
+      "restarts": 1,
+      "uptime_s": 50400
+    },
+    {
+      "name": "openobserve",
+      "cpu_pct": 19,
+      "mem_mb": 94,
+      "restarts": 2,
+      "uptime_s": 54000
+    },
+    {
+      "name": "ntfy",
+      "cpu_pct": 20,
+      "mem_mb": 95,
+      "restarts": 0,
+      "uptime_s": 57600
+    },
+    {
+      "name": "cloud-spec",
+      "cpu_pct": 21,
+      "mem_mb": 96,
+      "restarts": 1,
+      "uptime_s": 61200
+    },
+    {
+      "name": "postlite",
+      "cpu_pct": 22,
+      "mem_mb": 97,
+      "restarts": 2,
+      "uptime_s": 64800
+    },
+    {
+      "name": "redis",
+      "cpu_pct": 23,
+      "mem_mb": 98,
+      "restarts": 0,
+      "uptime_s": 68400
+    },
+    {
+      "name": "hickory-dns",
+      "cpu_pct": 24,
+      "mem_mb": 99,
+      "restarts": 1,
+      "uptime_s": 72000
+    },
+    {
+      "name": "unbound-dns64",
+      "cpu_pct": 25,
+      "mem_mb": 100,
+      "restarts": 2,
+      "uptime_s": 75600
+    },
+    {
+      "name": "wireguard-mesh",
+      "cpu_pct": 26,
+      "mem_mb": 101,
+      "restarts": 0,
+      "uptime_s": 79200
+    },
+    {
+      "name": "wireguard-mesh-ws-tunnel",
+      "cpu_pct": 27,
+      "mem_mb": 102,
+      "restarts": 1,
+      "uptime_s": 82800
+    },
+    {
+      "name": "wireguard-public",
+      "cpu_pct": 28,
+      "mem_mb": 103,
+      "restarts": 2,
+      "uptime_s": 86400
+    },
+    {
+      "name": "gitea",
+      "cpu_pct": 29,
+      "mem_mb": 104,
+      "restarts": 0,
+      "uptime_s": 90000
+    },
+    {
+      "name": "backup-borg",
+      "cpu_pct": 5,
+      "mem_mb": 105,
+      "restarts": 1,
+      "uptime_s": 93600
+    },
+    {
+      "name": "backup-bup",
+      "cpu_pct": 6,
+      "mem_mb": 106,
+      "restarts": 2,
+      "uptime_s": 97200
+    },
+    {
+      "name": "languagetool",
+      "cpu_pct": 7,
+      "mem_mb": 107,
+      "restarts": 0,
+      "uptime_s": 100800
+    },
+    {
+      "name": "cloud-builder-x",
+      "cpu_pct": 8,
+      "mem_mb": 108,
+      "restarts": 1,
+      "uptime_s": 104400
+    },
+    {
+      "name": "gha-runner",
+      "cpu_pct": 9,
+      "mem_mb": 109,
+      "restarts": 2,
+      "uptime_s": 108000
+    },
+    {
+      "name": "cloudflare-worker",
+      "cpu_pct": 10,
+      "mem_mb": 110,
+      "restarts": 0,
+      "uptime_s": 111600
+    },
+    {
+      "name": "gcloud",
+      "cpu_pct": 11,
+      "mem_mb": 111,
+      "restarts": 1,
+      "uptime_s": 115200
+    },
+    {
+      "name": "my-ai-api",
+      "cpu_pct": 12,
+      "mem_mb": 112,
+      "restarts": 2,
+      "uptime_s": 118800
+    },
+    {
+      "name": "hermes-agent",
+      "cpu_pct": 13,
+      "mem_mb": 113,
+      "restarts": 0,
+      "uptime_s": 122400
+    },
+    {
+      "name": "kg-store",
+      "cpu_pct": 14,
+      "mem_mb": 114,
+      "restarts": 1,
+      "uptime_s": 126000
+    },
+    {
+      "name": "session-memory",
+      "cpu_pct": 15,
+      "mem_mb": 115,
+      "restarts": 2,
+      "uptime_s": 129600
+    },
+    {
+      "name": "db-agent",
+      "cpu_pct": 16,
+      "mem_mb": 116,
+      "restarts": 0,
+      "uptime_s": 133200
+    },
+    {
+      "name": "claude-superset-api",
+      "cpu_pct": 17,
+      "mem_mb": 117,
+      "restarts": 1,
+      "uptime_s": 136800
+    },
+    {
+      "name": "cloud-cgc-mcp",
+      "cpu_pct": 18,
+      "mem_mb": 118,
+      "restarts": 2,
+      "uptime_s": 140400
+    },
+    {
+      "name": "chat-mattermost",
+      "cpu_pct": 19,
+      "mem_mb": 119,
+      "restarts": 0,
+      "uptime_s": 144000
+    },
+    {
+      "name": "matrix-element",
+      "cpu_pct": 20,
+      "mem_mb": 120,
+      "restarts": 1,
+      "uptime_s": 147600
+    },
+    {
+      "name": "matrix-mautrix-whatsapp",
+      "cpu_pct": 21,
+      "mem_mb": 121,
+      "restarts": 2,
+      "uptime_s": 151200
+    },
+    {
+      "name": "snappymail",
+      "cpu_pct": 22,
+      "mem_mb": 122,
+      "restarts": 0,
+      "uptime_s": 154800
+    },
+    {
+      "name": "maddy",
+      "cpu_pct": 23,
+      "mem_mb": 123,
+      "restarts": 1,
+      "uptime_s": 158400
+    },
+    {
+      "name": "stalwart",
+      "cpu_pct": 24,
+      "mem_mb": 124,
+      "restarts": 2,
+      "uptime_s": 162000
+    },
+    {
+      "name": "mail-puller",
+      "cpu_pct": 25,
+      "mem_mb": 125,
+      "restarts": 0,
+      "uptime_s": 165600
+    },
+    {
+      "name": "cypht",
+      "cpu_pct": 26,
+      "mem_mb": 126,
+      "restarts": 1,
+      "uptime_s": 169200
+    },
+    {
+      "name": "vaultwarden",
+      "cpu_pct": 27,
+      "mem_mb": 127,
+      "restarts": 2,
+      "uptime_s": 172800
+    },
+    {
+      "name": "photoprism",
+      "cpu_pct": 28,
+      "mem_mb": 128,
+      "restarts": 0,
+      "uptime_s": 176400
+    },
+    {
+      "name": "playlist-syncer",
+      "cpu_pct": 29,
+      "mem_mb": 129,
+      "restarts": 1,
+      "uptime_s": 180000
+    },
+    {
+      "name": "news-gdelt",
+      "cpu_pct": 5,
+      "mem_mb": 130,
+      "restarts": 2,
+      "uptime_s": 183600
+    },
+    {
+      "name": "calendar-radicale",
+      "cpu_pct": 6,
+      "mem_mb": 131,
+      "restarts": 0,
+      "uptime_s": 187200
+    },
+    {
+      "name": "contacts-radicale",
+      "cpu_pct": 7,
+      "mem_mb": 132,
+      "restarts": 1,
+      "uptime_s": 190800
+    },
+    {
+      "name": "code-server",
+      "cpu_pct": 8,
+      "mem_mb": 133,
+      "restarts": 2,
+      "uptime_s": 194400
+    },
+    {
+      "name": "etherpad",
+      "cpu_pct": 9,
+      "mem_mb": 134,
+      "restarts": 0,
+      "uptime_s": 198000
+    },
+    {
+      "name": "filebrowser",
+      "cpu_pct": 10,
+      "mem_mb": 135,
+      "restarts": 1,
+      "uptime_s": 201600
+    },
+    {
+      "name": "grist",
+      "cpu_pct": 11,
+      "mem_mb": 136,
+      "restarts": 2,
+      "uptime_s": 205200
+    },
+    {
+      "name": "hedgedoc",
+      "cpu_pct": 12,
+      "mem_mb": 137,
+      "restarts": 0,
+      "uptime_s": 208800
+    },
+    {
+      "name": "paca",
+      "cpu_pct": 13,
+      "mem_mb": 138,
+      "restarts": 1,
+      "uptime_s": 212400
+    },
+    {
+      "name": "revealmd",
+      "cpu_pct": 14,
+      "mem_mb": 139,
+      "restarts": 2,
+      "uptime_s": 216000
+    },
+    {
+      "name": "send",
+      "cpu_pct": 15,
+      "mem_mb": 140,
+      "restarts": 0,
+      "uptime_s": 219600
+    },
+    {
+      "name": "scrappers-api",
+      "cpu_pct": 16,
+      "mem_mb": 141,
+      "restarts": 1,
+      "uptime_s": 223200
+    },
+    {
+      "name": "fin-api",
+      "cpu_pct": 17,
+      "mem_mb": 142,
+      "restarts": 2,
+      "uptime_s": 226800
+    },
+    {
+      "name": "crawlee-cloud",
+      "cpu_pct": 18,
+      "mem_mb": 143,
+      "restarts": 0,
+      "uptime_s": 230400
+    },
+    {
+      "name": "front-end",
+      "cpu_pct": 19,
+      "mem_mb": 144,
+      "restarts": 1,
+      "uptime_s": 234000
+    },
+    {
+      "name": "matrix-continuwuity",
+      "cpu_pct": 20,
+      "mem_mb": 145,
+      "restarts": 2,
+      "uptime_s": 237600
+    },
+    {
+      "name": "vaultwarden-mic",
+      "cpu_pct": 21,
+      "mem_mb": 146,
+      "restarts": 0,
+      "uptime_s": 241200
+    },
+    {
+      "name": "alerts-api",
+      "cpu_pct": 22,
+      "mem_mb": 147,
+      "restarts": 1,
+      "uptime_s": 244800
+    }
+  ]
+}

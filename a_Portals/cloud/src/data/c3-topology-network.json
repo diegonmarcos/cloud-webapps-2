@@ -1,0 +1,22 @@
+[
+ {
+  "vm": "oci-mail",
+  "networks": []
+ },
+ {
+  "vm": "oci-analytics",
+  "networks": []
+ },
+ {
+  "vm": "oci-apps",
+  "networks": []
+ },
+ {
+  "vm": "gcp-proxy",
+  "networks": []
+ },
+ {
+  "vm": "vast-ollama",
+  "networks": []
+ }
+]

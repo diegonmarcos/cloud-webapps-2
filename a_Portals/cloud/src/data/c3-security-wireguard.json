@@ -1,0 +1,84 @@
+[
+ {
+  "vm": "oci-mail",
+  "peers": []
+ },
+ {
+  "vm": "oci-analytics",
+  "peers": []
+ },
+ {
+  "vm": "oci-apps",
+  "peers": [
+   {
+    "endpoint": "35.226.147.64:51820",
+    "allowedIps": "10.x.x.x/24, fd0c:1d00::/64",
+    "latestHandshake": "7 seconds ago",
+    "transfer": "72.16 GiB received, 11.45 GiB sent"
+   },
+   {
+    "endpoint": "vm-oci-apps:51821",
+    "allowedIps": "10.x.x.x/24, fd0c:1d01::/64",
+    "latestHandshake": "Now",
+    "transfer": "15.66 MiB received, 7.72 MiB sent"
+   }
+  ]
+ },
+ {
+  "vm": "gcp-proxy",
+  "peers": [
+   {
+    "endpoint": "vm-oci-apps:51821",
+    "allowedIps": "10.x.x.x/24, fd0c:1d01::/64",
+    "latestHandshake": "35 seconds ago",
+    "transfer": "367.47 MiB received, 946.01 MiB sent"
+   },
+   {
+    "endpoint": "82.70.229.129:51820",
+    "allowedIps": "10.x.x.x/32, fd0c:1d00::6/128",
+    "latestHandshake": "9 seconds ago",
+    "transfer": "3.59 GiB received, 29.35 GiB sent"
+   },
+   {
+    "endpoint": "4.246.86.196:12312",
+    "allowedIps": "10.x.x.x/32, fd0c:1d00::200/128",
+    "latestHandshake": "19 seconds ago",
+    "transfer": "2.97 GiB received, 378.07 MiB sent"
+   },
+   {
+    "endpoint": "vm-oci-obs:51820",
+    "allowedIps": "10.x.x.x/32, fd0c:1d00::3/128",
+    "latestHandshake": "21 seconds ago",
+    "transfer": "6.02 GiB received, 1.04 GiB sent"
+   },
+   {
+    "endpoint": "vm-oci-apps:51820",
+    "allowedIps": "10.x.x.x/32, fd0c:1d00::4/128",
+    "latestHandshake": "43 seconds ago",
+    "transfer": "1.23 GiB received, 491.93 MiB sent"
+   },
+   {
+    "endpoint": "84.32.115.128:1275",
+    "allowedIps": "10.x.x.x/32, fd0c:1d00::9/128",
+    "latestHandshake": "53 seconds ago",
+    "transfer": "11.07 GiB received, 4.95 GiB sent"
+   },
+   {
+    "endpoint": "84.32.115.128:45416",
+    "allowedIps": "10.x.x.x/32, fd0c:1d00::5/128",
+    "latestHandshake": "1 minute, 44 seconds ago",
+    "transfer": "9.96 GiB received, 1.74 GiB sent"
+   },
+   {
+    "endpoint": "",
+    "allowedIps": "10.x.x.x/32, fd0c:1d00::201/128",
+    "latestHandshake": "",
+    "transfer": ""
+   }
+  ]
+ },
+ {
+  "vm": "vast-ollama",
+  "peers": []
+ }
+]

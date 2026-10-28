@@ -1,0 +1,547 @@
+[
+ {
+  "name": "matrix-continuwuity",
+  "domain": "matrix.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "alerts-api",
+  "vm": "oci-E2-f_1",
+  "alias": "oci-analytics",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "languagetool",
+  "domain": "languagetool.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "c3-diego-personal-data-mcp",
+  "vm": "local",
+  "alias": "local",
+  "category": "data",
+  "hasSpec": false
+ },
+ {
+  "name": "c3-infra-api",
+  "domain": "api.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "sec",
+  "hasSpec": false
+ },
+ {
+  "name": "c3-infra-mcp",
+  "domain": "mcp.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "sec",
+  "hasSpec": false
+ },
+ {
+  "name": "c3-public-api",
+  "domain": "api.diegonmarcos.com",
+  "vm": "oci-E2-f_1",
+  "alias": "oci-analytics",
+  "category": "obs",
+  "hasSpec": false
+ },
+ {
+  "name": "c3-services-api",
+  "domain": "api.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "obs",
+  "hasSpec": false
+ },
+ {
+  "name": "c3-services-mcp",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "obs",
+  "hasSpec": false
+ },
+ {
+  "name": "google-personal-mcp",
+  "domain": "mcp.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "google-workspace-mcp",
+  "domain": "mcp.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "mail-mcp",
+  "domain": "mcp.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "mattermost-mcp",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "http-to-smtp-proxy-api",
+  "domain": "api.diegonmarcos.com",
+  "vm": "gcp-E2-f_0",
+  "alias": "gcp-proxy",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "cloud-builder-x",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "gha-runner",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "cloudflare-worker",
+  "vm": "local",
+  "alias": "local",
+  "category": "cloud",
+  "hasSpec": false
+ },
+ {
+  "name": "gcloud",
+  "vm": "local",
+  "alias": "local",
+  "category": "cloud",
+  "hasSpec": false
+ },
+ {
+  "name": "backup-borg",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "data",
+  "hasSpec": false
+ },
+ {
+  "name": "backup-bup",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "data",
+  "hasSpec": false
+ },
+ {
+  "name": "gitea",
+  "domain": "git.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "data",
+  "hasSpec": false
+ },
+ {
+  "name": "postlite",
+  "vm": "gcp-E2-f_0",
+  "alias": "gcp-proxy",
+  "category": "data",
+  "hasSpec": false
+ },
+ {
+  "name": "redis",
+  "vm": "gcp-E2-f_0",
+  "alias": "gcp-proxy",
+  "category": "data",
+  "hasSpec": false
+ },
+ {
+  "name": "hickory-dns",
+  "domain": "dns.internal",
+  "vm": "gcp-E2-f_0",
+  "alias": "gcp-proxy",
+  "category": "cloud",
+  "hasSpec": false
+ },
+ {
+  "name": "unbound-dns64",
+  "domain": "dns64.internal",
+  "vm": "oci-E2-f_1",
+  "alias": "oci-analytics",
+  "category": "infra-net",
+  "hasSpec": false
+ },
+ {
+  "name": "wireguard-mesh",
+  "domain": "mesh.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "wireguard-mesh-ws-tunnel",
+  "domain": "vpn.diegonmarcos.com",
+  "vm": "gcp-E2-f_0",
+  "alias": "gcp-proxy",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "wireguard-public",
+  "vm": "local",
+  "alias": "local",
+  "category": "net",
+  "hasSpec": false
+ },
+ {
+  "name": "cloud-spec",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "dagu",
+  "domain": "workflows.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "dbgate",
+  "domain": "db.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "matomo",
+  "domain": "analytics.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": true,
+  "specUrl": "https://analytics.diegonmarcos.com/index.php?module=API&method=API.getReportMetadata&format=json"
+ },
+ {
+  "name": "ntfy",
+  "domain": "rss.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": true,
+  "specUrl": "https://rss.diegonmarcos.com/docs"
+ },
+ {
+  "name": "openobserve",
+  "domain": "analytics.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "umami",
+  "domain": "analytics.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "authelia",
+  "domain": "auth.diegonmarcos.com",
+  "vm": "gcp-E2-f_0",
+  "alias": "gcp-proxy",
+  "category": "sec",
+  "hasSpec": true,
+  "specUrl": "https://auth.diegonmarcos.com/api/configuration"
+ },
+ {
+  "name": "caddy",
+  "domain": "proxy.diegonmarcos.com",
+  "vm": "gcp-E2-f_0",
+  "alias": "gcp-proxy",
+  "category": "sec",
+  "hasSpec": false
+ },
+ {
+  "name": "caddy-l4-image",
+  "vm": "local",
+  "alias": "local",
+  "category": "sec",
+  "hasSpec": false
+ },
+ {
+  "name": "caddy-public",
+  "vm": "oci-E2-f_1",
+  "alias": "oci-analytics",
+  "category": "sec",
+  "hasSpec": false
+ },
+ {
+  "name": "crowdsec",
+  "domain": "crowdsec.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "sec",
+  "hasSpec": false
+ },
+ {
+  "name": "introspect-proxy",
+  "vm": "gcp-E2-f_0",
+  "alias": "gcp-proxy",
+  "category": "sec",
+  "hasSpec": false
+ },
+ {
+  "name": "claude-superset-api",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "agi",
+  "hasSpec": false
+ },
+ {
+  "name": "cloud-cgc-mcp",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "obs",
+  "hasSpec": false
+ },
+ {
+  "name": "db-agent",
+  "vm": "all",
+  "alias": "all",
+  "category": "data",
+  "hasSpec": false
+ },
+ {
+  "name": "hermes-agent",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "agi",
+  "hasSpec": false
+ },
+ {
+  "name": "kg-store",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "data",
+  "hasSpec": false
+ },
+ {
+  "name": "my-ai-api",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "agi",
+  "hasSpec": false
+ },
+ {
+  "name": "session-memory",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "agi",
+  "hasSpec": false
+ },
+ {
+  "name": "chat-mattermost",
+  "domain": "chat.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "mail-puller",
+  "domain": "mail-puller.diegonmarcos.com",
+  "vm": "oci-E2-f_0",
+  "alias": "oci-mail",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "matrix-element",
+  "domain": "messenger.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "matrix-mautrix-whatsapp",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "snappymail",
+  "domain": "webmail.diegonmarcos.com",
+  "vm": "oci-E2-f_0",
+  "alias": "oci-mail",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "maddy",
+  "domain": "mail.diegonmarcos.com",
+  "vm": "oci-E2-f_0",
+  "alias": "oci-mail",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "stalwart",
+  "domain": "jmap.diegonmarcos.com",
+  "vm": "oci-E2-f_0",
+  "alias": "oci-mail",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "scrappers-api",
+  "domain": "api.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "data",
+  "hasSpec": false
+ },
+ {
+  "name": "fin-api",
+  "domain": "api.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "fin",
+  "hasSpec": false
+ },
+ {
+  "name": "photoprism",
+  "domain": "photos.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": true,
+  "specUrl": "https://photos.diegonmarcos.com/api/v1/config"
+ },
+ {
+  "name": "news-gdelt",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "tools",
+  "hasSpec": false
+ },
+ {
+  "name": "calendar-radicale",
+  "domain": "cal.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "code-server",
+  "domain": "ide.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "contacts-radicale",
+  "domain": "contacts.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "etherpad",
+  "domain": "app.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "filebrowser",
+  "domain": "app.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "grist",
+  "domain": "sheets.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "hedgedoc",
+  "domain": "app.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "paca",
+  "domain": "paca.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "revealmd",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "send",
+  "domain": "send.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "app",
+  "hasSpec": false
+ },
+ {
+  "name": "vaultwarden",
+  "domain": "vault.diegonmarcos.com",
+  "vm": "oci-A1-f_0",
+  "alias": "oci-apps",
+  "category": "mic",
+  "hasSpec": true,
+  "specUrl": "https://vault.diegonmarcos.com/api/config"
+ },
+ {
+  "name": "front-end",
+  "vm": "local",
+  "alias": "local",
+  "category": "app",
+  "hasSpec": false
+ }
+]

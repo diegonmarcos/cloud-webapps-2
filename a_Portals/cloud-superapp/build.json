@@ -1,0 +1,83 @@
+{
+  "name": "Cloud Mobile",
+  "framework": "vanilla",
+  "port": 8036,
+  "src": "src",
+  "dist": "dist",
+  "build": [
+    {
+      "_doc": "Wrap every *.json in src/data/ as a globalThis.PORTAL_DATA[<key>] companion (data-*.json.js). Engine: front-data-json-js-wrapper.sh.",
+      "mod": "data_wrap",
+      "dir": "src/data"
+    },
+    {
+      "mod": "copy",
+      "files": "data-*.json.js",
+      "from": "src/data"
+    },
+    {
+      "mod": "esbuild",
+      "input": "src/app/main.ts",
+      "output": "script.js",
+      "format": "iife",
+      "target": "es2020"
+    },
+    {
+      "mod": "sass",
+      "input": "src/scss/main.scss",
+      "output": "style.css"
+    },
+    {
+      "_doc": "Generates every real independent page from the data manifests under src/data/ (shell.json + sections-core.json + sections-content.json + mock-apps.json — split by domain, see generate-pages.mjs). Runs after sass/esbuild so generated pages can reference the real style.css/script.js paths; the shell template registers the service worker itself (see main.ts) rather than relying on the sw_register injector, since that mod only targets a fixed file list and this project has dozens of generated pages at varying depths. 'manifest' here just anchors the data directory — generate-pages.mjs reads all 4 files from dirname(manifest).",
+      "mod": "page_gen",
+      "manifest": "src/data/shell.json"
+    },
+    {
+      "mod": "copy",
+      "files": "manifest.webmanifest",
+      "from": "src"
+    },
+    {
+      "mod": "symlink",
+      "files": "src/public"
+    },
+    {
+      "_doc": "MUST run last — hashes the dist artifacts above to derive BUILD_HASH and inject it into the SW bundle.",
+      "mod": "esbuild_sw",
+      "input": "src/app/service-worker.ts",
+      "output": "script-service-worker.js",
+      "format": "iife",
+      "target": "es2020",
+      "hash_of": [
+        "index.html",
+        "script.js",
+        "style.css"
+      ],
+      "precache": [
+        "./",
+        "./index.html",
+        "./style.css",
+        "./script.js"
+      ]
+    }
+  ],
+  "serve": {
+    "mode": "auto",
+    "dir": "src",
+    "watch": [
+      {
+        "mod": "sass",
+        "input": "scss/main.scss",
+        "output": "style.css"
+      },
+      {
+        "mod": "esbuild",
+        "input": "app/main.ts",
+        "output": "script.js",
+        "format": "iife",
+        "target": "es2020"
+      }
+    ]
+  },
+  "deploy": {}
+}

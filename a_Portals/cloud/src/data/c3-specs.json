@@ -1,0 +1,11 @@
+{
+ "ok": true,
+ "specs": {},
+ "errors": {
+  "matomo": "HTTP 429: HTTP 429",
+  "vaultwarden": "HTTP 429: HTTP 429",
+  "ntfy": "HTTP 429: HTTP 429",
+  "photoprism": "HTTP 429: HTTP 429",
+  "authelia": "HTTP 429: HTTP 429"
+ }
+}

@@ -1,0 +1,35 @@
+{
+  "name": "cloud-dashboard",
+  "version": "1.0.0",
+  "description": "Cloud Services Dashboard with TypeScript and Sass",
+  "main": "dist/index.html",
+  "scripts": {
+    "build": "npm run build:css && npm run build:js",
+    "build:css": "sass src/scss/main.scss dist/styles.css --style=compressed --no-source-map",
+    "build:js": "tsc && esbuild src/typescript/main.ts --bundle --outfile=dist/script.js --minify --target=es2015",
+    "dev": "npm run dev:css & npm run dev:js",
+    "dev:css": "sass src/scss/main.scss dist/styles.css --watch --style=expanded --source-map",
+    "dev:js": "tsc --watch & esbuild src/typescript/main.ts --bundle --outfile=dist/script.js --watch --sourcemap",
+    "clean": "rm -rf dist/*.css dist/*.js dist/*.map",
+    "lint": "eslint src/typescript/**/*.ts",
+    "format": "prettier --write \"src/**/*.{ts,scss}\""
+  },
+  "keywords": [
+    "cloud",
+    "dashboard",
+    "typescript",
+    "sass"
+  ],
+  "author": "Diego Nepomuceno Marcos",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^6.13.0",
+    "@typescript-eslint/parser": "^6.13.0",
+    "esbuild": "^0.19.8",
+    "eslint": "^8.54.0",
+    "prettier": "^3.1.0",
+    "sass": "^1.69.5",
+    "typescript": "^5.3.2"
+  }
+}

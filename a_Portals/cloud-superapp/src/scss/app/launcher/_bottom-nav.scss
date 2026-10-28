@@ -1,0 +1,51 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Bottom nav — items inside the .bottom-nav glass island (see _islands.scss)
+// ==========================================================================
+//
+// Material 3 navigation bar anatomy: the active indicator is a 64x32
+// 16px-radius primary-container capsule behind the ICON ONLY, with the label
+// sitting outside/below it. An earlier version painted the whole item
+// (icon + label) with the active background, which is not a shape M3 has.
+
+.bottom-nav__item {
+    flex: 1;
+    @include flex-center;
+    flex-direction: column;
+    gap: 2px;
+    padding: 8px 0;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+}
+
+// 24px glyph inside the 64x32 indicator slot — the padding IS the capsule's
+// footprint, so the background below lands on exactly those bounds.
+.bottom-nav__item img {
+    width: 24px;
+    height: 24px;
+    padding: 4px 20px;
+    border-radius: 16px;
+    box-sizing: content-box;
+    // Inactive icons are the M3 on-surface-variant gray (#CAC4D0), reached
+    // from the black source SVGs by inverting to white then dimming.
+    opacity: .7;
+    filter: brightness(0) invert(1);
+    transition: background var(--transition-fast);
+}
+
+.bottom-nav__item span {
+    font-size: 12px;
+}
+
+.bottom-nav__item.is-active {
+    color: var(--cloud-on-primary-container);
+}
+
+// Active icon sits ON the light primary-container capsule, so it renders
+// dark (on-primary-container) — flatten to black, do NOT invert.
+.bottom-nav__item.is-active img {
+    background: var(--cloud-primary-container);
+    opacity: 1;
+    filter: brightness(0) saturate(100%);
+}

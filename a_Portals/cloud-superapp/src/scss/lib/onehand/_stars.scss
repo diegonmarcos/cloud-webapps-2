@@ -1,0 +1,136 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Stars — decorative galaxy backdrop + pulsing constellation (home only)
+// ==========================================================================
+
+.galaxy-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-medium);
+    background-image:
+        radial-gradient(120px 120px at 15% 85%, rgba(124, 58, 237, 0.18), transparent),
+        radial-gradient(140px 140px at 90% 10%, rgba(183, 148, 244, 0.15), transparent);
+    background-repeat: no-repeat;
+    opacity: 0.6;
+}
+
+// Twinkling stars + comets, rendered by app/ui/galaxy-backdrop.ts onto a
+// canvas it injects as the first child of .galaxy-backdrop, above the
+// nebula blobs (background-image, above) and below everything else.
+.galaxy-backdrop__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.star {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #f2f7ff;
+    text-shadow: 0 0 12px #9cc2ff;
+    font-size: 16px;
+    // Above .content (position:relative; z-index:1, see app/_content.scss).
+    // The stars are earlier siblings of .content inside .shell — which is
+    // position:relative with z-index:auto and so creates NO stacking context
+    // — so at an equal z-index of 1 tree order decided the paint/hit order
+    // and .content sat ON TOP of all three stars. Every tap landed on the
+    // scroll container instead of the button, which is why the press-drag
+    // listeners never fired on a real device (and why a jsdom harness that
+    // dispatches straight at the star could never reproduce it: jsdom does
+    // no hit-testing). Below the toolbar/bottom-nav islands (10/11), which
+    // the stars never overlap anyway.
+    z-index: 5;
+    // The gesture surface: without this the browser keeps the touch as a
+    // candidate pan/pull-to-refresh/pinch gesture and fires pointercancel
+    // mid-press, killing the menu that pointerdown just opened.
+    touch-action: none;
+    // The glyph is only 13-20px — an unusably small target on a phone. The
+    // Android app pads its star hit-boxes by tap_pad_dp (24). Pad the button
+    // box out to the 44x44 minimum touch target instead of scaling the text.
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0;
+    line-height: 1;
+    @include flex-center;
+    animation: star-pulse 2.6s ease-in-out infinite;
+}
+
+// Sirius — same bluish-white glow as every star, own twinkle timing
+// (scale 1→1.05, opacity 0.7→1, 1800ms alternate).
+.star--sirius {
+    top: 50%;
+    font-size: 13px;
+    cursor: pointer;
+    pointer-events: auto;
+    animation: star-twinkle 1800ms ease-in-out infinite alternate;
+}
+
+// canopus/centauri's press-drag radial menus are wired by stars.ts directly
+// onto these elements (getElementById('star-canopus')/('star-centauri')) —
+// pointer-events:none previously made them invisible to hit-testing, so
+// those listeners could never actually fire. Both need auto, same as sirius.
+//
+// bottom (not top) anchored, 12px above the .bottom-nav island: bottom-nav
+// itself sits at bottom:12px (see _islands.scss) and is ~66px tall (6px
+// island padding + 8px item padding + 22px icon + 2px gap + ~12px label,
+// top+bottom, + 2px border), so its top edge is bottom:78px — 12px above
+// that is bottom:90px.
+//
+// Canopus is the largest star in the constellation (matches Home3DFragment).
+.star--canopus {
+    bottom: 90px;
+    font-size: 20px;
+    cursor: pointer;
+    pointer-events: auto;
+    animation-delay: 0.8s;
+}
+
+// Exactly midway between Sirius (top: 50%) and Canopus (bottom: 90px, i.e.
+// top: calc(100% - 90px)) — averaging a %-based and px-based anchor needs
+// calc(): (50% + (100% - 90px)) / 2 = 75% - 45px.
+.star--centauri {
+    top: calc(75% - 45px);
+    font-size: 17px;
+    cursor: pointer;
+    pointer-events: auto;
+    animation-delay: 1.5s;
+}
+
+@keyframes star-pulse {
+
+    0%,
+    100% {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.75;
+    }
+
+    50% {
+        transform: translateX(-50%) scale(1.18);
+        opacity: 1;
+    }
+}
+
+@keyframes star-twinkle {
+    from {
+        transform: translateX(-50%) scale(1);
+        opacity: 0.7;
+    }
+
+    to {
+        transform: translateX(-50%) scale(1.05);
+        opacity: 1;
+    }
+}
+
+// Hide the whole constellation off the home screen
+// (JS toggles class "is-home" on .shell)
+.shell:not(.is-home) .galaxy-backdrop,
+.shell:not(.is-home) .star {
+    opacity: 0;
+    pointer-events: none;
+}

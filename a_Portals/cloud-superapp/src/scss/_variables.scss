@@ -1,0 +1,103 @@
+// ==========================================================================
+// Design tokens — transcribed 1:1 from aa_cloud-superapp
+// (app/src/main/res/values/colors.xml + themes.xml + drawable/bg_gradient_black_purple.xml)
+// Do not invent new colors here — this file is the single source of truth
+// for every hex value the rest of the stylesheet uses.
+// ==========================================================================
+
+:root {
+    // Backdrop — symmetric purple → black → purple vertical gradient
+    --gradient-top: #2d1b69;
+    --gradient-mid: #000000;
+    --gradient-bottom: #2d1b69;
+
+    // Island chrome — opaque black "glass" surfaces floating on the gradient
+    --glass-bg: #000000;
+    --glass-border: rgba(167, 139, 250, 0.2); // glass_border #33A78BFA
+    --island-accent: #b794f4;
+
+    // Drawer banners
+    --drawer-banner-app: #1a0033;
+    --drawer-banner-user: #0e0220;
+    --drawer-banner-text: #e9d8fd;
+    --drawer-avatar: #7c3aed;
+    --drawer-separator: rgba(183, 148, 244, 0.333); // #55B794F4
+
+    // Brand (Material 3, seed = cloud-blue)
+    --cloud-primary: #1565c0;
+    --cloud-on-primary: #ffffff;
+    --cloud-primary-container: #d0e4ff;
+    --cloud-on-primary-container: #001d36;
+    --cloud-secondary: #535f70;
+    --cloud-secondary-container: #d7e3f7;
+    --cloud-tertiary: #6b5778;
+
+    // Surface text (dark theme — body sits on the black/purple gradient)
+    --text-primary: #f2f0f7;
+    --text-secondary: rgba(242, 240, 247, 0.65);
+    --text-on-tile: #1a1a1a;
+
+    // Tile palette — 8 pastel bg/fg pairs, Google-Drive-style (colors.xml)
+    --tile-blue-bg: #e3f2fd;
+    --tile-blue-fg: #1565c0;
+    --tile-green-bg: #e8f5e9;
+    --tile-green-fg: #2e7d32;
+    --tile-purple-bg: #ede7f6;
+    --tile-purple-fg: #6a1b9a;
+    --tile-pink-bg: #fce4ec;
+    --tile-pink-fg: #c2185b;
+    --tile-orange-bg: #fff3e0;
+    --tile-orange-fg: #ef6c00;
+    --tile-teal-bg: #e0f2f1;
+    --tile-teal-fg: #00695c;
+    --tile-amber-bg: #fff8e1;
+    --tile-amber-fg: #b28704;
+    --tile-indigo-bg: #e8eaf6;
+    --tile-indigo-fg: #283593;
+
+    // Geometry — carried over from the Android dp values (1dp ≈ 1px baseline)
+    --radius-tile: 16px;
+    --radius-island: 24px;
+    --radius-drawer-avatar: 50%;
+    --island-margin: 12px;
+    --drawer-width: 280px;
+    --phone-max-width: 480px;
+
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    // ── Motion — transcribed from the Android app's transition resources
+    // (res/anim/fade_*.xml, slide_in/out_*.xml, drawable/tile_press.xml) ──
+    --duration-fade: 220ms; // fade_in.xml / fade_out.xml — drawer scrim, fan menu, overlay sheet
+    --duration-slide-in: 280ms; // slide_in_*.xml — drawer/overlay opening
+    --ease-decelerate: cubic-bezier(0.22, 1, 0.36, 1); // android.R.interpolator.decelerate_quint
+    --duration-slide-out: 220ms; // slide_out_*.xml — drawer/overlay closing
+    --ease-accelerate: cubic-bezier(0.64, 0, 0.78, 0); // android.R.interpolator.accelerate_quint
+    --duration-press-down: 80ms; // tile_press.xml — scale 1 → 0.92 on ACTION_DOWN
+    --duration-press-up: 160ms; // tile_press.xml — scale 0.92 → 1 on ACTION_UP/CANCEL
+    --scale-press: 0.92; // tile_press.xml pressed-state scale
+
+    // ── Glass surfaces — transcribed from the Android app's glass drawables
+    // (drawable/bg_glass_liquid.xml, bg_glass_tile.xml, bg_glass_icon.xml,
+    // bg_dynamic_island.xml) ──
+    --glass-liquid-radius: 24px; // bg_glass_liquid.xml — cards/islands
+    --glass-liquid-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.05), rgba(183, 148, 244, 0.10));
+    --glass-liquid-border: 1px solid rgba(255, 255, 255, 0.20);
+
+    --glass-tile-radius: 20px; // bg_glass_tile.xml — app-grid tiles
+    --glass-tile-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.20), rgba(255, 255, 255, 0.04), rgba(183, 148, 244, 0.08));
+    --glass-tile-border: 1px solid rgba(255, 255, 255, 0.13);
+
+    --glass-icon-radius: 50%; // bg_glass_icon.xml — circular icon backgrounds
+    --glass-icon-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.05), rgba(124, 58, 237, 0.10));
+    --glass-icon-border: 1px solid rgba(255, 255, 255, 0.20);
+
+    --glass-pill-radius: 999px; // bg_dynamic_island.xml — toolbar chips / bottom-nav island pill
+    --glass-pill-bg: #000000;
+    --glass-pill-border: 1px solid rgba(183, 148, 244, 0.33);
+
+    // Drawer dense rows — NavigationView compact list-item typography
+    --drawer-dense-font-size: 12px;
+    --drawer-dense-line-height: 14px;
+    --drawer-dense-color: #e9d8fd;
+}

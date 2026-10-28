@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "note": "Curated card copy layered over the 'services' and 'front-apps' c3 datasets for products.html. Each entry's title/description/icon are the user's exact curated copy — never rewrite. 'url' (when present) is used verbatim as the link target, taking priority over any live service domain. 'service' (when present) names an entry in the 'services' dataset used for live domain/wg_only badge fallback and status refresh. Entries with no 'service' and no 'url' cannot render a link and fall back to an Internal badge."
+  },
+  "solutions": {
+    "Suite": {
+      "AI": [
+        { "id": "chat-multimodel", "title": "Chat Multi-Model", "description": "Multi-provider AI Chat", "url": "https://chat.diegonmarcos.com", "iconPath": "M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z|M8 9h8M8 13h6" },
+        { "id": "chat", "title": "Chat", "description": "Team Messaging", "url": "https://chat.diegonmarcos.com", "service": "chat-mattermost", "iconPath": "M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" },
+        { "id": "myterminal", "title": "WebIDE", "description": "AI powered Terminal File Explorer and IDE", "url": "https://ide.diegonmarcos.com", "service": "code-server", "iconPath": "polyline:4 17 10 11 4 5|line:12 19 20 19" }
+      ],
+      "Inbox": [
+        { "id": "mail", "title": "Mail&Cal", "description": "mymail landing", "url": "https://diegonmarcos.github.io/mymail", "iconPath": "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z|polyline:22,6 12,13 2,6" },
+        { "id": "myfeed", "title": "MyFeed", "description": "RSS / News Dashboard", "url": "https://diegonmarcos.github.io/myfeed", "iconPath": "M4 11a9 9 0 0 1 9 9|M4 4a16 16 0 0 1 16 16|circle:5,19,1" }
+      ],
+      "Productivity": [
+        { "id": "drive", "title": "Drive&Suite", "description": "suite landing", "url": "https://suite.diegonmarcos.com", "iconPath": "M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z|line:12,11,12,17|line:9,14,15,14" },
+        { "id": "jsonvision", "title": "JSON Vision", "description": "JSON Viewer & Editor", "url": "https://diegonmarcos.github.io/json-vision", "iconPath": "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z|polyline:14 2 14 8 20 8|line:16,13,8,13|line:16,17,8,17" }
+      ],
+      "DEV": [
+        { "id": "api-endpoints", "title": "API Swagger", "description": "REST API Documentation", "url": "https://diegonmarcos.github.io/api", "iconPath": "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z|M8 10h8M8 14h4" },
+        { "id": "mcp-tools", "title": "MCP API Skills Hub", "description": "Model Context Protocol", "url": "https://api.diegonmarcos.com/dash", "iconPath": "M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" }
+      ]
+    },
+    "Misc": {
+      "MY TOOLS": [
+        { "id": "centralbank", "title": "Central Bank", "description": "Currency Tools", "url": "https://diegonmarcos.github.io/central_bank", "iconPath": "line:12,1,12,23|M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" },
+        { "id": "marketwatch", "title": "Market Watch", "description": "Stock & Crypto Tracker", "url": "https://diegonmarcos.github.io/market_watch", "iconPath": "polyline:22 12 18 12 15 21 9 3 6 12 2 12" },
+        { "id": "myhealth-profile", "title": "MyHealth Profile", "description": "Fitness & Health", "url": "https://diegonmarcos.github.io/myhealth-profile", "iconPath": "M22 12h-4l-3 9L9 3l-3 9H2" },
+        { "id": "myhealth-feedyourself", "title": "Feed Yourself", "description": "Recipe & Meal Planner", "url": "https://diegonmarcos.github.io/myhealth-feedyourself", "iconPath": "M18 8h1a4 4 0 0 1 0 8h-1|M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z|line:6,1,6,4|line:10,1,10,4|line:14,1,14,4" },
+        { "id": "mymaps-navigation", "title": "MyMaps Navigation", "description": "Maps & Transport", "url": "https://diegonmarcos.github.io/mymaps-navigation", "iconPath": "M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z|circle:12,10,3" },
+        { "id": "mymaps-mytrips", "title": "MyMaps MyTrips", "description": "Trip Planner", "url": "https://diegonmarcos.github.io/mymaps-mytrips", "iconPath": "M3 17h2l3-9 3 9h2|M13 6h8l-4 11|circle:6,17,2|circle:17,17,2" }
+      ],
+      "ENTERTAINMENT": [
+        { "id": "games", "title": "Games", "description": "Browser Games", "url": "https://diegonmarcos.github.io/games", "iconPath": "rect:2,6,20,12,2|line:6,12,10,12|line:8,10,8,14|circle:17,10,1|circle:15,13,1" },
+        { "id": "myvideos", "title": "MyVideos", "description": "Video Streaming", "url": "https://diegonmarcos.github.io/myvideos", "iconPath": "polygon:5 3 19 12 5 21 5 3" },
+        { "id": "movies", "title": "Movies", "description": "Movie Collection", "url": "https://diegonmarcos.github.io/movies", "iconPath": "rect:2,2,20,20,2.18,2.18|line:7,2,7,22|line:17,2,17,22|line:2,12,22,12|line:2,7,7,7|line:2,17,7,17|line:17,17,22,17|line:17,7,22,7" },
+        { "id": "music", "title": "Music", "description": "Music Streaming", "url": "https://diegonmarcos.github.io/music", "iconPath": "M9 18V5l12-2v13|circle:6,18,3|circle:18,16,3" },
+        { "id": "myAstro", "title": "myAstro", "description": "myAstronomy Tools", "url": "https://diegonmarcos.github.io/myAstro", "iconPath": "circle:12,12,4|M12 2v2|M12 20v2|M4.93 4.93l1.41 1.41|M17.66 17.66l1.41 1.41|M2 12h2|M20 12h2|M6.34 17.66l-1.41 1.41|M19.07 4.93l-1.41 1.41" },
+        { "id": "carto", "title": "Carto", "description": "Card Games", "url": "https://diegonmarcos.github.io/carto/", "iconPath": "rect:2,4,20,16,2|M12 4v16|M2 12h20" }
+      ]
+    }
+  },
+  "admin": {
+    "Cloud Providers": [
+      { "id": "oracle-cloud", "title": "Oracle Cloud", "url": "https://cloud.oracle.com", "gradient": "#c74634, #a03528", "badge": "OCI", "badgeColor": "#c74634", "status": "Console", "iconPath": "ellipse:12,12,10,5|M2 12v0c0 2.76 4.48 5 10 5s10-2.24 10-5" },
+      { "id": "gcloud", "service": "gcloud", "title": "GCloud", "url": "https://console.cloud.google.com", "gradient": "#60a5fa, #3b82f6", "badge": "GCP", "badgeColor": "#93c5fd", "status": "Console", "iconPath": "M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" }
+    ],
+    "Security": [
+      { "id": "caddy", "service": "caddy", "title": "Proxy", "url": "https://proxy.diegonmarcos.com", "gradient": "#10b981, #059669", "badge": "NPM", "badgeColor": "#10b981", "status": "gcp-f-micro_1", "iconPath": "M12 2L2 7l10 5 10-5-10-5z|M2 17l10 5 10-5M2 12l10 5 10-5" },
+      { "id": "authelia", "service": "authelia", "title": "Auth", "url": "https://auth.diegonmarcos.com", "gradient": "#ef4444, #dc2626", "badge": "Authelia 2FA", "badgeColor": "#ef4444", "status": "gcp-proxy", "iconPath": "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" },
+      { "id": "ntfy", "service": "ntfy", "title": "ntfy Push", "url": "https://rss.diegonmarcos.com", "gradient": "#f59e0b, #d97706", "badge": "Notifications", "badgeColor": "#f59e0b", "status": "gcp-proxy", "iconPath": "M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9|M13.73 21a2 2 0 0 1-3.46 0" },
+      { "id": "vaultwarden", "service": "vaultwarden", "title": "Vault", "url": "https://vault.diegonmarcos.com", "gradient": "#6366f1, #4f46e5", "badge": "Passwords", "badgeColor": "#a5b4fc", "status": "Vaultwarden", "iconPath": "rect:3,11,18,11,2,2|M7 11V7a5 5 0 0 1 10 0v4" }
+    ],
+    "Others": [
+      { "id": "matomo", "service": "matomo", "title": "Matomo Analytics", "url": "https://analytics.diegonmarcos.com", "gradient": "#8b5cf6, #6d28d9", "badge": "Analytics", "badgeColor": "#a78bfa", "status": "oci-f-micro_2", "iconPath": "M18 20V10M12 20V4M6 20v-6" },
+      { "id": "dagu", "service": "dagu", "title": "Workflows", "url": "https://workflows.diegonmarcos.com", "gradient": "#f59e0b, #d97706", "badge": "Automation", "badgeColor": "#fbbf24", "status": "DAG Scheduler", "iconPath": "M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" },
+      { "id": "nocodb-dbgate", "service": "dbgate", "title": "NocoDB", "url": "https://db.diegonmarcos.com", "gradient": "#06b6d4, #0891b2", "badge": "Database", "badgeColor": "#22d3ee", "status": "Airtable Alt", "iconPath": "ellipse:12,5,9,3|M21 12c0 1.66-4 3-9 3s-9-1.34-9-3|M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" }
+    ]
+  },
+  "apps": [
+    { "id": "cloud-app", "title": "Cloud App", "url": "https://diegonmarcos.github.io/cloud", "badge": "Desktop App", "status": "Download", "iconColor": "app-card-icon--blue", "iconPath": "M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z", "toolsList": ["VPN Connection", "Vault Access", "System Health Check"], "featuresList": ["Mesh Network", "Split Tunneling", "Config Files Local AutoSetup"] }
+  ]
+}

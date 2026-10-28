@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C3 Component Gallery | Cloud Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        (function () {
+            var theme = localStorage.getItem('cloud-dashboard-theme') || 'blurred';
+            document.documentElement.setAttribute('data-theme', theme);
+        })();
+    </script>
+    <style>
+        /* Gallery scaffolding only — not part of the component library itself. */
+        body { margin: 0; padding: 1.25rem; background: var(--bg-primary); }
+        .gallery-header { margin-bottom: 1.5rem; }
+        .gallery-header h1 { font-size: 1.3rem; margin: 0 0 0.25rem; }
+        .gallery-header p { color: var(--text-secondary); font-size: 0.85rem; margin: 0; }
+        .gallery-section { margin-bottom: 2rem; }
+        .gallery-section h2 {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.4rem;
+            margin: 0 0 0.85rem;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 0.85rem;
+        }
+        .gallery-variant-label {
+            font-size: 0.68rem;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+        .gallery-row { display: flex; flex-wrap: wrap; gap: 0.85rem; align-items: flex-start; }
+        .gallery-badges { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+        .gallery-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .gallery-btn {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.35rem 0.7rem;
+            font-size: 0.75rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+        }
+        .gallery-btn:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 1px; }
+    </style>
+<!-- Matomo Tag Manager --><script>var _mtm = window._mtm = window._mtm || [];_mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});(function() {  var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];  g.async=true; g.src='https://analytics.diegonmarcos.com/matomo/js/container_odwLIyPV.js';  s.parentNode.insertBefore(g,s);})();</script><!-- End Matomo Tag Manager -->
+<!-- Umami Analytics -->
+<script async src="https://analytics.diegonmarcos.com/umami/script.js" data-website-id="937cbde7-5ec2-450c-9d6a-8117423ac12f"></script>
+<!-- End Umami Analytics -->
+</head>
+<body>
+    <div class="gallery-header">
+        <h1>C3 Component Library — Wave 1 Gallery</h1>
+        <p>Standalone review page for all 14 reusable components, each with loading / error / empty / ready variants. Loads compiled dist/styles.css + dist/c3-ui.js (window.C3UI namespace).</p>
+    </div>
+
+    <div class="gallery-row" style="margin-bottom:1.5rem;">
+        <button class="gallery-btn" id="open-drawer-btn">Open c3Drawer</button>
+        <button class="gallery-btn" id="toast-ok-btn">Fire ok toast</button>
+        <button class="gallery-btn" id="toast-warn-btn">Fire warn toast</button>
+        <button class="gallery-btn" id="toast-error-btn">Fire error toast</button>
+        <button class="gallery-btn" id="open-cmdk-btn">Open c3CmdK (or press Ctrl/Cmd+K)</button>
+        <button class="gallery-btn" id="run-demo-btn">Run demo() self-check (see console)</button>
+    </div>
+
+    <section class="gallery-section" id="sec-panel">
+        <h2>1. c3Panel</h2>
+        <div class="gallery-grid" id="grid-panel"></div>
+    </section>
+
+    <section class="gallery-section" id="sec-stat">
+        <h2>2/3. c3Stat + c3Sparkline</h2>
+        <div class="gallery-grid" id="grid-stat"></div>
+    </section>
+
+    <section class="gallery-section" id="sec-timeseries">
+        <h2>4. c3Timeseries</h2>
+        <div class="gallery-grid" id="grid-timeseries" style="grid-template-columns: 1fr;"></div>
+    </section>
+
+    <section class="gallery-section" id="sec-gauge">
+        <h2>5. c3Gauge</h2>
+        <div class="gallery-grid" id="grid-gauge"></div>
+    </section>
+
+    <section class="gallery-section" id="sec-heatmap">
+        <h2>6. c3Heatmap</h2>
+        <div class="gallery-grid" id="grid-heatmap"></div>
+    </section>
+
+    <section class="gallery-section" id="sec-table">
+        <h2>7. c3Table</h2>
+        <div class="gallery-grid" id="grid-table" style="grid-template-columns: 1fr;"></div>
+    </section>
+
+    <section class="gallery-section" id="sec-badge">
+        <h2>8. c3Badge</h2>
+        <div class="gallery-badges" id="grid-badge"></div>
+    </section>
+
+    <section class="gallery-section" id="sec-tree">
+        <h2>11. c3Tree</h2>
+        <div class="gallery-grid" id="grid-tree"></div>
+    </section>
+
+    <section class="gallery-section" id="sec-toolbar">
+        <h2>10. c3Toolbar</h2>
+        <div id="grid-toolbar"></div>
+    </section>
+
+    <section class="gallery-section" id="sec-logstream">
+        <h2>12. c3LogStream</h2>
+        <div class="gallery-grid" id="grid-logstream" style="grid-template-columns: 1fr;"></div>
+    </section>
+
+    <section class="gallery-section" id="sec-drawer">
+        <h2>9. c3Drawer</h2>
+        <p style="color:var(--text-secondary);font-size:0.8rem;">Use the "Open c3Drawer" button above. Closes on Escape or backdrop click.</p>
+    </section>
+
+    <section class="gallery-section" id="sec-cmdk">
+        <h2>13. c3CmdK</h2>
+        <p style="color:var(--text-secondary);font-size:0.8rem;">Press Ctrl/Cmd+K anywhere on this page, or use the button above. Arrow keys navigate, Enter runs, Escape closes.</p>
+    </section>
+
+    <section class="gallery-section" id="sec-toast">
+        <h2>14. c3Toast</h2>
+        <p style="color:var(--text-secondary);font-size:0.8rem;">Use the toast buttons above — toasts stack in the top-right corner and auto-dismiss.</p>
+    </section>
+
+    <script src="c3-ui.js"></script>
+    <script>
+    (function () {
+        var C = window.C3UI || {};
+
+        function mount(id, elOrList) {
+            var host = document.getElementById(id);
+            if (!host) return;
+            (Array.isArray(elOrList) ? elOrList : [elOrList]).forEach(function (e) {
+                if (e) host.appendChild(e);
+            });
+        }
+
+        function variant(label, el) {
+            var wrap = document.createElement('div');
+            var lab = document.createElement('div');
+            lab.className = 'gallery-variant-label';
+            lab.textContent = label;
+            wrap.appendChild(lab);
+            wrap.appendChild(el);
+            return wrap;
+        }
+
+        // ---- 1. c3Panel ----
+        var actionBtn = document.createElement('button');
+        actionBtn.className = 'vm-action-btn btn-reset';
+        actionBtn.title = 'Refresh panel';
+        actionBtn.textContent = '↻';
+        mount('grid-panel', [
+            variant('ready (with header action)', C.c3Panel({
+                title: 'VM Overview — oci-p-flex_1',
+                headerActions: [actionBtn],
+                body: (function () { var d = document.createElement('div'); d.textContent = '3 services running, 68% disk used.'; return d; })(),
+            })),
+            variant('loading', C.c3Panel({ title: 'Service Health', state: 'loading' })),
+            variant('error', C.c3Panel({ title: 'Cost Summary', state: 'error', errorText: 'c3-infra-api: 503 Service Unavailable' })),
+            variant('empty', C.c3Panel({ title: 'Alerts', state: 'empty', emptyText: 'No active alerts.' })),
+        ]);
+
+        // ---- 2/3. c3Stat ----
+        var spark1 = [12, 14, 11, 18, 22, 19, 25, 24, 28, 31, 29, 33];
+        var spark2 = [80, 76, 74, 70, 68, 65, 61, 58, 55, 52, 50, 48];
+        mount('grid-stat', [
+            variant('ready — positive delta', C.c3Stat({ label: 'Requests / min', value: '1,284', delta: 12.4, deltaLabel: 'vs 1h ago', spark: spark1 })),
+            variant('ready — negative delta', C.c3Stat({ label: 'Error rate', value: '0.42%', delta: -0.8, deltaLabel: 'vs 1h ago', spark: spark2 })),
+            variant('loading', C.c3Stat({ label: 'p95 Latency', state: 'loading' })),
+            variant('error', C.c3Stat({ label: 'Uptime', state: 'error', errorText: 'metrics backend unreachable' })),
+            variant('empty', C.c3Stat({ label: 'Deploys today', state: 'empty', emptyText: 'No deploys yet today.' })),
+        ]);
+
+        // ---- 4. c3Timeseries ----
+        function series(n, base, amp) {
+            var out = [];
+            for (var i = 0; i < n; i++) out.push(Math.max(0, base + amp * Math.sin(i / 3) + (Math.random() - 0.5) * amp * 0.4));
+            return out.map(function (v) { return Math.round(v * 10) / 10; });
+        }
+        var xLabels = Array.from({ length: 24 }, function (_, i) { return (i + ':00'); });
+        mount('grid-timeseries', [
+            variant('ready — multi-series with legend + hover crosshair', C.c3Timeseries({
+                width: 760, height: 220,
+                xLabels: xLabels,
+                series: [
+                    { name: 'cpu %', color: 'var(--accent-blue)', points: series(24, 40, 15) },
+                    { name: 'mem %', color: 'var(--accent-green)', points: series(24, 60, 10) },
+                    { name: 'disk io', color: 'var(--accent-orange)', points: series(24, 20, 18) },
+                ],
+            })),
+            variant('loading', C.c3Timeseries({ state: 'loading' })),
+            variant('error', C.c3Timeseries({ state: 'error', errorText: 'metrics-series query timed out' })),
+            variant('empty', C.c3Timeseries({ state: 'empty', emptyText: 'No data points in selected range.' })),
+        ]);
+
+        // ---- 5. c3Gauge ----
+        mount('grid-gauge', [
+            variant('healthy (32%)', C.c3Gauge({ value: 32, label: 'CPU usage' })),
+            variant('warn band (78%)', C.c3Gauge({ value: 78, warnAt: 70, critAt: 90, label: 'Memory usage' })),
+            variant('critical (94%)', C.c3Gauge({ value: 94, warnAt: 70, critAt: 90, label: 'Disk usage' })),
+            variant('loading', C.c3Gauge({ value: 0, state: 'loading' })),
+            variant('error', C.c3Gauge({ value: 0, state: 'error' })),
+        ]);
+
+        // ---- 6. c3Heatmap ----
+        var statuses = ['ok', 'ok', 'ok', 'ok', 'info', 'warn', 'error', 'critical', 'unknown'];
+        var cells = Array.from({ length: 96 }, function (_, i) {
+            return { id: 'pod-' + i, status: statuses[Math.floor(Math.random() * statuses.length)], tooltip: 'last check 12s ago' };
+        });
+        mount('grid-heatmap', [
+            variant('ready (96 cells, hover/focus for tooltip)', C.c3Heatmap({ cells: cells })),
+            variant('loading', C.c3Heatmap({ state: 'loading' })),
+            variant('error', C.c3Heatmap({ state: 'error', errorText: 'health-declared feed failed' })),
+            variant('empty', C.c3Heatmap({ state: 'empty', emptyText: 'No monitored cells.' })),
+        ]);
+
+        // ---- 7. c3Table ----
+        var tableCols = [
+            { key: 'name', label: 'Container' },
+            { key: 'vm', label: 'VM' },
+            { key: 'cpu', label: 'CPU %' },
+            { key: 'mem', label: 'Mem %' },
+            { key: 'status', label: 'Status' },
+        ];
+        var tableRows = [
+            { name: 'photoprism', vm: 'oci-p-flex_1', cpu: 5, mem: 15, status: 'ok' },
+            { name: 'radicale', vm: 'oci-p-flex_1', cpu: 1, mem: 1, status: 'ok' },
+            { name: 'mailu-imap', vm: 'oci-f-micro_1', cpu: 2, mem: 20, status: 'warn' },
+            { name: 'mailu-admin', vm: 'oci-f-micro_1', cpu: 1, mem: 12, status: 'ok' },
+            { name: 'matomo-db', vm: 'oci-f-micro_2', cpu: 5, mem: 30, status: 'ok' },
+            { name: 'npm', vm: 'gcp-f-micro_1', cpu: 8, mem: 25, status: 'error' },
+            { name: 'authelia', vm: 'gcp-f-micro_1', cpu: 3, mem: 15, status: 'ok' },
+            { name: 'wireguard', vm: 'gcp-f-micro_1', cpu: 5, mem: 10, status: 'ok' },
+        ];
+        mount('grid-table', [
+            variant('ready — sortable / filterable / density toggle / row actions', C.c3Table({
+                columns: tableCols,
+                rows: tableRows,
+                rowActions: [{ label: 'Restart', onClick: function (row) { alert('Restart ' + row.name); } }],
+            })),
+        ]);
+        mount('grid-table', [variant('loading', C.c3Table({ state: 'loading' }))]);
+        mount('grid-table', [variant('error', C.c3Table({ state: 'error', errorText: 'container-resources query failed' }))]);
+        mount('grid-table', [variant('empty', C.c3Table({ columns: tableCols, state: 'empty', emptyText: 'No containers found.' }))]);
+
+        // ---- 8. c3Badge ----
+        mount('grid-badge', [
+            C.c3Badge('OK', 'ok'),
+            C.c3Badge('INFO', 'info'),
+            C.c3Badge('WARN', 'warn'),
+            C.c3Badge('ERROR', 'error'),
+            C.c3Badge('CRITICAL', 'critical'),
+            C.c3Badge('UNKNOWN', 'unknown'),
+        ]);
+
+        // ---- 11. c3Tree ----
+        mount('grid-tree', [
+            variant('ready', C.c3Tree({
+                nodes: [
+                    {
+                        id: 'oci', label: 'OCI', status: 'ok', meta: '3 VMs', expanded: true,
+                        children: [
+                            { id: 'oci-p-flex_1', label: 'oci-p-flex_1', status: 'ok', meta: '4 svc', expanded: true, children: [
+                                { id: 'photoprism', label: 'photoprism', status: 'ok', meta: '15% mem' },
+                                { id: 'radicale', label: 'radicale', status: 'ok', meta: '1% mem' },
+                            ]},
+                            { id: 'oci-f-micro_1', label: 'oci-f-micro_1', status: 'warn', meta: '6 svc' },
+                            { id: 'oci-f-micro_2', label: 'oci-f-micro_2', status: 'ok', meta: '2 svc' },
+                        ],
+                    },
+                    { id: 'gcp', label: 'GCP', status: 'error', meta: '1 VM', children: [
+                        { id: 'gcp-f-micro_1', label: 'gcp-f-micro_1', status: 'error', meta: '4 svc' },
+                    ]},
+                ],
+                onSelect: function (n) { console.log('c3Tree select', n.id); },
+            })),
+            variant('loading', C.c3Tree({ state: 'loading' })),
+            variant('error', C.c3Tree({ state: 'error', errorText: 'topology feed failed' })),
+            variant('empty', C.c3Tree({ state: 'empty', emptyText: 'No infrastructure declared.' })),
+        ]);
+
+        // ---- 10. c3Toolbar ----
+        mount('grid-toolbar', [C.c3Toolbar({
+            range: '1h',
+            autoRefreshOptions: ['off', '10s', '30s', '1m', '5m'],
+            autoRefresh: '30s',
+            liveMock: 'mock',
+            onRangeChange: function (r) { console.log('range ->', r); },
+            onAutoRefreshChange: function (v) { console.log('auto-refresh ->', v); },
+            onRefresh: function () { console.log('manual refresh'); },
+            onLiveMockChange: function (v) { console.log('live/mock ->', v); },
+        })]);
+
+        // ---- 12. c3LogStream ----
+        var levels = ['debug', 'info', 'info', 'info', 'warn', 'error'];
+        var sampleLines = Array.from({ length: 12000 }, function (_, i) {
+            return { ts: '12:00:' + String(i % 60).padStart(2, '0'), level: levels[i % levels.length], text: 'req#' + i + ' GET /api/health 200 ' + (i % 40) + 'ms' };
+        });
+        var streamHandle = C.c3LogStream({ lines: sampleLines, viewportHeight: 260 });
+        mount('grid-logstream', [variant('ready — 12,000 virtualized lines, filter + pause/resume', streamHandle.el)]);
+        mount('grid-logstream', [variant('loading', C.c3LogStream({ state: 'loading' }).el)]);
+        mount('grid-logstream', [variant('error', C.c3LogStream({ state: 'error', errorText: 'log tail disconnected' }).el)]);
+        mount('grid-logstream', [variant('empty', C.c3LogStream({ state: 'empty', emptyText: 'No log lines in buffer.' }).el)]);
+
+        // ---- 9. c3Drawer ----
+        var drawer = C.c3Drawer({
+            title: 'oci-p-flex_1 — details',
+            sections: [
+                { title: 'Overview', content: (function () { var d = document.createElement('div'); d.textContent = 'Region: eu-frankfurt-1 · Shape: E4.Flex · 4 OCPU / 24GB'; return d; })() },
+                { title: 'Services', content: C.c3Badge('4 running', 'ok') },
+                { title: 'Resource usage', content: C.c3Gauge({ value: 68, warnAt: 70, critAt: 90, label: 'Disk' }) },
+            ],
+        });
+        document.body.appendChild(drawer.backdrop);
+        document.body.appendChild(drawer.drawer);
+        document.getElementById('open-drawer-btn').addEventListener('click', drawer.open);
+
+        // ---- 14. c3Toast ----
+        var toasts = C.c3ToastStack();
+        document.body.appendChild(toasts.el);
+        document.getElementById('toast-ok-btn').addEventListener('click', function () {
+            toasts.show({ title: 'Restart succeeded', message: 'photoprism restarted on oci-p-flex_1.', severity: 'ok' });
+        });
+        document.getElementById('toast-warn-btn').addEventListener('click', function () {
+            toasts.show({ title: 'High memory', message: 'gcp-f-micro_1 at 82% memory.', severity: 'warn' });
+        });
+        document.getElementById('toast-error-btn').addEventListener('click', function () {
+            toasts.show({ title: 'Action failed', message: 'SSH copy failed: clipboard denied.', severity: 'error' });
+        });
+
+        // ---- 13. c3CmdK ----
+        var cmdk = C.c3CmdK([
+            { id: 'restart-flex', label: 'Restart oci-p-flex_1', hint: 'VM', onRun: function () { toasts.show({ message: 'Restarting oci-p-flex_1…', severity: 'info' }); } },
+            { id: 'open-drawer', label: 'Open VM details drawer', hint: 'Panel', onRun: drawer.open },
+            { id: 'goto-costs', label: 'Go to Cost Summary', hint: 'Nav', onRun: function () { toasts.show({ message: 'Navigating to Costs…', severity: 'info' }); } },
+            { id: 'toggle-theme', label: 'Toggle theme', hint: 'Settings', onRun: function () { toasts.show({ message: 'Theme toggled (demo only).', severity: 'ok' }); } },
+        ]);
+        document.body.appendChild(cmdk.backdrop);
+        document.getElementById('open-cmdk-btn').addEventListener('click', cmdk.open);
+
+        // ---- self-check ----
+        document.getElementById('run-demo-btn').addEventListener('click', function () {
+            if (typeof C.demo === 'function') C.demo();
+        });
+    })();
+    </script>
+</body>
+</html>

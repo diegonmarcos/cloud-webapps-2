@@ -1,0 +1,145 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Edge menu — one-hand "Sirius" left/right swipe-in-from-the-edge handles
+// ==========================================================================
+
+// Two 220px-tall, 5-sector touch targets hugging .shell's own left/right
+// edges (not the true browser viewport — same "shell is the screen" model
+// as the radial star menu and fan menu, see _radial-menu.scss).
+.edge-menu-handles {
+    position: absolute;
+    inset: 0;
+    z-index: 40;
+    pointer-events: none;
+}
+
+.edge-menu__handle {
+    position: absolute;
+    top: 50%;
+    display: flex;
+    flex-direction: column;
+    width: 32px; // hit-zone only — the visible grab bar is 3px (::before)
+    height: 220px;
+    transform: translateY(-50%);
+    touch-action: none;
+    // These handles sit exactly where Android/Chrome want to start their own
+    // edge swipes (back-navigation, overscroll glow). touch-action alone stops
+    // the pan; overscroll-behavior stops the gesture from chaining outward.
+    overscroll-behavior: none;
+    pointer-events: auto;
+}
+
+.edge-menu__handle--left {
+    left: 0;
+}
+
+.edge-menu__handle--right {
+    right: 0;
+}
+
+// Subtle violet-tinted grab bar — mostly transparent, purely a visual hint
+// that the 32px hit-zone next to it exists.
+.edge-menu__handle::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 2px;
+    background: rgba(163, 122, 244, 0.35);
+}
+
+.edge-menu__handle--left::before {
+    left: 0;
+}
+
+.edge-menu__handle--right::before {
+    right: 0;
+}
+
+// The sectors — not the handle — are what edge-menu.ts binds pointerdown to,
+// so they carry touch-action in their own right rather than relying purely on
+// inheriting the handle's restriction through the hit-test ancestor walk.
+.edge-menu__sector {
+    flex: 1;
+    touch-action: none;
+}
+
+// Overlay — one #radial-menu-style scrim + fanned arc, built and torn down
+// by edge-menu.ts per gesture (no pre-rendered HTML, unlike #radial-menu).
+.edge-menu {
+    position: absolute;
+    inset: 0;
+    z-index: 51; // above the radial star menu's own scrim/nodes
+    // Same reasoning as .radial-menu: one declaration on the overlay root
+    // covers the scrim/nodes/arrow for the ancestor touch-action walk.
+    touch-action: none;
+    overscroll-behavior: none;
+}
+
+.edge-menu.is-open {
+    display: block;
+}
+
+.edge-menu__scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.47);
+    backdrop-filter: blur(2px);
+}
+
+// left/top set inline by JS per handle sector position
+.edge-menu__center {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.edge-menu__node {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 52px; // radius 26px
+    height: 52px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty));
+    background: rgba(24, 20, 40, 0.86);
+    @include flex-center;
+    text-align: center;
+    transition: background var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
+    border: 2px solid transparent;
+}
+
+.edge-menu__node.is-highlighted {
+    background: rgba(60, 120, 255, 0.31);
+    border-color: rgba(100, 160, 255, 0.86);
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(1.12);
+}
+
+.edge-menu__node-label {
+    pointer-events: none;
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+// Follow-finger arrow — drawn by edge-menu.ts from the sector's origin to
+// the current pointer position while an arc is open.
+.edge-menu__arrow {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.edge-menu__arrow-line {
+    stroke: rgba(163, 122, 244, 0.9);
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.edge-menu__arrow-head {
+    fill: rgba(163, 122, 244, 0.9);
+}
