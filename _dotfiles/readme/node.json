@@ -5,6 +5,7 @@
   "label": "cloudy-h-webapps-2",
   "code": "1.1.7.2",
   "kind": "repo",
+  "variant": "repo",
   "description": "Front group c_Suite (split from front-projects, #1072)",
   "visibility": "public",
   "url": "https://github.com/diegonmarcos/cloudy-h-webapps-2",
