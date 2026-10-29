@@ -305,7 +305,7 @@
         {
           "id": "nx-cm-blmbrg",
           "label": "Nx.z-CM-Blmbrg",
-          "icon": "sa/ic_p_markets_prices",
+          "icon": "sa/ic_p_markets_terminal",
           "target": "https://github.com/diegonmarcos/Fin-CM-Blmbrg"
         },
         {
