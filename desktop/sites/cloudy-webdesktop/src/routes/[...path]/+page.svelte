@@ -65,6 +65,9 @@
           <p class="none">No app matches “{query}”.</p>
         {/each}
       </div>
+    {:else if v.content.kind === 'native'}
+      <!-- loaded on demand: d3 and the maps code stay out of every other page -->
+      {#await import('../../apps/maps/MapsApp.svelte') then m}<m.default />{/await}
     {:else if v.content.kind === 'suite'}
       <section class="win" data-testid="desk-window" data-src={v.content.src}>
         <header class="win-bar"><Icon name={v.content.icon} size={18} /><span>{v.content.title}</span><a href={v.content.src} target="_blank" rel="noopener">Open</a></header>

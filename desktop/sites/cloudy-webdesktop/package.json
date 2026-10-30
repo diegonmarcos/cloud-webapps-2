@@ -8,6 +8,15 @@
     "sync": "svelte-kit sync"
   },
   "dependencies": {
-    "@cloudy/ui": "*"
+    "@cloudy/ui": "*",
+    "d3-geo": "^3.1.1",
+    "d3-interpolate": "^3.0.1",
+    "d3-timer": "^3.0.1",
+    "topojson-client": "^3.1.0"
+  },
+  "devDependencies": {
+    "@types/d3-geo": "^3.1.0",
+    "@types/topojson-client": "^3.1.5",
+    "sass": "^1.94.0"
   }
 }

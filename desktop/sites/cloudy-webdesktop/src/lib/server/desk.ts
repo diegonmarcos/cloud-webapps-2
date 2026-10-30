@@ -23,9 +23,11 @@ const APPS = nav.apps as unknown as App[];
 export const ROUTES = routesJson.routes as Route[];
 const TARGETS = targetsJson.targets as Record<string, string>;
 
+/** Apps merged into the desktop site itself (plan E: cloud-nav = the SvelteKit maps apps as routes). */
+export const NATIVE: Record<string, 'maps'> = { 'cloud-nav/explored/maps/': 'maps' };
+
 /** The desktop suite: published apps that are not rewritten (plan E), each on the fleet route it stands for. */
 export const SUITE: Record<string, { title: string; src: string; icon: string }> = {
-  'cloud-nav/explored/maps/': { title: 'Maps', src: '/mymaps-maps/', icon: 'map' },
   'cloud-nav/navigation/': { title: 'Navigation', src: '/mymaps-navigation/', icon: 'navigation' },
   'cloud-search/media/movies/': { title: 'Movies', src: '/movies/', icon: 'movie' },
   'cloud-news/media/': { title: 'Music', src: '/music/', icon: 'music_note' },
@@ -43,6 +45,7 @@ export type TreeItem = { id: string; label: string; icon: string | null; depth: 
 export type TileItem = { id: string; label: string; icon: string | null; href: string | null; external: boolean };
 export type Content =
   | { kind: 'home'; groups: { title: string; tiles: TileItem[] }[] }
+  | { kind: 'native'; app: 'maps'; mobileHref: string }
   | { kind: 'suite'; title: string; src: string; icon: string; mobileHref: string }
   | { kind: 'mobile'; src: string; mobileHref: string };
 export type DeskView = { path: string; title: string; crumbs: { label: string; href: string | null }[]; rail: RailItem[]; tree: TreeItem[]; treeTitle: string; content: Content };
@@ -101,7 +104,8 @@ export function deskView(path: string): DeskView | null {
     const cloud = SA.sections.find((s) => s.id === 'cloud');
     const groups = (cloud?.tile_groups ?? []).map((g) => ({ title: g.title, tiles: g.tiles.map(tile).filter((t): t is TileItem => !!t) }));
     content = { kind: 'home', groups };
-  } else if (SUITE[path]) content = { kind: 'suite', ...SUITE[path], mobileHref };
+  } else if (NATIVE[path]) content = { kind: 'native', app: NATIVE[path], mobileHref };
+  else if (SUITE[path]) content = { kind: 'suite', ...SUITE[path], mobileHref };
   else content = { kind: 'mobile', src: `${mobileHref}?embed=1`, mobileHref };
   const title = [...crumbs].slice(1).reverse().map((c) => c.label).join(' · ');
   return { path, title: title ? `${title} · Cloud Desktop` : 'Cloud Desktop', crumbs, rail, tree: items, treeTitle, content };

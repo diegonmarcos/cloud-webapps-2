@@ -59,9 +59,14 @@ test('mobile embed: a fleet page is the pinned /cloud-webapps page, chrome hidde
   await shot(page, info, 'calc');
 });
 
-test('cloud-nav: maps and navigation open the two maps apps', async ({ page }, info) => {
+test('cloud-nav: maps is merged in (the globe draws in the content pane), navigation opens its app', async ({ page }, info) => {
+  await page.route('https://cdn.jsdelivr.net/**', (r) => r.fulfill({ status: 200, contentType: 'application/json', body: '{"type":"Topology","objects":{"countries":{"type":"GeometryCollection","geometries":[]}},"arcs":[]}' }));
   await page.goto(`${D}/cloud-nav/explored/maps/`);
-  await expect(page.getByTestId('desk-window')).toHaveAttribute('data-src', '/mymaps-maps/');
+  const app = page.getByTestId('maps-app');
+  await expect(app).toBeVisible();
+  await expect(app.locator('canvas, svg').first()).toBeVisible();
+  const box = (await app.boundingBox())!, pane = (await page.getByTestId('desk-content').boundingBox())!;
+  expect(Math.abs(box.width - pane.width)).toBeLessThan(2);
   await shot(page, info, 'cloud-nav-maps');
   await page.goto(`${D}/cloud-nav/navigation/`);
   await expect(page.getByTestId('desk-window')).toHaveAttribute('data-src', '/mymaps-navigation/');
