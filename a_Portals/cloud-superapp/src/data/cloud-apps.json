@@ -267,60 +267,7 @@
       ]
     },
     {
-      "title": "Projects W",
-      "tiles": [
-        {
-          "id": "lf-dp-cloud-apk",
-          "label": "Lf.y-D&P-Cloud-apk",
-          "icon": "sa/ic_p_sol_other",
-          "target": "https://github.com/diegonmarcos/cloudy-u-android"
-        },
-        {
-          "id": "lf-dp-cloud-c3",
-          "label": "Lf.y-D&P-Cloud-C3",
-          "icon": "sa/ic_p_c3_reports",
-          "target": "https://paca.diegonmarcos.com/projects/9d336534-d0d6-4b9d-aebb-cbd59fde4d0d"
-        },
-        {
-          "id": "lf-cg-galaxy",
-          "label": "Lf.y-CG-Galaxy",
-          "icon": "sa/ic_pm_boards",
-          "target": "https://github.com/diegonmarcos/CG-galaxy"
-        },
-        {
-          "id": "lf-cg-zirkus",
-          "label": "Lf.y-CG-Zirkus",
-          "icon": "sa/ic_p_sol_pro",
-          "target": "https://github.com/diegonmarcos/CG-circus"
-        },
-        {
-          "separator": true
-        },
-        {
-          "id": "nx-cm-mqpm",
-          "label": "Nx.z-CM-MQPM",
-          "icon": "sa/ic_p_markets_prices",
-          "target": "https://github.com/diegonmarcos/Capital-Macro-Central-Bank"
-        },
-        {
-          "id": "nx-cm-blmbrg",
-          "label": "Nx.z-CM-Blmbrg",
-          "icon": "sa/ic_p_markets_terminal",
-          "target": "https://github.com/diegonmarcos/Capital-Stack-Fin-Terminal"
-        },
-        {
-          "separator": true
-        },
-        {
-          "id": "st-deepsc-x",
-          "label": "St.x-DeepSc-X",
-          "icon": "sa/ic_p_sol_tools",
-          "target": "https://github.com/diegonmarcos/HardTech-DeepXTech"
-        }
-      ]
-    },
-    {
-      "title": "Configs",
+      "title": "Lnktree",
       "tiles": [
         {
           "id": "cloud-superapp",
@@ -331,6 +278,41 @@
         {
           "separator": true
         },
+        {
+          "id": "omniverse",
+          "label": "Omniverse",
+          "icon": "sa/ic_p_sol_other",
+          "target": "extapp:cg-omniverse"
+        },
+        {
+          "separator": true
+        },
+        {
+          "id": "finterm",
+          "label": "FinTerm",
+          "icon": "sa/ic_p_markets_terminal",
+          "target": "extapp:capital-stack-finterminal"
+        },
+        {
+          "separator": true
+        },
+        {
+          "id": "cad",
+          "label": "CAD",
+          "icon": "sa/ic_p_sol_pro",
+          "target": "extapp:hardtech-cad"
+        },
+        {
+          "id": "sim2real",
+          "label": "Sim2Real",
+          "icon": "sa/ic_p_sol_tools",
+          "target": "extapp:hardtech-sim2real"
+        }
+      ]
+    },
+    {
+      "title": "Configs",
+      "tiles": [
         {
           "id": "configs-account",
           "label": "Account",
