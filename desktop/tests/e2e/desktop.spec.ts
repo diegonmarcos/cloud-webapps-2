@@ -71,3 +71,8 @@ test('cloud-nav: maps is merged in (the globe draws in the content pane), naviga
   await page.goto(`${D}/cloud-nav/navigation/`);
   await expect(page.getByTestId('desk-window')).toHaveAttribute('data-src', '/mymaps-navigation/');
 });
+
+test('a deep page in a long tree is scrolled into view', async ({ page }) => {
+  await page.goto(`${D}/cloud-search/brokers/suppliers/`);
+  await expect(page.getByTestId('desk-tree').locator('[aria-current="page"]')).toBeInViewport();
+});

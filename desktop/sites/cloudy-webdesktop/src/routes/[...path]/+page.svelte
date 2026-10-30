@@ -6,6 +6,8 @@
   let { data } = $props();
   const v = $derived(data.view);
   let query = $state('');
+  // the selected page stays in view in a long tree (cloud-search, config)
+  const keepCurrent = (el: HTMLElement) => { el.querySelector('[aria-current="page"]')?.scrollIntoView({ block: 'nearest' }); };
   const groups = $derived(v.content.kind === 'home'
     ? v.content.groups.map((g) => ({ ...g, tiles: g.tiles.filter((t) => !query.trim() || t.label.toLowerCase().includes(query.trim().toLowerCase())) })).filter((g) => g.tiles.length)
     : []);
@@ -35,7 +37,7 @@
   </header>
 
   {#if v.tree.length}
-    <nav class="tree" aria-label={v.treeTitle} data-testid="desk-tree">
+    <nav class="tree" aria-label={v.treeTitle} data-testid="desk-tree" use:keepCurrent>
       <h2>{v.treeTitle}</h2>
       {#each v.tree as t (t.id)}
         <a class="node" class:on={t.selected} class:head={t.depth === 0} style="--depth:{t.depth}" href={t.href} aria-current={t.selected ? 'page' : undefined}>
