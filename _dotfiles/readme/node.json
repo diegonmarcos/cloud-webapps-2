@@ -1,9 +1,9 @@
 {
   "schema": "readme-node/v1",
-  "generated_by": "_git-repos-master readme-render.js nodeData() from projects-repos.json; DO NOT EDIT (node repos-sot.js sync-readmes)",
+  "generated_by": "_git-repos-master 0_registry/readme-render.js nodeData() from projects-repos.json; DO NOT EDIT (node 0_registry/repos-sot.js sync-readmes)",
   "name": "cloudy-h-webapps-2",
   "label": "cloudy-h-webapps-2",
-  "code": "1.1.7.2",
+  "code": "1.1.4.2",
   "kind": "repo",
   "variant": "repo",
   "description": "Front group c_Suite (split from front-projects, #1072)",
@@ -25,9 +25,9 @@
       "icon": "☁️"
     },
     {
-      "code": "1.1.7",
+      "code": "1.1.4",
       "kind": "family",
-      "label": "Webapps",
+      "label": "WebApps",
       "icon": ""
     }
   ],
