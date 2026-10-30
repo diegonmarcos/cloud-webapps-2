@@ -6,7 +6,7 @@
   "code": "1.1.4.2",
   "kind": "repo",
   "variant": "repo",
-  "description": "Front group c_Suite (split from front-projects, #1072)",
+  "description": "Cloud web apps, desktop: the cloudy-webdesktop site at /cloud-desktop/, plus the c_Suite sources (split from front-projects, #1072)",
   "visibility": "public",
   "url": "https://github.com/diegonmarcos/cloudy-h-webapps-desk",
   "developer": "Leaf.y",

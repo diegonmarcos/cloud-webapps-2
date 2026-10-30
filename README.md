@@ -4,7 +4,7 @@
 
 🐧 Unix `1` › ☁️ Cloudy `1.1` › WebApps `1.1.4`
 
-> Front group c_Suite (split from front-projects, #1072)
+> Cloud web apps, desktop: the cloudy-webdesktop site at /cloud-desktop/, plus the c_Suite sources (split from front-projects, #1072)
 
 | Code | Visibility | Hub | Developer | Farm folder |
 |---|---|---|---|---|
