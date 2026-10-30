@@ -1,0 +1,27 @@
+{
+  "name": "cloudy-h-webdesktop",
+  "private": true,
+  "type": "module",
+  "description": "cloudy-webdesktop: the desktop web of the Cloud fleet at /cloud-desktop/ on the same @cloudy/ui as cloudy-webapps (#1321). @cloudy/ui is the cloudy-h-webapps package pinned by commit (cloudy-ui.pin), fetched into .vendor/ by scripts/fetch-cloudy-ui.sh.",
+  "workspaces": [
+    ".vendor/cloudy-ui",
+    "sites/*"
+  ],
+  "scripts": {
+    "build": "npm run build -w sites/cloudy-webdesktop",
+    "test:e2e": "playwright test -c tests/playwright.config.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.56.1",
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.47.1",
+    "@sveltejs/vite-plugin-svelte": "^6.2.1",
+    "svelte": "^5.41.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.10",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

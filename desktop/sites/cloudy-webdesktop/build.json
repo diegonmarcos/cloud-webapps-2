@@ -1,0 +1,10 @@
+{
+  "name": "Cloudy WebDesktop",
+  "framework": "sveltekit",
+  "src": "src",
+  "dist": "dist",
+  "build": [
+    { "_doc": "SvelteKit adapter-static, base /cloud-desktop (#1321). dist/ is committed (built in this repo's CI); the Pages deploy maps it, it does not rebuild.", "mod": "sveltekit" }
+  ],
+  "deploy": {}
+}

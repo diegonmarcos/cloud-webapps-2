@@ -1,0 +1,5 @@
+# #1321 desktop workspace: the pinned @cloudy/ui checkout and build state are CI-only
+/.vendor/
+node_modules/
+sites/*/.svelte-kit/
+tests/results/

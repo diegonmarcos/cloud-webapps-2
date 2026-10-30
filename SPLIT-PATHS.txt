@@ -13,3 +13,4 @@ c_Suite/mymaps-maps
 c_Suite/mymaps-navigation
 c_Suite/suite
 c_Suite/tldraw
+desktop

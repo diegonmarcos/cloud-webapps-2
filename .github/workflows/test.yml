@@ -1,0 +1,71 @@
+# cloudy-h-webapps-2 CI (#1321): the desktop site. Builds run here only (owner rule: no local npm).
+#  pin   : @cloudy/ui at cloudy-ui.pin (cloudy-h-webapps) == the package on its main (shared version pin check)
+#  unit  : Vitest (the desktop view model)
+#  build : sites/cloudy-webdesktop (adapter-static, base /cloud-desktop) -> dist; every routes.json path prerendered
+#  e2e   : Playwright desktop 1440x900 + laptop 1280x800 against the dists laid out as Pages serves them
+#  dist  : committed back on a push to main when it differs (the Pages deploy maps it, it does not rebuild)
+# This repo's .github was a link to the deployer's (0_deployer); the Pages repo excludes /.github when it overlays this
+# repo, so only this workflow lives here.
+name: test
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '41 5 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: false
+defaults:
+  run:
+    working-directory: desktop   # the workspace lives under desktop/: the Pages repo overlays this repo's root
+jobs:
+  test:
+    runs-on: ubuntu-24.04  # Playwright 1.56.1 (same pin as the Pages repo) does not support 26.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Fetch @cloudy/ui at the pin
+        run: sh scripts/fetch-cloudy-ui.sh
+      - name: Pin == cloudy-h-webapps main
+        run: sh scripts/check-pin.sh
+      - name: Install
+        run: npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+      - name: Unit (Vitest)
+        run: npm run sync -w sites/cloudy-webdesktop && npx vitest run
+      - name: Build
+        run: npm run build
+      - name: Every routes.json path prerendered
+        run: node scripts/test-routes.mjs
+      - name: Playwright + Chromium
+        run: npx playwright install --with-deps chromium
+      - name: E2E desktop + laptop
+        run: npx playwright test -c tests/playwright.config.ts
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: |
+            desktop/tests/results/shots
+            desktop/tests/results/report
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Commit the fresh dist back (push to main only)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git fetch -q origin main
+          if [ "$(git rev-parse origin/main)" != "$GITHUB_SHA" ]; then echo "main moved past ${GITHUB_SHA::9}: the newer run commits the dist"; exit 0; fi
+          git add sites/cloudy-webdesktop/dist package-lock.json   # paths relative to desktop/
+          if git diff --cached --quiet; then echo "dist current"; exit 0; fi
+          git diff --cached --stat | tail -3
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "auto: rebuild dist from ${GITHUB_SHA::9} [skip ci]"
+          git pull --rebase origin main
+          git push origin HEAD:main

@@ -1,0 +1,40 @@
+# Mutation runs (#1321): each applies ONE deliberate break and runs the guard that must catch it. RED is the expected
+# result (the guard works); a green run means the guard is blind. Manual only.
+name: mutation
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: 'stale-pin | rail-order | suite-src | route-drop'
+        required: true
+permissions:
+  contents: read
+defaults:
+  run:
+    working-directory: desktop   # the workspace lives under desktop/: the Pages repo overlays this repo's root
+jobs:
+  mutate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Apply mutation ${{ inputs.name }}
+        run: |
+          case "${{ inputs.name }}" in
+            stale-pin)  echo 29147f6b540b532c30635d2d2346c642267652b4 > cloudy-ui.pin; sh scripts/fetch-cloudy-ui.sh && sh scripts/check-pin.sh; exit $? ;;
+            rail-order) sed -i 's/SA.bottom_nav.map(/[...SA.bottom_nav].reverse().map(/' sites/cloudy-webdesktop/src/lib/server/desk.ts ;;
+            suite-src)  sed -i "s#src: '/movies/'#src: '/music/'#" sites/cloudy-webdesktop/src/lib/server/desk.ts ;;
+            route-drop) sed -i "s#  if (!r) return null;#  if (!r || path === 'cloud-nav/configs/about/') return null;#" sites/cloudy-webdesktop/src/lib/server/desk.ts ;;
+            *) echo "unknown mutation"; exit 2 ;;
+          esac
+          git diff --stat
+      - run: sh scripts/fetch-cloudy-ui.sh
+      - run: npm ci --no-audit --no-fund || npm install --no-audit --no-fund
+      - name: Unit
+        run: npm run sync -w sites/cloudy-webdesktop && npx vitest run
+      - name: Build + route check
+        run: npm run build && node scripts/test-routes.mjs
+      - name: E2E
+        run: npx playwright install --with-deps chromium && npx playwright test -c tests/playwright.config.ts
