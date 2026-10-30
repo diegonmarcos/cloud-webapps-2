@@ -1,0 +1,111 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    width: 100%;
+    // Desktop mode forced via JavaScript scaling on mobile
+    // Keep min-width for desktop browsers
+    min-width: 100%;
+}
+
+body {
+    font-family: var(--font-main);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100%;
+    width: 100%;
+    // Width controlled by JavaScript for mobile scaling
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    line-height: 1.4;
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+    // Mobile: allow vertical scrolling, no horizontal overflow
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+// Blurred theme: gradient background
+[data-theme="blurred"] body {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    font-size: 14px;
+    padding: 1rem;
+}
+
+.container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    // Ensure container doesn't clip content
+    overflow: visible;
+    padding: 0 1rem;
+}
+
+[data-theme="blurred"] .container {
+    max-width: 1400px;
+}
+
+#cards-view {
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#tree-view {
+    width: 100%;
+    overflow-x: auto;
+}
+
+#architecture-view {
+    flex: 1;
+    width: 100%;
+}
+
+// Page container - limits width and centers content like architecture diagrams
+.page-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 1rem;
+}
+
+[data-theme="blurred"] .page-container {
+    background: linear-gradient(135deg, rgba(10, 10, 15, 0.6) 0%, rgba(26, 26, 46, 0.4) 50%, rgba(10, 10, 15, 0.6) 100%);
+    border-radius: 16px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+}
+
+// Utility classes
+.link-accent {
+    color: var(--accent-blue);
+}
+
+.text-muted {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.text-secondary {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.text-primary {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.text-success {
+    color: #10b981;
+}
+
+.text-center {
+    text-align: center;
+}

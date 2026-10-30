@@ -1,0 +1,67 @@
+// ==========================================================================
+// Mixins — standard front/ signatures (see front/README.md §B.7.4)
+// ==========================================================================
+
+@mixin mq($bp) {
+    @if $bp==sm {
+        @media (min-width: 480px) {
+            @content;
+        }
+    }
+
+    @else if $bp==md {
+        @media (min-width: 768px) {
+            @content;
+        }
+    }
+
+    @else if $bp==lg {
+        @media (min-width: 1024px) {
+            @content;
+        }
+    }
+
+    @else if $bp==xl {
+        @media (min-width: 1280px) {
+            @content;
+        }
+    }
+}
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-row($justify: flex-start, $align: center, $gap: 0) {
+    display: flex;
+    flex-direction: row;
+    justify-content: $justify;
+    align-items: $align;
+    gap: $gap;
+}
+
+@mixin grid-auto-fit($min: 100px, $gap: 8px) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
+    gap: $gap;
+}
+
+// Frosted glass "island" surface — top toolbar / bottom nav chrome.
+// Real drawable (res/drawable/bg_liquid_glass.xml): a 135deg 3-stop
+// gradient (white hot-spot top-left #40FFFFFF -> soft middle #0DFFFFFF ->
+// cool violet bottom-right #1AB794F4, all low-alpha/translucent) plus a
+// separate 1dp inner highlight stroke (#33FFFFFF) — NOT a flat fill. This
+// had been var(--glass-bg), which resolves to a flat #000000 (100% opaque)
+// — combined with backdrop-filter:blur() doing nothing visible on a fully
+// opaque background, every "glass" island rendered as a plain solid black
+// bar instead of the translucent liquid-glass look the name promised.
+@mixin glass-island {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.25) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(183, 148, 244, 0.10) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-island);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}

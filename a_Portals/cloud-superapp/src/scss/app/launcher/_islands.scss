@@ -1,0 +1,384 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Islands — floating frosted-glass toolbar (top) and bottom nav
+// ==========================================================================
+
+// ── Status strip — LauncherStatusStripView, flush at the very top ──────
+// Chips row with a drawn punch-hole camera dot centered between the
+// clusters (the real device shows the physical camera through the cutout;
+// the web replica has no camera there, so it must be drawn to read as a
+// Samsung punch-hole), then a second row for the live clock, then a 1px
+// hairline underneath.
+.status-strip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 11;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    // Top padding carries the notch inset (viewport-fit=cover means the
+    // shell paints under the system status bar), so the chips/cutout row
+    // clears the punch-hole on a real device.
+    padding: 4px 16px 6px;
+    padding: calc(4px + var(--safe-area-top, 0px)) 16px 6px;
+    font-family: monospace;
+    font-size: 10px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.status-strip__row {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    column-gap: 6px;
+}
+
+.status-strip__cluster {
+    @include flex-row(flex-start, center, 6px);
+    min-width: 0;
+    overflow: hidden;
+}
+
+.status-strip__cluster--right {
+    justify-content: flex-end;
+}
+
+// Punch-hole camera dot — centered column of the chips row, between the
+// clusters. Sized like a real Samsung cutout, not a decorative blob.
+.status-strip__camera {
+    justify-self: center;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #000;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.status-strip__chip {
+    white-space: nowrap;
+    padding: 0 3px;
+    // The strip floats over the wallpaper/gradient with no scrim behind it,
+    // so legibility comes from the shadow rather than a chip background.
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+.status-strip__chip.is-active {
+    color: #fff;
+}
+
+// Second row, centered below the chips — the clock sits under the camera
+// dot, not inline with the clusters. Overrides the grid layout above with
+// a plain centered flex row since there are no left/right clusters here.
+.status-strip__row--clock {
+    display: flex;
+    justify-content: center;
+}
+
+.status-strip__clock {
+    font-family: monospace;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+// 1px separator closing the strip off from the content below it.
+.status-strip__hairline {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+// No shared toolbar bar — each icon floats independently on its own side,
+// same "each is its own floating chip" language as the stars, not one
+// connecting pill spanning the width. Same vertical position
+// (--chrome-band-top, clearing the status-strip— see _content.scss's matching padding-top)
+// and Material-spec sizing (48dp touch target / 24dp glyph) either way,
+// just without a shared background linking them.
+//
+// Bare hit boxes on purpose: the real toolbar draws NO background behind
+// its icons (no chip, no stroke, no blur) — an earlier version gave them
+// the bg_glass_icon.xml circular chip treatment, which the app doesn't
+// have anywhere in its toolbar.
+.icon-btn,
+.toolbar-action {
+    position: absolute;
+    // Paired plain-px + token declarations, same reasoning as .content's
+    // padding — these tops MUST degrade to the same 44px baseline .content
+    // reserves for, or the band and the content it clears disagree.
+    top: 44px;
+    top: var(--chrome-band-top, 44px);
+    width: 48px;
+    height: 48px;
+    height: var(--chrome-band-height, 48px);
+    @include flex-center;
+    z-index: 10;
+    // Neutralize native <button>/<a> chrome (default appearance/border/
+    // padding differ from a plain <div> across browsers, which was
+    // throwing off sizing) — belt-and-suspenders on top of _base.scss's
+    // global button reset, scoped here since these are real tap targets.
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.icon-btn--hamburger {
+    left: var(--island-margin);
+}
+
+// .toolbar-action is the right-side icon — the real app puts action_back
+// there on every screen except Home root, and action_wallet ONLY on Home
+// root (same position, mutually exclusive — see MainActivity's
+// onPrepareOptionsMenu). One class since it's always exactly one real
+// link, never both, never neither — no [hidden]-toggling needed.
+.toolbar-action {
+    right: var(--island-margin);
+}
+
+// The glyphs are black-stroked source SVGs loaded via <img>, so currentColor
+// can't reach them — flatten to black then invert for the white-on-dark
+// toolbar tint the app uses.
+.icon-btn img,
+.toolbar-action img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+}
+
+// ── The two center islands ──────────────────────────────────────────────
+// Real app (activity_main.xml): both sit centered between the hamburger
+// and the action icon, sharing the exact same bg_dynamic_island drawable
+// (pure black + faint 1dp violet stroke — see the shared %black-pill
+// placeholder comment below). music_playing_island is layout_gravity="top"
+// (flush at the top of the ?attr/actionBarSize=56dp toolbar band) at
+// 90x16dp; dynamic_island is layout_gravity="center" (vertically centered
+// in that same 56dp band) at 120x22dp — so music sits just above dynamic,
+// not overlapping it. The icons above anchor their own band at top:68px;
+// these two are positioned against that same band rather than a shared
+// parent, since there's no shared toolbar bar anymore (see the icon-btn/
+// toolbar-action rules above).
+// bg_dynamic_island.xml pill drawable — pure black + faint violet stroke.
+.music-island,
+.dynamic-island {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: var(--glass-pill-radius);
+    background: var(--glass-pill-bg);
+    border: var(--glass-pill-border);
+}
+
+// Real: "Default GONE, flipped VISIBLE by NowPlayingMonitor when a system-
+// wide media session enters STATE_PLAYING" — no web equivalent of that
+// live OS signal to gate visibility on, so this stays always-shown with
+// mock now-playing content (same "real markup, mocked data" treatment as
+// the status-strip's device stats).
+.music-island {
+    top: 44px;
+    top: var(--chrome-band-top, 44px);
+    width: 90px;
+    height: 16px;
+    @include flex-row(flex-start, center, 4px);
+    padding: 0 3px;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.music-island__icon {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    filter: brightness(0) invert(1);
+    opacity: 0.85;
+}
+
+.music-island__marquee {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.music-island__title {
+    display: inline-block;
+    font-size: 8px;
+    font-weight: 500;
+    color: #e5e7eb;
+    // Real: android:ellipsize="marquee" — continuous horizontal scroll.
+    // Starts fully visible (readable at a glance) before it begins
+    // drifting, then loops.
+    animation: music-marquee 9s linear infinite;
+    animation-delay: 1.5s;
+}
+
+@keyframes music-marquee {
+    0%, 15% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+// Centered in the same 56dp band the icons/music-island anchor to
+// (top:44px + (56px - 22px)/2 ≈ 61px) — sits just below music-island
+// (44-60px) without overlapping it.
+.dynamic-island {
+    top: 61px;
+    top: calc(var(--chrome-band-top, 44px) + 17px);
+    width: 100%;
+    max-width: 120px;
+    height: 22px;
+    @include flex-center;
+    z-index: 10;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+// Pure-CSS stand-in for the real IslandWaveView's 4 layered sine-composite
+// waveform channels (ui/IslandWaveView.kt) — see the wave-bob keyframes
+// below. An earlier canvas + JS port matched the real sine math exactly,
+// but depended on getBoundingClientRect() timing at init and had a real
+// bug where it could size itself at 0x0 and never draw again — a whole
+// class of failure pure CSS just doesn't have (nothing to size, nothing to
+// schedule, the browser can't get it "stuck" never having painted). This
+// trades exact sine-math fidelity for something structurally guaranteed to
+// render: 4 dome shapes anchored to the bottom of the pill, same real ARGB
+// colors and back-to-front paint order, staggered sizes (large/dim at back
+// to small/bright at front, matching the real "back gets largest baseAmp +
+// deepest baseline, front gets smallest + highest" comment), each bobbing
+// on its own out-of-synced duration/delay so the 4 layers drift against
+// each other instead of moving in lockstep.
+.dynamic-island__wave-clip {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.dynamic-island__wave {
+    position: absolute;
+    left: -15%;
+    right: -15%;
+    bottom: -55%;
+    border-radius: 50%;
+    // Grow/shrink from the BOTTOM edge, not the center — a center-origin
+    // scale barely moved the visible top edge at this element's size
+    // (mostly grew the already-clipped bottom half instead), which read
+    // as "not animating" even though the animation was genuinely running.
+    // Bottom-origin makes the dome's crest itself rise and fall.
+    transform-origin: bottom center;
+    animation-name: wave-bob;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+.dynamic-island__wave--1 {
+    height: 130%;
+    background: rgba(182, 158, 249, 0.6);
+    animation-duration: 3.6s;
+    animation-delay: 0s;
+}
+
+.dynamic-island__wave--2 {
+    height: 108%;
+    background: rgba(202, 189, 251, 0.702);
+    animation-duration: 3.1s;
+    animation-delay: -0.6s;
+}
+
+.dynamic-island__wave--3 {
+    height: 86%;
+    background: rgba(221, 214, 243, 0.8);
+    animation-duration: 2.7s;
+    animation-delay: -1.3s;
+}
+
+.dynamic-island__wave--4 {
+    height: 64%;
+    background: rgba(237, 233, 254, 0.902);
+    animation-duration: 2.3s;
+    animation-delay: -0.4s;
+}
+
+// scaleY (not scaleX) is what actually makes the dome's TOP EDGE — the
+// only part not clipped away by the pill's bottom-anchored overflow —
+// visibly rise and fall. The previous version scaled/shifted horizontally
+// and only translated a few px vertically, both easy to miss at 22px tall;
+// this version swings the crest by a real fraction of the pill's height.
+@keyframes wave-bob {
+    0%, 100% {
+        transform: scaleY(0.7);
+        opacity: 0.75;
+    }
+
+    50% {
+        transform: scaleY(1.15);
+        opacity: 1;
+    }
+}
+
+// Real: PrismaticShimmerView draws a STATIC pill-shaped stroke path and
+// rotates only the SweepGradient's colors through it (Matrix.postRotate on
+// the shader) — the ring's outline never moves, only the hue sweep does.
+// The previous version rotated the whole element via `transform: rotate()`
+// — fine for a circle, but this ring is a pill (~120x22, not 1:1), and a
+// non-circular shape spinning about its center visibly wobbles/distorts
+// as its corners sweep through a wider arc than its middle does. Animating
+// the conic-gradient's own start angle via a registered custom property
+// instead keeps the pill OUTLINE completely fixed and only sweeps the
+// color pattern through it — matching what the real shader actually does.
+@property --shimmer-angle {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+}
+
+.dynamic-island__shimmer {
+    position: absolute;
+    inset: -2px;
+    z-index: 1;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(from var(--shimmer-angle), #ff1744, #ff9100, #ffea00, #00e676, #00e5ff, #2979ff, #aa00ff, #ff1744);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: shimmer-spin 3.6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer-spin {
+    from {
+        --shimmer-angle: 0deg;
+    }
+
+    to {
+        --shimmer-angle: 360deg;
+    }
+}
+
+// glass-island already hardcodes the same liquid-glass gradient/border/blur
+// values as the --glass-liquid-* tokens (see _mixins.scss) — restated here
+// via the tokens themselves so the bottom-nav island is explicitly wired to
+// the shared design-token source rather than the mixin's own copy.
+.bottom-nav {
+    position: absolute;
+    bottom: 12px;
+    left: var(--island-margin);
+    right: var(--island-margin);
+    @include glass-island;
+    background: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+    border-radius: var(--glass-liquid-radius);
+    @include flex-row(space-around, center, 0);
+    padding: 6px 4px;
+    z-index: 10;
+}

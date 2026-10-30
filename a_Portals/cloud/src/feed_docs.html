@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feed Documentation | Cloud Portal</title>
+    <meta name="description" content="ntfy Push Notifications - Channels and Usage Documentation">
+
+    <!-- Matomo Tag Manager -->
+    <script>
+      var _mtm = window._mtm = window._mtm || [];
+      _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+      (function() {
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src='https://analytics.diegonmarcos.com/matomo/js/container_odwLIyPV.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script>
+      (function() {
+        var theme = localStorage.getItem('cloud-dashboard-theme') || 'blurred';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+    <style>
+        .docs-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+        .docs-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        .docs-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+        .docs-section {
+            margin-bottom: 2rem;
+        }
+        .docs-section h2 {
+            font-size: 1.1rem;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .docs-section h3 {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            margin: 1rem 0 0.5rem 0;
+        }
+        .docs-section p {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+        }
+        .docs-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.8rem;
+            margin: 1rem 0;
+        }
+        .docs-table th, .docs-table td {
+            padding: 0.5rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .docs-table th {
+            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+        }
+        .docs-table td {
+            color: var(--text-primary);
+        }
+        .code-block {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            overflow-x: auto;
+            margin: 0.75rem 0;
+        }
+        .code-block .comment {
+            color: var(--text-secondary);
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.15rem 0.4rem;
+            font-size: 0.65rem;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .badge-public {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent-green);
+        }
+        .badge-private {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ef4444;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.8rem;
+        }
+        .back-link:hover {
+            color: var(--accent-blue);
+        }
+    </style>
+<!-- Umami Analytics -->
+<script async src="https://analytics.diegonmarcos.com/umami/script.js" data-website-id="937cbde7-5ec2-450c-9d6a-8117423ac12f"></script>
+<!-- End Umami Analytics -->
+</head>
+<body>
+    <div class="container">
+        <div class="docs-container">
+            <a href="products.html" class="back-link">&larr; Back to Products</a>
+
+            <h1 class="docs-title">Feed / Push Notifications</h1>
+            <p class="docs-subtitle">ntfy self-hosted instance at rss.diegonmarcos.com</p>
+
+            <div class="docs-section">
+                <h2>Overview</h2>
+                <p>ntfy is a simple HTTP-based pub-sub notification service. Send notifications from scripts, cron jobs, or any HTTP client to your phone or desktop.</p>
+                <table class="docs-table">
+                    <tr><th>Setting</th><th>Value</th></tr>
+                    <tr><td>Server</td><td>https://rss.diegonmarcos.com</td></tr>
+                    <tr><td>Dashboard</td><td><a href="https://rss.diegonmarcos.com" target="_blank" class="link-accent">rss.diegonmarcos.com</a></td></tr>
+                    <tr><td>Official Docs</td><td><a href="https://rss.diegonmarcos.com/docs" target="_blank" class="link-accent">rss.diegonmarcos.com/docs</a></td></tr>
+                </table>
+            </div>
+
+            <div class="docs-section">
+                <h2>Channels</h2>
+                <table class="docs-table">
+                    <tr><th>Channel</th><th>Access</th><th>Purpose</th></tr>
+                    <tr><td>public</td><td><span class="badge badge-public">public</span></td><td>General public notifications</td></tr>
+                    <tr><td>github</td><td><span class="badge badge-public">public</span></td><td>GitHub webhooks & CI/CD</td></tr>
+                    <tr><td>alerts</td><td><span class="badge badge-private">private</span></td><td>Critical system alerts</td></tr>
+                    <tr><td>backup</td><td><span class="badge badge-private">private</span></td><td>Backup job notifications</td></tr>
+                    <tr><td>home</td><td><span class="badge badge-private">private</span></td><td>Home automation</td></tr>
+                    <tr><td>cron</td><td><span class="badge badge-private">private</span></td><td>Scheduled job results</td></tr>
+                    <tr><td>deploy</td><td><span class="badge badge-private">private</span></td><td>Deployment notifications</td></tr>
+                    <tr><td>security</td><td><span class="badge badge-private">private</span></td><td>Security events</td></tr>
+                    <tr><td>test</td><td><span class="badge badge-private">private</span></td><td>Testing & development</td></tr>
+                </table>
+            </div>
+
+            <div class="docs-section">
+                <h2>Subscribe</h2>
+                <h3>Mobile App</h3>
+                <p>Install ntfy from Google Play, App Store, or F-Droid. Add server: <code>https://rss.diegonmarcos.com</code></p>
+
+                <h3>Web Browser</h3>
+                <p>Visit <a href="https://rss.diegonmarcos.com" target="_blank" class="link-accent">rss.diegonmarcos.com</a> and subscribe to channels directly.</p>
+            </div>
+
+            <div class="docs-section">
+                <h2>Send Notifications</h2>
+
+                <h3>Public Channels (no auth)</h3>
+<div class="code-block"><span class="comment"># Simple message</span>
+curl -d "Hello World" https://rss.diegonmarcos.com/public
+
+<span class="comment"># With title</span>
+curl -H "Title: Alert" -d "Server is down" https://rss.diegonmarcos.com/github</div>
+
+                <h3>Private Channels (with auth)</h3>
+<div class="code-block"><span class="comment"># Using basic auth</span>
+curl -u me@diegonmarcos.com:PASSWORD \
+  -d "Backup completed" \
+  https://rss.diegonmarcos.com/backup
+
+<span class="comment"># With priority and tags</span>
+curl -u me@diegonmarcos.com:PASSWORD \
+  -H "Priority: high" \
+  -H "Tags: warning" \
+  -d "Disk space low" \
+  https://rss.diegonmarcos.com/alerts</div>
+            </div>
+
+            <div class="docs-section">
+                <h2>Message Options</h2>
+                <table class="docs-table">
+                    <tr><th>Header</th><th>Example</th><th>Description</th></tr>
+                    <tr><td>Title</td><td>Title: Alert</td><td>Message title</td></tr>
+                    <tr><td>Priority</td><td>Priority: high</td><td>min, low, default, high, max</td></tr>
+                    <tr><td>Tags</td><td>Tags: warning,server</td><td>Emoji tags (warning, check, etc)</td></tr>
+                    <tr><td>Click</td><td>Click: https://...</td><td>URL to open on click</td></tr>
+                    <tr><td>Attach</td><td>Attach: https://...</td><td>Attachment URL</td></tr>
+                </table>
+            </div>
+
+            <div class="docs-section">
+                <h2>Integration Examples</h2>
+
+                <h3>Bash Script</h3>
+<div class="code-block">#!/bin/bash
+<span class="comment"># Send notification on script completion</span>
+./my-backup-script.sh
+curl -d "Backup finished: $?" https://rss.diegonmarcos.com/backup</div>
+
+                <h3>Cron Job</h3>
+<div class="code-block"><span class="comment"># Add to crontab</span>
+0 2 * * * /path/to/backup.sh && curl -d "Nightly backup OK" https://rss.diegonmarcos.com/cron</div>
+
+                <h3>GitHub Actions</h3>
+<div class="code-block">- name: Notify deployment
+  run: |
+    curl -H "Title: Deploy Complete" \
+         -H "Tags: rocket" \
+         -d "Deployed ${{ github.sha }}" \
+         https://rss.diegonmarcos.com/github</div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

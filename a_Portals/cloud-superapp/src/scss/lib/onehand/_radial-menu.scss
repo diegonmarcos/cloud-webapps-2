@@ -1,0 +1,152 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Radial menu — press-drag star menu overlay (galaxy "star" buttons)
+// ==========================================================================
+
+// absolute, not fixed — .radial-menu is now a descendant of .shell (the
+// actual "screen" box, full-width on mobile but a centered 480px mockup on
+// desktop), not a <body> sibling. fixed would anchor to the true browser
+// viewport instead, same bug as the drawer (see _drawer.scss).
+.radial-menu {
+    position: absolute;
+    inset: 0;
+    z-index: 50;
+    // Whole overlay is a gesture surface: touch-action is resolved against
+    // the hit element AND its ancestors, so declaring it once here covers the
+    // scrim, the nodes and the follow-finger arrow. Without it a drag across
+    // the open menu is a pan candidate and Chrome answers with pointercancel.
+    touch-action: none;
+    // Don't let a drag that reaches the overlay's edge chain out into the
+    // page's own scroll/overscroll (pull-to-refresh, back-navigation glow).
+    overscroll-behavior: none;
+}
+
+// Closed state is native [hidden] (JS toggles the attribute) — no display:
+// none rule needed here, just don't let anything below fight it.
+.radial-menu.is-open {
+    display: block;
+}
+
+// Scrim opacity differs between the full-circle drill-down (Sirius) and the
+// half-arc fans (Canopus/Centauri) — stars.ts tags the scrim with a
+// --circle/--arc modifier per the kind that opened it.
+.radial-menu__scrim {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(2px);
+}
+
+.radial-menu__scrim--circle {
+    background: rgba(0, 0, 0, 0.55);
+}
+
+.radial-menu__scrim--arc {
+    background: rgba(0, 0, 0, 0.47);
+}
+
+// left/top set inline by JS per star position
+.radial-menu__center {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.radial-menu__node {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty));
+    @include flex-center;
+    text-align: center;
+    transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+// Sirius (full-circle drill-down): pill-shaped disc, white 11px label.
+.radial-menu__node--circle {
+    min-width: 64px;
+    padding: 8px 10px;
+    border-radius: 999px;
+    background: rgba(24, 20, 40, 0.92);
+}
+
+.radial-menu__node--circle .radial-menu__node-label {
+    color: #fff;
+    font-size: 11px;
+}
+
+.radial-menu__node--circle.is-highlighted {
+    background: rgba(124, 58, 237, 1);
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(1.12);
+}
+
+// Canopus/Centauri (half-arc fan): fixed circular disc, bold 9px label.
+.radial-menu__node--arc {
+    width: 52px; // radius 26px
+    height: 52px;
+    border-radius: 50%;
+    padding: 4px;
+    background: rgba(24, 20, 40, 0.86);
+    flex-direction: column;
+    gap: 2px;
+}
+
+// Centauri "recent app" entries only — falls back to text-only when an
+// entry has no icon (see stars.ts's RecentAppEntry).
+.radial-menu__node-icon {
+    width: 22px;
+    height: 22px;
+    pointer-events: none;
+}
+
+.radial-menu__node--arc .radial-menu__node-label {
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.radial-menu__node--arc.is-highlighted {
+    background: rgba(124, 58, 237, 1);
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(1.12);
+}
+
+.radial-menu__node--inert {
+    opacity: .5;
+}
+
+.radial-menu__back {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(60, 60, 80, 0.78);
+    border: none;
+    color: #fff;
+    @include flex-center;
+}
+
+.radial-menu__node-label {
+    pointer-events: none;
+}
+
+// Follow-finger arrow (Sirius only) — drawn by stars.ts from the star's
+// origin to the current pointer position while the circular menu is open.
+.radial-menu__arrow {
+    position: absolute;
+    inset: 0;
+    overflow: visible;
+    pointer-events: none;
+}
+
+.radial-menu__arrow-line {
+    stroke: rgba(163, 122, 244, 0.9);
+    stroke-width: 3;
+    stroke-linecap: round;
+}
+
+.radial-menu__arrow-head {
+    fill: rgba(163, 122, 244, 0.9);
+}

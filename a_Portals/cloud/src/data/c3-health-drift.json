@@ -1,0 +1,422 @@
+[
+ {
+  "service": "matrix-continuwuity",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "alerts-api",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "languagetool",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "c3-infra-api",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "c3-infra-mcp",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "c3-public-api",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "c3-services-api",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "c3-services-mcp",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "google-personal-mcp",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "google-workspace-mcp",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "mail-mcp",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "mattermost-mcp",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "http-to-smtp-proxy-api",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "cloud-builder-x",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "gha-runner",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "backup-borg",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "backup-bup",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "gitea",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "postlite",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "redis",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "hickory-dns",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "unbound-dns64",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "wireguard-mesh",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "wireguard-mesh-ws-tunnel",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "cloud-spec",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "dagu",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "dbgate",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "matomo",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "ntfy",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "openobserve",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "umami",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "authelia",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "caddy",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "caddy-public",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "crowdsec",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "introspect-proxy",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "claude-superset-api",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "cloud-cgc-mcp",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "hermes-agent",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "kg-store",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "my-ai-api",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "session-memory",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "chat-mattermost",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "mail-puller",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "matrix-element",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "matrix-mautrix-whatsapp",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "snappymail",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "maddy",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "stalwart",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "scrappers-api",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "fin-api",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "photoprism",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "news-gdelt",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "calendar-radicale",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "code-server",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "contacts-radicale",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "etherpad",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "filebrowser",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "grist",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "hedgedoc",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "paca",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "revealmd",
+  "declared": true,
+  "deployed": false,
+  "status": "missing"
+ },
+ {
+  "service": "send",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "vaultwarden",
+  "declared": true,
+  "deployed": true,
+  "status": "ok"
+ },
+ {
+  "service": "practical_pascal",
+  "declared": false,
+  "deployed": true,
+  "status": "extra"
+ },
+ {
+  "service": "cf-worker-http-to-wg-public-bridge",
+  "declared": false,
+  "deployed": true,
+  "status": "extra"
+ },
+ {
+  "service": "umami",
+  "declared": false,
+  "deployed": true,
+  "status": "extra"
+ },
+ {
+  "service": "umami-db",
+  "declared": false,
+  "deployed": true,
+  "status": "extra"
+ },
+ {
+  "service": "oci-apps-arm64",
+  "declared": false,
+  "deployed": true,
+  "status": "extra"
+ },
+ {
+  "service": "oci-apps-arm64-unix",
+  "declared": false,
+  "deployed": true,
+  "status": "extra"
+ }
+]

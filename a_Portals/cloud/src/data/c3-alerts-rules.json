@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "high-cpu-oci-apps",
+    "target": "oci-apps",
+    "metric": "cpu",
+    "op": "gt",
+    "threshold": 85,
+    "forSeconds": 120,
+    "enabled": true
+  },
+  {
+    "id": 3,
+    "name": "cpu-spike-any",
+    "target": "oci-apps",
+    "metric": "cpu",
+    "op": "gte",
+    "threshold": 90,
+    "forSeconds": 60,
+    "enabled": true
+  },
+  {
+    "id": 7,
+    "name": "disk-nearly-full",
+    "target": "gcp-mesh",
+    "metric": "disk",
+    "op": "gt",
+    "threshold": 85,
+    "forSeconds": 300,
+    "enabled": true
+  }
+]

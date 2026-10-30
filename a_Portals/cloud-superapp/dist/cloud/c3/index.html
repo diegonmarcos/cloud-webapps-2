@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <script>(function(){var d=document.documentElement,e=/[?&]embed=1(&|$)/.test(location.search)||/CloudSuperApp-Embed\//.test(navigator.userAgent);try{if(!e&&sessionStorage.getItem('cm-embed')==='1')e=true;else if(e)sessionStorage.setItem('cm-embed','1')}catch(x){}if(e)d.classList.add('embed')})()</script>
+    <title>Cloud · C3 · Cloud SuperApp</title>
+    <link rel="icon" type="image/svg+xml" href="../../public/favicon.svg">
+    <link rel="manifest" href="../../manifest.webmanifest">
+    <meta name="theme-color" content="#000000">
+    <script type="speculationrules">{"prerender":[{"where":{"and":[{"href_matches":"/*"}]},"eagerness":"moderate"}]}</script>
+<script>
+  var _mtm = window._mtm = window._mtm || [];
+  _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+  (function() {
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='https://analytics.diegonmarcos.com/matomo/js/container_odwLIyPV.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body data-section="cloud">
+    <div class="shell">
+        
+        <div class="status-strip">
+            <div class="status-strip__row">
+                <div class="status-strip__cluster status-strip__cluster--left"><span class="status-strip__chip is-active">5G</span><span class="status-strip__chip is-active">WiFi</span><span class="status-strip__chip is-active">WG</span><span class="status-strip__chip">KDE</span><span class="status-strip__chip is-active">BT</span><span class="status-strip__chip">USB</span></div>
+                <span class="status-strip__camera" aria-hidden="true"></span>
+                <div class="status-strip__cluster status-strip__cluster--right"><span class="status-strip__chip">R 62%</span><span class="status-strip__chip">S 48%</span><span class="status-strip__chip">C 17%</span><span class="status-strip__chip is-active" role="img" aria-label="Battery 84%"><svg width="22" height="11" viewBox="0 0 24 12" aria-hidden="true" focusable="false"><rect x="0.5" y="0.5" width="19" height="11" rx="2.5" fill="none" stroke="currentColor"/><rect x="2" y="2" width="13.4" height="8" rx="1" fill="currentColor"/><rect x="21" y="4" width="2" height="4" rx="1" fill="currentColor"/></svg></span></div>
+            </div>
+            <div class="status-strip__row status-strip__row--clock">
+                <button class="status-strip__clock" id="status-clock" type="button" aria-label="Calendar">--:--</button>
+            </div>
+            <div class="status-strip__hairline" aria-hidden="true"></div>
+        </div>
+        <div class="galaxy-backdrop" aria-hidden="true"></div>
+        
+
+        <button class="star star--sirius" id="star-sirius" type="button" aria-label="Open menu">✦</button>
+        <button class="star star--canopus" id="star-canopus" type="button" aria-label="Quick configs">✦</button>
+        <button class="star star--centauri" id="star-centauri" type="button" aria-label="Recent apps">✦</button>
+
+        <button class="icon-btn icon-btn--hamburger" id="hamburger-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+            <img class="" src="../../public/icons/menu.svg" alt="">
+        </button>
+
+        <div class="music-island" aria-hidden="true">
+            <img class="music-island__icon" src="../../public/icons/music.svg" alt="">
+            <span class="music-island__marquee"><span class="music-island__title">Weightless — Marconi Union</span></span>
+        </div>
+
+        <button class="dynamic-island" id="dynamic-island" type="button" aria-label="Notifications">
+            <span class="dynamic-island__wave-clip" aria-hidden="true">
+                <span class="dynamic-island__wave dynamic-island__wave--1"></span>
+                <span class="dynamic-island__wave dynamic-island__wave--2"></span>
+                <span class="dynamic-island__wave dynamic-island__wave--3"></span>
+                <span class="dynamic-island__wave dynamic-island__wave--4"></span>
+            </span>
+            <span class="dynamic-island__shimmer" aria-hidden="true"></span>
+        </button>
+
+        <a class="toolbar-action" href="/cloud-superapp/cloud/" aria-label="Back"><img class="" src="../../public/icons/back.svg" alt=""></a>
+
+        <main class="content" id="content">
+            <div class="page-tabs-bar">
+                <div class="page-tabs" role="tablist">
+                <a class="page-tabs__item" href="/cloud-superapp/cloud/apps/">App</a>
+                <a class="page-tabs__item" href="/cloud-superapp/cloud/webapps/">WebApps</a>
+                <a class="page-tabs__item" href="/cloud-superapp/cloud/lnktree/">Linktree</a>
+                <a class="page-tabs__item" href="/cloud-superapp/cloud/configs/">Configs</a>
+                </div>
+            </div>
+            <div class="tile-grid tile-grid--dense" role="list">
+                <a class="tile tile--orange" href="/cloud-superapp/c3/health/" role="listitem" aria-label="C3 health"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></span><span class="tile__label">C3 health</span></a>
+                <a class="tile tile--orange" href="/cloud-superapp/c3/stack/" role="listitem" aria-label="C3 stack"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M12 3l8 4.5v9l-8 4.5l-8 -4.5v-9z" />
+  <path d="M12 12l8 -4.5" />
+  <path d="M12 12v9" />
+  <path d="M12 12l-8 -4.5" />
+</svg></span><span class="tile__label">C3 stack</span></a>
+                <a class="tile tile--orange" href="/cloud-superapp/wg/status/" role="listitem" aria-label="WG mesh"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="10.5" y1="6.5" x2="6.5" y2="17.5" />
+  <line x1="13.5" y1="6.5" x2="17.5" y2="17.5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+</svg></span><span class="tile__label">WG mesh</span></a>
+                <a class="tile tile--orange" href="/cloud-superapp/c3/vms/" role="listitem" aria-label="VMs"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">VMs</span></a>
+                <a class="tile tile--orange" href="/cloud-superapp/c3/workflows/" role="listitem" aria-label="Workflows"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Workflows</span></a>
+                <a class="tile tile--orange" href="/cloud-superapp/c3/logs/" role="listitem" aria-label="Logs"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 6h16" />
+  <path d="M4 12h13" />
+  <path d="M4 18h9" />
+</svg></span><span class="tile__label">Logs</span></a>
+                <a class="tile tile--orange" href="/cloud-superapp/c3/reports/" role="listitem" aria-label="Reports"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20h19" />
+  <path d="M5 20v-4" />
+  <path d="M10 20v-7" />
+  <path d="M15 20v-10" />
+  <path d="M20 20v-13" />
+</svg></span><span class="tile__label">Reports</span></a>
+                <a class="tile tile--orange" href="/cloud-superapp/drive/connections/" role="listitem" aria-label="Drive · Connections"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Drive · Connections</span></a>
+                <a class="tile tile--orange" href="/cloud-superapp/c3/dagu/" role="listitem" aria-label="Dagu"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg></span><span class="tile__label">Dagu</span></a>
+                <a class="tile tile--orange" href="/cloud-superapp/c3/gha/" role="listitem" aria-label="GHA"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">GHA</span></a>
+            </div>
+            <h2 class="stack-divider">Details</h2>
+            <div class="stack-list">
+                <h2 class="stack-divider">Containers</h2>
+                <div class="stack-card">
+                <button class="stack-card__header" type="button" aria-expanded="true"><span class="stack-card__title">Infra Apps</span><span class="stack-card__chevron" aria-hidden="true">⌄</span></button>
+                <div class="stack-card__content"><h3 class="tile-group__title">Security</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Authelia"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6" />
+  <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+  <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
+</svg></span><span class="tile__label">Authelia</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Caddy"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6" />
+  <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+  <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
+</svg></span><span class="tile__label">Caddy</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Caddy L4 Public"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6" />
+  <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+  <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
+</svg></span><span class="tile__label">Caddy L4 Public</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Introspect Proxy"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6" />
+  <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+  <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
+</svg></span><span class="tile__label">Introspect Proxy</span></div>
+            </div>
+                <h3 class="tile-group__title">Network</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Wireguard Mesh"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="10.5" y1="6.5" x2="6.5" y2="17.5" />
+  <line x1="13.5" y1="6.5" x2="17.5" y2="17.5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+</svg></span><span class="tile__label">Wireguard Mesh</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Wireguard Mesh Ws Tunnel"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="10.5" y1="6.5" x2="6.5" y2="17.5" />
+  <line x1="13.5" y1="6.5" x2="17.5" y2="17.5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+</svg></span><span class="tile__label">Wireguard Mesh Ws Tunnel</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Wireguard Public"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="10.5" y1="6.5" x2="6.5" y2="17.5" />
+  <line x1="13.5" y1="6.5" x2="17.5" y2="17.5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+</svg></span><span class="tile__label">Wireguard Public</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Hickory Dns"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="10.5" y1="6.5" x2="6.5" y2="17.5" />
+  <line x1="13.5" y1="6.5" x2="17.5" y2="17.5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+</svg></span><span class="tile__label">Hickory Dns</span></div>
+            </div>
+                <h3 class="tile-group__title">Observability</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Matomo"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 6h16" />
+  <path d="M4 12h13" />
+  <path d="M4 18h9" />
+</svg></span><span class="tile__label">Matomo</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Umami"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 6h16" />
+  <path d="M4 12h13" />
+  <path d="M4 18h9" />
+</svg></span><span class="tile__label">Umami</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Openobserve"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 6h16" />
+  <path d="M4 12h13" />
+  <path d="M4 18h9" />
+</svg></span><span class="tile__label">Openobserve</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Dagu"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 6h16" />
+  <path d="M4 12h13" />
+  <path d="M4 18h9" />
+</svg></span><span class="tile__label">Dagu</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Nocodb"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 6h16" />
+  <path d="M4 12h13" />
+  <path d="M4 18h9" />
+</svg></span><span class="tile__label">Nocodb</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Dbgate"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 6h16" />
+  <path d="M4 12h13" />
+  <path d="M4 18h9" />
+</svg></span><span class="tile__label">Dbgate</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Ntfy"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 6h16" />
+  <path d="M4 12h13" />
+  <path d="M4 18h9" />
+</svg></span><span class="tile__label">Ntfy</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Sauron Forwarder"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 6h16" />
+  <path d="M4 12h13" />
+  <path d="M4 18h9" />
+</svg></span><span class="tile__label">Sauron Forwarder</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Cloud Spec"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 6h16" />
+  <path d="M4 12h13" />
+  <path d="M4 18h9" />
+</svg></span><span class="tile__label">Cloud Spec</span></div>
+            </div>
+                <h3 class="tile-group__title">Databases</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Redis"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Redis</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Umami Db"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Umami Db</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Authelia Redis"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Authelia Redis</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Kg Store"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Kg Store</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Mattermost Postgres"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Mattermost Postgres</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Photoprism Mariadb"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Photoprism Mariadb</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Etherpad Postgres"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Etherpad Postgres</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Hedgedoc Postgres"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Hedgedoc Postgres</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Paca Postgres"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Paca Postgres</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Postlite"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Postlite</span></div>
+            </div>
+                <h3 class="tile-group__title">Data</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Gitea"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Gitea</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Backup Borg"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Backup Borg</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Backup Bup"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Backup Bup</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Backup Gitea"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Backup Gitea</span></div>
+            </div>
+                <h3 class="tile-group__title">APIs & MCPs</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Analytics Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Analytics Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Infra Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Infra Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Public Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Public Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Services Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Services Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Infra Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Infra Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Services Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Services Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Diego Personal Data Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Diego Personal Data Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Google Personal Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Google Personal Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Google Workspace Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Google Workspace Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Mail Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Mail Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Mattermost Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Mattermost Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Http To Smtp Proxy Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Http To Smtp Proxy Api</span></div>
+            </div>
+                <h3 class="tile-group__title">Build</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Cloud Builder X"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5" />
+</svg></span><span class="tile__label">Cloud Builder X</span></div>
+            </div>
+                <h3 class="tile-group__title">Pilots</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Pilot · gcp-E2-f_0"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Pilot · gcp-E2-f_0</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Pilot · oci-E2-f_0"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Pilot · oci-E2-f_0</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Pilot · oci-E2-f_1"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Pilot · oci-E2-f_1</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Pilot · oci-A1-f_0"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Pilot · oci-A1-f_0</span></div>
+            </div></div>
+            </div>
+                <div class="stack-card">
+                <button class="stack-card__header" type="button" aria-expanded="true"><span class="stack-card__title">User Apps</span><span class="stack-card__chevron" aria-hidden="true">⌄</span></button>
+                <div class="stack-card__content"><h3 class="tile-group__title">Communications</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Chat Mattermost"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+</svg></span><span class="tile__label">Chat Mattermost</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Matrix Continuwuity"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+</svg></span><span class="tile__label">Matrix Continuwuity</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Matrix Element"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+</svg></span><span class="tile__label">Matrix Element</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Matrix Mautrix Whatsapp"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+</svg></span><span class="tile__label">Matrix Mautrix Whatsapp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Maddy"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+</svg></span><span class="tile__label">Maddy</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Stalwart"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+</svg></span><span class="tile__label">Stalwart</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Cypht"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+</svg></span><span class="tile__label">Cypht</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Snappymail"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+</svg></span><span class="tile__label">Snappymail</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Mail Puller"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+</svg></span><span class="tile__label">Mail Puller</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Tools Smtp Proxy"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />
+</svg></span><span class="tile__label">Tools Smtp Proxy</span></div>
+            </div>
+                <h3 class="tile-group__title">Productivity</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Etherpad"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><span class="tile__label">Etherpad</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Hedgedoc"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><span class="tile__label">Hedgedoc</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Grist"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><span class="tile__label">Grist</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Calendar Radicale"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><span class="tile__label">Calendar Radicale</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Contacts Radicale"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><span class="tile__label">Contacts Radicale</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Revealmd"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><span class="tile__label">Revealmd</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Code Server"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><span class="tile__label">Code Server</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Filebrowser"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><span class="tile__label">Filebrowser</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Paca"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg></span><span class="tile__label">Paca</span></div>
+            </div>
+                <h3 class="tile-group__title">Media</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Photoprism"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 5a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-14z" />
+  <circle cx="8" cy="9" r="1.5" />
+  <path d="M4 17l4 -4l3 3l5 -5l3 4" />
+</svg></span><span class="tile__label">Photoprism</span></div>
+            </div>
+                <h3 class="tile-group__title">Finance</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Crawlee Cloud"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20h19" />
+  <path d="M5 20v-4" />
+  <path d="M10 20v-7" />
+  <path d="M15 20v-10" />
+  <path d="M20 20v-13" />
+</svg></span><span class="tile__label">Crawlee Cloud</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Fin Api"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M3 20h19" />
+  <path d="M5 20v-4" />
+  <path d="M10 20v-7" />
+  <path d="M15 20v-10" />
+  <path d="M20 20v-13" />
+</svg></span><span class="tile__label">Fin Api</span></div>
+            </div>
+                <h3 class="tile-group__title">AI & Agents</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Ollama"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></span><span class="tile__label">Ollama</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Ollama Arm"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></span><span class="tile__label">Ollama Arm</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Ollama Hai"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></span><span class="tile__label">Ollama Hai</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Rig Agentic"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></span><span class="tile__label">Rig Agentic</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Rig Agentic Hai 1.5Bq4"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></span><span class="tile__label">Rig Agentic Hai 1.5Bq4</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Rig Agentic Sonn 14Bq8"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></span><span class="tile__label">Rig Agentic Sonn 14Bq8</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Db Agent"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></span><span class="tile__label">Db Agent</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Kg Graph"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></span><span class="tile__label">Kg Graph</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Claude Openai Bridge"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></span><span class="tile__label">Claude Openai Bridge</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Octocode (CGC)"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path></svg></span><span class="tile__label">Octocode (CGC)</span></div>
+            </div>
+                <h3 class="tile-group__title">Vault</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Vaultwarden"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6" />
+  <path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+  <path d="M8 11v-4a4 4 0 1 1 8 0v4" />
+</svg></span><span class="tile__label">Vaultwarden</span></div>
+            </div>
+                <h3 class="tile-group__title">News</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="News Gdelt"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 4a16 16 0 0 1 16 16" />
+  <path d="M4 11a9 9 0 0 1 9 9" />
+  <circle cx="5" cy="19" r="1" />
+</svg></span><span class="tile__label">News Gdelt</span></div>
+            </div>
+                <h3 class="tile-group__title">Web</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Front End"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 5a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-14z" />
+  <path d="M4 9h16" />
+  <circle cx="7" cy="7" r="1" />
+</svg></span><span class="tile__label">Front End</span></div>
+            </div>
+                <h3 class="tile-group__title">Storage</h3>
+                <div class="tile-grid" role="list">
+                <a class="tile tile--blue" href="https://cloud.oracle.com" target="_blank" rel="noopener" role="listitem" aria-label="Oracle S3"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Oracle S3</span></a>
+                <a class="tile tile--blue" href="https://workspace.google.com" target="_blank" rel="noopener" role="listitem" aria-label="Google Workspace"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Google Workspace</span></a>
+            </div></div>
+            </div>
+                <h2 class="stack-divider">Stack</h2>
+                <div class="stack-card">
+                <button class="stack-card__header" type="button" aria-expanded="true"><span class="stack-card__title">Stack</span><span class="stack-card__chevron" aria-hidden="true">⌄</span></button>
+                <div class="stack-card__content"><h3 class="tile-group__title">Providers (VPS)</h3>
+                <div class="tile-grid" role="list">
+                <a class="tile tile--blue" href="https://cloud.oracle.com" target="_blank" rel="noopener" role="listitem" aria-label="Oracle"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 5a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-14z" />
+  <path d="M4 9h16" />
+  <circle cx="7" cy="7" r="1" />
+</svg></span><span class="tile__label">Oracle</span></a>
+                <a class="tile tile--blue" href="https://console.cloud.google.com" target="_blank" rel="noopener" role="listitem" aria-label="GCloud"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 5a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-14z" />
+  <path d="M4 9h16" />
+  <circle cx="7" cy="7" r="1" />
+</svg></span><span class="tile__label">GCloud</span></a>
+                <a class="tile tile--blue" href="https://dash.cloudflare.com" target="_blank" rel="noopener" role="listitem" aria-label="Cloudflare"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 5a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-14z" />
+  <path d="M4 9h16" />
+  <circle cx="7" cy="7" r="1" />
+</svg></span><span class="tile__label">Cloudflare</span></a>
+                <a class="tile tile--blue" href="https://github.com/diegonmarcos" target="_blank" rel="noopener" role="listitem" aria-label="GitHub"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 5a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-14z" />
+  <path d="M4 9h16" />
+  <circle cx="7" cy="7" r="1" />
+</svg></span><span class="tile__label">GitHub</span></a>
+                <a class="tile tile--blue" href="https://console.hetzner.cloud" target="_blank" rel="noopener" role="listitem" aria-label="Hetzner"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 5a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-14z" />
+  <path d="M4 9h16" />
+  <circle cx="7" cy="7" r="1" />
+</svg></span><span class="tile__label">Hetzner</span></a>
+                <a class="tile tile--blue" href="https://build.nvidia.com" target="_blank" rel="noopener" role="listitem" aria-label="Nvidia"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M4 5a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-14z" />
+  <path d="M4 9h16" />
+  <circle cx="7" cy="7" r="1" />
+</svg></span><span class="tile__label">Nvidia</span></a>
+            </div>
+                <h3 class="tile-group__title">VMs</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="gcp-E2-f_0"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="10.5" y1="6.5" x2="6.5" y2="17.5" />
+  <line x1="13.5" y1="6.5" x2="17.5" y2="17.5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+</svg></span><span class="tile__label">gcp-E2-f_0</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="oci-E2-f_0"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="10.5" y1="6.5" x2="6.5" y2="17.5" />
+  <line x1="13.5" y1="6.5" x2="17.5" y2="17.5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+</svg></span><span class="tile__label">oci-E2-f_0</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="oci-E2-f_1"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="10.5" y1="6.5" x2="6.5" y2="17.5" />
+  <line x1="13.5" y1="6.5" x2="17.5" y2="17.5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+</svg></span><span class="tile__label">oci-E2-f_1</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="oci-A1-f_0"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="10.5" y1="6.5" x2="6.5" y2="17.5" />
+  <line x1="13.5" y1="6.5" x2="17.5" y2="17.5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+</svg></span><span class="tile__label">oci-A1-f_0</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Galaxy S21"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <circle cx="12" cy="5" r="2" />
+  <circle cx="5" cy="19" r="2" />
+  <circle cx="19" cy="19" r="2" />
+  <line x1="10.5" y1="6.5" x2="6.5" y2="17.5" />
+  <line x1="13.5" y1="6.5" x2="17.5" y2="17.5" />
+  <line x1="7" y1="19" x2="17" y2="19" />
+</svg></span><span class="tile__label">Galaxy S21</span></div>
+            </div>
+                <h3 class="tile-group__title">Runners</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="ARM (Oci-Apps)"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5" />
+</svg></span><span class="tile__label">ARM (Oci-Apps)</span></div>
+                <a class="tile tile--blue" href="https://github.com/diegonmarcos/cloud-infra-desktop/actions" target="_blank" rel="noopener" role="listitem" aria-label="x86 (GHA)"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M7 10h3v-3l-3.5 -3.5a6 6 0 0 1 8 8l6 6a2 2 0 0 1 -3 3l-6 -6a6 6 0 0 1 -8 -8l3.5 3.5" />
+</svg></span><span class="tile__label">x86 (GHA)</span></a>
+            </div>
+                <h3 class="tile-group__title">DBs</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Redis"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Redis</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Umami Db"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Umami Db</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Authelia Redis"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Authelia Redis</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Kg Store"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Kg Store</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Mattermost Postgres"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Mattermost Postgres</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Photoprism Mariadb"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Photoprism Mariadb</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Etherpad Postgres"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Etherpad Postgres</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Hedgedoc Postgres"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Hedgedoc Postgres</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Paca Postgres"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Paca Postgres</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Postlite"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Postlite</span></div>
+                <a class="tile tile--blue" href="https://cloud.oracle.com" target="_blank" rel="noopener" role="listitem" aria-label="Oracle S3 (backups)"><span class="tile__icon" aria-hidden="true"><svg width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg></span><span class="tile__label">Oracle S3 (backups)</span></a>
+            </div>
+                <h3 class="tile-group__title">APIs</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Alerts Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Alerts Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Analytics Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Analytics Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Infra Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Infra Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Public Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Public Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Services Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Services Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Claude Superset Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Claude Superset Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Fin Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Fin Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Http To Smtp Proxy Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Http To Smtp Proxy Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="My Ai Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">My Ai Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Paca Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Paca Api</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Scrappers Api"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Scrappers Api</span></div>
+            </div>
+                <h3 class="tile-group__title">MCPs</h3>
+                <div class="tile-grid" role="list">
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Diego Personal Data Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Diego Personal Data Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Infra Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Infra Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="C3 Services Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">C3 Services Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Cloud Cgc Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Cloud Cgc Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Google Personal Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Google Personal Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Google Workspace Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Google Workspace Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Mail Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Mail Mcp</span></div>
+                <div class="tile tile--blue tile--inert" role="listitem" aria-disabled="true" aria-label="Mattermost Mcp"><span class="tile__icon" aria-hidden="true"><!--
+tags: [code, version control, command]
+version: "1.0"
+unicode: "eab2"
+category: Version control
+-->
+<svg width="32" height="32" fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+ 
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M7 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M17 6m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+  <path d="M7 8l0 8" />
+  <path d="M9 18h6a2 2 0 0 0 2 -2v-5" />
+  <path d="M14 14l3 -3l3 3" />
+</svg></span><span class="tile__label">Mattermost Mcp</span></div>
+            </div></div>
+            </div>
+            </div>
+            <footer class="site-footer">
+                <a class="footer-badge" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-SuperApp.apk" download>
+                    <img class="footer-badge__icon" src="../../public/icons/play-badge.svg" alt="">
+                    <span class="footer-badge__text">
+                        <span class="footer-badge__label">Cloud SuperApp</span>
+                        <span class="footer-badge__sub">Download APK · arm64</span>
+                    </span>
+                </a>
+                <div class="footer-constellation">
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/cloud-comms-mail.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/mail.svg" alt=""></span>
+                        <span class="footer-chip__label">Mail</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/cloud-comms-chat.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/chat.svg" alt=""></span>
+                        <span class="footer-chip__label">Chat</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/cloud-comms-matrix.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/chat.svg" alt=""></span>
+                        <span class="footer-chip__label">Messenger</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/cloud-comms-dialer.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/phone.svg" alt=""></span>
+                        <span class="footer-chip__label">Dialer</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-IDE-Hub.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/code.svg" alt=""></span>
+                        <span class="footer-chip__label">IDE</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Nav.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/mesh.svg" alt=""></span>
+                        <span class="footer-chip__label">Nav</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Calendar.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/calendar.svg" alt=""></span>
+                        <span class="footer-chip__label">Calendar</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-News.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/rss.svg" alt=""></span>
+                        <span class="footer-chip__label">News</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Keyboard.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/tools.svg" alt=""></span>
+                        <span class="footer-chip__label">Keyboard</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Wallet.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/wallet.svg" alt=""></span>
+                        <span class="footer-chip__label">Wallet</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Browser.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/browser.svg" alt=""></span>
+                        <span class="footer-chip__label">Browser</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/Cloud-Vault.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/lock.svg" alt=""></span>
+                        <span class="footer-chip__label">Vault</span>
+                    </a>
+                    <a class="footer-chip" href="https://github.com/diegonmarcos/cloudy-u-android/releases/latest/download/cloud-media-center.apk" download>
+                        <span class="footer-chip__icon-wrap"><img class="footer-chip__icon" src="../../public/icons/music.svg" alt=""></span>
+                        <span class="footer-chip__label">Media</span>
+                    </a>
+                </div>
+            </footer>
+        </main>
+
+        <nav class="bottom-nav" id="bottom-nav" aria-label="Primary">
+            <a class="bottom-nav__item" href="../../communication/" data-longpress="communication"><img class="" src="../../public/icons/chat.svg" alt=""><span>Notify</span></a>
+            <a class="bottom-nav__item" href="../../boards/" data-longpress="boards"><img class="" src="../../public/icons/briefcase.svg" alt=""><span>Boards</span></a>
+            <a class="bottom-nav__item" href="../../" data-longpress="home"><img class="" src="../../public/icons/home.svg" alt=""><span>Home</span></a>
+            <a class="bottom-nav__item is-active" href="../../cloud/" data-longpress="cloud"><img class="" src="../../public/icons/suite.svg" alt=""><span>Cloud</span></a>
+            <a class="bottom-nav__item" href="../../phone/" data-longpress="phone"><img class="" src="../../public/icons/phone.svg" alt=""><span>Phone</span></a>
+        </nav>
+
+        <div class="drawer-scrim" id="drawer-scrim"></div>
+        <aside class="drawer" id="drawer" aria-hidden="true">
+            <div class="drawer__banner drawer__banner--app" id="drawer-app-banner">
+                <img class="drawer__banner-icon" src="../../public/icons/home.svg" alt="">
+                <div class="drawer__banner-text">
+                    <p class="drawer__title" id="drawer-app-name">Cloud SuperApp</p>
+                    <p class="drawer__meta" id="drawer-app-build">cloud-superapp · web</p>
+                    <p class="drawer__meta drawer__meta--ts" id="drawer-app-timestamp">2026-08-18 07:52</p>
+                </div>
+            </div>
+            <div class="drawer__separator"></div>
+            <div class="drawer__banner drawer__banner--user" id="drawer-user-banner">
+                <a class="drawer__avatar" id="drawer-user-avatar" href="/cloud-superapp/config/profile/">DCM</a>
+                <div class="drawer__banner-text">
+                    <p class="drawer__title" id="drawer-user-name">Diego Coelho Marcos</p>
+                    <p class="drawer__meta" id="drawer-user-email">me@diegonmarcos.com</p>
+                    <p class="drawer__mode" id="drawer-user-mode">Mode: Apps</p>
+                </div>
+            </div>
+            <nav class="drawer__nav" id="drawer-nav"></nav>
+        </aside>
+
+        <div class="radial-menu" id="radial-menu" hidden aria-hidden="true"></div>
+        <div class="fan-menu-scrim" id="fan-menu-scrim" hidden></div>
+        <div class="fan-menu" id="fan-menu" hidden aria-hidden="true"></div>
+        <div class="overlay-sheet" id="notification-center" hidden></div>
+        <div class="overlay-sheet overlay-sheet--full" id="update-overlay" hidden></div>
+        <div class="overlay-sheet" id="calendar-popup" hidden></div>
+    </div>
+
+    <script>window.PORTAL_DATA = window.PORTAL_DATA || {};</script>
+    <script src="../../data-shell.json.js"></script>
+    <script src="../../data-sections-core.json.js"></script>
+    <script src="../../data-sections-content.json.js"></script>
+    <script src="../../data-mock-apps.json.js"></script>
+    <script src="../../data-linktree.json.js"></script>
+    <script src="../../data-cloud-apps.json.js"></script>
+    <script src="../../script.js"></script>
+</body>
+</html>

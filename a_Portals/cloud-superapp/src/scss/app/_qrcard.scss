@@ -1,0 +1,85 @@
+@use '../mixins' as *;
+
+// ==========================================================================
+// QR card — config/profile's "Business card" block. Mirrors the APK's
+// rainbow-framed QR code: a gradient frame, a white inner plate, and a
+// CSS-drawn code-ish pattern (no real QR encoding — this is a decorative
+// replica, not a scannable code).
+// ==========================================================================
+
+.qrcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 4px 20px;
+}
+
+.qrcard__frame {
+    width: 168px;
+    height: 168px;
+    border-radius: 24px;
+    padding: 10px;
+    background: conic-gradient(from 0deg, #ff3d00, #7c3aed, #ff3d00);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qrcard__plate {
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background-image:
+        repeating-linear-gradient(90deg, #1a1a1a 0 8px, transparent 8px 16px),
+        repeating-linear-gradient(0deg, #1a1a1a 0 8px, transparent 8px 16px);
+    background-size: 32px 32px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: multiply;
+    opacity: 1;
+}
+
+.qrcard__plate::before,
+.qrcard__plate::after {
+    content: '';
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border: 6px solid #1a1a1a;
+    border-radius: 4px;
+}
+
+.qrcard__plate::before {
+    top: 12px;
+    left: 12px;
+}
+
+.qrcard__plate::after {
+    bottom: 12px;
+    right: 12px;
+}
+
+.qrcard__glyph {
+    position: relative;
+    z-index: 1;
+    background: #ffffff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+}
+
+.qrcard__caption {
+    margin: 12px 0 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-align: center;
+}

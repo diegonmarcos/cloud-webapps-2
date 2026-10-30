@@ -1,0 +1,156 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Content blocks — Suite tile groups, app tiles/folders, inert states,
+// page-list footer link
+// ==========================================================================
+
+.tile--inert {
+    opacity: .55;
+    cursor: default;
+}
+
+.tile-group {
+    margin-bottom: 20px;
+}
+
+// APK: bold ~16sp mixed-case lavender (not the uppercase/tracked-out
+// secondary-text label other headings use).
+.tile-group__title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--drawer-banner-text, #E9D8FD);
+    margin: 0 4px 10px;
+}
+
+// auto-fill, not auto-fit — see the matching note on .tile-grid in
+// _tiles.scss; auto-fit stretched sparse groups (e.g. a 3-app smart folder)
+// into a handful of wide cards instead of small square tiles.
+.tile-grid--dense {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+    gap: 6px;
+}
+
+// Suite → Cloud tile groups (GroupedTilesFragment on the real app): each
+// group is a single-row HorizontalScrollView of fixed-size cells that never
+// wraps, unlike the wrapping square grid every other tile-grid uses above.
+.tile-grid--strip {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    gap: 0;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // GroupedTilesFragment.tileCell: 60dp wide, wrap-content height, 6dp
+    // padding and — unlike every other grid's tile — no background, border
+    // or corner radius at all. Icons are white here, not the section grid's
+    // lavender.
+    .tile {
+        width: 60px;
+        height: auto;
+        padding: 6px;
+        background: none;
+        border: 0;
+        border-radius: 0;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+    }
+
+    .tile__icon {
+        color: #FFFFFF;
+    }
+
+    .tile__label {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 12px;
+    }
+}
+
+// App tiles carry no surface of their own: .tile already paints the dark
+// glass every tile gets (see _tiles.scss), and the dark --text-on-tile
+// label it used to force was left over from the pastel tile backgrounds
+// that are gone — dark on dark, i.e. invisible. The label colour now comes
+// from .tile__label like every other tile's.
+
+// Liquid-glass card surface (bg_glass_liquid.xml) — layered over the flat
+// --glass-bg backdrop so the folder still reads as an opaque black island
+// while carrying the same tint the drawer/overlay-sheet/stack-card surfaces
+// use. Radius stays at the folder's own 14px rather than switching to
+// --glass-liquid-radius (24px reads too round at this element's size).
+.app-folder {
+    margin: 10px 2px 0;
+    padding: 10px;
+    border-radius: 14px;
+    background-color: var(--glass-bg);
+    background-image: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+}
+
+.app-folder__title {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0 0 8px;
+}
+
+// "More" row at the end of a tile group (generate-pages.mjs's footerHtml —
+// always the "more" icon) — APK: a bare centered icon + caption, no
+// pill/background/border. This needs an arbitrary lavender rather than
+// fan-menu.ts's white-only filter: brightness(0) invert(1), so the generator
+// inlines the SVG (inlineIcon()) and the tint rides currentColor, same as
+// _tiles.scss's .tile__icon and _app-icons.scss's .tile__app-icon__glyph.
+.tile-group__footer,
+.footer-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    padding: 8px 0;
+    background: none;
+    border: none;
+    text-decoration: none;
+    color: var(--drawer-banner-text);
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.tile-group__footer-icon {
+    width: 32px;
+    height: 32px;
+    color: var(--drawer-banner-text);
+
+    > svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.footer-link::before {
+    background-color: var(--drawer-banner-text);
+    -webkit-mask-image: url('/cloud-superapp/public/icons/more.svg');
+    mask-image: url('/cloud-superapp/public/icons/more.svg');
+    -webkit-mask-size: contain;
+    mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+}
+
+// Transitional — .footer-link (old text-only pill) shares the layout/color
+// rules above; it just has no markup to hang a real <img> off of, so its
+// icon is a decorative ::before using the same mask-tint rule above.
+.footer-link::before {
+    content: '';
+    display: block;
+    width: 32px;
+    height: 32px;
+}

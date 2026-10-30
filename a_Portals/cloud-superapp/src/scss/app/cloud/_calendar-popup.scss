@@ -1,0 +1,175 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Calendar popup — port of the real app's CalendarAgendaPopup, opened by
+// tapping the status-strip's date/time. Colors below are converted
+// directly from that Kotlin source's ARGB literals, not re-picked.
+// ==========================================================================
+
+.calendar-popup__panel {
+    width: 260px;
+    max-width: calc(100% - 24px);
+    margin: 6px auto 0;
+    background: rgba(17, 17, 17, 0.933);
+    border-color: rgba(255, 255, 255, 0.267);
+}
+
+.calendar-popup__header {
+    @include flex-row(space-between, flex-start, 8px);
+    padding-bottom: 8px;
+}
+
+.calendar-popup__header-left {
+    min-width: 0;
+}
+
+.calendar-popup__label {
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.667);
+    margin: 0 0 2px;
+}
+
+.calendar-popup__today {
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+}
+
+.calendar-popup__stopwatch {
+    @include flex-row(flex-end, center, 8px);
+    flex-shrink: 0;
+}
+
+.calendar-popup__stopwatch-time {
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 17px;
+    color: var(--drawer-banner-text);
+}
+
+.calendar-popup__stopwatch-btn {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    @include flex-center;
+    font-size: 9px;
+    color: #fff;
+    background: #16a34a;
+}
+
+.calendar-popup__stopwatch-btn.is-running {
+    background: #b91c1c;
+}
+
+.calendar-popup__tabs {
+    @include flex-row(stretch, stretch, 0);
+    margin-bottom: 8px;
+}
+
+.calendar-popup__tab {
+    flex: 1;
+    padding: 6px;
+    font-family: monospace;
+    font-size: 12px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.467);
+    background: rgba(255, 255, 255, 0.067);
+}
+
+.calendar-popup__tab.is-active {
+    color: var(--drawer-banner-text);
+    font-weight: 700;
+    background: rgba(233, 216, 253, 0.2);
+}
+
+.calendar-popup__agenda-scroll {
+    max-height: 260px;
+    overflow-y: auto;
+}
+
+.calendar-popup__agenda-body {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.calendar-popup__agenda-row {
+    padding: 6px;
+    border-radius: 6px;
+    background: rgba(26, 0, 51, 0.133);
+}
+
+.calendar-popup__agenda-row.is-today {
+    background: rgba(26, 0, 51, 0.267);
+}
+
+.calendar-popup__agenda-date {
+    font-family: monospace;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.calendar-popup__agenda-row.is-today .calendar-popup__agenda-date {
+    color: var(--drawer-banner-text);
+    font-weight: 700;
+}
+
+.calendar-popup__agenda-empty {
+    font-family: monospace;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.467);
+    margin: 2px 0 0;
+}
+
+.calendar-popup__footnote {
+    font-family: monospace;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.333);
+    margin: 10px 2px 2px;
+}
+
+.calendar-popup__month-title {
+    font-family: monospace;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--drawer-banner-text);
+    margin: 0 0 6px;
+}
+
+.calendar-popup__week {
+    display: flex;
+    flex-direction: row;
+}
+
+.calendar-popup__day-cell {
+    flex: 1;
+    text-align: center;
+    font-family: monospace;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.867);
+    padding: 5px 0;
+    margin: 2px;
+    border-radius: 50%;
+    background: rgba(26, 0, 51, 0.133);
+}
+
+.calendar-popup__day-cell:empty {
+    background: transparent;
+}
+
+.calendar-popup__day-cell--header {
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.533);
+    background: transparent;
+    padding: 3px 0;
+}
+
+.calendar-popup__day-cell.is-today {
+    color: #111;
+    font-weight: 700;
+    background: var(--drawer-banner-text);
+}

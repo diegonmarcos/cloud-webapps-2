@@ -1,0 +1,439 @@
+// ==========================================================================
+// Page views — the shared furniture every section landing page is built
+// from (see scripts/render/atoms.mjs + views.mjs). Five layouts, one row
+// component: rows differ by which leading mark and trailing figure they
+// carry, not by having their own markup.
+//
+// Mobile-first and touch-sized throughout: every interactive row clears the
+// 48px Android minimum, nothing depends on :hover, and the page never needs
+// a horizontal scroll at 360px.
+// ==========================================================================
+
+// ── page header ───────────────────────────────────────────────────────────
+.page-head {
+    margin: 0 0 12px;
+}
+
+.page-head__title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+}
+
+.page-head__subtitle {
+    margin: 2px 0 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+// ── row list ──────────────────────────────────────────────────────────────
+.row-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.row-group__heading {
+    margin: 14px 0 2px;
+    color: var(--drawer-dense-color);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.row-group__heading:first-child {
+    margin-top: 0;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 52px;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+a.row:active {
+    transform: scale(0.985);
+    transition: transform var(--duration-press-down) var(--ease-accelerate);
+}
+
+// Present, but deliberately not actionable on the web — the action only
+// exists inside the APK. Dimmed and marked, never a dead <a href>.
+.row--android-only {
+    opacity: 0.55;
+}
+
+.row--android-only::after {
+    content: 'app only';
+    margin-left: auto;
+    flex-shrink: 0;
+    font-size: 9px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    padding: 2px 6px;
+}
+
+// ── row leading slot ──────────────────────────────────────────────────────
+.row__lead {
+    flex-shrink: 0;
+}
+
+.row__lead--monogram {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.row__lead--icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--island-accent);
+
+    svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.row__lead--dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+}
+
+.row__lead--ok { background: #48bb78; }
+.row__lead--warn { background: #ed8936; }
+.row__lead--down { background: #f56565; }
+
+.row__lead--accent {
+    width: 4px;
+    height: 34px;
+    border-radius: 2px;
+}
+
+// ── row text ──────────────────────────────────────────────────────────────
+.row__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    flex: 1;
+}
+
+.row__title {
+    font-size: 14px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.row__subtitle {
+    color: var(--text-secondary);
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// ── row trailing slot ─────────────────────────────────────────────────────
+.row__trail {
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.row__meta {
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-family: monospace;
+}
+
+.row__badge {
+    min-width: 22px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: var(--drawer-avatar);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.row__pill {
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid currentColor;
+}
+
+.row__pill--neutral { color: var(--text-secondary); }
+.row__pill--ok { color: #48bb78; }
+.row__pill--warn { color: #ed8936; }
+.row__pill--down { color: #f56565; }
+
+.row__amount {
+    font-family: monospace;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.row__amount--up { color: #48bb78; }
+.row__amount--down { color: #f56565; }
+.row__amount--flat { color: var(--text-primary); }
+
+// ── stat strip (dashboard KPI header) ─────────────────────────────────────
+.stat-strip {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+@media (min-width: 480px) {
+    .stat-strip {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.stat-tile {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 14px;
+    border-radius: var(--glass-liquid-radius);
+    background: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+}
+
+.stat-tile__label {
+    color: var(--text-secondary);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-tile__value {
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 600;
+}
+
+// ── agenda (calendar day) ─────────────────────────────────────────────────
+.agenda {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.agenda__row {
+    display: flex;
+    align-items: stretch;
+    gap: 10px;
+}
+
+.agenda__time {
+    flex-shrink: 0;
+    width: 54px;
+    padding-top: 12px;
+    color: var(--text-secondary);
+    font-family: monospace;
+    font-size: 12px;
+    text-align: right;
+}
+
+.agenda__event {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    border: var(--glass-liquid-border);
+    border-left: 4px solid var(--island-accent);
+    background: var(--glass-liquid-gradient);
+}
+
+.agenda__event-title {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.agenda__event-meta {
+    color: var(--text-secondary);
+    font-size: 11px;
+}
+
+// ── wallet deck ───────────────────────────────────────────────────────────
+.wallet-deck {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.wallet-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-height: 128px;
+    padding: 16px;
+    border-radius: 18px;
+    border: var(--glass-liquid-border);
+    color: #fff;
+}
+
+.wallet-card__brand {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+
+.wallet-card__number {
+    margin-top: auto;
+    font-family: monospace;
+    font-size: 16px;
+    letter-spacing: 1.5px;
+}
+
+.wallet-card__tag {
+    align-self: flex-start;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.wallet-card--add {
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: transparent;
+    border: 1px dashed var(--glass-border);
+    color: var(--text-secondary);
+}
+
+.wallet-card__add-glyph {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.wallet-card__add-label {
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.wallet-card__add-sub {
+    font-size: 11px;
+}
+
+// ── tab grid (open tabs) ──────────────────────────────────────────────────
+.tab-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+@media (min-width: 480px) {
+    .tab-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.tab-card {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px;
+    border-radius: var(--glass-tile-radius);
+    background: var(--glass-tile-gradient);
+    border: var(--glass-tile-border);
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.tab-card--inert {
+    opacity: 0.6;
+}
+
+.tab-card__thumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.tab-card__title {
+    font-size: 12px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.tab-card__sub {
+    color: var(--text-secondary);
+    font-size: 11px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// ── empty state + android-only note ───────────────────────────────────────
+.empty-state {
+    padding: 28px 16px;
+    text-align: center;
+    border-radius: var(--glass-liquid-radius);
+    border: 1px dashed var(--glass-border);
+}
+
+.empty-state__title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.empty-state__body {
+    margin: 6px 0 0;
+    color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.android-only-note {
+    margin: 12px 0 0;
+    color: var(--text-secondary);
+    font-size: 11px;
+    line-height: 1.5;
+}

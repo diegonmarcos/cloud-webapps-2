@@ -1,0 +1,1525 @@
+// ============================================
+// TREE VIEW - Clean Modern Design
+// ============================================
+
+// View Toggle
+.view-toggle {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.35rem;
+    margin-top: 0.75rem;
+    padding: 0 0.5rem;
+}
+
+[data-theme="blurred"] .view-toggle {
+    gap: 0.5rem;
+}
+
+// Tree Controls
+.tree-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+}
+
+.tree-controls-group {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.tree-controls-sep {
+    width: 1px;
+    height: 24px;
+    background: var(--border-color);
+    margin: 0 0.5rem;
+}
+
+.tree-filter-btn {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    border-radius: var(--border-radius);
+
+    &:hover {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+    }
+
+    &.active {
+        background: var(--accent-primary);
+        border-color: var(--accent-primary);
+        color: #000;
+    }
+}
+
+[data-theme="blurred"] .tree-controls-sep {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="blurred"] .tree-filter-btn {
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--accent-blue);
+        color: var(--accent-blue);
+    }
+
+    &.active {
+        background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+        border-color: transparent;
+        color: white;
+    }
+}
+
+.tree-ctrl-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    border-radius: var(--border-radius);
+
+    svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    &:hover {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+    }
+}
+
+[data-theme="blurred"] .tree-ctrl-btn {
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--accent-blue);
+        color: var(--accent-blue);
+    }
+}
+
+// ============================================
+// FLEX SERVER CONTROLS
+// ============================================
+
+.flex-server-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.flex-server-label {
+    font-size: 0.65rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    margin-right: 0.25rem;
+}
+
+.flex-server-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+    background: var(--bg-card);
+    cursor: help;
+
+    .indicator-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--text-secondary);
+        opacity: 0.4;
+        transition: all 0.3s ease;
+    }
+
+    &.online .indicator-dot {
+        background: var(--accent-green);
+        opacity: 1;
+        box-shadow: 0 0 8px var(--accent-green);
+        animation: pulse-green 2s ease-in-out infinite;
+    }
+
+    &.offline .indicator-dot {
+        background: var(--accent-red);
+        opacity: 0.8;
+    }
+
+    &.starting .indicator-dot,
+    &.stopping .indicator-dot {
+        background: var(--accent-yellow);
+        opacity: 1;
+        animation: pulse-yellow 1s ease-in-out infinite;
+    }
+
+    &.unknown .indicator-dot {
+        background: var(--text-secondary);
+        opacity: 0.4;
+    }
+}
+
+@keyframes pulse-yellow {
+    0%, 100% { box-shadow: 0 0 4px var(--accent-yellow); opacity: 0.6; }
+    50% { box-shadow: 0 0 10px var(--accent-yellow); opacity: 1; }
+}
+
+.flex-btn {
+    &:hover {
+        border-color: var(--accent-green);
+        color: var(--accent-green);
+    }
+
+    &#flex-stop:hover {
+        border-color: var(--accent-orange);
+        color: var(--accent-orange);
+    }
+
+    &.flex-btn-danger:hover {
+        border-color: var(--accent-red);
+        color: var(--accent-red);
+    }
+
+    &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+        &:hover {
+            border-color: var(--border-color);
+            color: var(--text-secondary);
+        }
+    }
+
+    &.loading {
+        opacity: 0.6;
+        pointer-events: none;
+
+        svg {
+            animation: spin 1s linear infinite;
+        }
+    }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+[data-theme="blurred"] {
+    .flex-server-indicator {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .flex-btn {
+        &:hover {
+            background: rgba(129, 199, 132, 0.1);
+        }
+
+        &#flex-stop:hover {
+            background: rgba(255, 167, 38, 0.1);
+        }
+
+        &.flex-btn-danger:hover {
+            background: rgba(244, 67, 54, 0.1);
+        }
+    }
+}
+
+.view-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.3rem 0.5rem;
+    border: 1px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all var(--transition-speed) ease;
+    border-radius: var(--border-radius);
+    white-space: nowrap;
+    text-decoration: none;
+
+    svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    &:hover {
+        border-color: var(--accent-primary);
+        color: var(--text-primary);
+    }
+
+    &.active {
+        background: var(--accent-primary);
+        border-color: var(--accent-primary);
+        color: #000;
+    }
+}
+
+[data-theme="blurred"] .view-btn {
+    border-radius: 14px;
+    padding: 0.35rem 0.65rem;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.05);
+    text-transform: none;
+    font-size: 0.7rem;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--accent-blue);
+    }
+
+    &.active {
+        background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+        border-color: transparent;
+        color: white;
+    }
+}
+
+// View Group (tab group with label)
+.view-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.view-group-label {
+    font-size: 0.5rem;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+
+.view-group-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.15rem;
+}
+
+[data-theme="blurred"] .view-group-label {
+    font-size: 0.55rem;
+    letter-spacing: 1px;
+    opacity: 0.5;
+}
+
+[data-theme="blurred"] .view-group-buttons {
+    gap: 0.25rem;
+}
+
+// Group active state - underline all buttons in active group
+.view-group.group-active .view-btn {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+}
+
+// View Separator
+.view-separator {
+    width: 1px;
+    height: 30px;
+    background: var(--border-color);
+    margin: 0 0.35rem;
+    opacity: 0.3;
+    align-self: center;
+}
+
+[data-theme="blurred"] .view-separator {
+    background: linear-gradient(180deg, transparent, var(--border-color), transparent);
+    height: 35px;
+    opacity: 0.25;
+    margin: 0 0.5rem;
+}
+
+// View Content
+.view-content {
+    display: none;
+
+    &.active {
+        display: block;
+    }
+}
+
+#tree-view {
+    width: 100%;
+}
+
+// ============================================
+// NEW TREE DESIGN
+// ============================================
+
+.tree-container {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    padding: 1rem 0;
+}
+
+// Section header
+.tree-section {
+    margin-bottom: 1.5rem;
+}
+
+.tree-section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+
+    .section-icon {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: var(--text-secondary);
+    }
+}
+
+// Tree list
+.tree-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+// Tree item (single row)
+.tree-item {
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: var(--border-color);
+    }
+
+    &:last-child::before {
+        height: 1.1rem;
+    }
+}
+
+// Tree row (the actual clickable/visible part)
+.tree-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.5rem;
+    margin-left: 1rem;
+    position: relative;
+    transition: background 0.15s ease;
+    border-radius: 4px;
+
+    &::before {
+        content: '';
+        position: absolute;
+        left: -1rem;
+        top: 50%;
+        width: 0.75rem;
+        height: 1px;
+        background: var(--border-color);
+    }
+
+    &:hover {
+        background: var(--bg-card-hover);
+
+        .tree-actions {
+            opacity: 1;
+        }
+    }
+}
+
+// Indent levels
+.tree-item[data-level="0"] > .tree-row { margin-left: 0; }
+.tree-item[data-level="0"] > .tree-row::before { display: none; }
+.tree-item[data-level="0"]::before { display: none; }
+
+.tree-item[data-level="1"] { padding-left: 1.5rem; }
+.tree-item[data-level="2"] { padding-left: 3rem; }
+.tree-item[data-level="3"] { padding-left: 4.5rem; }
+
+// Expand/collapse toggle
+.tree-toggle {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+    flex-shrink: 0;
+
+    &:hover {
+        color: var(--accent-primary);
+    }
+
+    svg {
+        width: 10px;
+        height: 10px;
+        transition: transform 0.15s ease;
+    }
+
+    &.expanded svg {
+        transform: rotate(90deg);
+    }
+
+    &.empty {
+        visibility: hidden;
+    }
+}
+
+// Status indicator (colored dot)
+.tree-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+
+    &.on {
+        background: var(--accent-green);
+        box-shadow: 0 0 6px var(--accent-green);
+    }
+
+    &.dev {
+        background: var(--accent-yellow);
+    }
+
+    &.hold {
+        background: var(--accent-orange);
+    }
+
+    &.tbd {
+        background: var(--text-secondary);
+        opacity: 0.4;
+    }
+
+    &.offline {
+        background: var(--accent-red);
+    }
+}
+
+// Item icon
+.tree-icon {
+    font-size: 0.9rem;
+    flex-shrink: 0;
+    width: 18px;
+    text-align: center;
+}
+
+// Item label
+.tree-label {
+    color: var(--text-primary);
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &.category {
+        color: var(--text-secondary);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    &.provider {
+        font-weight: 600;
+        font-size: 0.85rem;
+    }
+
+    &.vm {
+        color: var(--accent-blue);
+    }
+}
+
+// Item type badge
+.tree-type {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.35rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border-radius: 3px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+// Action buttons (copy SSH, open URL)
+.tree-actions {
+    display: flex;
+    gap: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    flex-shrink: 0;
+}
+
+.tree-action-btn {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    svg {
+        width: 12px;
+        height: 12px;
+    }
+
+    &:hover {
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+    }
+
+    &.url-btn:hover {
+        border-color: var(--accent-blue);
+        color: var(--accent-blue);
+    }
+
+    &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+    }
+
+    &.copied {
+        border-color: var(--accent-green);
+        color: var(--accent-green);
+    }
+}
+
+// Nested children
+.tree-children {
+    display: none;
+
+    &.expanded {
+        display: block;
+    }
+}
+
+// ============================================
+// VM CARD BOXES LAYOUT
+// ============================================
+
+.vm-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+// Individual category box
+.vm-box {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    overflow: hidden;
+
+    &.box-services {
+        border-left: 3px solid var(--accent-blue);
+    }
+
+    &.box-data {
+        border-left: 3px solid var(--accent-purple);
+    }
+
+    &.box-os {
+        border-left: 3px solid var(--accent-green);
+    }
+}
+
+.vm-box-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+
+    .box-icon {
+        font-size: 0.8rem;
+    }
+}
+
+.vm-box-content {
+    padding: 0.4rem;
+}
+
+// Sub-section within box (Front/Back)
+.vm-box-section {
+    &:not(:last-child) {
+        margin-bottom: 0.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px dashed var(--border-color);
+    }
+}
+
+.vm-box-section-label {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    padding: 0.15rem 0.3rem;
+    margin-bottom: 0.2rem;
+}
+
+// Service/DB item row
+.vm-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.4rem;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+
+    &:hover {
+        background: var(--bg-card-hover);
+    }
+}
+
+// Mode indicator (muted colors - less prominent)
+.vm-item-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    opacity: 0.5;
+
+    &.on {
+        background: var(--accent-green);
+    }
+    &.offline {
+        background: var(--accent-red);
+    }
+    &.dev {
+        background: var(--accent-yellow);
+    }
+    &.hold {
+        background: var(--accent-orange);
+    }
+    &.tbd {
+        background: var(--text-secondary);
+        opacity: 0.3;
+    }
+}
+
+.vm-item-name {
+    font-size: 0.7rem;
+    color: var(--text-primary);
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+// Live status semaphore (health indicator)
+.vm-live-status {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-right: 0.3rem;
+
+    &.online {
+        background: var(--accent-green);
+        box-shadow: 0 0 6px var(--accent-green);
+        animation: pulse-green 2s ease-in-out infinite;
+    }
+    &.offline {
+        background: var(--accent-red);
+        box-shadow: 0 0 6px var(--accent-red);
+    }
+    &.unknown {
+        background: var(--text-secondary);
+        opacity: 0.4;
+    }
+}
+
+@keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 4px var(--accent-green); }
+    50% { box-shadow: 0 0 10px var(--accent-green); }
+}
+
+// Action buttons - always visible, fixed width
+.vm-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    flex-shrink: 0;
+}
+
+.vm-action-btn {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    opacity: 0.5;
+
+    svg {
+        width: 10px;
+        height: 10px;
+    }
+
+    &:hover {
+        opacity: 1;
+        border-color: var(--accent-primary);
+        color: var(--accent-primary);
+    }
+
+    &.btn-url:hover {
+        border-color: var(--accent-blue);
+        color: var(--accent-blue);
+    }
+
+    &.btn-ssh:hover {
+        border-color: var(--accent-green);
+        color: var(--accent-green);
+    }
+
+    &:disabled {
+        opacity: 0.2;
+        cursor: not-allowed;
+        &:hover {
+            border-color: var(--border-color);
+            color: var(--text-secondary);
+        }
+    }
+
+    &.copied {
+        border-color: var(--accent-green);
+        color: var(--accent-green);
+        opacity: 1;
+    }
+}
+
+// OS Box specific - VM info
+.vm-os-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem;
+
+    .os-icon {
+        font-size: 1.2rem;
+    }
+
+    .os-details {
+        flex: 1;
+
+        .os-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .os-ip {
+            font-size: 0.65rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+        }
+    }
+}
+
+// OS Box sub-sections (Docker Networks, HD Partitions)
+.os-subsection {
+    padding: 0.3rem 0.4rem;
+    border-top: 1px dashed var(--border-color);
+
+    &:first-of-type {
+        margin-top: 0.3rem;
+    }
+}
+
+.os-subsection-header {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    opacity: 0.8;
+    margin-bottom: 0.2rem;
+
+    .subsection-icon {
+        font-size: 0.65rem;
+    }
+}
+
+.os-subsection-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+}
+
+.os-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0.15rem 0.4rem;
+    font-size: 0.6rem;
+    font-family: var(--font-mono);
+    border-radius: 3px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+
+    &.tag-network {
+        border-color: rgba(138, 180, 248, 0.3);
+        color: var(--accent-blue);
+    }
+
+    &.tag-partition {
+        border-color: rgba(129, 199, 132, 0.3);
+        color: var(--accent-green);
+    }
+}
+
+// ============================================
+// BLURRED THEME - VM BOXES
+// ============================================
+
+[data-theme="blurred"] {
+    .vm-box {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border-color: rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+
+        &.box-services {
+            border-left-color: var(--accent-blue);
+        }
+        &.box-data {
+            border-left-color: var(--accent-purple);
+        }
+        &.box-os {
+            border-left-color: var(--accent-green);
+        }
+    }
+
+    .vm-box-header {
+        background: rgba(255, 255, 255, 0.02);
+        border-bottom-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .vm-box-section {
+        border-bottom-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .vm-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .vm-action-btn {
+        background: rgba(255, 255, 255, 0.02);
+        border-color: rgba(255, 255, 255, 0.1);
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.08);
+        }
+    }
+}
+
+// ============================================
+// LEGACY - Side-by-side columns (keep for compatibility)
+// ============================================
+
+// Side-by-side columns for Services/Data
+.tree-columns {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+
+    .tree-column {
+        flex: 1;
+        min-width: 0;
+
+        .column-header {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-secondary);
+            padding: 0.25rem 0.5rem;
+            margin-bottom: 0.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .column-items {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+    }
+}
+
+// Compact service item for columns
+.tree-service {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.4rem;
+    border-radius: 4px;
+    transition: background 0.15s ease;
+
+    &:hover {
+        background: var(--bg-card-hover);
+
+        .tree-actions {
+            opacity: 1;
+        }
+    }
+
+    .service-status {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        flex-shrink: 0;
+
+        &.on { background: var(--accent-green); box-shadow: 0 0 4px var(--accent-green); }
+        &.dev { background: var(--accent-yellow); }
+        &.hold { background: var(--accent-orange); }
+        &.tbd { background: var(--text-secondary); opacity: 0.4; }
+    }
+
+    .service-name {
+        font-size: 0.75rem;
+        color: var(--text-primary);
+        min-width: 10rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .tree-actions {
+        opacity: 0;
+    }
+}
+
+// Provider cards (top level)
+.tree-provider {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+
+    > .tree-row {
+        padding: 0.6rem 0.75rem;
+        margin-left: 0;
+        border-bottom: 1px solid var(--border-color);
+
+        &::before {
+            display: none;
+        }
+    }
+
+    > .tree-children {
+        padding: 0.5rem 0;
+    }
+}
+
+// Section divider (old style compatibility)
+.tree-section-divider {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 1.5rem 0 1rem;
+
+    &::before,
+    &::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border-color);
+    }
+
+    .divider-label {
+        font-size: 0.65rem;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding: 0.2rem 0.6rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+    }
+}
+
+// ============================================
+// BLURRED THEME
+// ============================================
+
+[data-theme="blurred"] {
+    .tree-container {
+        padding: 1.5rem 0;
+    }
+
+    .tree-section-header {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .tree-item::before {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .tree-row {
+        &::before {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+    }
+
+    .tree-provider {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(10px);
+        border-color: rgba(255, 255, 255, 0.08);
+        border-radius: 12px;
+
+        > .tree-row {
+            border-bottom-color: rgba(255, 255, 255, 0.06);
+        }
+    }
+
+    .tree-status {
+        &.online {
+            box-shadow: 0 0 8px var(--accent-green);
+        }
+    }
+
+    .tree-type {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+    }
+
+    .tree-action-btn {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: rgba(255, 255, 255, 0.1);
+        border-radius: 6px;
+
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    }
+
+    .tree-section-divider {
+        &::before,
+        &::after {
+            background: linear-gradient(90deg, transparent, var(--border-color), transparent);
+        }
+
+        .divider-label {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+    }
+}
+
+// ============================================
+// OLD TREE STYLES (for backward compatibility)
+// ============================================
+
+.tree-vps,
+.tree-node,
+.node-header,
+.node-title,
+.node-badge,
+.node-icon,
+.expand-icon,
+.node-copy-btn,
+.node-url-btn {
+    // Keep old classes working but redirect to new design
+}
+
+.tree-vps {
+    @extend .tree-provider;
+}
+
+.tree-node {
+    @extend .tree-item;
+}
+
+.node-header {
+    @extend .tree-row;
+}
+
+.node-title {
+    @extend .tree-label;
+}
+
+.node-badge {
+    font-size: 0.6rem;
+    padding: 0.1rem 0.35rem;
+    border-radius: 3px;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    margin-left: auto;
+
+    &.on {
+        background: transparent;
+        color: var(--accent-green);
+        border: 1px solid var(--accent-green);
+    }
+
+    &.dev {
+        background: transparent;
+        color: var(--accent-yellow);
+        border: 1px solid var(--accent-yellow);
+    }
+
+    &.hold {
+        background: transparent;
+        color: var(--accent-orange);
+        border: 1px solid var(--accent-orange);
+    }
+
+    &.tbd {
+        background: transparent;
+        color: var(--text-secondary);
+        border: 1px solid var(--border-color);
+    }
+}
+
+.expand-icon {
+    @extend .tree-toggle;
+    font-size: 0.65rem;
+    width: 12px;
+
+    &.expanded {
+        transform: rotate(90deg);
+    }
+}
+
+.node-copy-btn,
+.node-url-btn {
+    @extend .tree-action-btn;
+}
+
+.tree-children {
+    padding-left: 1rem;
+    display: none;
+
+    &.expanded {
+        display: block;
+    }
+}
+
+// ============================================
+// FILTER STATES
+// ============================================
+
+// Hide items based on filter
+.tree-container[data-filter="on"] {
+    .tree-service[data-mode="dev"],
+    .tree-service[data-mode="hold"],
+    .tree-service[data-mode="tbd"],
+    .tree-node[data-mode="dev"],
+    .tree-node[data-mode="hold"],
+    .tree-node[data-mode="tbd"] {
+        display: none;
+    }
+}
+
+.tree-container[data-filter="offline"] {
+    .tree-service[data-mode="dev"],
+    .tree-service[data-mode="hold"],
+    .tree-service[data-mode="tbd"],
+    .tree-node[data-mode="dev"],
+    .tree-node[data-mode="hold"],
+    .tree-node[data-mode="tbd"] {
+        display: none;
+    }
+    // Show items marked as "on" that are actually offline (data-offline="true")
+    .tree-service[data-mode="on"]:not([data-offline="true"]),
+    .tree-node[data-mode="on"]:not([data-offline="true"]) {
+        display: none;
+    }
+}
+
+// ============================================
+// GRAPH MAPS GRID LAYOUT
+// ============================================
+
+.graph-maps-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.graph-map-section {
+    width: 100%;
+}
+
+// ============================================
+// ORG CHART TREE (Box style with connectors)
+// ============================================
+
+.org-tree {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    padding: 1rem;
+    overflow-x: auto;
+}
+
+// Level container (horizontal row of nodes)
+.ot-level {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.ot-root-level {
+    margin-bottom: 0;
+}
+
+.ot-provider-level {
+    align-items: flex-start;
+    gap: 0.75rem;
+}
+
+.ot-vm-level {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+// Branch container (provider + its VMs)
+.ot-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+// Vertical connector line
+.ot-connector-down {
+    width: 2px;
+    height: 12px;
+    background: var(--border-color);
+    margin: 0 auto;
+}
+
+// Node box
+.ot-node {
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    background: var(--bg-card);
+    text-align: center;
+    min-width: 120px;
+    max-width: 180px;
+}
+
+.ot-node-title {
+    padding: 0.35rem 0.5rem;
+    font-weight: 600;
+    font-size: 0.7rem;
+    border-bottom: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    border-radius: 4px 4px 0 0;
+}
+
+.ot-node-sub {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.ot-node-items {
+    padding: 0.3rem;
+    text-align: left;
+}
+
+// Root node
+.ot-root {
+    border-color: var(--accent-primary);
+
+    .ot-node-title {
+        color: var(--accent-primary);
+        background: rgba(56, 189, 248, 0.1);
+    }
+}
+
+// Provider node
+.ot-provider {
+    border-color: var(--accent-blue);
+    min-width: 110px;
+
+    .ot-node-title {
+        background: rgba(56, 189, 248, 0.1);
+    }
+}
+
+// VM node
+.ot-vm {
+    min-width: 120px;
+    max-width: 160px;
+}
+
+// Category node
+.ot-category {
+    min-width: 140px;
+    max-width: 200px;
+}
+
+// Item inside a node
+.ot-item {
+    padding: 0.15rem 0.3rem;
+    border-radius: 3px;
+    margin-bottom: 0.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.6rem;
+
+    &:hover {
+        background: var(--bg-card-hover);
+    }
+
+    a {
+        color: var(--accent-blue);
+        text-decoration: none;
+        font-size: 0.6rem;
+        opacity: 0.7;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+.ot-item-meta {
+    font-size: 0.6rem;
+    color: var(--text-secondary);
+    margin-left: auto;
+}
+
+.ot-svc {
+    color: var(--accent-green);
+}
+
+.ot-db {
+    color: var(--accent-purple);
+}
+
+.ot-empty {
+    color: var(--text-secondary);
+    font-style: italic;
+    text-align: center;
+}
+
+// ============================================
+// BLURRED THEME
+// ============================================
+
+[data-theme="blurred"] {
+    .org-tree {
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+    }
+
+    .ot-node {
+        background: rgba(255, 255, 255, 0.03);
+        border-color: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(5px);
+    }
+
+    .ot-node-title {
+        background: rgba(255, 255, 255, 0.05);
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .ot-node-sub {
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .ot-connector-down {
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .ot-root {
+        border-color: var(--accent-primary);
+
+        .ot-node-title {
+            background: rgba(56, 189, 248, 0.15);
+        }
+    }
+
+    .ot-provider {
+        border-color: rgba(56, 189, 248, 0.4);
+
+        .ot-node-title {
+            background: rgba(56, 189, 248, 0.1);
+        }
+    }
+
+    .ot-item:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}

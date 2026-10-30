@@ -1,0 +1,12 @@
+// GENERATED FROM c3-container-stats.json by front-data-json-js-wrapper.sh — DO NOT EDIT BY HAND.
+// Re-generate with: bash a_Portals/linktree/src/data/build.sh
+(function () {
+  var g = (typeof globalThis !== "undefined") ? globalThis : (typeof window !== "undefined" ? window : this);
+  g.PORTAL_DATA = g.PORTAL_DATA || {};
+  g.PORTAL_DATA["c3-container-stats"] = {
+  "c3-infra-api": { "name": "c3-infra-api", "cpuPerc": "4.20%", "memUsage": "64MiB / 640MiB", "memPerc": "10.00%", "netIO": "1.2MB / 890kB", "blockIO": "0B / 4.1kB", "pids": "18" },
+  "c3-public-api": { "name": "c3-public-api", "cpuPerc": "5.10%", "memUsage": "65MiB / 640MiB", "memPerc": "11.00%", "netIO": "2.4MB / 1.1MB", "blockIO": "0B / 0B", "pids": "16" },
+  "caddy": { "name": "caddy", "cpuPerc": "1.80%", "memUsage": "32MiB / 640MiB", "memPerc": "5.00%", "netIO": "9.8MB / 7.2MB", "blockIO": "12kB / 0B", "pids": "9" }
+}
+;
+})();

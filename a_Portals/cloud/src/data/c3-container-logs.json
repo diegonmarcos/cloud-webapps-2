@@ -1,0 +1,18 @@
+{
+  "c3-infra-api": [
+    { "ts": "2026-08-01T08:59:01.000Z", "line": "server listening on :3000" },
+    { "ts": "2026-08-01T08:59:12.410Z", "line": "GET /health 200 3ms" },
+    { "ts": "2026-08-01T08:59:45.902Z", "line": "GET /cloud-data/topology 200 21ms" },
+    { "ts": "2026-08-01T09:00:03.115Z", "line": "POST /vms/oci-apps/containers/caddy/restart 200 812ms" },
+    { "ts": "2026-08-01T09:00:30.554Z", "line": "GET /metrics/top?by=cpu&limit=20 200 15ms" }
+  ],
+  "c3-public-api": [
+    { "ts": "2026-08-01T08:58:40.001Z", "line": "server listening on :3001" },
+    { "ts": "2026-08-01T08:59:20.221Z", "line": "GET /pub/status 200 2ms" }
+  ],
+  "caddy": [
+    { "ts": "2026-08-01T08:57:11.000Z", "line": "caddy started" },
+    { "ts": "2026-08-01T08:57:11.500Z", "line": "certificate obtained for diegonmarcos.com" },
+    { "ts": "2026-08-01T09:01:02.010Z", "line": "GET /pub/status 200 1ms" }
+  ]
+}

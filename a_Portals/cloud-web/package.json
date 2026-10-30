@@ -1,0 +1,20 @@
+{
+  "name": "cloud-web",
+  "version": "1.0.0",
+  "description": "Web edition of the Cloud fleet: a grid of the apps that ship a Kotlin/Wasm page, each opened in an iframe",
+  "main": "dist/index.html",
+  "scripts": {
+    "build": "bash build.sh build",
+    "dev": "bash build.sh dev",
+    "clean": "bash build.sh clean",
+    "fetch-wasm": "bash scripts/fetch-wasm.sh"
+  },
+  "keywords": ["cloud", "web", "wasm", "typescript", "sass"],
+  "author": "Diego Nepomuceno Marcos",
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.19.8",
+    "sass": "^1.69.5",
+    "typescript": "^5.3.2"
+  }
+}

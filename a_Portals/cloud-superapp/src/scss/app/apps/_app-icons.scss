@@ -1,0 +1,157 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// App icons — Android-adaptive-icon-style squircle badge, replaces the
+// removed .tile__avatar. Background hue is hashed deterministically per app
+// name (see hash()/TILE_COLORS in generate-pages.mjs); the badge holds
+// either a 1-2 letter monogram or — for the ~26 apps that are our own real
+// cloud services and already have a matching icon in the shared set (see
+// .tile__app-icon__glyph below) — that icon recolored white, so the Phone
+// tab's app drawer reads as a real varied app grid instead of a wall of
+// repeated generic glyphs.
+// ==========================================================================
+
+// Phone-tab grids only (suite/phone/quickmarks + suite/phone/all) — the app
+// drawer is a fixed 6-per-row grid, not the shared auto-fill grid, mirroring
+// aa_cloud-superapp build.json ui.phone_grid_columns = 6. Overrides
+// .tile-grid's auto-fill template (owned by _tiles.scss) for this variant
+// only; at the 480px phone width that lands ~72px per cell, so the squircle
+// and its label shrink to match.
+.tile-grid--phone {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 6px;
+
+    // A phone app is BARE icon + label, Android-launcher style — no card
+    // behind it. SuitePhoneAppsFragment.makeAppTile (:286-296) builds a
+    // plain LinearLayout whose only background is the borderless ripple
+    // (selectableItemBackgroundBorderless), and makeExpandedAppTile
+    // (:462-467, the folder sheet) sets no background at all. The glass
+    // square is exclusively the FOLDER card's 2x2 preview (:358-361), which
+    // keeps its bg_liquid_glass here. Undoes .tile's glass (_tiles.scss) for
+    // phone grids only.
+    .tile {
+        background: none;
+        border: 0;
+    }
+
+    .tile__app-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 15px;
+    }
+
+    .tile__app-icon__glyph {
+        width: 22px;
+        height: 22px;
+    }
+
+    .tile__label {
+        font-size: 9px;
+    }
+}
+
+// Quickmarks rows (the merged suite/phone page's pinned groups) are SEVEN
+// per row, not the drawer's six — SuitePhoneAppsFragment gives the pinned
+// strip columns+1. Their grids deliberately drop .tile-grid--dense: dense is
+// an auto-fill minmax(72px) template of equal specificity that loads AFTER
+// this file (launcher/_content-blocks.scss), so it won the cascade and the
+// row count came out as "however many 72px cells fit" rather than a fixed
+// number. This variant is emitted alongside .tile-grid--phone and, being
+// later in this same file, wins its 6-column template.
+.tile-grid--quickmarks {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    // 7 cells at the 480px phone width leaves ~60px a side — tighter gutter
+    // than the 6-up drawer so the 40px squircle still breathes.
+    gap: 4px;
+}
+
+// Specificity tie with _tiles.scss's .tile-grid.tile-grid--phone .tile__label
+// (which re-inflates the label to clamp(9px, 2.4vw, 13px) ≈ 11.5px at 480px,
+// too wide for a 60px cell); this file loads later, so 9px wins.
+.tile-grid.tile-grid--quickmarks .tile__label {
+    font-size: 9px;
+}
+
+// Smart Folder group header (Dev / Stores / Usage / Rank) — the small
+// grouping label PhoneSmartFolders files each rule under, one step quieter
+// than the folder titles it heads.
+.smart-folders__group {
+    margin: 16px 0 4px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+}
+
+.tile__app-icon {
+    width: 48px;
+    height: 48px;
+    // squircle approximation, not a perfect circle/rounded-square.
+    border-radius: 38%;
+    @include flex-center;
+    flex-shrink: 0;
+    font-weight: 700;
+    font-size: 18px;
+    color: #fff;
+}
+
+// Real icon exception (mock-apps.json `real: true`) — the shared icon set's
+// SVGs use stroke="currentColor", which only applies to an inline <svg>, so
+// generate-pages.mjs inlines them here (see inlineIcon()) and the white
+// comes from `color` rather than a CSS mask, which Android WebView painted
+// as a solid square (same note on .tile__icon in _tiles.scss).
+.tile__app-icon__glyph {
+    width: 26px;
+    height: 26px;
+    color: #fff;
+
+    // inlineIcon() pins the SVG at 32px; every glyph box is smaller
+    > svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+// Brand-mark exception (mock-apps.json `iconSlug`) — the squircle takes the
+// app's own brand color from an inline style and the simple-icons glyph,
+// which is a single fill="currentColor" path, paints white on top of it at
+// ~60% of the badge. Sized here rather than reusing .tile__app-icon__glyph's
+// 26px so the brand mark keeps its usual optical weight.
+.tile__app-icon--brand .tile__app-icon__glyph {
+    width: 60%;
+    height: 60%;
+}
+
+.tile__app-icon--blue {
+    background: #1565C0;
+}
+
+.tile__app-icon--green {
+    background: #2E7D32;
+}
+
+.tile__app-icon--purple {
+    background: #6A1B9A;
+}
+
+.tile__app-icon--pink {
+    background: #C2185B;
+}
+
+.tile__app-icon--orange {
+    background: #EF6C00;
+}
+
+.tile__app-icon--teal {
+    background: #00695C;
+}
+
+.tile__app-icon--amber {
+    background: #B28704;
+}
+
+.tile__app-icon--indigo {
+    background: #283593;
+}

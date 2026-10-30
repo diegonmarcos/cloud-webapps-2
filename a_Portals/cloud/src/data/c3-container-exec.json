@@ -1,0 +1,8 @@
+{
+  "restart": { "ok": true, "output": "(mock) container restarted" },
+  "stop": { "ok": true, "output": "(mock) container stopped" },
+  "start": { "ok": true, "output": "(mock) container started" },
+  "logs-tail": { "ok": true, "output": "(mock) --- last 200 lines ---\nserver listening on :3000\nGET /health 200 3ms" },
+  "top": { "ok": true, "output": "(mock) PID   USER   %CPU  %MEM  COMMAND\n1     node   4.2   10.0  node" },
+  "stats-snapshot": { "ok": true, "output": "(mock) CONTAINER   CPU %   MEM USAGE\nc3-infra-api  4.20%  64MiB / 640MiB" }
+}

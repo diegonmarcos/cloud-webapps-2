@@ -1,0 +1,154 @@
+@use '../mixins' as *;
+
+// ==========================================================================
+// Settings list — Configs page real content rows
+// ==========================================================================
+
+.settings-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-list__row {
+    @include flex-row(space-between, center, 12px);
+    padding: 14px 4px;
+}
+
+// Modifier for rows that carry an actual interactive control (checkbox
+// switch, range slider, permission button) — a subtle fill + rounded
+// corners sets them apart from plain nav rows, which stay bare.
+.settings-list__row--control {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.settings-list__label {
+    color: var(--text-primary);
+    font-size: 14px;
+}
+
+.settings-list__value {
+    color: var(--text-secondary);
+    font-size: 13px;
+    text-align: right;
+}
+
+// Group header — a divider between subsections of a settings-list (e.g.
+// "Theme" / "Profile" / "Toggles" on config/launcher).
+.settings-list__group {
+    padding: 16px 4px 6px;
+    color: var(--text-secondary);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.settings-list__group:first-child {
+    padding-top: 4px;
+}
+
+// Active/current choice (e.g. the currently-selected theme or profile).
+.settings-list__row--active .settings-list__label {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.settings-list__active-badge {
+    color: #48bb78;
+    font-weight: 700;
+}
+
+// Toggle switch — <input type="checkbox" class="settings-list__switch">,
+// no extra span needed: the pseudo-elements on the input itself do the
+// track (the input's own background) and the thumb (::before).
+.settings-list__switch {
+    appearance: none;
+    position: relative;
+    width: 36px;
+    height: 20px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, .2);
+    cursor: pointer;
+    flex-shrink: 0;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #fff;
+        transition: transform var(--transition-fast);
+    }
+
+    &:checked {
+        background: #7C3AED;
+
+        &::before {
+            transform: translateX(16px);
+        }
+    }
+}
+
+// Range slider — settings that pick a numeric value (e.g. a size/volume).
+.settings-list__range {
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background: rgba(255, 255, 255, .2);
+
+    &::-webkit-slider-thumb {
+        appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #7C3AED;
+        cursor: pointer;
+    }
+
+    &::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #7C3AED;
+        cursor: pointer;
+        border: none;
+    }
+}
+
+// Permission button — a settings row's action to grant/request a permission.
+.perm-btn {
+    background: #2A2A33;
+    color: #fff;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 12px;
+    border: none;
+}
+
+// Draws attention when the permission hasn't been granted yet.
+.perm-btn--needs-action {
+    background: #7C3AED;
+}
+
+// Actions group — a 3-across grid of standalone permission/access buttons
+// (config/permissions' "Actions" group), instead of the inline per-row
+// button above.
+.perm-btn-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 4px;
+}
+
+.perm-btn-grid .perm-btn {
+    width: 100%;
+    text-align: center;
+    padding: 10px 6px;
+}

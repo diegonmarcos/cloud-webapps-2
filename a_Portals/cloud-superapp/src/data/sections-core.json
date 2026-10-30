@@ -1,0 +1,251 @@
+{
+  "_doc": "The 4 non-home bottom-nav aggregator sections, verbatim from aa_cloud-superapp build.json's ui.sections — communication[Inboxes] · infos[Projects] · cloud[Cloud] · phone[Phone]. The old Apps|Admin MODE pair is gone on both sides: each aggregator now declares named facet PAGES (build.json's `pages` list), and the per-page data keys tiles_<page-id> / stack_<page-id> become that page's own `tiles` / `stack` here — one page object instead of a mode object, which is also exactly the shape every content-only section in sections-content.json already uses, so a single generator loop serves both. Page bodies stay ICONS-FIRST (tile grid on top, AggregatorStackFragment collapsible cards under a divider). Targets are remapped to the web routes that exist here when the Android target has no web destination; labels + order + membership stay verbatim. Android-only targets (extapp:/intent:/app:/action:) are kept as-is and render inert — a browser genuinely cannot launch an APK.",
+  "_doc_hidden": "`hidden: true` mirrors Sections.kt's pages/allPages split: hidden pages are filtered out of every CHILD LIST (section grid, page tab strip, drawer, radial menus) but are still declared, still generated, and still resolve as page:<section>/<id> — hiding a page from the child list must never make its target dead.",
+  "sections": {
+    "communication": {
+      "label": "Inboxes", "icon": "chat", "color": "green",
+      "_doc_pages": "Inboxes = what ARRIVES. Msgs is conversation, My-RSS is this phone's own notifications, Cloud-RSS is the infrastructure's.",
+      "pages": [
+        { "id": "msgs", "label": "Msgs", "icon": "chat",
+          "tiles": [
+            { "id": "mail", "label": "Mail", "icon": "mail", "target": "section:mail" },
+            { "id": "chat-matrix", "label": "Chat-Matrix", "icon": "chat", "target": "section:chat" },
+            { "id": "chat-mm", "label": "Chat-Mattermost", "icon": "chat", "target": "page:chat/mattermost" }
+          ],
+          "stack": [
+            { "kind": "mail_accounts", "title": "Mail · accounts", "target": "section:mail",
+              "rows": [["me@diegonmarcos.com", "JMAP"], ["Add IMAP account…", "IMAPS"]],
+              "caption": "Unread / total counts pending JMAP slice C2 + IMAP slice." },
+            { "kind": "chat_matrix", "title": "Chat · Matrix", "target": "section:chat",
+              "linkLabel": "Open Matrix", "caption": "server list + unread counts pending integration" },
+            { "kind": "chat_mattermost", "title": "Chat · Mattermost", "target": "page:chat/mattermost",
+              "linkLabel": "Open Mattermost", "caption": "server list + unread counts pending integration" },
+            { "kind": "stats", "title": "Messenger (Element)", "subtitle": "Matrix · Element",
+              "rows": [["Rooms", "14"], ["Unread", "6"], ["Mentions", "2"], ["Last sync", "2 min ago"]] },
+            { "kind": "stats", "title": "Dialer (Fossy)", "subtitle": "Fossify Phone",
+              "rows": [["Missed calls", "2"], ["Recent", "8"], ["Contacts", "341"], ["Voicemail", "1"]] }
+          ]
+        },
+        { "id": "my-rss", "label": "My-RSS", "icon": "user",
+          "stack": [
+            { "kind": "notifications", "title": "Cloud-SuperApp Notifications", "subtitle": "In-app feed (Updater + Crash producers)" },
+            { "kind": "phone_notifications", "title": "Phone Notifications", "subtitle": "Live system notifications (last 50, dedupe by key — requires Notification Access)" },
+            { "kind": "news_feeds", "title": "News & RSS", "subtitle": "Curated open channels (not ntfy)", "target": "section:feed" }
+          ]
+        },
+        { "id": "cloud-rss", "label": "Cloud-RSS", "icon": "mesh",
+          "tiles": [
+            { "id": "rss-c3", "label": "C3 ntfy", "icon": "rss", "target": "page:feed/all" },
+            { "id": "c3-health", "label": "C3 health", "icon": "heart", "target": "page:c3/health" },
+            { "id": "wg-mesh", "label": "WG mesh", "icon": "mesh", "target": "page:wg/status" }
+          ],
+          "stack": [
+            { "kind": "c3_public", "title": "C3 Health · Public", "subtitle": "Services reachable via Caddy edge", "target": "page:c3/health" },
+            { "kind": "c3_private", "title": "C3 Health · Private", "subtitle": "Internal compose-network containers", "target": "page:c3/health" },
+            { "kind": "wg_mesh", "title": "WG Mesh", "subtitle": "wg0 UDP direct + wg0-tcp wstunnel", "target": "page:wg/status" },
+            { "kind": "rss", "title": "RSS · ntfy channels", "target": "page:feed/all" },
+            { "kind": "drive_connections", "title": "Drive · Connections", "subtitle": "Storage backends declared in build.json", "target": "page:drive/connections" }
+          ]
+        }
+      ]
+    },
+
+    "infos": {
+      "label": "Projects", "icon": "logs", "color": "purple",
+      "_doc_pages": "Projects = what you WORK ON. My-PM is the personal board, Work-PM the professional one, Cloud the infrastructure's own delivery feed. The section was labelled 'Infos' until the APK renamed it.",
+      "pages": [
+        { "id": "my-pm", "label": "My-PM", "icon": "user",
+          "tiles": [
+            { "id": "calendar", "label": "Calendar", "icon": "calendar", "target": "section:cal" }
+          ],
+          "stack": [
+            { "kind": "calendar_month", "title": "Calendar", "subtitle": "Month view · CalDAV sync pending", "target": "section:cal" },
+            { "kind": "tasks", "title": "Tasks", "subtitle": "Agenda · Day · ToDo" },
+            { "kind": "stats", "title": "Myfin", "subtitle": "Personal finance", "target": "page:myfin/dashboard",
+              "rows": [["Net worth", "€42,310"], ["This month", "+€1,240"], ["Spending", "€2,180"], ["Holdings", "12"]] },
+            { "kind": "stats", "title": "Myhealth", "subtitle": "Health & fitness", "target": "page:health/summary",
+              "rows": [["Steps today", "8,432"], ["Sleep", "7h 12m"], ["Resting HR", "58 bpm"], ["Workouts (wk)", "3"]] },
+            { "kind": "stats", "title": "Nav Maps Tracker", "subtitle": "Cloud-Nav location tracker",
+              "rows": [["Last location", "Madrid, ES"], ["Trips this week", "5"], ["Distance (wk)", "142 km"], ["Places logged", "31"]] }
+          ]
+        },
+        { "id": "work-pm", "label": "Work-PM", "icon": "briefcase",
+          "tiles": [
+            { "id": "pmboards", "label": "Product Management Boards", "icon": "briefcase", "target": "https://paca.diegonmarcos.com" }
+          ],
+          "stack": [
+            { "kind": "stats", "title": "Product Management Boards", "subtitle": "paca.diegonmarcos.com", "target": "https://paca.diegonmarcos.com" }
+          ]
+        },
+        { "id": "cloud", "label": "Cloud", "icon": "mesh",
+          "tiles": [
+            { "id": "cal-workflows", "label": "Workflows cal", "icon": "calendar", "target": "page:c3/workflows" },
+            { "id": "gha-events", "label": "GHA events", "icon": "workflow", "target": "page:c3/gha" },
+            { "id": "dagu", "label": "Dagu events", "icon": "workflow", "target": "page:c3/dagu" }
+          ],
+          "stack": [
+            { "kind": "gha_runs", "title": "GHA · Workflow runs", "subtitle": "Latest 3 runs per repo: android · cloud · front", "target": "page:c3/gha" },
+            { "kind": "repos", "title": "Repos · Commits", "subtitle": "3 repos: cloud-u-android, cloud-infra, diegonmarcos.github.io" },
+            { "kind": "open_link", "title": "Dagu · Workflow runs", "target": "page:c3/dagu" }
+          ]
+        }
+      ]
+    },
+
+    "cloud": {
+      "label": "Cloud", "icon": "suite", "color": "orange",
+      "_doc_label": "Was 'Suite' here (and 'Labs'/tools alongside it) until the APK collapsed both into cloud[Cloud]. The old suite/* and tools/* routes are gone, not aliased — same as the rename on the Android side.",
+      "tiles": [
+        { "id": "cloud-ai", "label": "AI", "icon": "sparkles", "target": "section:cloud" },
+        { "id": "cloud-comms", "label": "Comms", "icon": "chat", "target": "section:cloud" },
+        { "id": "cloud-data", "label": "Data Apps", "icon": "database", "target": "section:cloud" },
+        { "id": "cloud-tools", "label": "Tools Primary", "icon": "tools", "target": "section:cloud" },
+        { "id": "cloud-dash", "label": "Tools Dashboard", "icon": "chart", "target": "section:cloud" }
+      ],
+      "pages": [
+        { "id": "apps", "label": "Apps", "icon": "suite",
+          "_doc": "Cloud > App. Its groups are NOT written here: scripts/gen-nav.mjs generates src/data/cloud-apps.json from the SuperApp ui.sections[cloud].tile_groups (CI fails when they drift); generate-pages.mjs and the client (data.ts) attach them to this page."
+        },
+        { "id": "lnktree", "label": "Lnktree", "icon": "tools",
+          "_doc": "The APK renders linktree.diegonmarcos.com in a WebView; here the same list is rendered natively from linktree.json (render:linktree) so the page stays crawlable. build.json's tiles_labs sits on top — those six entries deep-link into the five hidden Labs pages below plus C3.",
+          "tiles": [
+            { "id": "c3", "label": "C3", "icon": "cube", "target": "page:cloud/c3" },
+            { "id": "data-ml", "label": "Data & ML", "icon": "brain", "target": "page:cloud/data-ml" },
+            { "id": "engineering", "label": "Engineering", "icon": "code", "target": "page:cloud/engineering" },
+            { "id": "quant", "label": "Quant & Markets", "icon": "chart", "target": "page:cloud/quant" },
+            { "id": "aero-space", "label": "Aero & Space", "icon": "rocket", "target": "page:cloud/aero-space" },
+            { "id": "circus", "label": "Circus", "icon": "sparkles", "target": "page:cloud/circus" }
+          ],
+          "render": "linktree"
+        },
+        { "id": "c3", "label": "C3", "icon": "cube",
+          "_doc": "Cloud Control Center — was the 'admin' MODE of the old Suite/Labs aggregators; the APK made it a first-class page (tiles_admin/stack_admin → tiles_c3/stack_c3).",
+          "tiles": [
+            { "id": "c3-health", "label": "C3 health", "icon": "heart", "target": "page:c3/health" },
+            { "id": "c3-stack", "label": "C3 stack", "icon": "cube", "target": "page:c3/stack" },
+            { "id": "wg-mesh", "label": "WG mesh", "icon": "mesh", "target": "page:wg/status" },
+            { "id": "vms", "label": "VMs", "icon": "database", "target": "page:c3/vms" },
+            { "id": "workflows", "label": "Workflows", "icon": "workflow", "target": "page:c3/workflows" },
+            { "id": "logs", "label": "Logs", "icon": "logs", "target": "page:c3/logs" },
+            { "id": "reports", "label": "Reports", "icon": "chart", "target": "page:c3/reports" },
+            { "id": "drive-conn", "label": "Drive · Connections", "icon": "database", "target": "page:drive/connections" },
+            { "id": "dagu", "label": "Dagu", "icon": "robot", "target": "page:c3/dagu" },
+            { "id": "gha", "label": "GHA", "icon": "code", "target": "page:c3/gha" }
+          ],
+          "stack": [
+            { "kind": "section_title", "title": "Containers" },
+            { "_doc": "cloud_dashboard cards render an ICON GRID per subgroup (not a text body) — the real app's renderCloudDashboard, fed by data/cloud_services.json (generated from cloud/a_solutions by data/gen_cloud_services.py). Subgroups + membership below are that generator's own taxonomy verbatim; each entry's icon comes from its subgroup. Container hosts are *.app (WireGuard-only) and carry a live TCP-ping status light on device, so they render inert here — only the external consoles link out.",
+              "kind": "cloud_dashboard", "title": "Infra Apps", "groups": [
+              { "label": "Security", "icon": "lock", "tiles": ["Authelia", "Caddy", "Caddy L4 Public", "Introspect Proxy"] },
+              { "label": "Network", "icon": "mesh", "tiles": ["Wireguard Mesh", "Wireguard Mesh Ws Tunnel", "Wireguard Public", "Hickory Dns"] },
+              { "label": "Observability", "icon": "logs", "tiles": ["Matomo", "Umami", "Openobserve", "Dagu", "Nocodb", "Dbgate", "Ntfy", "Sauron Forwarder", "Cloud Spec"] },
+              { "label": "Databases", "icon": "database", "tiles": ["Redis", "Umami Db", "Authelia Redis", "Kg Store", "Mattermost Postgres", "Photoprism Mariadb", "Etherpad Postgres", "Hedgedoc Postgres", "Paca Postgres", "Postlite"] },
+              { "label": "Data", "icon": "database", "tiles": ["Gitea", "Backup Borg", "Backup Bup", "Backup Gitea"] },
+              { "label": "APIs & MCPs", "icon": "code", "tiles": ["C3 Analytics Api", "C3 Infra Api", "C3 Public Api", "C3 Services Api", "C3 Infra Mcp", "C3 Services Mcp", "C3 Diego Personal Data Mcp", "Google Personal Mcp", "Google Workspace Mcp", "Mail Mcp", "Mattermost Mcp", "Http To Smtp Proxy Api"] },
+              { "label": "Build", "icon": "tools", "tiles": ["Cloud Builder X"] },
+              { "label": "Pilots", "icon": "workflow", "tiles": ["Pilot · gcp-E2-f_0", "Pilot · oci-E2-f_0", "Pilot · oci-E2-f_1", "Pilot · oci-A1-f_0"] }
+            ]},
+            { "kind": "cloud_dashboard", "title": "User Apps", "groups": [
+              { "label": "Communications", "icon": "chat", "tiles": ["Chat Mattermost", "Matrix Continuwuity", "Matrix Element", "Matrix Mautrix Whatsapp", "Maddy", "Stalwart", "Cypht", "Snappymail", "Mail Puller", "Tools Smtp Proxy"] },
+              { "label": "Productivity", "icon": "briefcase", "tiles": ["Etherpad", "Hedgedoc", "Grist", "Calendar Radicale", "Contacts Radicale", "Revealmd", "Code Server", "Filebrowser", "Paca"] },
+              { "label": "Media", "icon": "photos", "tiles": ["Photoprism"] },
+              { "label": "Finance", "icon": "chart", "tiles": ["Crawlee Cloud", "Fin Api"] },
+              { "label": "AI & Agents", "icon": "sparkles", "tiles": ["Ollama", "Ollama Arm", "Ollama Hai", "Rig Agentic", "Rig Agentic Hai 1.5Bq4", "Rig Agentic Sonn 14Bq8", "Db Agent", "Kg Graph", "Claude Openai Bridge", "Octocode (CGC)"] },
+              { "label": "Vault", "icon": "lock", "tiles": ["Vaultwarden"] },
+              { "label": "News", "icon": "rss", "tiles": ["News Gdelt"] },
+              { "label": "Web", "icon": "browser", "tiles": ["Front End"] },
+              { "label": "Storage", "icon": "database", "tiles": [
+                { "label": "Oracle S3", "target": "https://cloud.oracle.com" },
+                { "label": "Google Workspace", "target": "https://workspace.google.com" }
+              ]}
+            ]},
+            { "kind": "section_title", "title": "Stack" },
+            { "kind": "cloud_dashboard", "title": "Stack", "groups": [
+              { "label": "Providers (VPS)", "icon": "browser", "tiles": [
+                { "label": "Oracle", "target": "https://cloud.oracle.com" },
+                { "label": "GCloud", "target": "https://console.cloud.google.com" },
+                { "label": "Cloudflare", "target": "https://dash.cloudflare.com" },
+                { "label": "GitHub", "target": "https://github.com/diegonmarcos" },
+                { "label": "Hetzner", "target": "https://console.hetzner.cloud" },
+                { "label": "Nvidia", "target": "https://build.nvidia.com" }
+              ]},
+              { "label": "VMs", "icon": "mesh", "tiles": ["gcp-E2-f_0", "oci-E2-f_0", "oci-E2-f_1", "oci-A1-f_0", "Galaxy S21"] },
+              { "label": "Runners", "icon": "tools", "tiles": [
+                "ARM (Oci-Apps)",
+                { "label": "x86 (GHA)", "target": "https://github.com/diegonmarcos/cloud-infra-desktop/actions" }
+              ]},
+              { "label": "DBs", "icon": "database", "tiles": ["Redis", "Umami Db", "Authelia Redis", "Kg Store", "Mattermost Postgres", "Photoprism Mariadb", "Etherpad Postgres", "Hedgedoc Postgres", "Paca Postgres", "Postlite",
+                { "label": "Oracle S3 (backups)", "target": "https://cloud.oracle.com" }
+              ]},
+              { "label": "APIs", "icon": "code", "tiles": ["Alerts Api", "C3 Analytics Api", "C3 Infra Api", "C3 Public Api", "C3 Services Api", "Claude Superset Api", "Fin Api", "Http To Smtp Proxy Api", "My Ai Api", "Paca Api", "Scrappers Api"] },
+              { "label": "MCPs", "icon": "workflow", "tiles": ["C3 Diego Personal Data Mcp", "C3 Infra Mcp", "C3 Services Mcp", "Cloud Cgc Mcp", "Google Personal Mcp", "Google Workspace Mcp", "Mail Mcp", "Mattermost Mcp"] }
+            ]}
+          ]
+        },
+        { "id": "configs", "label": "Configs", "icon": "settings",
+          "_doc": "build.json's mirror_section:config — renders THE Configs section's own page grid rather than a second copy of the same list.",
+          "render": "mirror", "mirror": "config" },
+
+        { "id": "data-ml", "label": "Data & ML", "icon": "brain", "hidden": true, "items": [
+          { "title": "eu-central-1 · feature-store", "subtitle": "Postgres + parquet lake", "meta": "OK" },
+          { "title": "model-registry", "subtitle": "MLflow · 14 registered models", "meta": "OK" },
+          { "title": "nightly-retrain", "subtitle": "Dagu DAG · churn-model", "meta": "success" },
+          { "title": "labeling-queue", "subtitle": "212 items pending review" },
+          { "title": "notebook-runner", "subtitle": "Jupyter kernels · oci-analytics", "meta": "2 active" }
+        ]},
+        { "id": "engineering", "label": "Engineering", "icon": "code", "hidden": true, "items": [
+          { "title": "aa_cloud-superapp", "subtitle": "GitHub · diegonmarcos", "meta": "main" },
+          { "title": "front", "subtitle": "GitHub · diegonmarcos", "meta": "main" },
+          { "title": "unix", "subtitle": "GitHub · diegonmarcos", "meta": "main" },
+          { "title": "cloud-ship-container-engine", "subtitle": "Build & deploy engine" },
+          { "title": "GHA runners", "subtitle": "6 self-hosted VMs", "meta": "green" }
+        ]},
+        { "id": "quant", "label": "Quant & Markets", "icon": "chart", "hidden": true, "items": [
+          { "title": "eod-price-fetcher", "subtitle": "Daily OHLCV · 340 tickers", "meta": "OK" },
+          { "title": "backtest-runner", "subtitle": "Strategy: momentum-v3", "meta": "queued" },
+          { "title": "portfolio-tracker", "subtitle": "Paper account · +4.2% YTD" },
+          { "title": "risk-report", "subtitle": "Nightly VaR snapshot", "meta": "OK" }
+        ]},
+        { "id": "aero-space", "label": "Aero & Space", "icon": "rocket", "hidden": true, "items": [
+          { "title": "orbital-tle-sync", "subtitle": "Celestrak feed · 12,400 objects", "meta": "OK" },
+          { "title": "launch-tracker", "subtitle": "Upcoming launches · next 30d", "meta": "6" },
+          { "title": "mission-notes", "subtitle": "Amateur telemetry logs" },
+          { "title": "groundstation-sim", "subtitle": "SDR pass predictor" }
+        ]},
+        { "id": "circus", "label": "Circus", "icon": "sparkles", "hidden": true, "items": [
+          { "title": "weird-side-quests", "subtitle": "Misc experiments repo" },
+          { "title": "font-playground", "subtitle": "Type specimen sandbox" },
+          { "title": "esoteric-cli-toys", "subtitle": "Terminal art & games" }
+        ]}
+      ]
+    },
+
+    "phone": {
+      "label": "Phone", "icon": "phone", "color": "teal",
+      "_doc_pages": "Phone = this DEVICE. Apps is the installed-app surface (Quickmarks + All-Apps folder sections + rule-driven Smart Folders, all derived from mock-apps.json); Configs is the Android Settings deep-link grid, which is intent:-only and therefore inert on the web.",
+      "pages": [
+        { "id": "apps", "label": "Apps", "icon": "suite", "render": "phone-apps" },
+        { "id": "configs", "label": "Configs", "icon": "settings",
+          "tiles": [
+            { "id": "settings", "label": "Settings", "icon": "settings", "target": "intent:android.settings.SETTINGS" },
+            { "id": "wifi", "label": "Wi-Fi", "icon": "browser", "target": "intent:android.settings.WIFI_SETTINGS" },
+            { "id": "mobile", "label": "Mobile data", "icon": "browser", "target": "intent:android.settings.DATA_ROAMING_SETTINGS" },
+            { "id": "bluetooth", "label": "Bluetooth", "icon": "mesh", "target": "intent:android.settings.BLUETOOTH_SETTINGS" },
+            { "id": "display", "label": "Display", "icon": "cube", "target": "intent:android.settings.DISPLAY_SETTINGS" },
+            { "id": "sound", "label": "Sound", "icon": "music", "target": "intent:android.settings.SOUND_SETTINGS" },
+            { "id": "battery", "label": "Battery", "icon": "heart", "target": "intent:android.settings.BATTERY_SAVER_SETTINGS" },
+            { "id": "storage", "label": "Storage", "icon": "database", "target": "intent:android.settings.INTERNAL_STORAGE_SETTINGS" },
+            { "id": "apps", "label": "Apps", "icon": "suite", "target": "intent:android.settings.APPLICATION_SETTINGS" },
+            { "id": "security", "label": "Security", "icon": "lock", "target": "intent:android.settings.SECURITY_SETTINGS" },
+            { "id": "location", "label": "Location", "icon": "pin", "target": "intent:android.settings.LOCATION_SOURCE_SETTINGS" },
+            { "id": "accessibility", "label": "Accessibility", "icon": "user", "target": "intent:android.settings.ACCESSIBILITY_SETTINGS" },
+            { "id": "datetime", "label": "Date & time", "icon": "calendar", "target": "intent:android.settings.DATE_SETTINGS" },
+            { "id": "language", "label": "Language", "icon": "tools", "target": "intent:android.settings.LOCALE_SETTINGS" },
+            { "id": "developer", "label": "Developer", "icon": "code", "target": "intent:android.settings.APPLICATION_DEVELOPMENT_SETTINGS" },
+            { "id": "about", "label": "About phone", "icon": "logs", "target": "intent:android.settings.DEVICE_INFO_SETTINGS" }
+          ]
+        }
+      ]
+    }
+  }
+}

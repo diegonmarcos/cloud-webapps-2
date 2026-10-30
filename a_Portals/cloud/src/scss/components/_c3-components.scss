@@ -1,0 +1,1183 @@
+// ============================================
+// C3 Component Library — Wave 1
+// Reusable, dense, Datadog/k9s-grade control-UI primitives.
+// Extends the existing design system (status-badge, vm-action-btn,
+// service-row, resource-table, usage-bar, resources-category-title).
+// Tokens only — no hardcoded hex colors; theming rides the existing
+// data-theme / CSS custom-property mechanism in _variables.scss.
+// ============================================
+
+.c3 {
+    font-family: var(--font-main);
+    color: var(--text-primary);
+}
+
+// --- shared state blocks (loading / error / empty) ------------------
+.c3-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.25rem 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.c3-state--error {
+    color: var(--accent-red);
+}
+
+.c3-state--empty {
+    color: var(--text-secondary);
+}
+
+.c3-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--border-color);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: c3-spin 0.8s linear infinite;
+    flex: 0 0 auto;
+}
+
+@keyframes c3-spin {
+    to { transform: rotate(360deg); }
+}
+
+// Reuse the app's existing empty-state look for consistency.
+.c3-empty-state {
+    padding: 1.25rem 0.75rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+// ============================================
+// 1. c3Panel — titled card with header action slot
+// ============================================
+.c3-panel {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: var(--card-padding, 1rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+
+    [data-theme="blurred"] & {
+        backdrop-filter: blur(10px);
+        border-radius: var(--border-radius-lg);
+    }
+}
+
+.c3-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.c3-panel-title {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.c3-panel-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex: 0 0 auto;
+}
+
+.c3-panel-body {
+    font-size: 0.85rem;
+    min-height: 2rem;
+}
+
+// ============================================
+// 2/3. c3Stat + c3Sparkline
+// ============================================
+.c3-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.c3-stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.c3-stat-row {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.c3-stat-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    line-height: 1;
+}
+
+.c3-stat-delta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+}
+
+.c3-stat-delta--up {
+    color: var(--accent-green);
+}
+
+.c3-stat-delta--down {
+    color: var(--accent-red);
+}
+
+.c3-stat-delta--flat {
+    color: var(--text-secondary);
+}
+
+.c3-stat-spark {
+    flex: 0 0 auto;
+    width: 72px;
+    height: 28px;
+}
+
+.c3-sparkline {
+    display: block;
+    overflow: visible;
+}
+
+.c3-sparkline-line {
+    fill: none;
+    stroke-width: 1.5;
+    stroke: var(--accent-blue);
+}
+
+.c3-sparkline-area {
+    fill: var(--accent-blue);
+    opacity: 0.12;
+    stroke: none;
+}
+
+// ============================================
+// 4. c3Timeseries — SVG line/area chart, axes, crosshair, legend
+// ============================================
+.c3-timeseries {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.c3-timeseries-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+.c3-ts-grid line {
+    stroke: var(--border-color);
+    stroke-width: 1;
+}
+
+.c3-ts-axis text {
+    fill: var(--text-secondary);
+    font-size: 9px;
+    font-family: var(--font-mono);
+}
+
+.c3-ts-axis line,
+.c3-ts-axis path {
+    stroke: var(--border-color);
+}
+
+.c3-ts-series {
+    fill: none;
+    stroke-width: 1.75;
+}
+
+.c3-ts-area {
+    stroke: none;
+    opacity: 0.1;
+}
+
+.c3-ts-crosshair {
+    stroke: var(--text-secondary);
+    stroke-width: 1;
+    stroke-dasharray: 2 2;
+    pointer-events: none;
+}
+
+.c3-ts-dot {
+    stroke: var(--bg-card);
+    stroke-width: 1.5;
+}
+
+.c3-ts-overlay {
+    fill: transparent;
+    cursor: crosshair;
+}
+
+.c3-ts-tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 0.35rem 0.5rem;
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px var(--shadow);
+    z-index: 20;
+    white-space: nowrap;
+}
+
+.c3-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.c3-legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.c3-legend-swatch {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex: 0 0 auto;
+}
+
+// ============================================
+// 5. c3Gauge — usage-bar pattern + warn/crit threshold bands
+// ============================================
+.c3-gauge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.c3-gauge-track {
+    position: relative;
+    flex: 1 1 auto;
+    height: 10px;
+    background: var(--bg-secondary);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.c3-gauge-fill {
+    display: block;
+    height: 100%;
+    border-radius: 5px;
+    transition: width var(--transition-speed, 0.3s) ease;
+    background: var(--accent-green);
+}
+
+.c3-gauge-fill--warn { background: var(--accent-yellow); }
+.c3-gauge-fill--crit { background: var(--accent-red); }
+
+.c3-gauge-band {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.c3-gauge-band--warn { background: var(--accent-yellow); opacity: 0.6; }
+.c3-gauge-band--crit { background: var(--accent-red); opacity: 0.6; }
+
+.c3-gauge-val {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    min-width: 2.6rem;
+    text-align: right;
+}
+
+// ============================================
+// 6. c3Heatmap — k9s-style status grid
+// ============================================
+.c3-heatmap {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16px, 1fr));
+    gap: 3px;
+    position: relative;
+}
+
+.c3-heatmap-cell {
+    aspect-ratio: 1;
+    min-width: 12px;
+    border-radius: 2px;
+    background: var(--border-color);
+    cursor: pointer;
+    transition: transform var(--transition-speed, 0.15s) ease;
+
+    &:hover,
+    &:focus-visible {
+        transform: scale(1.25);
+        outline: 1px solid var(--text-primary);
+        outline-offset: 1px;
+        z-index: 1;
+        position: relative;
+    }
+}
+
+.c3-heatmap-cell--ok { background: var(--accent-green); }
+.c3-heatmap-cell--info { background: var(--accent-blue); }
+.c3-heatmap-cell--warn { background: var(--accent-yellow); }
+.c3-heatmap-cell--error,
+.c3-heatmap-cell--critical { background: var(--accent-red); }
+.c3-heatmap-cell--unknown { background: var(--text-secondary); opacity: 0.4; }
+
+.c3-heatmap-tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+    box-shadow: 0 4px 12px var(--shadow);
+    z-index: 20;
+    white-space: nowrap;
+}
+
+// ============================================
+// 7. c3Table — sortable, filterable, sticky header, density toggle
+// ============================================
+.c3-table-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.c3-table-filter {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    color: var(--text-primary);
+    padding: 0.3rem 0.6rem;
+    font-size: 0.75rem;
+    min-width: 160px;
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 1px;
+    }
+}
+
+.c3-density-toggle {
+    display: inline-flex;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.c3-density-btn {
+    background: var(--bg-secondary);
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.25rem 0.6rem;
+    font-size: 0.7rem;
+    cursor: pointer;
+    transition: all var(--transition-speed, 0.2s);
+
+    &.active {
+        background: var(--accent-primary);
+        color: #000;
+    }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: -2px;
+    }
+}
+
+.c3-table-scroll {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 360px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.c3-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.78rem;
+
+    th, td {
+        padding: 0.5rem 0.6rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+        white-space: nowrap;
+    }
+
+    thead th {
+        position: sticky;
+        top: 0;
+        background: var(--bg-secondary);
+        color: var(--text-secondary);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.68rem;
+        letter-spacing: 0.02em;
+        cursor: pointer;
+        user-select: none;
+        z-index: 1;
+
+        &:hover { color: var(--text-primary); }
+
+        &:focus-visible {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: -2px;
+        }
+    }
+
+    tbody tr:hover {
+        background: var(--bg-card-hover);
+    }
+
+    &.c3-table--compact th,
+    &.c3-table--compact td {
+        padding: 0.2rem 0.5rem;
+    }
+}
+
+.c3-sort-icon {
+    display: inline-block;
+    margin-left: 0.25rem;
+    opacity: 0.5;
+    font-size: 0.6rem;
+
+    &.active { opacity: 1; color: var(--accent-primary); }
+}
+
+.c3-table-row-actions {
+    display: flex;
+    gap: 0.3rem;
+}
+
+// ============================================
+// 8. c3Badge — full severity scale extending status-badge
+// ============================================
+.c3-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    border-radius: var(--border-radius);
+    border: 1px solid transparent;
+    line-height: 1.4;
+
+    [data-theme="blurred"] & {
+        border-radius: 10px;
+    }
+}
+
+.c3-badge--ok {
+    background: rgba(16, 185, 129, 0.15);
+    color: var(--accent-green);
+    border-color: var(--accent-green);
+}
+
+.c3-badge--info {
+    background: rgba(74, 158, 255, 0.15);
+    color: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
+.c3-badge--warn {
+    background: rgba(251, 191, 36, 0.15);
+    color: var(--accent-yellow);
+    border-color: var(--accent-yellow);
+}
+
+.c3-badge--error {
+    background: rgba(239, 68, 68, 0.15);
+    color: var(--accent-red);
+    border-color: var(--accent-red);
+}
+
+.c3-badge--critical {
+    background: var(--accent-red);
+    color: #fff;
+    border-color: var(--accent-red);
+    animation: c3-badge-pulse 1.6s infinite;
+}
+
+@keyframes c3-badge-pulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
+    50% { box-shadow: 0 0 8px rgba(239, 68, 68, 0.6); }
+}
+
+.c3-badge--unknown {
+    background: rgba(139, 149, 201, 0.12);
+    color: var(--text-secondary);
+    border-color: var(--border-color);
+}
+
+// ============================================
+// 9. c3Drawer — right-side slide-over
+// ============================================
+.c3-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 900;
+    opacity: 0;
+    transition: opacity var(--transition-speed, 0.2s) ease;
+
+    &.c3-drawer-open { opacity: 1; }
+}
+
+.c3-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(420px, 92vw);
+    background: var(--bg-card);
+    border-left: 1px solid var(--border-color);
+    box-shadow: -10px 0 30px var(--shadow);
+    z-index: 901;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform var(--transition-speed, 0.25s) ease;
+
+    &.c3-drawer-open { transform: translateX(0); }
+}
+
+.c3-drawer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.c3-drawer-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.c3-drawer-close {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.2rem 0.4rem;
+    border-radius: var(--border-radius);
+
+    &:hover { color: var(--text-primary); background: var(--bg-card-hover); }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 1px;
+    }
+}
+
+.c3-drawer-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.c3-drawer-section {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+
+    &:last-child { border-bottom: none; }
+}
+
+.c3-drawer-section-title {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--text-secondary);
+    margin: 0 0 0.4rem;
+    font-weight: 600;
+}
+
+// ============================================
+// 10. c3Toolbar — time range, refresh, auto-refresh, live/mock
+// ============================================
+.c3-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+
+.c3-toolbar-group {
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+}
+
+.c3-range-btn {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.55rem;
+    font-size: 0.72rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all var(--transition-speed, 0.2s);
+
+    &.active {
+        background: var(--accent-primary);
+        border-color: var(--accent-primary);
+        color: #000;
+        font-weight: 600;
+    }
+
+    &:hover:not(.active) { color: var(--text-primary); border-color: var(--text-secondary); }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 1px;
+    }
+}
+
+.c3-toolbar-select {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.72rem;
+    border-radius: var(--border-radius);
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 1px;
+    }
+}
+
+.c3-refresh-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    background: var(--accent-primary);
+    border: none;
+    color: #000;
+    padding: 0.28rem 0.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: transform var(--transition-speed, 0.2s);
+
+    &:hover { transform: scale(1.03); }
+
+    &:focus-visible {
+        outline: 2px solid var(--text-primary);
+        outline-offset: 1px;
+    }
+
+    &.spinning svg { animation: c3-spin 0.8s linear infinite; }
+}
+
+.c3-livemock-toggle {
+    display: inline-flex;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.c3-livemock-btn {
+    background: var(--bg-card);
+    border: none;
+    color: var(--text-secondary);
+    padding: 0.25rem 0.6rem;
+    font-size: 0.7rem;
+    cursor: pointer;
+
+    &.active--live { background: var(--accent-green); color: #000; font-weight: 600; }
+    &.active--mock { background: var(--accent-blue); color: #000; font-weight: 600; }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: -2px;
+    }
+}
+
+// ============================================
+// 11. c3Tree — collapsible topology tree (slot-node styling family)
+// ============================================
+.c3-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    font-size: 0.8rem;
+}
+
+.c3-tree-node {
+    display: flex;
+    flex-direction: column;
+}
+
+.c3-tree-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.4rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background var(--transition-speed, 0.15s);
+
+    &:hover { background: var(--bg-card-hover); }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: -2px;
+    }
+}
+
+.c3-tree-toggle {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    width: 14px;
+    height: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform var(--transition-speed, 0.2s);
+    flex: 0 0 auto;
+
+    &.expanded { transform: rotate(90deg); }
+}
+
+.c3-tree-status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex: 0 0 auto;
+    background: var(--accent-green);
+}
+
+.c3-tree-status-dot--warn { background: var(--accent-yellow); }
+.c3-tree-status-dot--error { background: var(--accent-red); }
+.c3-tree-status-dot--unknown { background: var(--text-secondary); }
+
+.c3-tree-label {
+    flex: 1 1 auto;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.c3-tree-meta {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+}
+
+.c3-tree-children {
+    margin-left: 1.15rem;
+    border-left: 1px solid var(--border-color);
+    padding-left: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.c3-tree-children--collapsed {
+    display: none;
+}
+
+// ============================================
+// 12. c3LogStream — virtualized log viewer
+// ============================================
+.c3-logstream {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.c3-logstream-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.c3-logstream-filter {
+    flex: 1 1 auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.72rem;
+    border-radius: var(--border-radius);
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 1px;
+    }
+}
+
+.c3-logstream-pause {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 0.25rem 0.55rem;
+    font-size: 0.72rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+
+    &.paused { color: var(--accent-yellow); border-color: var(--accent-yellow); }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 1px;
+    }
+}
+
+.c3-logstream-viewport {
+    height: 260px;
+    overflow-y: auto;
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+}
+
+.c3-logstream-spacer {
+    position: relative;
+    width: 100%;
+}
+
+.c3-logstream-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: 0 0.6rem;
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 18px;
+    height: 18px;
+}
+
+.c3-logstream-line--debug { color: var(--text-secondary); }
+.c3-logstream-line--info { color: var(--text-primary); }
+.c3-logstream-line--warn { color: var(--accent-yellow); }
+.c3-logstream-line--error { color: var(--accent-red); }
+.c3-logstream-line--critical { color: #fff; background: color-mix(in srgb, var(--accent-red) 25%, transparent); }
+
+// ============================================
+// 13. c3CmdK — command palette
+// ============================================
+.c3-cmdk-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 950;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 12vh;
+}
+
+.c3-cmdk {
+    width: min(560px, 92vw);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-lg, var(--border-radius));
+    box-shadow: 0 20px 60px var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    max-height: 70vh;
+}
+
+.c3-cmdk-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+
+    &:focus { outline: none; }
+}
+
+.c3-cmdk-list {
+    overflow-y: auto;
+    padding: 0.35rem;
+}
+
+.c3-cmdk-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.5rem 0.6rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 0.82rem;
+
+    &[aria-selected="true"] {
+        background: var(--accent-primary);
+        color: #000;
+    }
+}
+
+.c3-cmdk-item-hint {
+    font-size: 0.68rem;
+    color: inherit;
+    opacity: 0.7;
+    font-family: var(--font-mono);
+}
+
+.c3-cmdk-empty {
+    padding: 1rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+// ============================================
+// 14. c3Toast — stacking transient notifications
+// ============================================
+.c3-toast-stack {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    z-index: 980;
+    max-width: min(360px, 90vw);
+}
+
+.c3-toast {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--accent-blue);
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 30px var(--shadow);
+    font-size: 0.8rem;
+    animation: c3-toast-in 0.2s ease;
+
+    &.c3-toast--ok { border-left-color: var(--accent-green); }
+    &.c3-toast--warn { border-left-color: var(--accent-yellow); }
+    &.c3-toast--error { border-left-color: var(--accent-red); }
+}
+
+@keyframes c3-toast-in {
+    from { opacity: 0; transform: translateX(12px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.c3-toast-body {
+    flex: 1 1 auto;
+}
+
+.c3-toast-title {
+    font-weight: 600;
+    margin: 0 0 0.15rem;
+}
+
+.c3-toast-msg {
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.c3-toast-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    line-height: 1;
+
+    &:hover { color: var(--text-primary); }
+
+    &:focus-visible {
+        outline: 2px solid var(--accent-primary);
+        outline-offset: 1px;
+    }
+}
+
+// ============================================
+// 16. c3Markdown — minimal renderer output styling
+// ============================================
+.c3-markdown {
+    line-height: 1.5;
+    font-size: 0.85rem;
+
+    h1, h2, h3, h4 {
+        margin: 0.9rem 0 0.4rem;
+        color: var(--text-primary);
+    }
+
+    p { margin: 0.4rem 0; }
+
+    code {
+        background: var(--bg-hover, rgba(255, 255, 255, 0.06));
+        border-radius: 3px;
+        padding: 0.05rem 0.3rem;
+        font-family: var(--font-mono, monospace);
+        font-size: 0.85em;
+    }
+
+    pre.c3-markdown-code {
+        background: var(--bg-hover, rgba(255, 255, 255, 0.06));
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
+        padding: 0.6rem 0.75rem;
+        overflow-x: auto;
+
+        code { background: none; padding: 0; }
+    }
+
+    ul, ol { margin: 0.3rem 0; padding-left: 1.4rem; }
+
+    blockquote {
+        margin: 0.4rem 0;
+        padding: 0.3rem 0.75rem;
+        border-left: 3px solid var(--accent-primary);
+        color: var(--text-secondary);
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid var(--border-color);
+        margin: 0.8rem 0;
+    }
+
+    a { color: var(--accent-primary); }
+
+    table.c3-markdown-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 0.4rem 0;
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 0.3rem 0.5rem;
+            text-align: left;
+        }
+    }
+}
+
+// ============================================
+// 17. c3-reports — Reports section chrome (Deliverable 3)
+// ============================================
+.c3-reports-subtabs,
+.c3-reports-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.6rem;
+}
+
+.c3-reports-trigger {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
+
+    a { color: var(--accent-primary); }
+}
+
+.c3-reports-trigger-status {
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+}
+
+.c3-reports-freshness {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.c3-reports-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.6rem;
+}
+
+.c3-stat--error .c3-stat-value { color: var(--accent-red); }
+.c3-stat--warn .c3-stat-value { color: var(--accent-yellow); }
+.c3-stat--ok .c3-stat-value { color: var(--accent-green); }
+
+.c3-reports-content > .c3-panel {
+    margin-bottom: 0.8rem;
+}
+
+// ============================================
+// Responsive — keep the page body free of horizontal scroll down to
+// tablet width; dense widgets scroll internally instead.
+// ============================================
+@media (max-width: 768px) {
+    .c3-table-scroll { max-height: 300px; }
+    .c3-drawer { width: 100%; }
+    .c3-toolbar { gap: 0.4rem; }
+    .c3-cmdk-backdrop { padding-top: 6vh; }
+}

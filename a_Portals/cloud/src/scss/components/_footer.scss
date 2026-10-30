@@ -1,0 +1,97 @@
+.cloud-footer {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.footer-github-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.linktree-footer-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(110deg, #ff6600 0%, #ff6600 40%, #ffaa66 50%, #ff6600 60%, #ff6600 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+    border: 1px solid var(--accent-primary);
+    border-radius: var(--border-radius);
+    color: #000;
+    text-decoration: none;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+}
+
+.linktree-footer-btn:hover {
+    animation: shimmer 1.5s linear infinite;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(255, 102, 0, 0.5);
+}
+
+.link-icon { font-size: 1rem; }
+.link-text { font-weight: 600; }
+.link-arrow {
+    width: 14px;
+    height: 14px;
+    opacity: 0.7;
+}
+
+.linktree-footer-btn:hover .link-arrow {
+    opacity: 1;
+}
+
+[data-theme="blurred"] .linktree-footer-btn {
+    border-radius: 20px;
+    background: linear-gradient(110deg, #4a9eff 0%, #4a9eff 40%, #a0cfff 50%, #4a9eff 60%, #4a9eff 100%);
+    background-size: 200% 100%;
+    border-color: var(--accent-blue);
+    color: #fff;
+}
+
+[data-theme="blurred"] .linktree-footer-btn:hover {
+    box-shadow: 0 0 25px rgba(74, 158, 255, 0.6);
+}
+
+.github-footer-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color);
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all var(--transition-speed) ease;
+
+    svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+    }
+}
+
+.github-footer-btn:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+    transform: scale(1.1);
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="blurred"] .github-footer-btn:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    box-shadow: 0 0 12px rgba(74, 158, 255, 0.3);
+}

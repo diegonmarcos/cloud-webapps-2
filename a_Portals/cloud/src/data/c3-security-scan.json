@@ -1,0 +1,45 @@
+{
+  "_generated": "2026-08-01T09:00:00Z",
+  "vms": [
+    {
+      "vm": "oci-mail",
+      "findings": [
+        {
+          "severity": "low",
+          "check": "unattended-upgrades",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "vm": "oci-analytics",
+      "findings": [
+        {
+          "severity": "low",
+          "check": "unattended-upgrades",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "vm": "oci-apps",
+      "findings": [
+        {
+          "severity": "low",
+          "check": "unattended-upgrades",
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "vm": "gcp-f-micro_1",
+      "findings": [
+        {
+          "severity": "low",
+          "check": "unattended-upgrades",
+          "status": "ok"
+        }
+      ]
+    }
+  ]
+}

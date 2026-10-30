@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oops! | diegonmarcos.com</title>
+
+    <!-- Matomo Tag Manager -->
+    <script>
+      var _mtm = window._mtm = window._mtm || [];
+      _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+      (function() {
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src='https://analytics.diegonmarcos.com/matomo/js/container_odwLIyPV.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+    <!-- End Matomo Tag Manager -->
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #0a0a0f 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background grid */
+        .grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(74, 158, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(74, 158, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Shimmer effect */
+        .shimmer {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                110deg,
+                transparent 20%,
+                rgba(74, 158, 255, 0.05) 40%,
+                rgba(255, 102, 0, 0.05) 50%,
+                rgba(74, 158, 255, 0.05) 60%,
+                transparent 80%
+            );
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 2rem;
+        }
+
+        /* Error code with glitch effect */
+        .error-code {
+            font-size: clamp(4rem, 15vw, 10rem);
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff6600, #ff8533, #4a9eff, #ff6600);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 4s ease infinite, glitch 5s infinite;
+            position: relative;
+            text-shadow: 0 0 40px rgba(255, 102, 0, 0.3);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes glitch {
+            0%, 90%, 100% { transform: translate(0); }
+            91% { transform: translate(-2px, 1px); }
+            92% { transform: translate(2px, -1px); }
+            93% { transform: translate(-1px, 2px); }
+            94% { transform: translate(1px, -2px); }
+        }
+
+        .error-message {
+            font-size: 1.5rem;
+            color: #a0aec0;
+            margin: 1rem 0 2rem;
+            text-shadow: 0 0 20px rgba(74, 158, 255, 0.2);
+        }
+
+        /* Dino game container */
+        .dino-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 150px;
+            margin: 2rem auto;
+            border-bottom: 3px solid #333;
+            overflow: hidden;
+        }
+
+        /* Ground line with shimmer */
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 200%;
+            height: 3px;
+            background: linear-gradient(90deg, #333, #4a9eff, #ff6600, #333);
+            background-size: 200% 100%;
+            animation: groundShimmer 2s linear infinite;
+        }
+
+        @keyframes groundShimmer {
+            0% { background-position: 0% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        /* Chrome Dino SVG */
+        .dino {
+            position: absolute;
+            bottom: 10px;
+            left: 50px;
+            width: 44px;
+            height: 47px;
+            animation: dinoRun 0.2s steps(2) infinite, dinoBounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes dinoBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-30px); }
+        }
+
+        @keyframes dinoRun {
+            0% { background-position: 0 0; }
+            100% { background-position: -88px 0; }
+        }
+
+        /* Cactus obstacles */
+        .cactus {
+            position: absolute;
+            bottom: 10px;
+            animation: moveObstacle 2s linear infinite;
+        }
+
+        .cactus-1 { right: -50px; animation-delay: 0s; }
+        .cactus-2 { right: -50px; animation-delay: 0.7s; }
+        .cactus-3 { right: -50px; animation-delay: 1.4s; }
+
+        @keyframes moveObstacle {
+            0% { right: -50px; }
+            100% { right: 110%; }
+        }
+
+        /* Cloud decoration */
+        .cloud {
+            position: absolute;
+            fill: #2a2a3a;
+            animation: moveCloud 8s linear infinite;
+        }
+
+        .cloud-1 { top: 20px; right: -100px; animation-duration: 12s; }
+        .cloud-2 { top: 40px; right: -100px; animation-duration: 15s; animation-delay: 3s; }
+
+        @keyframes moveCloud {
+            0% { right: -100px; }
+            100% { right: 110%; }
+        }
+
+        /* Fun messages */
+        .fun-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #4a9eff;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        .fun-text span {
+            display: inline-block;
+            animation: bounce 0.5s ease infinite;
+        }
+
+        .fun-text span:nth-child(2) { animation-delay: 0.1s; }
+        .fun-text span:nth-child(3) { animation-delay: 0.2s; }
+        .fun-text span:nth-child(4) { animation-delay: 0.3s; }
+        .fun-text span:nth-child(5) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Back button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #ff6600, #ff8533);
+            border: none;
+            border-radius: 50px;
+            color: #000;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 102, 0, 0.3);
+        }
+
+        .back-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 102, 0, 0.5);
+        }
+
+        /* Floating particles */
+        .particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #4a9eff;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; background: #ff6600; }
+        .particle:nth-child(2) { left: 20%; top: 60%; animation-delay: 1s; }
+        .particle:nth-child(3) { left: 35%; top: 30%; animation-delay: 2s; background: #ff6600; }
+        .particle:nth-child(4) { left: 50%; top: 70%; animation-delay: 3s; }
+        .particle:nth-child(5) { left: 65%; top: 25%; animation-delay: 4s; background: #ff6600; }
+        .particle:nth-child(6) { left: 80%; top: 55%; animation-delay: 5s; }
+        .particle:nth-child(7) { left: 90%; top: 35%; animation-delay: 2.5s; background: #ff6600; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-20px) scale(1.5); opacity: 1; }
+        }
+
+        /* Retry info */
+        .retry-info {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: #666;
+        }
+
+        .retry-info code {
+            background: rgba(74, 158, 255, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            color: #4a9eff;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Score display */
+        .score {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.2rem;
+            color: #4a9eff;
+            animation: scoreGlow 1s ease-in-out infinite alternate;
+        }
+
+        @keyframes scoreGlow {
+            0% { text-shadow: 0 0 5px rgba(74, 158, 255, 0.5); }
+            100% { text-shadow: 0 0 20px rgba(74, 158, 255, 0.8); }
+        }
+    </style>
+<!-- Umami Analytics -->
+<script async src="https://analytics.diegonmarcos.com/umami/script.js" data-website-id="937cbde7-5ec2-450c-9d6a-8117423ac12f"></script>
+<!-- End Umami Analytics -->
+</head>
+<body>
+    <div class="grid-bg"></div>
+    <div class="shimmer"></div>
+
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <div class="container">
+        <div class="error-code">::ERROR_CODE::</div>
+        <p class="error-message">::ERROR_MESSAGE::</p>
+
+        <!-- Dino Game Scene -->
+        <div class="dino-container">
+            <div class="score">HI 00042</div>
+
+            <!-- Clouds -->
+            <svg class="cloud cloud-1" width="46" height="14" viewBox="0 0 46 14">
+                <path d="M18 0c-3.3 0-6.2 1.7-7.8 4.3C9.5 3.5 8.3 3 7 3c-3.9 0-7 3.1-7 7h46c0-5.5-4.5-10-10-10-2.4 0-4.6.8-6.3 2.2C27.8 0.8 23.1 0 18 0z"/>
+            </svg>
+            <svg class="cloud cloud-2" width="46" height="14" viewBox="0 0 46 14">
+                <path d="M18 0c-3.3 0-6.2 1.7-7.8 4.3C9.5 3.5 8.3 3 7 3c-3.9 0-7 3.1-7 7h46c0-5.5-4.5-10-10-10-2.4 0-4.6.8-6.3 2.2C27.8 0.8 23.1 0 18 0z"/>
+            </svg>
+
+            <!-- Dino -->
+            <svg class="dino" viewBox="0 0 44 47">
+                <path fill="#4a9eff" d="M26 0h10v4h4v4h4v22h-4v4h-4v4h-4v-8h-4v-4h-8v8h-4v4H6v-4H2v-4H0V18h4v-4h4v-4h6V6h4V2h4V0h4zm0 18h4v4h-4v-4zm-8 0h4v4h-4v-4zM6 30h4v4H6v-4zm10 0h4v8h-4v-8z"/>
+            </svg>
+
+            <!-- Cacti -->
+            <svg class="cactus cactus-1" width="17" height="35" viewBox="0 0 17 35">
+                <path fill="#ff6600" d="M7 0h3v35H7V0zM0 10h7v3H0v-3zm10 5h7v3h-7v-3z"/>
+            </svg>
+            <svg class="cactus cactus-2" width="25" height="50" viewBox="0 0 25 50">
+                <path fill="#ff6600" d="M10 0h5v50h-5V0zM0 15h10v5H0v-5zm15 10h10v5H15v-5z"/>
+            </svg>
+            <svg class="cactus cactus-3" width="17" height="35" viewBox="0 0 17 35">
+                <path fill="#ff6600" d="M7 0h3v35H7V0zM0 10h7v3H0v-3zm10 5h7v3h-7v-3z"/>
+            </svg>
+
+            <div class="ground"></div>
+        </div>
+
+        <p class="fun-text">
+            <span>P</span><span>r</span><span>e</span><span>s</span><span>s</span>
+            SPACE to jump... oh wait, this isn't the real game!
+        </p>
+
+        <a href="/" class="back-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M19 12H5M12 19l-7-7 7-7"/>
+            </svg>
+            Take me home
+        </a>
+
+        <p class="retry-info">
+            Ray ID: <code>::RAY_ID::</code>
+        </p>
+    </div>
+
+    <script>
+        // Random fun messages
+        const messages = [
+            "The server went to get coffee...",
+            "Looks like our hamster stopped running...",
+            "The internet gnomes are on strike!",
+            "404: Motivation not found",
+            "This page is playing hide and seek",
+            "Our servers are having an existential crisis",
+            "The bits got lost in the cloud",
+            "Someone unplugged the internet again"
+        ];
+
+        // Replace placeholder if this is a static preview
+        const errorMsg = document.querySelector('.error-message');
+        if (errorMsg.textContent.includes('::ERROR_MESSAGE::')) {
+            errorMsg.textContent = messages[Math.floor(Math.random() * messages.length)];
+        }
+
+        const errorCode = document.querySelector('.error-code');
+        if (errorCode.textContent.includes('::ERROR_CODE::')) {
+            errorCode.textContent = '404';
+        }
+
+        // Make dino jump on spacebar
+        document.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault();
+                const dino = document.querySelector('.dino');
+                dino.style.animation = 'none';
+                dino.offsetHeight; // Trigger reflow
+                dino.style.animation = 'dinoRun 0.2s steps(2) infinite, dinoBounce 0.5s ease-out';
+                setTimeout(() => {
+                    dino.style.animation = 'dinoRun 0.2s steps(2) infinite, dinoBounce 1.5s ease-in-out infinite';
+                }, 500);
+            }
+        });
+
+        // Click to jump on mobile
+        document.querySelector('.dino-container').addEventListener('click', () => {
+            const dino = document.querySelector('.dino');
+            dino.style.animation = 'none';
+            dino.offsetHeight;
+            dino.style.animation = 'dinoRun 0.2s steps(2) infinite, dinoBounce 0.5s ease-out';
+            setTimeout(() => {
+                dino.style.animation = 'dinoRun 0.2s steps(2) infinite, dinoBounce 1.5s ease-in-out infinite';
+            }, 500);
+        });
+
+        // Increment score
+        let score = 42;
+        setInterval(() => {
+            score++;
+            document.querySelector('.score').textContent = 'HI ' + String(score).padStart(5, '0');
+        }, 100);
+    </script>
+</body>
+</html>

@@ -1,0 +1,255 @@
+{
+ "_generated": "2026-08-02T08:56:31.369Z",
+ "_source": "_cloud-data-consolidated.json via /cloud-data/cloudflare-dns",
+ "zone": "diegonmarcos.com",
+ "records": [
+  {
+   "name": "matrix.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "matrix-continuwuity",
+   "origin": "build.json"
+  },
+  {
+   "name": "languagetool.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "languagetool",
+   "origin": "build.json"
+  },
+  {
+   "name": "api.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "c3-infra-api",
+   "origin": "build.json"
+  },
+  {
+   "name": "mcp.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "c3-infra-mcp",
+   "origin": "build.json"
+  },
+  {
+   "name": "git.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "gitea",
+   "origin": "build.json"
+  },
+  {
+   "name": "dns.internal",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "hickory-dns",
+   "origin": "build.json"
+  },
+  {
+   "name": "dns64.internal",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "unbound-dns64",
+   "origin": "build.json"
+  },
+  {
+   "name": "mesh.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "wireguard-mesh",
+   "origin": "build.json"
+  },
+  {
+   "name": "vpn.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "wireguard-mesh-ws-tunnel",
+   "origin": "build.json"
+  },
+  {
+   "name": "workflows.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "dagu",
+   "origin": "build.json"
+  },
+  {
+   "name": "db.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "dbgate",
+   "origin": "build.json"
+  },
+  {
+   "name": "analytics.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "matomo",
+   "origin": "build.json"
+  },
+  {
+   "name": "rss.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "ntfy",
+   "origin": "build.json"
+  },
+  {
+   "name": "auth.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "authelia",
+   "origin": "build.json"
+  },
+  {
+   "name": "proxy.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "caddy",
+   "origin": "build.json"
+  },
+  {
+   "name": "crowdsec.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "crowdsec",
+   "origin": "build.json"
+  },
+  {
+   "name": "chat.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "chat-mattermost",
+   "origin": "build.json"
+  },
+  {
+   "name": "mail-puller.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "mail-puller",
+   "origin": "build.json"
+  },
+  {
+   "name": "messenger.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "matrix-element",
+   "origin": "build.json"
+  },
+  {
+   "name": "webmail.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "snappymail",
+   "origin": "build.json"
+  },
+  {
+   "name": "mail.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "maddy",
+   "origin": "build.json"
+  },
+  {
+   "name": "jmap.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "stalwart",
+   "origin": "build.json"
+  },
+  {
+   "name": "photos.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "photoprism",
+   "origin": "build.json"
+  },
+  {
+   "name": "cal.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "calendar-radicale",
+   "origin": "build.json"
+  },
+  {
+   "name": "ide.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "code-server",
+   "origin": "build.json"
+  },
+  {
+   "name": "contacts.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "contacts-radicale",
+   "origin": "build.json"
+  },
+  {
+   "name": "app.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "etherpad",
+   "origin": "build.json"
+  },
+  {
+   "name": "sheets.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "grist",
+   "origin": "build.json"
+  },
+  {
+   "name": "paca.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "paca",
+   "origin": "build.json"
+  },
+  {
+   "name": "send.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "send",
+   "origin": "build.json"
+  },
+  {
+   "name": "vault.diegonmarcos.com",
+   "type": "CNAME",
+   "content": "diegonmarcos.com",
+   "proxied": true,
+   "service": "vaultwarden",
+   "origin": "build.json"
+  }
+ ]
+}

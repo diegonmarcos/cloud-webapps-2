@@ -1,0 +1,97 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Tiles — home screen tile grid
+// ==========================================================================
+
+// APK TileGridFragment: tile_columns = 6, fixed — not an auto-fill grid
+// that reflows with viewport width. item_tile margins are 3dp a side, i.e.
+// a 6px gutter between neighbours.
+.tile-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 6px;
+    padding: 2px;
+}
+
+// Every tile is dark glass (item_tile.xml paints bg_tile_glass on all of
+// them). TileGridFragment does compute a per-tile color palette, but never
+// applies it — the pastel .tile--<color> backgrounds this file used to
+// carry were a port of that dead code. The classes are still emitted to
+// mirror the APK, they just no longer paint anything.
+//
+// Height is the APK's fixed 128dp item_tile, not a square aspect-ratio:
+// icon pinned to the top, label taking whatever it needs underneath.
+.tile {
+    position: relative;
+    @include flex-center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: 6px;
+    height: 128px;
+    // grid cells are minmax(0, 1fr); this stops a long label's min-content
+    // width from growing its column and pushing the row past the viewport.
+    min-width: 0;
+    border-radius: 20px;
+    padding: 10px 6px;
+    background-color: transparent;
+    background-image: var(--glass-tile-gradient);
+    border: var(--glass-tile-border);
+    overflow: hidden;
+    // Release (ACTION_UP/CANCEL) leg of tile_press.xml — the base rule wins
+    // once :active is no longer matched, so this is what plays on release.
+    transition: transform var(--duration-press-up) ease-out;
+}
+
+// Press (ACTION_DOWN) leg of tile_press.xml — scale 1 → 0.92 over 80ms.
+.tile:active {
+    transform: scale(var(--scale-press));
+    transition: transform var(--duration-press-down) ease-out;
+}
+
+// Lavender glyph on the dark glass. generate-pages.mjs inlines the shared
+// set's SVG into this span (see inlineIcon()), so the stroke/fill
+// currentColor picks the tint up from `color` here — a CSS mask can't do it,
+// Android WebView renders `mask-image: var(--icon-url)` as a solid square.
+// Same convention as .tile__app-icon__glyph (_app-icons.scss) and
+// .tile-group__footer-icon (_content-blocks.scss).
+.tile__icon {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    color: #E9D8FD;
+
+    > svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.tile__label {
+    font-size: clamp(9px, 2.4vw, 13px);
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.2;
+    color: #E6E0E9;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    width: 100%;
+    // a single long unbroken name would otherwise set the cell's min-content
+    // width and blow the 6-column row out horizontally.
+    overflow-wrap: anywhere;
+}
+
+// Phone grids are already 6-up (_app-icons.scss) — align their cell height
+// and label with the section grid above. The extra class in the selector is
+// specificity only: _app-icons.scss loads after this file and pins the
+// phone label to a flat 9px.
+.tile-grid.tile-grid--phone .tile {
+    height: 128px;
+}
+
+.tile-grid.tile-grid--phone .tile__label {
+    font-size: clamp(9px, 2.4vw, 13px);
+}

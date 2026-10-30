@@ -1,0 +1,192 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Drawer — slide-in nav panel + scrim, app banner + user banner
+// ==========================================================================
+
+// position:absolute, not fixed: the drawer, its scrim, and every other
+// overlay (radial-menu, fan-menu, overlay-sheet) are now DOM descendants of
+// .shell (see generate-pages.mjs's renderShell) rather than <body> siblings.
+// .shell is what actually represents "the screen" — full height always, but
+// only full WIDTH on mobile; on desktop it's a centered 480px mockup with
+// empty space on either side. fixed anchors to the true browser viewport,
+// so on desktop the drawer used to slide in from the real window edge,
+// nowhere near the visible phone mockup. absolute anchors to .shell's own
+// box (position:relative), which is exactly "the screen area".
+.drawer-scrim {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-fade) ease;
+    z-index: 20;
+}
+
+.drawer-scrim.is-open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+// Solid --gradient-mid backdrop + a liquid-glass tint layered on top
+// (bg_glass_liquid.xml) so the panel keeps its opaque black identity while
+// picking up the same white→violet sheen the other glass surfaces use.
+.drawer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: min(var(--drawer-width), 85vw);
+    background-color: var(--gradient-mid);
+    background-image: var(--glass-liquid-gradient);
+    border-right: 1px solid var(--glass-border);
+    transform: translateX(-100%);
+    // Closing leg (slide_out_*.xml) — wins whenever .is-open is absent,
+    // i.e. right after it's removed, which is when a close plays.
+    transition: transform var(--duration-slide-out) var(--ease-accelerate);
+    z-index: 21;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+// Opening leg (slide_in_*.xml, decelerate_quint) — wins whenever .is-open
+// is present, i.e. right after it's added, which is when an open plays.
+.drawer.is-open {
+    transform: translateX(0);
+    transition: transform var(--duration-slide-in) var(--ease-decelerate);
+}
+
+.drawer__banner {
+    @include flex-row(flex-start, center, 12px);
+    min-height: 84px;
+    padding: 10px 14px;
+    width: 100%;
+    text-align: left;
+}
+
+// Ripple stand-in — the real banners are ?selectableItemBackground rows.
+.drawer__banner:active {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08));
+}
+
+.drawer__banner--app {
+    background: var(--drawer-banner-app);
+}
+
+.drawer__banner--user {
+    background: var(--drawer-banner-user);
+}
+
+.drawer__banner-icon {
+    width: 36px;
+    height: 36px;
+    filter: brightness(0) invert(1);
+    opacity: .9;
+}
+
+.drawer__title {
+    color: var(--drawer-banner-text);
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.drawer__meta {
+    color: var(--drawer-banner-text);
+    opacity: .7;
+    font-size: 11px;
+    font-family: monospace;
+    margin-top: 2px;
+}
+
+// nav_header.xml's third app-banner line: build timestamp, dimmer than the
+// build-flavour line above it.
+.drawer__meta--ts {
+    opacity: .55;
+}
+
+// nav_header.xml's labelSmall "Mode: Apps" row. The swap-mode icon that sits
+// beside it in the real header is View.GONE, so only the text ships here.
+.drawer__mode {
+    color: var(--drawer-banner-text);
+    opacity: .7;
+    font-size: 11px;
+    font-family: monospace;
+    margin-top: 2px;
+}
+
+.drawer__separator {
+    height: 1px;
+    background: var(--drawer-separator);
+}
+
+.drawer__avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--drawer-avatar);
+    @include flex-center;
+    color: var(--drawer-banner-text);
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.drawer__nav {
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 2px;
+}
+
+.drawer__nav-item {
+    @include flex-row(flex-start, center, 10px);
+    width: 100%;
+    padding: 2px 12px;
+    min-height: 16px;
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: var(--drawer-dense-font-size, 12px);
+    line-height: var(--drawer-dense-line-height, 14px);
+}
+
+.drawer__nav-item img {
+    width: 18px;
+    height: 18px;
+    opacity: .85;
+    filter: brightness(0) invert(1);
+}
+
+.drawer__nav-item:hover,
+.drawer__nav-item:active {
+    background: var(--glass-border);
+}
+
+.drawer__nav-item--inert {
+    opacity: .5;
+}
+
+// NavigationView submenu title — non-clickable group header (real app:
+// HomeDrawerFragment's menu.addSubMenu(...) title, e.g. "Home"). Only one
+// group in the current data (more of build.json's home_groups are
+// horizontal-scroll tile strips, not plain nav rows — not yet replicated).
+.drawer__group-title {
+    padding: 14px 12px 4px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--text-secondary);
+}
+
+// Indented tree child — real app: when a Home-group tile is `section:X` and
+// that section declares .pages, each page renders as an indented sibling
+// directly under the tile ("      └─── {label}"). Left padding stands in
+// for the NBSP+└─ prefix; the built-in <img> icon slot is reused for
+// per-page icons where sections declare one.
+.drawer__nav-item--child {
+    padding-left: 34px;
+    color: var(--drawer-dense-color);
+}

@@ -1,0 +1,153 @@
+@use '../../mixins' as *;
+
+// ==========================================================================
+// Phone-tab folders — transcribed 1:1 from the APK's Home Apps · Phone
+// screen (aa_cloud-superapp app/src/main/java/.../apps/PhoneAppsFragment.kt).
+//
+//   • Section subhead per label prefix (System / Services / Tools A /
+//     Tools B / Other) — subhead(), :273-278: #E9D8FD, Material Subhead,
+//     padding 4dp left / 12dp top / 4dp bottom.
+//   • 6-column grid of folder CARDS — renderFolderGrid(), :290-322
+//     (build.json::ui.phone_grid_columns = 6).
+//   • Card — makeFolderCard(), :326-385: a 60dp liquid-glass square
+//     (R.drawable.bg_liquid_glass: 24dp radius, 135° white→violet gradient,
+//     1dp #33FFFFFF stroke) wrapping a 2×2 GridLayout of the first four app
+//     icons (6dp padding, 1dp margins, ~21dp minis), label centered below at
+//     10sp #E9D8FD, single line, ellipsized. No count badge on-device.
+//   • Tap → every app inside (showFolderDialog(), :389-441 — near-opaque
+//     #EE0A0A14 sheet, headline title, 6-column grid of 48dp tiles). On the
+//     web the card is a <summary> and the sheet is the <details> body, so
+//     expand/collapse needs no JavaScript.
+//   • Smart Folders use the same card at a 44dp cell, 7 per row (:241-264).
+// ==========================================================================
+
+.phone-folders {
+    margin-bottom: 20px;
+}
+
+// subhead() — section title above each folder grid.
+.phone-folders__subhead {
+    margin: 12px 0 4px;
+    padding-left: 4px;
+    color: var(--drawer-banner-text); // #E9D8FD
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.phone-folder-grid {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    align-items: start;
+}
+
+// Smart Folders: denser cell, columns + 1.
+.phone-folder-grid--smart {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.phone-folder {
+    // Expanded folder takes the full row so its sheet is not squeezed into
+    // one grid column — the launcher's fullscreen dialog, inline.
+    &[open] {
+        grid-column: 1 / -1;
+    }
+}
+
+.phone-folder__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 6px 2px;
+    cursor: pointer;
+    list-style: none;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+}
+
+// Glass square holding the 2×2 mini-preview.
+.phone-folder__square {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2px; // 1dp margin per mini, both sides
+    box-sizing: border-box;
+    width: 60px;
+    height: 60px;
+    padding: 6px;
+    border-radius: var(--glass-liquid-radius);
+    background: var(--glass-liquid-gradient);
+    border: var(--glass-liquid-border);
+}
+
+.phone-folder-grid--smart .phone-folder__square {
+    width: 44px;
+    height: 44px;
+    padding: 5px;
+}
+
+// One mini "icon" slot — a plain hashed squircle stand-in for the real
+// launcher Drawable. Slots past the folder's app count stay blank, exactly
+// like the four always-added ImageViews at :358-368.
+.phone-folder__mini {
+    border-radius: 6px;
+}
+
+.phone-folder__mini--empty {
+    background: none;
+}
+
+// Brand mini — same treatment as the app tile badge (see _app-icons.scss):
+// the brand color arrives as an inline style, the inlined simple-icons path
+// paints white through currentColor at ~60% of the slot.
+.phone-folder__mini--brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+
+    > svg {
+        display: block;
+        width: 60%;
+        height: 60%;
+    }
+}
+
+@each $c in ('blue', 'green', 'purple', 'pink', 'orange', 'teal', 'amber', 'indigo') {
+    .phone-folder__mini--#{$c} {
+        background: var(--tile-#{$c}-bg);
+    }
+}
+
+.phone-folder__label {
+    width: 60px;
+    margin-top: 4px;
+    overflow: hidden;
+    color: var(--drawer-banner-text);
+    font-size: 10px;
+    line-height: 13px;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.phone-folder-grid--smart .phone-folder__label {
+    width: 48px;
+}
+
+// showFolderDialog()'s sheet — near-black, near-opaque, headline title,
+// full app grid.
+.phone-folder__sheet {
+    margin: 4px 2px 8px;
+    padding: 16px;
+    border-radius: var(--glass-liquid-radius);
+    background: rgba(10, 10, 20, 0.93); // #EE0A0A14
+}
+
+.phone-folder__sheet-title {
+    margin: 0 0 16px;
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 500;
+}

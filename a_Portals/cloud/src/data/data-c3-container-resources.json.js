@@ -1,0 +1,2724 @@
+// GENERATED FROM c3-container-resources.json by front-data-json-js-wrapper.sh — DO NOT EDIT BY HAND.
+// Re-generate with: bash a_Portals/linktree/src/data/build.sh
+(function () {
+  var g = (typeof globalThis !== "undefined") ? globalThis : (typeof window !== "undefined" ? window : this);
+  g.PORTAL_DATA = g.PORTAL_DATA || {};
+  g.PORTAL_DATA["c3-container-resources"] = {
+ "_generated": "2026-08-02T08:56:32.438Z",
+ "_source": "_cloud-data-consolidated.json via /cloud-data/container-resources",
+ "services": {
+  "matrix-continuwuity": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "continuwuity",
+     "image": "ghcr.io/diegonmarcos/matrix-continuwuity-binaries:latest",
+     "port": 8008,
+     "port_env": "CONTINUWUITY_PORT",
+     "dns": "matrix-continuwuity.app",
+     "public": true,
+     "proxy": {
+      "domain": "matrix.diegonmarcos.com",
+      "auth": "none"
+     },
+     "healthcheck": "/_matrix/client/versions",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "continuwuity_data:/var/lib/continuwuity"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": {
+    "mem_limit": "768M",
+    "mem_reservation": "128M"
+   }
+  },
+  "alerts-api": {
+   "vm": "oci-analytics",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "alerts-api",
+     "image": "",
+     "public": false,
+     "port": 5050,
+     "dns": "alerts-api.app"
+    }
+   },
+   "resources": null
+  },
+  "languagetool": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "languagetool",
+     "image": "erikvl87/languagetool:latest",
+     "port": 8010,
+     "port_env": null,
+     "dns": "languagetool.app",
+     "public": false,
+     "proxy": {
+      "domain": "languagetool.diegonmarcos.com",
+      "wg_only": true
+     },
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "languagetool_data:/home/user/languagetool"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": {
+      "mem_limit": "2g",
+      "mem_reservation": "512m"
+     },
+     "read_only": false,
+     "protocol": "http",
+     "_ngrams_note": "N-gram language models (~24 GB) are DEFERRED. To enable: (1) download the desired language pack from https://languagetool.org/download/ngram-data/ to /opt/languagetool/ngrams on oci-apps; (2) add volume mount 'ngrams:/ngrams:ro' to this container; (3) set environment.languageModel='/ngrams' below. Rules-only mode is the current default."
+    }
+   },
+   "resources": null
+  },
+  "c3-infra-api": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "c3-infra-api",
+     "image": "ghcr.io/diegonmarcos/c3-infra-api:latest",
+     "port": 8081,
+     "port_env": "PORT",
+     "dns": "c3-infra-api.app",
+     "public": true,
+     "proxy": {
+      "type": "path",
+      "parent_domain": "api.diegonmarcos.com",
+      "base_path": "/c3-infra-api",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/health",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "/opt/ssh-keys/c3-infra-api:/root/.ssh:ro",
+      "/nix/store:/nix/store:ro",
+      "/home/ubuntu/.nix-profile/bin:/usr/local/nix-bin:ro",
+      "~/.config/gcloud:/root/.config/gcloud",
+      "c3_git_repos:/root/git"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "c3-infra-mcp": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "c3-infra-mcp",
+     "image": "ghcr.io/diegonmarcos/c3-infra-mcp:latest",
+     "port": 3100,
+     "port_env": "MCP_HTTP_PORT",
+     "dns": "c3-infra-mcp.app",
+     "public": true,
+     "proxy": {
+      "streaming": true,
+      "type": "path",
+      "parent_domain": "mcp.diegonmarcos.com",
+      "base_path": "/c3-infra-mcp"
+     },
+     "healthcheck": "/mcp",
+     "monitoring": null,
+     "volumes": [
+      "/opt/ssh-keys/c3-infra-mcp:/root/.ssh:ro",
+      "/nix/store:/nix/store:ro",
+      "/home/ubuntu/.nix-profile/bin:/usr/local/nix-bin:ro",
+      "~/.config/gcloud:/root/.config/gcloud",
+      "c3_git_repos:/root/git"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "c3-public-api": {
+   "vm": "oci-analytics",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "c3-public-api",
+     "image": "ghcr.io/diegonmarcos/c3-public-api:latest",
+     "port": 8087,
+     "port_env": "PORT",
+     "dns": "c3-public-api.app",
+     "public": true,
+     "proxy": {
+      "auth": "two_factor",
+      "type": "path",
+      "parent_domain": "api.diegonmarcos.com",
+      "base_path": "/pub",
+      "public_paths": [
+       "/pub/health",
+       "/pub/ready",
+       "/pub/analytics/*"
+      ]
+     },
+     "healthcheck": "/health",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "c3-services-api": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "c3-services-api",
+     "image": "ghcr.io/diegonmarcos/c3-services-api:latest",
+     "port": 8082,
+     "port_env": "PORT",
+     "dns": "c3-services-api.app",
+     "public": true,
+     "proxy": {
+      "type": "path",
+      "parent_domain": "api.diegonmarcos.com",
+      "base_path": "/c3-services-api",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/health",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "c3-services-mcp": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "c3-services-mcp",
+     "image": "ghcr.io/diegonmarcos/c3-services-mcp:latest",
+     "port": 3101,
+     "port_env": "MCP_HTTP_PORT",
+     "dns": "c3-services-mcp.app",
+     "public": true,
+     "proxy": {
+      "streaming": true,
+      "type": "path",
+      "parent_domain": "mcp.diegonmarcos.com",
+      "base_path": "/c3-services-mcp"
+     },
+     "healthcheck": "/mcp",
+     "monitoring": null,
+     "volumes": [],
+     "env_file": true,
+     "depends_on": [],
+     "resources": {
+      "mem_limit": "2G",
+      "mem_reservation": "256M",
+      "pids_limit": 256
+     },
+     "restart_policy": "unless-stopped",
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "google-personal-mcp": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "google-personal-mcp",
+     "image": "ghcr.io/diegonmarcos/google-personal-mcp:latest",
+     "port": 3106,
+     "port_env": "PORT",
+     "dns": "g-personal-mcp.app",
+     "public": true,
+     "proxy": {
+      "streaming": true,
+      "type": "path",
+      "parent_domain": "mcp.diegonmarcos.com",
+      "base_path": "/g-personal"
+     },
+     "healthcheck": "/health",
+     "monitoring": null,
+     "volumes": [],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "google-workspace-mcp": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "google-workspace-mcp",
+     "image": "ghcr.io/diegonmarcos/google-workspace-mcp:latest",
+     "port": 3104,
+     "port_env": "PORT",
+     "dns": "g-workspace-mcp.app",
+     "public": true,
+     "proxy": {
+      "streaming": true,
+      "type": "path",
+      "parent_domain": "mcp.diegonmarcos.com",
+      "base_path": "/g-workspace"
+     },
+     "healthcheck": "/health",
+     "monitoring": null,
+     "volumes": [
+      "./.secrets.d/GOOGLE_SERVICE_ACCOUNT_KEY:/run/secrets/service-account-key.json:ro"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "mail-mcp": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "mail-mcp",
+     "image": "ghcr.io/diegonmarcos/mail-mcp:latest",
+     "port": 3103,
+     "port_env": "PORT",
+     "dns": "mail-mcp.app",
+     "public": true,
+     "proxy": {
+      "streaming": true,
+      "type": "path",
+      "parent_domain": "mcp.diegonmarcos.com",
+      "base_path": "/mail-mcp"
+     },
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "mattermost-mcp": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "mattermost-mcp",
+     "image": "ghcr.io/diegonmarcos/mattermost-mcp:latest",
+     "port": 3102,
+     "port_env": "MCP_HTTP_PORT",
+     "dns": "mattermost-mcp.app",
+     "public": true,
+     "proxy": {
+      "streaming": true,
+      "type": "path",
+      "parent_domain": "mcp.diegonmarcos.com",
+      "base_path": "/mattermost-mcp"
+     },
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "http-to-smtp-proxy-api": {
+   "vm": "gcp-proxy",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "http-to-smtp-proxy-api",
+     "port": 8090,
+     "port_env": "LISTEN_PORT",
+     "dns": "http-to-smtp-proxy-api.app",
+     "public": true,
+     "proxy": {
+      "type": "path",
+      "parent_domain": "api.diegonmarcos.com",
+      "base_path": "/http-to-smtp-proxy-api",
+      "auth": "bearer"
+     },
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "cloud-builder-x": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "cloud-builder-x"
+    }
+   },
+   "resources": null
+  },
+  "gha-runner": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "gha-runner",
+     "image": "myoung34/github-runner:ubuntu-noble",
+     "port": null,
+     "port_env": null,
+     "dns": null,
+     "public": false,
+     "proxy": null,
+     "healthcheck": null,
+     "volumes": [
+      "/var/run/docker.sock:/var/run/docker.sock",
+      "./work:/tmp/runner/work"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": {
+      "limits": {
+       "memory": "4G",
+       "cpus": "3.0"
+      },
+      "reservations": {
+       "memory": "256M"
+      }
+     },
+     "read_only": false,
+     "protocol": null,
+     "mem_limit": "16G",
+     "cpus": "3.0"
+    }
+   },
+   "resources": null
+  },
+  "backup-borg": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "borg-server",
+     "port": 2224,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "backup-bup": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "bup-server",
+     "port": 2223,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "gitea": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "gitea",
+     "image": "gitea/gitea:latest",
+     "port": 3002,
+     "port_env": "GITEA__server__HTTP_PORT",
+     "dns": "gitea.app",
+     "public": true,
+     "proxy": {
+      "domain": "git.diegonmarcos.com",
+      "auth": "two_factor"
+     },
+     "healthcheck": "curl -f http://localhost:3002/",
+     "monitoring": {
+      "tls_check": true
+     },
+     "volumes": [
+      "gitea_data:/data",
+      "/etc/timezone:/etc/timezone:ro",
+      "/etc/localtime:/etc/localtime:ro"
+     ],
+     "env_file": false,
+     "resources": null,
+     "read_only": false,
+     "db_path": "/data/gitea/gitea.db",
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "sqlite",
+       "path": "/data/gitea/gitea.db"
+      }
+     ]
+    }
+   },
+   "resources": null
+  },
+  "postlite": {
+   "vm": "gcp-proxy",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "postlite-npm": {
+     "container_name": "postlite-npm"
+    },
+    "postlite-vaultwarden": {
+     "container_name": "postlite-vaultwarden"
+    },
+    "postlite-ntfy": {
+     "container_name": "postlite-ntfy"
+    },
+    "postlite-authelia": {
+     "container_name": "postlite-authelia"
+    },
+    "sqlite-npm": {
+     "container_name": "sqlite-npm"
+    },
+    "sqlite-vaultwarden": {
+     "container_name": "sqlite-vaultwarden"
+    },
+    "sqlite-ntfy": {
+     "container_name": "sqlite-ntfy"
+    },
+    "sqlite-authelia": {
+     "container_name": "sqlite-authelia"
+    }
+   },
+   "resources": null
+  },
+  "redis": {
+   "vm": "gcp-proxy",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "redis",
+     "image": "redis:alpine",
+     "port": 6379,
+     "port_env": null,
+     "dns": "redis.app",
+     "public": false,
+     "proxy": null,
+     "healthcheck": "redis-cli ping",
+     "volumes": [
+      "/data/redis:/data"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "tcp",
+     "db_engine": "redis"
+    }
+   },
+   "resources": null
+  },
+  "hickory-dns": {
+   "vm": "gcp-proxy",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "hickory-dns",
+     "image": "hickorydns/hickory-dns:latest",
+     "port": 53,
+     "port_env": null,
+     "dns": "hickory-dns.app",
+     "public": false,
+     "proxy": null,
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "./named.toml:/etc/named.toml:ro",
+      "./zones:/etc/zones:ro"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": {
+      "mem_limit": "64M"
+     },
+     "read_only": false,
+     "protocol": "udp"
+    }
+   },
+   "resources": null
+  },
+  "unbound-dns64": {
+   "vm": "oci-analytics",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "unbound-dns64",
+     "image": "ghcr.io/diegonmarcos/unbound-dns64:latest",
+     "port": 53,
+     "port_env": null,
+     "dns": "unbound-dns64.app",
+     "public": true,
+     "proxy": null,
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "./configs/unbound.conf:/etc/unbound/unbound.conf:ro"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": {
+      "mem_limit": "64M"
+     },
+     "read_only": false,
+     "protocol": "udp"
+    }
+   },
+   "resources": null
+  },
+  "wireguard-mesh": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "wireguard-mesh",
+     "port": 8080,
+     "port_format": "colon",
+     "protocol": "http",
+     "public": true,
+     "read_only": true,
+     "tmpfs": [
+      "/var/cache/nginx:uid=101,gid=101,mode=0755",
+      "/var/run:uid=101,gid=101,mode=0755"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": {
+      "mem_limit": "32m"
+     },
+     "healthcheck": {
+      "test": [
+       "CMD",
+       "wget",
+       "-qO-",
+       "http://127.0.0.1:8080/"
+      ],
+      "interval": "30s",
+      "timeout": "5s",
+      "retries": 3
+     },
+     "monitoring": {
+      "tls_check": true
+     }
+    }
+   },
+   "resources": null
+  },
+  "wireguard-mesh-ws-tunnel": {
+   "vm": "gcp-proxy",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "wireguard-mesh-ws-tunnel",
+     "image": "ghcr.io/erebe/wstunnel:latest",
+     "command": [
+      "/home/app/wstunnel",
+      "server",
+      "ws://0.0.0.0:8080",
+      "--restrict-to",
+      "127.0.0.1:51820",
+      "--restrict-http-upgrade-path-prefix",
+      "${WSTUNNEL_PATH_PREFIX}"
+     ],
+     "port": 8080,
+     "port_format": "colon",
+     "protocol": "http",
+     "public": false,
+     "network_mode": "host",
+     "read_only": true,
+     "tmpfs": [
+      "/tmp"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": {
+      "mem_limit": "64m"
+     },
+     "healthcheck": null,
+     "monitoring": {
+      "tls_check": true
+     }
+    }
+   },
+   "resources": null
+  },
+  "cloud-spec": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "cloud-spec",
+     "image": "busybox:latest",
+     "port": 3080,
+     "port_env": null,
+     "dns": "c3-spec.app",
+     "public": true,
+     "proxy": {
+      "type": "path",
+      "parent_domain": "cloud.diegonmarcos.com",
+      "base_path": "/spec",
+      "auth": "two_factor"
+     },
+     "healthcheck": null,
+     "volumes": [
+      "./site:/srv:ro"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "dagu": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "dagu",
+     "image": "ghcr.io/diegonmarcos/dagu-binaries:latest",
+     "port": 8070,
+     "port_env": "DAGU_PORT",
+     "dns": "dagu.app",
+     "public": true,
+     "proxy": {
+      "domain": "workflows.diegonmarcos.com",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "./data:/var/lib/dagu/data",
+      "./dags:/var/lib/dagu/dags",
+      "./base.yaml:/var/lib/dagu/base.yaml:ro",
+      "./fetch-token.sh:/var/lib/dagu/fetch-token.sh:ro",
+      "/opt/ssh-keys/dagu:/home/dagu/.ssh:ro"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": {
+      "mem_limit": "256m"
+     },
+     "read_only": false,
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "sqlite",
+       "path": "/var/lib/dagu/dagu.db"
+      }
+     ]
+    }
+   },
+   "resources": null
+  },
+  "dbgate": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "dbgate",
+     "image": "dbgate/dbgate:latest",
+     "port": 8086,
+     "port_env": "PORT",
+     "dns": "dbgate.app",
+     "public": true,
+     "proxy": {
+      "domain": "db.diegonmarcos.com",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "dbgate_data:/root/.dbgate"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": {
+      "limits": {
+       "memory": "256M"
+      },
+      "reservations": {
+       "memory": "64M"
+      }
+     },
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "matomo": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "matomo-hybrid",
+     "image": null,
+     "port": 8084,
+     "extra_ports": [],
+     "port_env": null,
+     "dns": "matomo.app",
+     "public": true,
+     "proxy": {
+      "type": "path",
+      "parent_domain": "analytics.diegonmarcos.com",
+      "base_path": "/matomo",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/",
+     "monitoring": {
+      "tls_check": true
+     },
+     "volumes": [
+      "matomo_matomo_data:/var/www/html",
+      "matomo_matomo_db:/var/lib/mysql",
+      "matomo_inbox:/inbox"
+     ],
+     "env_file": false,
+     "resources": {
+      "limits": {
+       "memory": "1024M"
+      },
+      "reservations": {
+       "memory": "64M"
+      }
+     },
+     "read_only": false,
+     "dump_cmd": "mysqldump -u matomo matomo",
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "mariadb",
+       "port": 3306,
+       "path": "/var/lib/mysql"
+      }
+     ]
+    }
+   },
+   "resources": null
+  },
+  "ntfy": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "ntfy",
+     "image": "binwiederhier/ntfy",
+     "port": 8090,
+     "port_env": null,
+     "dns": "ntfy.app",
+     "resources": {
+      "limits": {
+       "memory": "64M"
+      },
+      "reservations": {
+       "memory": "16M"
+      }
+     },
+     "public": true,
+     "proxy": {
+      "domain": "rss.diegonmarcos.com",
+      "auth": "ntfy-3tier"
+     },
+     "healthcheck": "/",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "./cache:/var/cache/ntfy",
+      "./etc:/etc/ntfy"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "read_only": false,
+     "db_path": "/var/cache/ntfy/cache.db",
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "sqlite",
+       "path": "/var/cache/ntfy/cache.db"
+      }
+     ]
+    },
+    "syslog-bridge": {
+     "container_name": "syslog-bridge",
+     "image": "python:3.11-slim",
+     "port": null,
+     "port_env": null,
+     "dns": null,
+     "public": false,
+     "proxy": null,
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "./syslog-to-ntfy.py:/app/syslog-to-ntfy.py:ro",
+      "./cache:/var/cache/ntfy",
+      "/var/log:/var/log:ro"
+     ],
+     "env_file": false,
+     "depends_on": [
+      "app"
+     ],
+     "resources": {
+      "limits": {
+       "memory": "32M"
+      },
+      "reservations": {
+       "memory": "8M"
+      }
+     },
+     "read_only": false
+    },
+    "rss-gateway": {
+     "container_name": "rss-gateway",
+     "image": "python:3.11-slim",
+     "port": 8091,
+     "port_env": null,
+     "dns": null,
+     "public": false,
+     "proxy": null,
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "./assets/rss-gateway.py:/app/rss-gateway.py:ro",
+      "./assets/profiles-config.json:/etc/ntfy/profiles-config.json:ro",
+      "./assets/channels-config.json:/etc/ntfy/channels-config.json:ro"
+     ],
+     "env_file": false,
+     "depends_on": [
+      "app"
+     ],
+     "resources": {
+      "limits": {
+       "memory": "32M"
+      },
+      "reservations": {
+       "memory": "8M"
+      }
+     },
+     "read_only": false
+    },
+    "github-rss": {
+     "container_name": "github-rss",
+     "image": "python:3.11-slim",
+     "port": null,
+     "port_env": null,
+     "dns": null,
+     "public": false,
+     "proxy": null,
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "./github-rss-to-ntfy.py:/app/github-rss-to-ntfy.py:ro",
+      "./cache:/var/cache/ntfy"
+     ],
+     "env_file": false,
+     "depends_on": [
+      "app"
+     ],
+     "resources": {
+      "limits": {
+       "memory": "32M"
+      },
+      "reservations": {
+       "memory": "8M"
+      }
+     },
+     "read_only": false
+    }
+   },
+   "resources": null
+  },
+  "openobserve": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "openobserve",
+     "image": "public.ecr.aws/zinclabs/openobserve:v0.14.7",
+     "port": 5080,
+     "port_env": "ZO_HTTP_PORT",
+     "dns": "openobserve.app",
+     "public": true,
+     "proxy": {
+      "type": "path",
+      "parent_domain": "analytics.diegonmarcos.com",
+      "base_path": "/openobserve",
+      "auth": "two_factor"
+     },
+     "healthcheck": null,
+     "monitoring": {
+      "tls_check": true
+     },
+     "volumes": [
+      "openobserve_data:/data"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": {
+      "mem_limit": "512m"
+     },
+     "read_only": false,
+     "port_format": "colon",
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "parquet",
+       "path": "/data"
+      }
+     ]
+    }
+   },
+   "resources": null
+  },
+  "umami": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "umami",
+     "image": "ghcr.io/umami-software/umami:latest",
+     "port": 3006,
+     "port_env": "PORT",
+     "dns": "umami.app",
+     "public": true,
+     "proxy": {
+      "domain": "analytics.diegonmarcos.com",
+      "base_path": "/umami",
+      "auth": "two_factor"
+     },
+     "healthcheck": "curl -sf http://localhost:3000/api/heartbeat || exit 1",
+     "monitoring": {
+      "tls_check": true
+     },
+     "volumes": [],
+     "env_file": true,
+     "depends_on": [
+      "db"
+     ],
+     "resources": {
+      "limits": {
+       "memory": "1G"
+      },
+      "reservations": {
+       "memory": "256M"
+      }
+     },
+     "read_only": false,
+     "protocol": "http"
+    },
+    "db": {
+     "container_name": "umami-db",
+     "image": "postgres:16-alpine",
+     "port": 5442,
+     "port_env": "PGPORT",
+     "dns": "umami-db.app",
+     "public": false,
+     "healthcheck": "pg_isready -U umami",
+     "volumes": [
+      "umami_db_data:/var/lib/postgresql/data"
+     ],
+     "env_file": false,
+     "resources": {
+      "limits": {
+       "memory": "512M"
+      },
+      "reservations": {
+       "memory": "128M"
+      }
+     },
+     "read_only": false,
+     "db_user": "umami",
+     "db_name": "umami",
+     "protocol": "tcp",
+     "db_engine": "postgres"
+    },
+    "setup": {
+     "container_name": "umami-setup",
+     "image": "curlimages/curl:latest",
+     "port": null,
+     "port_env": null,
+     "dns": "umami-setup.app",
+     "public": false,
+     "healthcheck": null,
+     "volumes": [
+      "./setup.sh:/setup/setup.sh:ro",
+      "umami_config:/output"
+     ],
+     "env_file": true,
+     "depends_on": [
+      "app"
+     ],
+     "resources": null,
+     "read_only": false,
+     "init_job": true,
+     "one_shot": true,
+     "idempotent_marker": "/output/site_id"
+    }
+   },
+   "resources": null
+  },
+  "authelia": {
+   "vm": "gcp-proxy",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "authelia",
+     "image": "authelia/authelia:4.39.15",
+     "port": 9091,
+     "port_env": null,
+     "dns": "authelia.app",
+     "public": true,
+     "proxy": {
+      "domain": "auth.diegonmarcos.com",
+      "auth": "bypass"
+     },
+     "healthcheck": "/api/health",
+     "monitoring": {
+      "tls_check": true
+     },
+     "volumes": [
+      "authelia_data:/data",
+      "./configs:/config:ro"
+     ],
+     "env_file": true,
+     "depends_on": [
+      "redis"
+     ],
+     "resources": null,
+     "read_only": false,
+     "db_path": "/data/db.sqlite3",
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "sqlite",
+       "path": "/data/db.sqlite3"
+      }
+     ]
+    },
+    "redis": {
+     "container_name": "authelia-redis",
+     "image": "redis:7-bookworm",
+     "port": 6380,
+     "port_env": null,
+     "dns": "authelia-redis.app",
+     "public": false,
+     "healthcheck": null,
+     "volumes": [
+      "authelia_redis_data:/data"
+     ],
+     "env_file": true,
+     "resources": null,
+     "read_only": false,
+     "protocol": "tcp",
+     "db_engine": "redis"
+    },
+    "postlite": {
+     "container_name": "postlite-authelia",
+     "image": "ghcr.io/diegonmarcos/postlite:latest",
+     "port": null,
+     "port_env": null,
+     "public": false,
+     "healthcheck": null,
+     "volumes": [],
+     "env_file": false,
+     "depends_on": [
+      "app"
+     ],
+     "resources": {
+      "limits": {
+       "memory": "64M"
+      },
+      "reservations": {
+       "memory": "16M"
+      }
+     },
+     "read_only": false,
+     "protocol": "tcp"
+    }
+   },
+   "resources": null
+  },
+  "caddy": {
+   "vm": "gcp-proxy",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "caddy",
+     "_image_doc": "PINNED to the last-known-good digest. caddy-l4:latest was rebuilt broken on 2026-06-19 (no caddy binary, CMD=/bin/sh) \u2192 gcp-proxy pulled it \u2192 :443 outage. Repin to :latest once infra-sec_caddy-l4-image is rebuilt + verified to contain caddy.",
+     "image": "ghcr.io/diegonmarcos/caddy-l4@sha256:d8309fad8a32c393ddf7a258b8dbfc990ea928372284804a08bd071a13df6b7c",
+     "port": 443,
+     "extra_ports": [
+      {
+       "port": 80,
+       "protocol": "http",
+       "monitor": false,
+       "_comment": "Caddy is TLS-only on :443 \u2014 no plain :80 listener. Suppress canonical URL probe."
+      },
+      {
+       "port": 2019,
+       "protocol": "http",
+       "monitor": false,
+       "_comment": "Admin API bound to localhost:2019 only \u2014 local-only by design."
+      }
+     ],
+     "port_env": null,
+     "dns": "caddy.app",
+     "public": true,
+     "proxy": {
+      "type": "special",
+      "comment": "Caddy IS the reverse proxy \u2014 serves all domains"
+     },
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "./Caddyfile:/etc/caddy/Caddyfile:ro",
+      "./error.html:/srv/error.html:ro",
+      "./dashboard.html:/srv/dashboard.html:ro",
+      "./ntfy-setup.html:/srv/ntfy-setup.html:ro",
+      "./wkd:/srv/wkd:ro",
+      "./logs:/var/log/caddy",
+      "caddy_data:/data",
+      "caddy_config:/config"
+     ],
+     "env_file": true,
+     "depends_on": [
+      "introspect-proxy"
+     ],
+     "resources": null,
+     "read_only": false,
+     "protocol": "https"
+    }
+   },
+   "resources": null
+  },
+  "caddy-public": {
+   "vm": "oci-analytics",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "caddy-public",
+     "image": "ghcr.io/diegonmarcos/caddy-public:latest",
+     "port": 443,
+     "extra_ports": [
+      {
+       "port": 8443,
+       "protocol": "https",
+       "monitor": false,
+       "_comment": "Internal L7 server \u2014 the layer4 :443 mux PROXY-protocols pure-public SNIs here."
+      },
+      {
+       "port": 2019,
+       "protocol": "http",
+       "monitor": false,
+       "_comment": "Admin API bound to localhost:2019 only \u2014 local-only by design."
+      }
+     ],
+     "port_env": null,
+     "dns": "caddy-public.app",
+     "public": true,
+     "proxy": {
+      "type": "special",
+      "comment": "Caddy-public IS the public-edge reverse proxy \u2014 allowlist + forward-to-gcp-proxy"
+     },
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "./Caddyfile:/etc/caddy/Caddyfile:ro",
+      "caddy_public_data:/data",
+      "caddy_public_config:/config",
+      "./logs:/var/log/caddy"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "https"
+    }
+   },
+   "resources": null
+  },
+  "crowdsec": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "crowdsec",
+     "image": "crowdsecurity/crowdsec:v1.7.8",
+     "port": 8088,
+     "port_env": null,
+     "dns": "crowdsec.app",
+     "public": true,
+     "proxy": {
+      "domain": "crowdsec.diegonmarcos.com",
+      "auth": "two_factor"
+     },
+     "healthcheck": "cmd",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": false
+     },
+     "volumes": [
+      "crowdsec_config:/etc/crowdsec",
+      "crowdsec_data:/var/lib/crowdsec/data"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": {
+      "limits": {
+       "memory": "256M"
+      },
+      "reservations": {
+       "memory": "64M"
+      }
+     },
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "introspect-proxy": {
+   "vm": "gcp-proxy",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "introspect-proxy",
+     "image": "ghcr.io/diegonmarcos/introspect-proxy:latest",
+     "port": 4182,
+     "port_env": null,
+     "dns": "introspect-proxy.app",
+     "public": false,
+     "proxy": null,
+     "healthcheck": "/health",
+     "monitoring": null,
+     "volumes": [],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": {
+    "mem_limit": "64M",
+    "mem_reservation": "16M"
+   }
+  },
+  "claude-superset-api": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "claude-superset-api",
+     "image": "ghcr.io/diegonmarcos/claude-superset-api:latest",
+     "port": 3117,
+     "port_env": "BRIDGE_PORT",
+     "dns": "claude-superset-api.app",
+     "public": false,
+     "healthcheck": "/health",
+     "monitoring": null,
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "cloud-cgc-mcp": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "cloud-cgc-mcp",
+     "image": "ghcr.io/diegonmarcos/cloud-cgc-mcp:latest",
+     "port": 3105,
+     "port_env": "MCP_HTTP_PORT",
+     "dns": "cloud-cgc-mcp.app",
+     "public": true,
+     "proxy": {
+      "streaming": true,
+      "type": "path",
+      "parent_domain": "mcp.diegonmarcos.com",
+      "base_path": "/cloud-cgc-mcp"
+     },
+     "healthcheck": "/mcp",
+     "monitoring": null,
+     "volumes": [
+      "./data:/data:ro"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "hermes-agent": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "hermes-agent",
+     "image": "ghcr.io/diegonmarcos/hermes-agent:latest",
+     "port": 8642,
+     "port_env": null,
+     "dns": "hermes-agent.app",
+     "public": false,
+     "healthcheck": null,
+     "monitoring": null,
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "kg-store": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "kg-store",
+     "port": 8001,
+     "protocol": "http",
+     "db_engine": "surrealdb",
+     "image": "ghcr.io/diegonmarcos/kg-store:latest"
+    }
+   },
+   "resources": null
+  },
+  "my-ai-api": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "my-ai-api",
+     "image": "ghcr.io/diegonmarcos/my-ai-api:latest",
+     "port": 3217,
+     "port_env": "BRIDGE_PORT",
+     "dns": "my-ai-api.app",
+     "public": false,
+     "healthcheck": "/health",
+     "monitoring": null,
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "session-memory": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "session-memory",
+     "image": "ghcr.io/diegonmarcos/session-memory:latest",
+     "port": 3108,
+     "port_env": "MEM_PORT",
+     "dns": "session-memory.app",
+     "public": false,
+     "healthcheck": "/health",
+     "monitoring": null,
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "chat-mattermost": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "mattermost",
+     "image": "ghcr.io/diegonmarcos/chat-mattermost-binaries:latest",
+     "port": 8065,
+     "port_env": "MM_SERVICESETTINGS_LISTENADDRESS",
+     "dns": "mattermost.app",
+     "public": true,
+     "proxy": {
+      "domain": "chat.diegonmarcos.com",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/api/v4/system/ping",
+     "monitoring": {
+      "tls_check": true
+     },
+     "volumes": [
+      "./data/mattermost/config:/mattermost/config",
+      "./data/mattermost/data:/mattermost/data",
+      "./data/mattermost/logs:/mattermost/logs"
+     ],
+     "env_file": true,
+     "depends_on": [
+      "db"
+     ],
+     "resources": null,
+     "read_only": false,
+     "port_format": "colon",
+     "protocol": "http"
+    },
+    "db": {
+     "container_name": "mattermost-postgres",
+     "image": "postgres:16-alpine",
+     "port": 5435,
+     "port_env": "PGPORT",
+     "dns": "mattermost-postgres.app",
+     "public": false,
+     "healthcheck": "pg_isready -U mattermost -d mattermost",
+     "volumes": [
+      "./data/postgres:/var/lib/postgresql/data"
+     ],
+     "env_file": true,
+     "resources": null,
+     "read_only": false,
+     "db_user": "mattermost",
+     "db_name": "mattermost",
+     "protocol": "tcp",
+     "db_engine": "postgres"
+    },
+    "bots": {
+     "container_name": "mattermost-bots",
+     "image": "python:3.12-slim",
+     "port": null,
+     "port_env": null,
+     "dns": "mattermost-bots.app",
+     "public": false,
+     "healthcheck": null,
+     "volumes": [
+      "./ntfy-bridge.py:/app/ntfy-bridge.py:ro",
+      "./requirements-bridge.txt:/app/requirements.txt:ro"
+     ],
+     "env_file": true,
+     "depends_on": [
+      "app"
+     ],
+     "resources": null,
+     "read_only": false
+    }
+   },
+   "resources": null
+  },
+  "mail-puller": {
+   "vm": "oci-mail",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "mail-puller",
+     "image": "ghcr.io/diegonmarcos/mail-puller-binaries:latest",
+     "port": null,
+     "public": false,
+     "proxy": null,
+     "healthcheck": null,
+     "volumes": [
+      "mail_puller_state:/var/lib/mail-puller"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": {
+      "limits": {
+       "memory": "128M"
+      },
+      "reservations": {
+       "memory": "16M"
+      }
+     },
+     "read_only": false,
+     "embedded_dbs": [
+      {
+       "engine": "sqlite",
+       "path": "/var/lib/mail-puller/state.db"
+      }
+     ]
+    }
+   },
+   "resources": null
+  },
+  "matrix-element": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "matrix-element",
+     "image": "ghcr.io/diegonmarcos/matrix-element-binaries:latest",
+     "port": 8083,
+     "port_env": null,
+     "dns": "matrix-element.app",
+     "public": true,
+     "proxy": {
+      "domain": "messenger.diegonmarcos.com",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "./configs/config.json:/app/config.json:ro"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": {
+    "mem_limit": "128M",
+    "mem_reservation": "16M"
+   }
+  },
+  "matrix-mautrix-whatsapp": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "mautrix-whatsapp",
+     "image": "ghcr.io/diegonmarcos/matrix-mautrix-whatsapp-binaries:latest",
+     "port": 29318,
+     "port_env": null,
+     "dns": "matrix-mautrix-whatsapp.app",
+     "public": false,
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "./data:/data"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "db_path": "/data/mautrix-whatsapp.db",
+     "protocol": "http"
+    }
+   },
+   "resources": {
+    "mem_limit": "512M",
+    "mem_reservation": "64M"
+   }
+  },
+  "snappymail": {
+   "vm": "oci-mail",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "snappymail",
+     "image": "djmaze/snappymail:latest",
+     "port": 8888,
+     "port_env": null,
+     "dns": "snappymail.app",
+     "public": true,
+     "proxy": null,
+     "healthcheck": "/",
+     "monitoring": null,
+     "volumes": [
+      "./data:/var/lib/snappymail"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": {
+      "mem_limit": "64M",
+      "mem_reservation": "16M"
+     },
+     "read_only": false,
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "files",
+       "path": "/var/lib/snappymail"
+      }
+     ]
+    }
+   },
+   "resources": {
+    "mem_limit": "64M",
+    "mem_reservation": "16M"
+   }
+  },
+  "maddy": {
+   "vm": "oci-mail",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "maddy",
+     "image": "ghcr.io/diegonmarcos/maddy:latest",
+     "port": null,
+     "_doc_dual_bind": "Phase 4 of public-surface collapse: each port dual-binds on wg0 (10.x.x.x) AND wg-public (10.x.x.x). Maddy is host-network so binds happen inside maddy.conf.tpl via `@LISTEN_<port>@`; flake.nix expands `bind` arrays into space-separated multi-listener prefixes (e.g. `tls://10.x.x.x:993 tls://10.x.x.x:993`). Caddy on oci-analytics reaches mail ports via wg-public; legacy clients on wg0 keep working unchanged.",
+     "extra_ports": [
+      {
+       "port": 25,
+       "protocol": "tcp",
+       "bind": [
+        "10.x.x.x",
+        "10.x.x.x"
+       ],
+       "service": "smtp_mx",
+       "desc": "MX delivery endpoint \u2014 dual-bind wg0+wg-public; CF Worker \u2192 Caddy \u2192 http-to-smtp-proxy-api \u2192 SMTP over WG is the public bridge (Phase 5)"
+      },
+      {
+       "port": 465,
+       "protocol": "tls",
+       "bind": [
+        "10.x.x.x",
+        "10.x.x.x"
+       ],
+       "service": "smtp_ssl",
+       "desc": "SMTPS \u2014 dual-bind wg0+wg-public, reached via Caddy L4 from oci-analytics"
+      },
+      {
+       "port": 993,
+       "protocol": "tls",
+       "bind": [
+        "10.x.x.x",
+        "10.x.x.x"
+       ],
+       "service": "imap_ssl",
+       "desc": "IMAPS \u2014 dual-bind wg0+wg-public, reached via Caddy L4 from oci-analytics"
+      },
+      {
+       "port": 143,
+       "protocol": "tcp",
+       "bind": [
+        "10.x.x.x",
+        "10.x.x.x"
+       ],
+       "service": "imap_plain",
+       "desc": "IMAP plain \u2014 dual-bind wg0+wg-public"
+      }
+     ],
+     "dns": "maddy.app",
+     "public": false,
+     "proxy": null,
+     "healthcheck": null,
+     "volumes": [
+      "maddy_data:/data",
+      "./dkim:/data/dkim:ro"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": {
+      "limits": {
+       "memory": "256M"
+      },
+      "reservations": {
+       "memory": "32M"
+      }
+     },
+     "read_only": false,
+     "embedded_dbs": [
+      {
+       "engine": "sqlite",
+       "path": "/data/imapsql.db"
+      }
+     ]
+    }
+   },
+   "resources": null
+  },
+  "stalwart": {
+   "vm": "oci-mail",
+   "vm_ram_gb": 1,
+   "vm_cpu": 1,
+   "containers": {
+    "app": {
+     "container_name": "stalwart",
+     "image": "stalwartlabs/stalwart:v0.14.1",
+     "port": 2443,
+     "_doc_dual_bind": "Phase 4 of public-surface collapse: each port dual-binds on wg0 (10.x.x.x) AND wg-public (10.x.x.x). Caddy on oci-analytics reaches mail ports via wg-public mesh; legacy clients on wg0 keep working unchanged. compose.nix expands `bind` arrays into one host-port mapping per IP.",
+     "_doc_container_port": "v0.16 binds protocols on STANDARD ports inside the container (SMTP:25, IMAPS:993, SMTPS:465, HTTPS:443, Sieve:4190) \u2014 listeners are not configurable in v0.16 schema. We map host_offset \u2192 container_standard so external clients keep using offset ports (maddy owns the standard ones on the host network until decommissioned).",
+     "extra_ports": [
+      {
+       "port": 2025,
+       "container_port": 25,
+       "protocol": "starttls",
+       "bind": [
+        "10.x.x.x",
+        "10.x.x.x"
+       ],
+       "service": "smtp_shadow",
+       "desc": "SMTP shadow (host:2025 \u2192 stalwart:25)"
+      },
+      {
+       "port": 2443,
+       "container_port": 443,
+       "protocol": "tls",
+       "bind": [
+        "10.x.x.x",
+        "10.x.x.x"
+       ],
+       "service": "jmap_tls",
+       "desc": "HTTPS admin/JMAP (host:2443 \u2192 stalwart:443)"
+      },
+      {
+       "port": 2465,
+       "container_port": 465,
+       "protocol": "tls",
+       "bind": [
+        "10.x.x.x",
+        "10.x.x.x"
+       ],
+       "service": "smtp_ssl",
+       "desc": "SMTPS (host:2465 \u2192 stalwart:465)"
+      },
+      {
+       "port": 2993,
+       "container_port": 993,
+       "protocol": "tls",
+       "bind": [
+        "10.x.x.x",
+        "10.x.x.x"
+       ],
+       "service": "imap_ssl",
+       "desc": "IMAPS (host:2993 \u2192 stalwart:993)"
+      },
+      {
+       "port": 6190,
+       "container_port": 4190,
+       "protocol": "tls",
+       "bind": [
+        "10.x.x.x",
+        "10.x.x.x"
+       ],
+       "service": "manage_sieve",
+       "desc": "ManageSieve (host:6190 \u2192 stalwart:4190)"
+      }
+     ],
+     "port_env": null,
+     "dns": "stalwart.app",
+     "public": true,
+     "proxy": {
+      "domain": "jmap.diegonmarcos.com",
+      "auth": "none",
+      "tls_skip_verify": true
+     },
+     "healthcheck": "/",
+     "monitoring": {
+      "tls_check": true
+     },
+     "volumes": [
+      "stalwart_data:/opt/stalwart-mail/data",
+      "./tls:/opt/stalwart-mail/tls:ro"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": {
+      "limits": {
+       "memory": "256M"
+      },
+      "reservations": {
+       "memory": "32M"
+      }
+     },
+     "read_only": false,
+     "dump_cmd": "sh -c 'stalwart-mail --export /tmp/stalwart-export && tar cf - -C /tmp stalwart-export && rm -rf /tmp/stalwart-export'",
+     "protocol": "https",
+     "embedded_dbs": [
+      {
+       "engine": "rocksdb",
+       "path": "/opt/stalwart-mail/data"
+      }
+     ]
+    },
+    "sorter": {
+     "container_name": "stalwart-sorter",
+     "image": "python:3-alpine",
+     "resources": {
+      "mem_limit": "64M",
+      "mem_reservation": "16M"
+     }
+    }
+   },
+   "resources": null
+  },
+  "scrappers-api": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "scrappers-api",
+     "image": "ghcr.io/diegonmarcos/scrappers-api:latest",
+     "port": 3020,
+     "port_env": "PORT",
+     "protocol": "http",
+     "dns": "scrappers-api.app",
+     "public": true,
+     "proxy": {
+      "domain": "api.diegonmarcos.com",
+      "base_path": "/scrappers",
+      "auth": "two_factor"
+     },
+     "healthcheck": "curl -fsS http://127.0.0.1:3020/health >/dev/null 2>&1 || exit 1",
+     "env_file": true
+    }
+   },
+   "resources": null
+  },
+  "fin-api": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "fin-api",
+     "image": "ghcr.io/diegonmarcos/fin-api:latest",
+     "port": 8340,
+     "port_env": "FIN_API_PORT",
+     "dns": "fin-api.app",
+     "public": true,
+     "proxy": {
+      "type": "path",
+      "parent_domain": "api.diegonmarcos.com",
+      "base_path": "/fin-api",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/health",
+     "monitoring": {
+      "tls_check": true
+     },
+     "volumes": [],
+     "env_file": false,
+     "resources": {
+      "limits": {
+       "memory": "512M",
+       "cpus": "1"
+      },
+      "reservations": {
+       "memory": "128M"
+      }
+     },
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "photoprism": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "photoprism_app",
+     "image": "photoprism/photoprism:latest",
+     "port": 3013,
+     "port_env": "PHOTOPRISM_HTTP_PORT",
+     "dns": "photoprism.app",
+     "public": true,
+     "proxy": {
+      "domain": "photos.diegonmarcos.com",
+      "auth": "two_factor",
+      "landing_page": "myphotos",
+      "wg_only": true
+     },
+     "healthcheck": "/api/v1/status",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "photoprism_storage:/photoprism/storage",
+      "/opt/containers/photoprism/originals:/photoprism/originals:ro",
+      "photoprism_import:/photoprism/import"
+     ],
+     "env_file": true,
+     "depends_on": [
+      "db",
+      "rclone"
+     ],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    },
+    "db": {
+     "container_name": "photoprism_mariadb",
+     "image": "mariadb:11",
+     "port": null,
+     "port_env": null,
+     "dns": null,
+     "public": false,
+     "proxy": null,
+     "healthcheck": "cmd",
+     "monitoring": null,
+     "volumes": [
+      "mariadb_data:/var/lib/mysql"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "db_user": "root",
+     "db_name": "photoprism",
+     "db_engine": "mariadb"
+    },
+    "rclone": {
+     "container_name": "photoprism_rclone",
+     "image": "rclone/rclone:latest",
+     "port": null,
+     "port_env": null,
+     "dns": null,
+     "public": false,
+     "proxy": null,
+     "healthcheck": "cmd",
+     "monitoring": null,
+     "volumes": [
+      "/opt/containers/photoprism/originals:/data:shared"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false
+    }
+   },
+   "resources": null
+  },
+  "news-gdelt": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "news-gdelt",
+     "image": "ghcr.io/diegonmarcos/news-gdelt:latest",
+     "port": 3019,
+     "port_env": "PORT"
+    }
+   },
+   "resources": null
+  },
+  "calendar-radicale": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "calendar-radicale",
+     "image": "tomsquest/docker-radicale:latest",
+     "port": 5232,
+     "port_env": null,
+     "dns": "calendar.app",
+     "public": true,
+     "proxy": {
+      "domain": "cal.diegonmarcos.com",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/.web/",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "./data:/data",
+      "./configs/config:/config/config:ro"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "files",
+       "path": "/data/collections"
+      }
+     ]
+    }
+   },
+   "resources": null
+  },
+  "code-server": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "code-server",
+     "image": "linuxserver/code-server:latest",
+     "port": 8443,
+     "port_env": null,
+     "dns": "code-server.app",
+     "public": true,
+     "proxy": {
+      "domain": "ide.diegonmarcos.com",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "./config:/config",
+      "/home/ubuntu/workspace:/workspace"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "https"
+    }
+   },
+   "resources": null
+  },
+  "contacts-radicale": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "contacts-radicale",
+     "image": "tomsquest/docker-radicale:latest",
+     "port": 5233,
+     "port_env": null,
+     "dns": "contacts.app",
+     "public": true,
+     "proxy": {
+      "domain": "contacts.diegonmarcos.com",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/.web/",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "./data:/data",
+      "./configs/config:/config/config:ro"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "files",
+       "path": "/data/collections"
+      }
+     ]
+    }
+   },
+   "resources": null
+  },
+  "etherpad": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "etherpad_app",
+     "image": "etherpad/etherpad:latest",
+     "port": 3012,
+     "port_env": "PORT",
+     "dns": "etherpad.app",
+     "public": true,
+     "proxy": {
+      "type": "path",
+      "parent_domain": "app.diegonmarcos.com",
+      "base_path": "/etherpad",
+      "auth": "two_factor"
+     },
+     "healthcheck": {
+      "test": [
+       "CMD",
+       "node",
+       "-e",
+       "require('http').get('http://127.0.0.1:3012/',r=>process.exit(r.statusCode<500?0:1)).on('error',()=>process.exit(1))"
+      ],
+      "interval": "30s",
+      "timeout": "10s",
+      "retries": 3,
+      "start_period": "40s"
+     },
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "etherpad_data:/opt/etherpad-lite/var"
+     ],
+     "env_file": false,
+     "depends_on": [
+      "db"
+     ],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    },
+    "db": {
+     "container_name": "etherpad_postgres",
+     "image": "postgres:16-alpine",
+     "port": 5436,
+     "port_env": "PGPORT",
+     "dns": "etherpad-db.app",
+     "public": false,
+     "proxy": null,
+     "healthcheck": "cmd",
+     "monitoring": null,
+     "volumes": [
+      "postgres_data:/var/lib/postgresql/data"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "db_user": "etherpad",
+     "db_name": "etherpad",
+     "protocol": "tcp",
+     "db_engine": "postgres"
+    }
+   },
+   "resources": null
+  },
+  "filebrowser": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "filebrowser_app",
+     "image": "filebrowser/filebrowser:latest",
+     "port": 3015,
+     "port_env": null,
+     "dns": "filebrowser.app",
+     "public": true,
+     "proxy": {
+      "type": "path",
+      "parent_domain": "app.diegonmarcos.com",
+      "base_path": "/filebrowser",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/health",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "filebrowser_data:/srv",
+      "filebrowser_db:/database",
+      "filebrowser_config:/config"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "sqlite",
+       "path": "/data/filebrowser.db"
+      }
+     ]
+    }
+   },
+   "resources": null
+  },
+  "grist": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "grist_app",
+     "image": "gristlabs/grist:latest",
+     "port": 3011,
+     "port_env": "PORT",
+     "dns": "grist.app",
+     "public": true,
+     "proxy": {
+      "domain": "sheets.diegonmarcos.com",
+      "auth": "none"
+     },
+     "healthcheck": "/",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "grist_data:/persist"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "db_path": "/persist/grist-sessions.db",
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "hedgedoc": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "hedgedoc_app",
+     "image": "quay.io/hedgedoc/hedgedoc:latest",
+     "port": 3018,
+     "port_env": "CMD_PORT",
+     "dns": "hedgedoc.app",
+     "public": true,
+     "proxy": {
+      "type": "path",
+      "parent_domain": "app.diegonmarcos.com",
+      "base_path": "/hedgedoc",
+      "auth": "two_factor"
+     },
+     "healthcheck": "/",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "hedgedoc_uploads:/hedgedoc/public/uploads"
+     ],
+     "env_file": false,
+     "depends_on": [
+      "db"
+     ],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    },
+    "db": {
+     "container_name": "hedgedoc_postgres",
+     "image": "postgres:16-alpine",
+     "port": 5439,
+     "port_env": "PGPORT",
+     "dns": "hedgedoc-db.app",
+     "public": false,
+     "proxy": null,
+     "healthcheck": "cmd",
+     "monitoring": null,
+     "volumes": [
+      "postgres_data:/var/lib/postgresql/data"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "db_user": "hedgedoc",
+     "db_name": "hedgedoc",
+     "protocol": "tcp",
+     "db_engine": "postgres"
+    }
+   },
+   "resources": null
+  },
+  "paca": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "gateway": {
+     "container_name": "paca-gateway",
+     "image": "nginx:1.27-alpine",
+     "port": 8095,
+     "port_env": null,
+     "dns": "paca.app",
+     "public": true,
+     "proxy": {
+      "domain": "paca.diegonmarcos.com",
+      "auth": "two_factor"
+     },
+     "healthcheck": null,
+     "volumes": [
+      "./nginx/gateway.conf:/etc/nginx/conf.d/default.conf:ro"
+     ],
+     "env_file": false,
+     "depends_on": [
+      "api",
+      "web",
+      "realtime"
+     ],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    },
+    "api": {
+     "container_name": "paca-api",
+     "image": "pacaai/paca-api:latest",
+     "port": 8080,
+     "port_env": "PORT",
+     "dns": "paca-api.app",
+     "public": false,
+     "healthcheck": "wget -q --spider http://localhost:8080/api/healthz || exit 1",
+     "volumes": [
+      "paca_backend_plugins:/plugins",
+      "paca_frontend_plugins:/plugins-frontend",
+      "paca_mcp_plugins:/plugins-mcp"
+     ],
+     "env_file": true,
+     "depends_on": [
+      "db",
+      "valkey"
+     ],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    },
+    "web": {
+     "container_name": "paca-web",
+     "image": "pacaai/paca-web:latest",
+     "port": null,
+     "port_env": null,
+     "dns": "paca-web.app",
+     "public": false,
+     "healthcheck": null,
+     "volumes": [],
+     "env_file": false,
+     "depends_on": [
+      "api"
+     ],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    },
+    "realtime": {
+     "container_name": "paca-realtime",
+     "image": "pacaai/paca-realtime:latest",
+     "port": 3001,
+     "port_env": "PORT",
+     "dns": "paca-realtime.app",
+     "public": false,
+     "healthcheck": null,
+     "volumes": [],
+     "env_file": true,
+     "depends_on": [
+      "api",
+      "valkey"
+     ],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    },
+    "valkey": {
+     "container_name": "paca-valkey",
+     "image": "valkey/valkey:8-alpine",
+     "port": 6379,
+     "port_env": null,
+     "dns": "paca-valkey.app",
+     "public": false,
+     "healthcheck": "valkey-cli ping",
+     "volumes": [
+      "paca_valkey:/data"
+     ],
+     "env_file": false,
+     "resources": null,
+     "read_only": false,
+     "protocol": "tcp"
+    },
+    "db": {
+     "container_name": "paca-postgres",
+     "image": "postgres:16-alpine",
+     "port": 5432,
+     "port_env": "PGPORT",
+     "dns": "paca-postgres.app",
+     "public": false,
+     "healthcheck": "pg_isready -U paca -d paca",
+     "volumes": [
+      "paca_postgres:/var/lib/postgresql/data"
+     ],
+     "env_file": true,
+     "resources": null,
+     "read_only": false,
+     "db_user": "paca",
+     "db_name": "paca",
+     "db_engine": "postgres",
+     "protocol": "tcp"
+    }
+   },
+   "resources": null
+  },
+  "revealmd": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "revealmd_app",
+     "image": "webpronl/reveal-md:latest",
+     "port": 3014,
+     "port_env": null,
+     "dns": "revealmd.app",
+     "public": true,
+     "proxy": null,
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "slides_data:/slides"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "protocol": "http"
+    }
+   },
+   "resources": null
+  },
+  "send": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "send_app",
+     "image": "registry.gitlab.com/timvisee/send:latest",
+     "port": 3016,
+     "port_env": null,
+     "dns": "send.app",
+     "public": true,
+     "proxy": {
+      "domain": "send.diegonmarcos.com",
+      "auth": "none"
+     },
+     "healthcheck": "/__lbheartbeat__",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "send_uploads:/uploads"
+     ],
+     "env_file": false,
+     "depends_on": [
+      "redis"
+     ],
+     "resources": {
+      "limits": {
+       "memory": "256M"
+      },
+      "reservations": {
+       "memory": "64M"
+      }
+     },
+     "read_only": false,
+     "protocol": "http"
+    },
+    "redis": {
+     "container_name": "send_redis",
+     "image": "redis:7-alpine",
+     "port": null,
+     "port_env": null,
+     "dns": null,
+     "public": false,
+     "proxy": null,
+     "healthcheck": null,
+     "monitoring": null,
+     "volumes": [
+      "send_redis_data:/data"
+     ],
+     "env_file": false,
+     "depends_on": [],
+     "resources": {
+      "limits": {
+       "memory": "64M"
+      },
+      "reservations": {
+       "memory": "16M"
+      }
+     },
+     "read_only": false
+    }
+   },
+   "resources": null
+  },
+  "vaultwarden": {
+   "vm": "oci-apps",
+   "vm_ram_gb": 24,
+   "vm_cpu": 4,
+   "containers": {
+    "app": {
+     "container_name": "vaultwarden",
+     "image": "vaultwarden/server:latest",
+     "port": 8880,
+     "port_env": "ROCKET_PORT",
+     "dns": "vaultwarden.app",
+     "public": true,
+     "proxy": {
+      "domain": "vault.diegonmarcos.com",
+      "auth": "none"
+     },
+     "healthcheck": "/alive",
+     "monitoring": {
+      "tls_check": true,
+      "dns_check": true,
+      "endpoint_check": true
+     },
+     "volumes": [
+      "./data:/data"
+     ],
+     "env_file": true,
+     "depends_on": [],
+     "resources": null,
+     "read_only": false,
+     "db_path": "/data/db.sqlite3",
+     "protocol": "http",
+     "embedded_dbs": [
+      {
+       "engine": "sqlite",
+       "path": "/data/db.sqlite3"
+      }
+     ]
+    }
+   },
+   "resources": {
+    "mem_limit": "512M",
+    "mem_reservation": "64M"
+   }
+  }
+ }
+};
+})();

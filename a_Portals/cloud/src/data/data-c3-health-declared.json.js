@@ -1,0 +1,1641 @@
+// GENERATED FROM c3-health-declared.json by front-data-json-js-wrapper.sh — DO NOT EDIT BY HAND.
+// Re-generate with: bash a_Portals/linktree/src/data/build.sh
+(function () {
+  var g = (typeof globalThis !== "undefined") ? globalThis : (typeof window !== "undefined" ? window : this);
+  g.PORTAL_DATA = g.PORTAL_DATA || {};
+  g.PORTAL_DATA["c3-health-declared"] = {
+ "vms": {
+  "oci-E2-f_0": {
+   "ip": "vm-oci-obs",
+   "specs": {
+    "cpu": 1,
+    "ram_gb": 1,
+    "disk_gb": 0,
+    "arch": "x86_64",
+    "shape": "VM.Standard.E2.1.Micro",
+    "cloud_name": "oci-E2-f_0",
+    "cloud_zone": "eu-marseille-1",
+    "instance_id": "ocid1.instance.oc1.eu-marseille-1.anwxeljruadvczacbwylmkqr253ay7binepapgsyopllfayovkzaky6oigbq"
+   },
+   "description": "Oracle Free - E2 Micro 0 - Mail Server",
+   "wg_ip": "10.x.x.x",
+   "wg_ipv6": "fd0c:1d00::3",
+   "wg_public_key": "8Fqo4ct/jR2D3ZJ4AT8AVxiemuRSFk9LriBJhK7ukQs=",
+   "wg_port": 51820,
+   "wg_role": "spoke",
+   "user": "ubuntu",
+   "home": "/home/ubuntu",
+   "method": "key",
+   "ssh_alias": "oci-mail",
+   "rescue_port": 2200,
+   "public_ports": [],
+   "is_public_ingress": false,
+   "gha": {
+    "ssh_secret": "OCI_SSH_KEY",
+    "host_literal": true
+   },
+   "instance_id": "ocid1.instance.oc1.eu-marseille-1.anwxeljruadvczacbwylmkqr253ay7binepapgsyopllfayovkzaky6oigbq",
+   "services": [
+    "mail-puller",
+    "snappymail",
+    "maddy",
+    "stalwart"
+   ],
+   "container_count": 5
+  },
+  "oci-E2-f_1": {
+   "ip": "vm-oci-apps",
+   "specs": {
+    "cpu": 1,
+    "ram_gb": 1,
+    "disk_gb": 0,
+    "arch": "x86_64",
+    "shape": "VM.Standard.E2.1.Micro",
+    "cloud_name": "oci-E2-f_1",
+    "cloud_zone": "eu-marseille-1",
+    "instance_id": "ocid1.instance.oc1.eu-marseille-1.anwxeljruadvczacgwg5rkrjyomuxvjtvtuk5xrbmy7hmslwn4pse4kw5jkq"
+   },
+   "description": "Oracle Free - E2 Micro 1 - Analytics + Workflows",
+   "wg_ip": "10.x.x.x",
+   "wg_ipv6": "fd0c:1d00::4",
+   "wg_public_key": "ugc3YpOgw9DokiM8yqT0uADF8UUkSTGad9WSODX1kC0=",
+   "wg_port": 51820,
+   "wg_role": "spoke",
+   "user": "ubuntu",
+   "home": "/home/ubuntu",
+   "method": "key",
+   "ssh_alias": "oci-analytics",
+   "rescue_port": 2200,
+   "public_ports": [
+    {
+     "port": 443,
+     "proto": "tcp",
+     "desc": "HTTPS (public ingress \u2014 caddy-public layer4 SNI mux: mail\u2192maddy, public\u2192L7, rest\u2192gcp-proxy)",
+     "source": "0.0.0.0/0",
+     "owned_by": "caddy-public"
+    },
+    {
+     "port": 51821,
+     "proto": "udp",
+     "desc": "WireGuard wg-public hub \u2014 handshake ingress (open enrollment mesh)",
+     "source": "0.0.0.0/0",
+     "owned_by": "wireguard-public",
+     "_doc": "Should be auto-derived by engine from wireguard_public.hub == this VM's alias AND wireguard_public.port. Until that engine refactor, declared explicitly here so the hub actually receives WG handshakes."
+    }
+   ],
+   "is_public_ingress": true,
+   "gha": {
+    "ssh_secret": "OCI_SSH_KEY",
+    "host_literal": true
+   },
+   "instance_id": "ocid1.instance.oc1.eu-marseille-1.anwxeljruadvczacgwg5rkrjyomuxvjtvtuk5xrbmy7hmslwn4pse4kw5jkq",
+   "services": [
+    "alerts-api",
+    "c3-public-api",
+    "unbound-dns64",
+    "caddy-public"
+   ],
+   "container_count": 4
+  },
+  "oci-A1-f_0": {
+   "ip": "82.70.229.129",
+   "specs": {
+    "cpu": 4,
+    "ram_gb": 24,
+    "disk_gb": 0,
+    "arch": "aarch64",
+    "shape": "VM.Standard.A1.Flex",
+    "cloud_name": "oci-A1-f_0",
+    "cloud_zone": "eu-marseille-1",
+    "instance_id": "ocid1.instance.oc1.eu-marseille-1.anwxeljruadvczacj7dfxl7uifar574je7fzlvtdjp4ghljdwuwdemsdbiva"
+   },
+   "description": "Oracle Free - A1 Flex 0 (4 OCPUs / 24GB / 100GB) \u2014 Consolidated",
+   "wg_ip": "10.x.x.x",
+   "wg_ipv6": "fd0c:1d00::6",
+   "wg_public_key": "+LHoOzNYA92eJalYEQDzbEDDEi0FfT2jYhBUpz7RxHQ=",
+   "wg_port": 51820,
+   "wg_role": "spoke",
+   "user": "ubuntu",
+   "home": "/home/ubuntu",
+   "method": "key",
+   "ssh_alias": "oci-apps",
+   "rescue_port": 2200,
+   "public_ports": [],
+   "is_public_ingress": false,
+   "gha": {
+    "ssh_secret": "OCI_SSH_KEY",
+    "host_literal": true
+   },
+   "instance_id": "ocid1.instance.oc1.eu-marseille-1.anwxeljruadvczacj7dfxl7uifar574je7fzlvtdjp4ghljdwuwdemsdbiva",
+   "services": [
+    "matrix-continuwuity",
+    "languagetool",
+    "c3-infra-api",
+    "c3-infra-mcp",
+    "c3-services-api",
+    "c3-services-mcp",
+    "google-personal-mcp",
+    "google-workspace-mcp",
+    "mail-mcp",
+    "mattermost-mcp",
+    "cloud-builder-x",
+    "gha-runner",
+    "backup-borg",
+    "backup-bup",
+    "gitea",
+    "wireguard-mesh",
+    "cloud-spec",
+    "dagu",
+    "dbgate",
+    "matomo",
+    "ntfy",
+    "openobserve",
+    "umami",
+    "crowdsec",
+    "claude-superset-api",
+    "cloud-cgc-mcp",
+    "hermes-agent",
+    "kg-store",
+    "my-ai-api",
+    "session-memory",
+    "chat-mattermost",
+    "matrix-element",
+    "matrix-mautrix-whatsapp",
+    "scrappers-api",
+    "fin-api",
+    "photoprism",
+    "news-gdelt",
+    "calendar-radicale",
+    "code-server",
+    "contacts-radicale",
+    "etherpad",
+    "filebrowser",
+    "grist",
+    "hedgedoc",
+    "paca",
+    "revealmd",
+    "send",
+    "vaultwarden"
+   ],
+   "container_count": 61
+  },
+  "gcp-E2-f_0": {
+   "ip": "35.226.147.64",
+   "specs": {
+    "cpu": 1,
+    "ram_gb": 1,
+    "disk_gb": 30,
+    "arch": "x86_64",
+    "shape": "e2-micro"
+   },
+   "description": "GCloud Free - E2 Micro 0 - Central Proxy + Control",
+   "wg_ip": "10.x.x.x",
+   "wg_ipv6": "fd0c:1d00::1",
+   "wg_public_key": "vV/phXUwnCjxACQ5Df11Uw47BzJaK4r85jPYMu2HmDc=",
+   "wg_port": 51820,
+   "wg_role": "hub",
+   "user": "diego",
+   "home": "/home/diego",
+   "method": "gcloud",
+   "ssh_alias": "gcp-proxy",
+   "rescue_port": 2200,
+   "public_ports": [
+    {
+     "port": 25,
+     "proto": "tcp",
+     "desc": "SMTP MX (Caddy L4 \u2192 maddy:25 via WG) \u2014 wg0 mesh source",
+     "source": "10.x.x.x/24",
+     "owned_by": "caddy"
+    },
+    {
+     "port": 25,
+     "proto": "tcp",
+     "desc": "SMTP MX \u2014 wg-public mesh source (oci-analytics \u2192 gcp-proxy via wg-public)",
+     "source": "10.x.x.x/24",
+     "owned_by": "caddy"
+    },
+    {
+     "port": 443,
+     "proto": "tcp",
+     "desc": "HTTPS (Caddy + caddy-l4 SNI mux for IMAPS/SMTPS) \u2014 wg0 mesh source",
+     "source": "10.x.x.x/24",
+     "owned_by": "caddy"
+    },
+    {
+     "port": 443,
+     "proto": "tcp",
+     "desc": "HTTPS \u2014 wg-public mesh source (oci-analytics \u2192 gcp-proxy via wg-public)",
+     "source": "10.x.x.x/24",
+     "owned_by": "caddy"
+    },
+    {
+     "port": 443,
+     "proto": "udp",
+     "desc": "WG fallback (NAT redirect \u2192 51820/udp on hub) \u2014 wg0 mesh source. Operator decision 2026-05-22: WG handshake (51820/udp) is the ONLY public port; 443/udp fallback is no longer needed since the only external entry points are oci-analytics. Peers behind networks blocking 51820/udp lose the fallback path \u2014 accepted tradeoff.",
+     "source": "10.x.x.x/24",
+     "owned_by": "wireguard"
+    },
+    {
+     "port": 443,
+     "proto": "udp",
+     "desc": "WG fallback \u2014 wg-public mesh source",
+     "source": "10.x.x.x/24",
+     "owned_by": "wireguard"
+    }
+   ],
+   "is_public_ingress": true,
+   "gha": {
+    "ssh_secret": "GCP_PROXY_SSH_KEY",
+    "host_secret": "GCP_PROXY_HOST",
+    "user_secret": "GCP_PROXY_USER"
+   },
+   "gcloud_instance": "arch-1",
+   "gcloud_zone": "us-central1-a",
+   "services": [
+    "http-to-smtp-proxy-api",
+    "postlite",
+    "redis",
+    "hickory-dns",
+    "wireguard-mesh-ws-tunnel",
+    "authelia",
+    "caddy",
+    "introspect-proxy"
+   ],
+   "container_count": 8
+  },
+  "vast-RTX-p_0": {
+   "ip": "TBD",
+   "specs": {
+    "cpu": null,
+    "ram_gb": null,
+    "disk_gb": null,
+    "arch": "x86_64",
+    "gpu": "RTX A4000",
+    "vram_gb": 16
+   },
+   "description": "Vast.ai On-Demand - RTX A4000 (16GB VRAM) - Ollama LLM fallback",
+   "wg_ip": null,
+   "wg_ipv6": null,
+   "wg_public_key": null,
+   "wg_port": 51820,
+   "wg_role": "spoke",
+   "user": "root",
+   "home": "/root",
+   "method": "key",
+   "ssh_alias": "vast-ollama",
+   "rescue_port": 2200,
+   "public_ports": [],
+   "is_public_ingress": false,
+   "gha": null,
+   "provider": "vast.ai",
+   "provisioning": "on-demand",
+   "notes": "Dynamic IP/port - update after rental from Vast.ai console",
+   "services": [],
+   "container_count": 0
+  }
+ },
+ "services": {
+  "matrix-continuwuity": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-comm_matrix-continuwuity",
+   "description": "Continuwuity Matrix homeserver (maintained conduwuit fork, Rust/RocksDB) \u2014 central hub for chat bridges. Federation enabled via .well-known delegation over :443.",
+   "discovered": true,
+   "containers": [
+    "continuwuity"
+   ],
+   "proxy": {
+    "primary": {
+     "wg_only": false,
+     "domain": "matrix.diegonmarcos.com",
+     "auth": "none"
+    }
+   },
+   "domain": "matrix.diegonmarcos.com"
+  },
+  "alerts-api": {
+   "category": "tools",
+   "vm": "oci-E2-f_1",
+   "folder": "bc-obs_alerts-api",
+   "description": "Security Alert Aggregation API",
+   "discovered": true,
+   "containers": [
+    "alerts-api"
+   ]
+  },
+  "languagetool": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-ai_languagetool",
+   "description": "LanguageTool grammar/spell-check HTTP API \u2014 rules-only, no n-grams, WG-only sidecar on oci-apps",
+   "discovered": true,
+   "containers": [
+    "languagetool"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "languagetool.diegonmarcos.com",
+     "wg_only": true,
+     "_doc": "wg_only:true \u2192 caddyfile.nix emits a remote_ip 10.x.x.x/24 gate (403 for anything off the WireGuard mesh). No Cloudflare A-record exists for this domain \u2014 fail-closed."
+    }
+   },
+   "domain": "languagetool.diegonmarcos.com"
+  },
+  "c3-diego-personal-data-mcp": {
+   "category": "data",
+   "vm": "local",
+   "folder": "infra-api_c3-diego-personal-data-mcp",
+   "description": "MCP server \u2014 READ-ONLY personal data access (vault metadata, identity, comms, media, finance, health)",
+   "discovered": true,
+   "containers": [
+    "c3-diego-personal-data-mcp"
+   ]
+  },
+  "c3-infra-api": {
+   "category": "sec",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-api_c3-infra-api",
+   "description": "C3 REST API \u2014 Cloud Control Center Fastify API",
+   "discovered": true,
+   "containers": [
+    "c3-infra-api"
+   ],
+   "proxy": {
+    "primary": {
+     "auth": "two_factor",
+     "type": "path",
+     "parent_domain": "api.diegonmarcos.com",
+     "base_path": "/c3-infra-api",
+     "public_paths": [
+      "/c3-infra-api/docs/json"
+     ]
+    }
+   },
+   "domain": "api.diegonmarcos.com/c3-infra-api"
+  },
+  "c3-infra-mcp": {
+   "category": "sec",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-api_c3-infra-mcp",
+   "description": "C3 MCP Server \u2014 Cloud Control Center MCP transport (stdio + HTTP)",
+   "discovered": true,
+   "containers": [
+    "c3-infra-mcp"
+   ],
+   "proxy": {
+    "primary": {
+     "streaming": true,
+     "auth": "two_factor",
+     "type": "path",
+     "parent_domain": "mcp.diegonmarcos.com",
+     "base_path": "/c3-infra-mcp",
+     "wg_only": true
+    },
+    "app_hub": false
+   },
+   "domain": "mcp.diegonmarcos.com/c3-infra-mcp"
+  },
+  "c3-public-api": {
+   "category": "obs",
+   "vm": "oci-E2-f_1",
+   "folder": "infra-api_c3-public-api",
+   "description": "C3 Public API \u2014 single public-edge listener on oci-analytics. Consolidates http-to-smtp-proxy-api (Bearer-gated /mail/*) and c3-analytics-api passthrough (public /analytics/*). Replaces split listeners across gcp-proxy + oci-analytics so gcp-proxy becomes a pure wg0 spoke.",
+   "discovered": true,
+   "containers": [
+    "c3-public-api"
+   ],
+   "proxy": {
+    "_doc": "Mixed-auth service. Default for base_path = Bearer-gated via introspect-proxy (same as c3-infra-api write routes). The /health, /ready, /analytics/* sub-paths are public \u2014 declared via the engine-supported public_paths[] array (1_front-configs/src/engines/cloud-data-config-derive.ts:507 \u2192 caddyfile.nix:432 emits a pre-auth `handle <pp>` block per entry that strip_prefix base_path then reverse_proxy upstream).",
+    "primary": {
+     "wg_only": false,
+     "auth": "two_factor",
+     "type": "path",
+     "parent_domain": "api.diegonmarcos.com",
+     "base_path": "/pub",
+     "public_paths": [
+      "/pub/health",
+      "/pub/ready",
+      "/pub/analytics/*"
+     ]
+    }
+   },
+   "domain": "api.diegonmarcos.com/pub"
+  },
+  "c3-services-api": {
+   "category": "obs",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-api_c3-services-api",
+   "description": "C3 Services REST API \u2014 service API gateway Fastify API",
+   "discovered": true,
+   "containers": [
+    "c3-services-api"
+   ],
+   "proxy": {
+    "primary": {
+     "type": "path",
+     "parent_domain": "api.diegonmarcos.com",
+     "base_path": "/c3-services-api",
+     "auth": "two_factor",
+     "paths": {
+      "/docs/json": {
+       "auth": "public"
+      }
+     }
+    }
+   },
+   "domain": "api.diegonmarcos.com/c3-services-api"
+  },
+  "c3-services-mcp": {
+   "category": "obs",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-api_c3-services-mcp",
+   "description": "C3 Services MCP Server \u2014 service API gateway MCP transport (stdio + HTTP)",
+   "discovered": true,
+   "containers": [
+    "c3-services-mcp"
+   ],
+   "proxy": {
+    "primary": {
+     "streaming": true,
+     "type": "path",
+     "parent_domain": "mcp.diegonmarcos.com",
+     "base_path": "/c3-services-mcp",
+     "wg_only": true
+    },
+    "app_hub": false
+   }
+  },
+  "google-personal-mcp": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-api_google-personal-mcp",
+   "description": "Google Personal Account MCP server \u2014 Gmail (IMAP/SMTP via App Password) for personal Google accounts, multi-account",
+   "discovered": true,
+   "containers": [
+    "google-personal-mcp"
+   ],
+   "proxy": {
+    "primary": {
+     "streaming": true,
+     "type": "path",
+     "parent_domain": "mcp.diegonmarcos.com",
+     "base_path": "/g-personal",
+     "wg_only": true
+    },
+    "app_hub": false
+   },
+   "domain": "mcp.diegonmarcos.com"
+  },
+  "google-workspace-mcp": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-api_google-workspace-mcp",
+   "description": "Google Workspace MCP server \u2014 Gmail, Calendar, Drive, Docs, Sheets via HTTP transport",
+   "discovered": true,
+   "containers": [
+    "google-workspace-mcp"
+   ],
+   "proxy": {
+    "primary": {
+     "streaming": true,
+     "type": "path",
+     "parent_domain": "mcp.diegonmarcos.com",
+     "base_path": "/g-workspace",
+     "wg_only": true
+    },
+    "app_hub": false
+   },
+   "domain": "mcp.diegonmarcos.com"
+  },
+  "mail-mcp": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-api_mail-mcp",
+   "description": "Mail MCP server \u2014 IMAP/SMTP/Admin via Stalwart REST API",
+   "discovered": true,
+   "containers": [
+    "mail-mcp"
+   ],
+   "proxy": {
+    "primary": {
+     "streaming": true,
+     "type": "path",
+     "parent_domain": "mcp.diegonmarcos.com",
+     "base_path": "/mail-mcp",
+     "wg_only": true
+    },
+    "app_hub": false
+   },
+   "domain": "mcp.diegonmarcos.com"
+  },
+  "mattermost-mcp": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-api_mattermost-mcp",
+   "description": "Mattermost MCP server \u2014 chat tools via HTTP transport",
+   "discovered": true,
+   "containers": [
+    "mattermost-mcp"
+   ],
+   "proxy": {
+    "primary": {
+     "streaming": true,
+     "type": "path",
+     "parent_domain": "mcp.diegonmarcos.com",
+     "base_path": "/mattermost-mcp",
+     "wg_only": true
+    },
+    "app_hub": false
+   }
+  },
+  "http-to-smtp-proxy-api": {
+   "category": "app",
+   "vm": "gcp-E2-f_0",
+   "folder": "infra-api_tools-http-to-smtp-proxy-api",
+   "description": "HTTP-to-SMTP bridge sidecar of Caddy on gcp-proxy. CF Worker POSTs JSON email payloads to this container (because GCP blocks outbound TCP/25); container speaks SMTP over WG to maddy:25 + stalwart:2025 on oci-mail. Public path: api.diegonmarcos.com/http-to-smtp-proxy-api/ [DECOMMISSIONED 2026-05-21]",
+   "discovered": true,
+   "containers": [
+    "http-to-smtp-proxy-api"
+   ],
+   "proxy": {
+    "primary": {
+     "type": "path",
+     "parent_domain": "api.diegonmarcos.com",
+     "base_path": "/http-to-smtp-proxy-api",
+     "auth": "bearer"
+    },
+    "app_hub": false
+   },
+   "domain": "api.diegonmarcos.com/http-to-smtp-proxy-api"
+  },
+  "cloud-builder-x": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-bld_cloud-builder-x",
+   "description": "CI/CD builder images \u2014 deployed to oci-apps, source in unix repo",
+   "discovered": true,
+   "containers": [
+    "cloud-builder-x"
+   ]
+  },
+  "gha-runner": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-bld_gha-runner",
+   "description": "GitHub Actions self-hosted runner on oci-apps \u2014 ARM64, no 6h timeout cap",
+   "discovered": true,
+   "containers": [
+    "gha-runner"
+   ]
+  },
+  "cloudflare-worker": {
+   "category": "cloud",
+   "vm": "local",
+   "folder": "infra-cloud_cloudflare-worker",
+   "description": "Cloudflare Email Worker \u2014 inbound mail forwarder. Triple-delivers to Maddy (via http-to-smtp-proxy-api), Google Workspace (Gmail API), and live.com (disaster backup).",
+   "discovered": true,
+   "containers": [
+    "cloudflare-worker"
+   ]
+  },
+  "gcloud": {
+   "category": "cloud",
+   "vm": "local",
+   "folder": "infra-cloud_gcloud",
+   "description": "Google Cloud SDK and tools (local CLI only)",
+   "discovered": true,
+   "containers": [
+    "gcloud"
+   ]
+  },
+  "backup-borg": {
+   "category": "data",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-dat_backup-borg",
+   "description": "Media Backups SSH Server (Borg deduplication)",
+   "discovered": true,
+   "containers": [
+    "borg-server"
+   ]
+  },
+  "backup-bup": {
+   "category": "data",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-dat_backup-bup",
+   "description": "Database Backups SSH Server (bup)",
+   "discovered": true,
+   "containers": [
+    "bup-server"
+   ]
+  },
+  "gitea": {
+   "category": "data",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-dat_gitea",
+   "description": "Self-hosted Git service",
+   "discovered": true,
+   "containers": [
+    "gitea"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "git.diegonmarcos.com",
+     "wg_only": false,
+     "auth": "two_factor"
+    }
+   },
+   "domain": "git.diegonmarcos.com"
+  },
+  "postlite": {
+   "category": "data",
+   "vm": "gcp-E2-f_0",
+   "folder": "infra-db_postlite",
+   "description": "SQLite REST API (WireGuard only)",
+   "discovered": true,
+   "containers": [
+    "postlite-npm",
+    "postlite-vaultwarden",
+    "postlite-ntfy",
+    "postlite-authelia",
+    "sqlite-npm",
+    "sqlite-vaultwarden",
+    "sqlite-ntfy",
+    "sqlite-authelia"
+   ]
+  },
+  "redis": {
+   "category": "data",
+   "vm": "gcp-E2-f_0",
+   "folder": "infra-db_redis",
+   "description": "In-memory data store",
+   "discovered": true,
+   "containers": [
+    "redis"
+   ]
+  },
+  "hickory-dns": {
+   "category": "cloud",
+   "vm": "gcp-E2-f_0",
+   "folder": "infra-net_hickory-dns",
+   "description": "Internal DNS server for WireGuard mesh (per-service .app zones)",
+   "discovered": true,
+   "containers": [
+    "hickory-dns"
+   ],
+   "domain": "dns.internal"
+  },
+  "unbound-dns64": {
+   "category": "infra-net",
+   "vm": "oci-E2-f_1",
+   "folder": "infra-net_unbound-dns64",
+   "description": "DNS64 resolver for NAT64 \u2014 synthesises AAAA records for IPv4-only names so IPv6-only clients can reach the internet via the Tayga NAT64 translator",
+   "discovered": true,
+   "containers": [
+    "unbound-dns64"
+   ],
+   "domain": "dns64.internal"
+  },
+  "wireguard-mesh": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-net_wireguard-mesh",
+   "description": "Read-only data-driven control panel for the WireGuard mesh + wstunnel TCP/443 fallback. Mimics Headscale's UI shape but holds zero state and exposes zero mutations \u2014 pure observability over the existing declarative VPN data (cloud-data-topology.json + bb-net_vpn/build.json + terraform.json). Snapshot is frozen at deploy time; the page hydrates from PORTAL_DATA, no runtime fetch.",
+   "discovered": true,
+   "containers": [
+    "wireguard-mesh"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "mesh.diegonmarcos.com",
+     "auth": "two_factor",
+     "_doc": "Authelia 2FA \u2014 ops-only observability panel."
+    }
+   },
+   "domain": "mesh.diegonmarcos.com"
+  },
+  "wireguard-mesh-ws-tunnel": {
+   "category": "tools",
+   "vm": "gcp-E2-f_0",
+   "folder": "infra-net_wireguard-mesh-ws-tunnel",
+   "description": "WireGuard-over-TCP/443 fallback for hostile networks (airport / hotel / corporate guest Wi-Fi blocking UDP). Sibling to bb-net_wireguard-mesh (the panel) \u2014 this folder owns the wstunnel-server that terminates WSS on gcp-proxy and forwards UDP to the kernel WG listener at 127.0.0.1:51820. UDP/51820 remains the primary transport; this kicks in only when clients can't reach UDP.",
+   "discovered": true,
+   "containers": [
+    "wireguard-mesh-ws-tunnel"
+   ],
+   "proxy": {
+    "primary": {
+     "wg_only": false,
+     "domain": "vpn.diegonmarcos.com",
+     "auth": "none",
+     "_doc": "auth=none required: wstunnel client cannot do 2FA cookies. Scanner defence is enforced by the wstunnel server itself via --http-upgrade-path-prefix ${WSTUNNEL_PATH_PREFIX} \u2014 Caddy passes WebSocket upgrades through natively (Caddy v2 reverse_proxy handles WS by default)."
+    }
+   },
+   "domain": "vpn.diegonmarcos.com"
+  },
+  "wireguard-public": {
+   "category": "net",
+   "vm": "local",
+   "folder": "infra-net_wireguard-public",
+   "description": "Owner of the wg-public mesh topology + client list. Data-only entry (enabled=false \u2192 no container/compose). Replaces the previous wireguard_public block that lived in config.json (root global), so adding/rotating/sharing a wg-public client is a one-file edit here instead of touching the global config.",
+   "discovered": true,
+   "containers": [
+    "wireguard-public"
+   ]
+  },
+  "cloud-spec": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-obs_cloud-spec",
+   "description": "Unified Cloud Documentation Portal",
+   "discovered": true,
+   "containers": [
+    "cloud-spec"
+   ],
+   "proxy": {
+    "primary": {
+     "type": "path",
+     "parent_domain": "cloud.diegonmarcos.com",
+     "base_path": "/spec",
+     "auth": "two_factor",
+     "extra_paths": [
+      {
+       "base_path": "/probe",
+       "upstream_service": "c3-services-api"
+      }
+     ]
+    },
+    "app_hub": false
+   }
+  },
+  "dagu": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-obs_dagu",
+   "description": "Dagu - Lightweight DAG-based workflow scheduler",
+   "discovered": true,
+   "containers": [
+    "dagu"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "workflows.diegonmarcos.com",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "workflows.diegonmarcos.com"
+  },
+  "dbgate": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-obs_dbgate",
+   "description": "DBGate - Universal database manager for all cloud databases",
+   "discovered": true,
+   "containers": [
+    "dbgate"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "db.diegonmarcos.com",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "db.diegonmarcos.com"
+  },
+  "matomo": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-obs_matomo",
+   "description": "Matomo hybrid analytics (oci-apps)",
+   "discovered": true,
+   "containers": [
+    "matomo-hybrid"
+   ],
+   "proxy": {
+    "primary": {
+     "wg_only": false,
+     "type": "path",
+     "parent_domain": "analytics.diegonmarcos.com",
+     "base_path": "/matomo",
+     "auth": "two_factor",
+     "paths": {
+      "/matomo.js": {
+       "auth": "public"
+      },
+      "/matomo.php": {
+       "auth": "public"
+      },
+      "/piwik.js": {
+       "auth": "public"
+      },
+      "/piwik.php": {
+       "auth": "public"
+      },
+      "/collect.php": {
+       "auth": "public"
+      },
+      "/api.php": {
+       "auth": "public"
+      },
+      "/track.php": {
+       "auth": "public"
+      },
+      "/js/*": {
+       "auth": "public"
+      }
+     }
+    }
+   },
+   "domain": "analytics.diegonmarcos.com/matomo"
+  },
+  "ntfy": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-obs_ntfy",
+   "description": "Push notification server",
+   "discovered": true,
+   "containers": [
+    "ntfy",
+    "syslog-bridge",
+    "rss-gateway",
+    "github-rss"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "rss.diegonmarcos.com",
+     "auth": "ntfy-3tier",
+     "wg_only": true,
+     "_feed_auth_comment": "The /feed/* RSS routes (rss-gateway) are served with NO Authelia/bearer \u2014 the whole rss.diegonmarcos.com site is already wg0-gated (wg_only), so on-mesh is the only way in. Cloud Mail (SUPER RSS READER) polls channels.json + per-topic Atom feeds over wg0 without a token. The ntfy app itself (publish/web UI) keeps ntfy-3tier.",
+     "feed_auth": "none"
+    }
+   },
+   "domain": "rss.diegonmarcos.com"
+  },
+  "openobserve": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-obs_openobserve",
+   "description": "OpenObserve - single-binary observability platform (logs + traces + metrics + RUM). Replaces LGTM stack.",
+   "discovered": true,
+   "containers": [
+    "openobserve"
+   ],
+   "proxy": {
+    "primary": {
+     "wg_only": false,
+     "type": "path",
+     "parent_domain": "analytics.diegonmarcos.com",
+     "base_path": "/openobserve",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "analytics.diegonmarcos.com/openobserve"
+  },
+  "umami": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-obs_umami",
+   "description": "Umami Analytics - lightweight privacy-focused web analytics",
+   "discovered": true,
+   "containers": [
+    "umami",
+    "umami-db",
+    "umami-setup"
+   ],
+   "proxy": {
+    "primary": {
+     "wg_only": false,
+     "type": "path",
+     "parent_domain": "analytics.diegonmarcos.com",
+     "base_path": "/umami",
+     "auth": "two_factor",
+     "paths": {
+      "/script.js": {
+       "auth": "public"
+      },
+      "/api/send": {
+       "auth": "public"
+      }
+     }
+    },
+    "app_hub": false
+   },
+   "domain": "analytics.diegonmarcos.com/umami"
+  },
+  "authelia": {
+   "category": "sec",
+   "vm": "gcp-E2-f_0",
+   "folder": "infra-sec_authelia",
+   "description": "SSO and 2FA authentication portal",
+   "discovered": true,
+   "containers": [
+    "authelia",
+    "authelia-redis",
+    "postlite-authelia"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "auth.diegonmarcos.com",
+     "auth": "bypass"
+    },
+    "app_hub": false
+   },
+   "domain": "auth.diegonmarcos.com"
+  },
+  "caddy": {
+   "category": "sec",
+   "vm": "gcp-E2-f_0",
+   "folder": "infra-sec_caddy",
+   "description": "Caddy reverse proxy + security dashboard (gcp-proxy, wg0 bind)",
+   "discovered": true,
+   "containers": [
+    "caddy"
+   ],
+   "proxy": {
+    "type": "special",
+    "proxy_dashboard": {
+     "domain": "proxy.diegonmarcos.com",
+     "comment": "Infrastructure dashboard (static HTML)"
+    },
+    "parent_domain_meta": {
+     "api.diegonmarcos.com": {
+      "landing_page": "api",
+      "comment": "API hub -- path-based routing to backend APIs",
+      "extra_paths": [
+       {
+        "base_path": "/dash",
+        "type": "github_pages",
+        "github_path": "mcp-api-swagger",
+        "redirect_bare": true,
+        "comment": "C3 Dashboard from GitHub Pages"
+       }
+      ]
+     },
+     "app.diegonmarcos.com": {
+      "comment": "App hub -- path-based routing",
+      "fallback": "respond \"Not Found\" 404",
+      "extra_paths": [
+       {
+        "base_path": "/crawlee",
+        "upstream": "crawlee.app:3001",
+        "comment": "Crawlee Cloud dashboard (separate from API)"
+       }
+      ]
+     },
+     "cloud.diegonmarcos.com": {
+      "comment": "Cloud dashboard + spec viewer",
+      "landing_page": "cloud"
+     },
+     "mcp.diegonmarcos.com": {
+      "comment": "MCP -- Streamable HTTP endpoints for Claude Code MCP clients",
+      "fallback_message": "MCP Hub -- use /c3-infra-mcp/mcp, /c3-services-mcp/mcp, /mattermost-mcp/mcp, /mail-mcp/mcp, /g-workspace/mcp"
+     },
+     "mail.diegonmarcos.com": {
+      "landing_page": "mymail",
+      "comment": "Mail hub -- landing + /snappy + /maddy + /stalwart"
+     }
+    }
+   },
+   "domain": "proxy.diegonmarcos.com"
+  },
+  "caddy-l4-image": {
+   "category": "sec",
+   "vm": "local",
+   "folder": "infra-sec_caddy-l4-image",
+   "description": "Custom Caddy with L4 TCP proxy, ratelimit, Cloudflare DNS plugins",
+   "discovered": true,
+   "containers": [
+    "caddy-l4-image"
+   ]
+  },
+  "caddy-public": {
+   "category": "sec",
+   "vm": "oci-E2-f_1",
+   "folder": "infra-sec_caddy-public",
+   "description": "Caddy public-edge L7 allowlist on oci-analytics. Terminates TLS on :8443, serves ONLY the declared-public allowlist (build-caddy-public.json: gh-pages, no-auth subdomains, well-known, explicit public_paths), and FORWARDS everything else to the private hub gcp-proxy over wg-public (10.x.x.x:443). Fail-closed: any host/path not explicitly allowlisted is forwarded to gcp-proxy, whose @wg gate 403s public clients.",
+   "discovered": true,
+   "containers": [
+    "caddy-public"
+   ]
+  },
+  "crowdsec": {
+   "category": "sec",
+   "vm": "oci-A1-f_0",
+   "folder": "infra-sec_crowdsec",
+   "description": "CrowdSec behavioral IDS/IPS engine \u2014 DORMANT placeholder (Cloudflare-off fallback). Container runs but detects/remediates nothing: empty acquisition, online API (CAPI) disabled, no bouncers wired.",
+   "discovered": true,
+   "containers": [
+    "crowdsec"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "crowdsec.diegonmarcos.com",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "crowdsec.diegonmarcos.com"
+  },
+  "introspect-proxy": {
+   "category": "sec",
+   "vm": "gcp-E2-f_0",
+   "folder": "infra-sec_introspect-proxy",
+   "description": "OIDC token introspection sidecar for Caddy Bearer auth",
+   "discovered": true,
+   "containers": [
+    "introspect-proxy"
+   ],
+   "proxy": {
+    "app_hub": false
+   }
+  },
+  "claude-superset-api": {
+   "category": "agi",
+   "vm": "oci-A1-f_0",
+   "folder": "user-ai_claude-superset-api",
+   "description": "Claude superset API on oci-apps \u2014 one polyglot container: OpenAI /v1 + Ollama /api + Anthropic /v1/messages mimic backed by the subscription `claude` CLI (no metered key), with a vendored Headroom (Apache-2.0) compression hop and a savings dashboard. Successor to kg-bridge; usable as a local/remote fallback. Internal WG-only sidecar, never public.",
+   "discovered": true,
+   "containers": [
+    "claude-superset-api"
+   ],
+   "proxy": {
+    "app_hub": false
+   }
+  },
+  "cloud-cgc-mcp": {
+   "category": "obs",
+   "vm": "oci-A1-f_0",
+   "folder": "user-ai_cloud-cgc-mcp",
+   "description": "Cloud CGC MCP \u2014 Code Graph Context: infra knowledge, specs, docs, semantic code search",
+   "discovered": true,
+   "containers": [
+    "cloud-cgc-mcp"
+   ],
+   "proxy": {
+    "primary": {
+     "streaming": true,
+     "type": "path",
+     "parent_domain": "mcp.diegonmarcos.com",
+     "base_path": "/cloud-cgc-mcp",
+     "wg_only": true
+    },
+    "app_hub": false
+   }
+  },
+  "db-agent": {
+   "category": "data",
+   "vm": "all",
+   "folder": "user-ai_db-agent",
+   "description": "Central DB Backup Agent (deployed on all VMs)",
+   "discovered": true,
+   "containers": [
+    "db-agent"
+   ]
+  },
+  "hermes-agent": {
+   "category": "agi",
+   "vm": "oci-A1-f_0",
+   "folder": "user-ai_hermes-agent",
+   "description": "Nous Research Hermes Agent (autonomous, persistent-memory AI agent) on oci-apps. Messaging gateway (Telegram live, Mattermost scaffolded) backed by claude-superset-api (subscription CLI, no metered key). WG-internal, never public.",
+   "discovered": true,
+   "containers": [
+    "hermes-agent"
+   ],
+   "proxy": {
+    "app_hub": false
+   }
+  },
+  "kg-store": {
+   "category": "data",
+   "vm": "oci-A1-f_0",
+   "folder": "user-ai_kg-store",
+   "description": "SurrealDB Hybrid Knowledge Graph - Infrastructure topology + vector search",
+   "discovered": true,
+   "containers": [
+    "kg-store"
+   ]
+  },
+  "my-ai-api": {
+   "category": "agi",
+   "vm": "oci-A1-f_0",
+   "folder": "user-ai_my-ai-api",
+   "description": "my-ai API on oci-apps \u2014 one polyglot container: OpenAI /v1 + Ollama /api + Anthropic /v1/messages mimic backed by OpenRouter (no Claude subscription, no metered Anthropic key), with a vendored Headroom (Apache-2.0) compression hop and a savings dashboard. Sibling of claude-superset-api; the agent face for this stack is goose (my-ai wraps goose, claude-superset keeps claude-cli). Internal WG-only sidecar, never public.",
+   "discovered": true,
+   "containers": [
+    "my-ai-api"
+   ],
+   "proxy": {
+    "app_hub": false
+   }
+  },
+  "session-memory": {
+   "category": "agi",
+   "vm": "oci-A1-f_0",
+   "folder": "user-ai_session-memory",
+   "description": "Central SQLite store of all Claude Code session transcripts \u2014 push/list/fetch so a session started on one device can be resumed from any other. WG-only sidecar on oci-apps; Node 22 built-in node:sqlite (phone-portable, no native deps).",
+   "discovered": true,
+   "containers": [
+    "session-memory"
+   ],
+   "proxy": {
+    "app_hub": false
+   }
+  },
+  "chat-mattermost": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-comm_chat-mattermost",
+   "description": "Mattermost team chat (TE 11.x ESR) with ntfy bridge and C3 command bot",
+   "discovered": true,
+   "containers": [
+    "mattermost",
+    "mattermost-postgres",
+    "mattermost-bots"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "chat.diegonmarcos.com",
+     "auth": "two_factor",
+     "bypass_paths": [
+      "/api/v4/*"
+     ]
+    }
+   },
+   "domain": "chat.diegonmarcos.com"
+  },
+  "mail-puller": {
+   "category": "app",
+   "vm": "oci-E2-f_0",
+   "folder": "user-comm_mail-puller",
+   "description": "Rust sidecar \u2014 IMAP-IDLE pulls from external providers (Gmail, Outlook/Live, \u2026) and dual-delivers into Maddy + Stalwart via SMTP submission. Declarative source list in src/sources.json; OAuth2 creds via sops.",
+   "discovered": true,
+   "containers": [
+    "mail-puller"
+   ],
+   "proxy": {
+    "primary": null,
+    "app_hub": false,
+    "mail_hub": false
+   },
+   "domain": "mail-puller.diegonmarcos.com"
+  },
+  "matrix-element": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-comm_matrix-element",
+   "description": "Element Web \u2014 browser Matrix client for the Continuwuity homeserver. Served at messenger.diegonmarcos.com behind Authelia 2FA.",
+   "discovered": true,
+   "containers": [
+    "matrix-element"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "messenger.diegonmarcos.com",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "messenger.diegonmarcos.com"
+  },
+  "matrix-mautrix-whatsapp": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-comm_matrix-mautrix-whatsapp",
+   "description": "mautrix-whatsapp bridge (appservice) for the Continuwuity homeserver. WG-only, no public route. Links a WhatsApp account via QR into Matrix.",
+   "discovered": true,
+   "containers": [
+    "mautrix-whatsapp"
+   ]
+  },
+  "snappymail": {
+   "category": "app",
+   "vm": "oci-E2-f_0",
+   "folder": "user-comm_snappymail",
+   "description": "SnappyMail webmail client (mail.diegonmarcos.com/webmail)",
+   "discovered": true,
+   "containers": [
+    "snappymail"
+   ],
+   "proxy": {
+    "_repromoted_2026-07-09": "webmail.diegonmarcos.com re-promoted to SnappyMail. It was demoted 2026-04-27 for a handoff to a successor webmail service that was never finished (no build.json/src), so no route was ever emitted and the domain orphaned to the Caddy catch-all (200 wormhole). SnappyMail is healthy on oci-mail; restored primary per the demote note.",
+    "primary": {
+     "domain": "webmail.diegonmarcos.com",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "webmail.diegonmarcos.com"
+  },
+  "maddy": {
+   "category": "app",
+   "vm": "oci-E2-f_0",
+   "folder": "user-comm_tools-maddy",
+   "description": "Maddy Mail Server (mail.diegonmarcos.com)",
+   "discovered": true,
+   "containers": [
+    "maddy"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "mail.diegonmarcos.com",
+     "auth": "two_factor",
+     "tls_skip_verify": true,
+     "l4_ports": [
+      {
+       "port": 25,
+       "upstream": "oci-mail:25",
+       "comment": "SMTP MX plain TCP \u2014 design-complete listener; GCP firewall currently blocks public, CF Worker is the active inbound bridge",
+       "protocol": "tcp"
+      },
+      {
+       "port": 443,
+       "sni": "imap.diegonmarcos.com",
+       "upstream": "oci-mail:2993",
+       "comment": "IMAPS via SNI on :443 \u2014 upstream flipped from Maddy:993 to Stalwart:2993 per aa-sui_tools-stalwart/build.json _doc_l4_ports (Maddy retired)",
+       "protocol": "tls"
+      },
+      {
+       "port": 443,
+       "sni": "smtps.diegonmarcos.com",
+       "upstream": "oci-mail:2465",
+       "comment": "SMTPS via SNI on :443 \u2014 upstream flipped from Maddy:465 to Stalwart:2465 per aa-sui_tools-stalwart/build.json _doc_l4_ports (Maddy retired)",
+       "protocol": "tls"
+      }
+     ]
+    },
+    "app_hub": false,
+    "mail_hub": {
+     "parent_domain": "mail.diegonmarcos.com",
+     "base_path": "/maddy",
+     "type": "static"
+    }
+   },
+   "domain": "mail.diegonmarcos.com"
+  },
+  "stalwart": {
+   "category": "app",
+   "vm": "oci-E2-f_0",
+   "folder": "user-comm_tools-stalwart",
+   "description": "Stalwart Mail Server \u2014 JMAP webmail backend (jmap.diegonmarcos.com)",
+   "discovered": true,
+   "containers": [
+    "stalwart",
+    "stalwart-sorter"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "jmap.diegonmarcos.com",
+     "auth": "none",
+     "tls_skip_verify": true,
+     "_doc_root_response_json_removed": "Initially tried serving a STATIC session JSON at jmap.diegonmarcos.com/ to bypass Stalwart's :2443 port leak in apiUrl/downloadUrl/etc. BROKE LTT.rs because the static JSON has empty accounts: {} \u2014 JMAP clients NEED the authenticated per-user response which only Stalwart can generate (it includes the user's account ID, capabilities per account, etc.). The :2443 leak is a real Stalwart limitation but reverting to runtime session is the lesser evil. Static-JSON approach is preserved in caddyfile.nix root_response_json schema for non-stateful endpoints (where applicable).",
+     "_doc_l4_ports": "Stalwart is JMAP-only from the client side \u2014 clients reach it via jmap.diegonmarcos.com (HTTPS reverse_proxy to :2443). Classical IMAPS (:2993) and SMTPS (:2465) listeners still exist inside the container for legacy-tooling (mail-puller, sorter) but are NOT exposed publicly \u2014 those Caddy SNI subhostnames were removed. If you later retire maddy and want Stalwart to take over imap.* / smtps.*, flip the upstream in those maddy-side declarations instead of re-adding -stalwart suffix hostnames.",
+     "l4_ports": []
+    },
+    "app_hub": false,
+    "mail_hub": {
+     "parent_domain": "mail.diegonmarcos.com",
+     "base_path": "/stalwart",
+     "tls_skip_verify": true,
+     "auth": "none",
+     "error_redirect": "/"
+    },
+    "well_known": [
+     {
+      "_doc": "JMAP autoconfig per RFC 8620: clients enter me@diegonmarcos.com and look up the apex /.well-known/jmap. Caddy proxies to Stalwart (passes the Authorization header through), Stalwart issues a relative 307 \u2192 /jmap/session, client re-issues to apex which Caddy proxies for /jmap/* (well_known sibling below). The PER-USER session JSON returned by Stalwart includes the user's accounts list (which LTT.rs and others require). The static JSON at jmap.diegonmarcos.com/ is for clients that bypass autoconfig and probe the discoverable hostname directly \u2014 but autoconfig clients NEED the authenticated Stalwart session.",
+      "path": "/.well-known/jmap",
+      "target_domain": "diegonmarcos.com",
+      "tls_skip_verify": true,
+      "comment": "JMAP autoconfig \u2014 proxies to Stalwart (preserves per-user session)"
+     },
+     {
+      "_doc": "Follow-through for Stalwart's relative redirect from /.well-known/jmap \u2192 /jmap/session. Path wildcard.",
+      "path": "/jmap/*",
+      "target_domain": "diegonmarcos.com",
+      "tls_skip_verify": true,
+      "comment": "JMAP API follow-through (matches relative redirect from /.well-known/jmap)"
+     },
+     {
+      "_doc": "Bare-host shortcut: clients that hit https://jmap.diegonmarcos.com/ (no path) get a 308 to /.well-known/jmap so the JMAP session JSON is reachable at any of three equivalent URLs \u2014 bare host, /.well-known/jmap, apex /.well-known/jmap. Relies on the proxy-route well_known graft (caddyfile.nix mkProxyRoute filtering wellKnownRoutes by target_domain). Mailtemi and similar clients that probe the bare subdomain hostname work without manual URL entry.",
+      "path": "/",
+      "target_domain": "jmap.diegonmarcos.com",
+      "redirect_to": "/.well-known/jmap",
+      "comment": "Bare host \u2192 JMAP discovery URL (308 redirect)"
+     }
+    ]
+   },
+   "domain": "jmap.diegonmarcos.com"
+  },
+  "scrappers-api": {
+   "category": "data",
+   "vm": "oci-A1-f_0",
+   "folder": "user-data_scrappers-api",
+   "description": "Unified scrapers API (Instagram / Pinterest / LinkedIn / generic crawl) \u2014 retires crawlee-cloud. Lean single-container FastAPI, on-demand, flat-JSON output.",
+   "discovered": true,
+   "containers": [
+    "scrappers-api"
+   ],
+   "proxy": {
+    "primary": {
+     "type": "path",
+     "parent_domain": "api.diegonmarcos.com",
+     "base_path": "/scrappers",
+     "auth": "two_factor",
+     "wg_only": false,
+     "public_paths": [
+      "/scrappers/health",
+      "/scrappers/openapi.json"
+     ]
+    }
+   },
+   "domain": "api.diegonmarcos.com/scrappers"
+  },
+  "fin-api": {
+   "category": "fin",
+   "vm": "oci-A1-f_0",
+   "folder": "user-fin_fin-api",
+   "description": "Fincept Terminal backend (fin-api) \u2014 REST + WebSocket over DataHub, 35 data connectors, 7 analytics, 17 brokers, 6 investor personas, MCP tools",
+   "discovered": true,
+   "containers": [
+    "fin-api"
+   ],
+   "proxy": {
+    "primary": {
+     "type": "path",
+     "parent_domain": "api.diegonmarcos.com",
+     "base_path": "/fin-api",
+     "auth": "two_factor",
+     "paths": {
+      "/health": {
+       "auth": "public"
+      }
+     }
+    }
+   },
+   "domain": "api.diegonmarcos.com/fin-api"
+  },
+  "photoprism": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-media_photoprism",
+   "description": "PhotoPrism AI-powered photo management (oci-flex-1)",
+   "discovered": true,
+   "containers": [
+    "photoprism_app",
+    "photoprism_mariadb",
+    "photoprism_rclone"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "photos.diegonmarcos.com",
+     "auth": "two_factor",
+     "landing_page": "myphotos",
+     "wg_only": true,
+     "_doc": "wg_only:true \u2192 caddyfile.nix emits a remote_ip 10.x.x.x/24 gate (403 off the WireGuard mesh). Moved off public + Authelia two_factor: the Android app cannot complete an interactive Authelia 2FA challenge during a WebDAV PUT (camera-roll auto-backup), so the client now reaches the origin only via WireGuard."
+    }
+   },
+   "domain": "photos.diegonmarcos.com"
+  },
+  "news-gdelt": {
+   "category": "tools",
+   "vm": "oci-A1-f_0",
+   "folder": "user-news_news-gdelt",
+   "description": "GDELT News Aggregator \u2014 Fastify API with SQLite cache",
+   "discovered": true,
+   "containers": [
+    "news-gdelt"
+   ]
+  },
+  "calendar-radicale": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-prod_calendar-radicale",
+   "description": "Radicale CalDAV server (calendars only) \u2014 cal.diegonmarcos.com",
+   "discovered": true,
+   "containers": [
+    "calendar-radicale"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "cal.diegonmarcos.com",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "cal.diegonmarcos.com"
+  },
+  "code-server": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-prod_code-server",
+   "description": "VS Code IDE (ide.diegonmarcos.com)",
+   "discovered": true,
+   "containers": [
+    "code-server"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "ide.diegonmarcos.com",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "ide.diegonmarcos.com"
+  },
+  "contacts-radicale": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-prod_contacts-radicale",
+   "description": "Radicale CardDAV server (contacts / address books) \u2014 contacts.diegonmarcos.com",
+   "discovered": true,
+   "containers": [
+    "contacts-radicale"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "contacts.diegonmarcos.com",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "contacts.diegonmarcos.com"
+  },
+  "etherpad": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-prod_etherpad",
+   "description": "Etherpad collaborative editor",
+   "discovered": true,
+   "containers": [
+    "etherpad_app",
+    "etherpad_postgres"
+   ],
+   "proxy": {
+    "primary": {
+     "type": "path",
+     "parent_domain": "app.diegonmarcos.com",
+     "base_path": "/etherpad",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "app.diegonmarcos.com/etherpad"
+  },
+  "filebrowser": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-prod_filebrowser",
+   "description": "FileBrowser web file manager (NEW - not deployed yet)",
+   "discovered": true,
+   "containers": [
+    "filebrowser_app"
+   ],
+   "proxy": {
+    "primary": {
+     "type": "path",
+     "parent_domain": "app.diegonmarcos.com",
+     "base_path": "/filebrowser",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "app.diegonmarcos.com/filebrowser"
+  },
+  "grist": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-prod_grist",
+   "description": "Grist spreadsheet/database (sheets.diegonmarcos.com)",
+   "discovered": true,
+   "containers": [
+    "grist_app"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "sheets.diegonmarcos.com",
+     "auth": "none",
+     "wg_only": true
+    }
+   },
+   "domain": "sheets.diegonmarcos.com"
+  },
+  "hedgedoc": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-prod_hedgedoc",
+   "description": "Collaborative markdown editor",
+   "discovered": true,
+   "containers": [
+    "hedgedoc_app",
+    "hedgedoc_postgres"
+   ],
+   "proxy": {
+    "primary": {
+     "type": "path",
+     "parent_domain": "app.diegonmarcos.com",
+     "base_path": "/hedgedoc",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "app.diegonmarcos.com/hedgedoc"
+  },
+  "paca": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-prod_paca",
+   "description": "Paca \u2014 AI-native open-source project management (Jira/Trello alternative). Core stack: Go API + React web + Socket.IO realtime + Postgres + Valkey, behind an nginx gateway. MinIO + ai-agent intentionally dropped (S3 = OCI; no LLM agent in v1).",
+   "discovered": true,
+   "containers": [
+    "paca-gateway",
+    "paca-api",
+    "paca-web",
+    "paca-realtime",
+    "paca-valkey",
+    "paca-postgres"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "paca.diegonmarcos.com",
+     "auth": "two_factor"
+    }
+   },
+   "domain": "paca.diegonmarcos.com"
+  },
+  "revealmd": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-prod_revealmd",
+   "description": "Reveal.js markdown presentations (not deployed)",
+   "discovered": true,
+   "containers": [
+    "revealmd_app"
+   ]
+  },
+  "send": {
+   "category": "app",
+   "vm": "oci-A1-f_0",
+   "folder": "user-prod_send",
+   "description": "Send \u2014 self-hosted end-to-end encrypted ephemeral file sharing (timvisee/send, Firefox Send fork). Files encrypted client-side; server sees only ciphertext. Links self-destruct after configured downloads or time.",
+   "discovered": true,
+   "containers": [
+    "send_app",
+    "send_redis"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "send.diegonmarcos.com",
+     "auth": "none"
+    }
+   },
+   "domain": "send.diegonmarcos.com"
+  },
+  "vaultwarden": {
+   "category": "mic",
+   "vm": "oci-A1-f_0",
+   "folder": "user-vault_vaultwarden",
+   "description": "Bitwarden password manager",
+   "discovered": true,
+   "containers": [
+    "vaultwarden"
+   ],
+   "proxy": {
+    "primary": {
+     "domain": "vault.diegonmarcos.com",
+     "auth": "none",
+     "wg_only": true
+    }
+   },
+   "domain": "vault.diegonmarcos.com"
+  },
+  "front-end": {
+   "category": "app",
+   "vm": "local",
+   "folder": "user-web_front-end",
+   "description": "Front-end project \u2014 GitHub Pages route declarations (apex + subdomains). Data-only service: no flake, no deploy. Owns the declarative source for every public host that reverse-proxies to diegonmarcos.github.io, replacing the previous hack of co-locating these inside bb-sec_caddy/build.json.",
+   "discovered": true,
+   "containers": [
+    "front-end"
+   ],
+   "proxy": {
+    "type": "special",
+    "github_pages_proxies": [
+     {
+      "domain": "diegonmarcos.com, www.diegonmarcos.com",
+      "github_path": "landpage",
+      "wkd": true,
+      "comment": "Landing page + WKD (Web Key Directory for PGP)"
+     },
+     {
+      "domain": "linktree.diegonmarcos.com",
+      "github_path": "linktree"
+     },
+     {
+      "domain": "nexus.diegonmarcos.com",
+      "github_path": "nexus"
+     },
+     {
+      "domain": "suite.diegonmarcos.com",
+      "github_path": "suite"
+     },
+     {
+      "domain": "maps.diegonmarcos.com",
+      "github_path": "mymaps"
+     }
+    ]
+   }
+  }
+ },
+ "vmCount": 5,
+ "serviceCount": 71
+};
+})();

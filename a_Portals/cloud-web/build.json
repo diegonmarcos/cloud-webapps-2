@@ -1,0 +1,65 @@
+{
+  "name": "Cloud Web",
+  "framework": "vanilla",
+  "port": 8037,
+  "src": "src",
+  "dist": "dist",
+  "build": [
+    {
+      "_doc": "Wrap every *.json in src/data/ as a globalThis.PORTAL_DATA[<key>] companion (data-*.json.js). The one data file is constellation-fleet.json, the fleet manifest of cloud-u-android; scripts/fetch-wasm.sh refreshes it before the build. Engine: front-data-json-js-wrapper.sh.",
+      "mod": "data_wrap",
+      "dir": "src/data"
+    },
+    {
+      "mod": "copy",
+      "files": "data-*.json.js",
+      "from": "src/data"
+    },
+    {
+      "mod": "esbuild",
+      "input": "src/app/main.ts",
+      "output": "script.js",
+      "format": "iife",
+      "target": "es2020"
+    },
+    {
+      "mod": "sass",
+      "input": "src/scss/main.scss",
+      "output": "style.css"
+    },
+    {
+      "mod": "copy",
+      "files": "index.html",
+      "from": "src"
+    },
+    {
+      "mod": "symlink",
+      "files": "src/public"
+    }
+  ],
+  "serve": {
+    "mode": "auto",
+    "dir": "src",
+    "watch": [
+      {
+        "mod": "sass",
+        "input": "scss/main.scss",
+        "output": "style.css"
+      },
+      {
+        "mod": "esbuild",
+        "input": "app/main.ts",
+        "output": "script.js",
+        "format": "iife",
+        "target": "es2020"
+      }
+    ]
+  },
+  "deploy": {},
+  "wasm": {
+    "_doc": "#876 where the pages come from: every constellation-fleet.json row with assets.wasm (a Cloud-<App>.wasm.zip on the rolling release of `repo`) is unzipped by scripts/fetch-wasm.sh into dist/apps/<row label>/, and its tile opens apps/<label>/index.html in an iframe. Refreshed when cloud-u-android's ship-<app>-wasm workflow sends repository_dispatch cloud-web-refresh (ship.yml).",
+    "repo": "diegonmarcos/cloudy-u-android",
+    "release_tag": "latest",
+    "fleet_manifest": "aa_cloud-superapp/data/constellation-fleet.json"
+  }
+}

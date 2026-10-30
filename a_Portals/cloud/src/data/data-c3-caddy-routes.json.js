@@ -1,0 +1,316 @@
+// GENERATED FROM c3-caddy-routes.json by front-data-json-js-wrapper.sh — DO NOT EDIT BY HAND.
+// Re-generate with: bash a_Portals/linktree/src/data/build.sh
+(function () {
+  var g = (typeof globalThis !== "undefined") ? globalThis : (typeof window !== "undefined" ? window : this);
+  g.PORTAL_DATA = g.PORTAL_DATA || {};
+  g.PORTAL_DATA["c3-caddy-routes"] = {
+ "_meta": {
+  "description": "Caddy route definitions -- consumed by flake.nix to generate Caddyfile",
+  "format_version": 1
+ },
+ "_generated": "2026-08-02T08:56:30.776Z",
+ "_source": "build.json proxy fields via /cloud-data/caddy-routes",
+ "l4_routes": [
+  {
+   "port": 25,
+   "upstream": "oci-mail:25",
+   "comment": "SMTP MX plain TCP \u2014 design-complete listener; GCP firewall currently blocks public, CF Worker is the active inbound bridge -- TLS passthrough to maddy"
+  },
+  {
+   "port": 443,
+   "upstream": "oci-mail:2993",
+   "comment": "IMAPS via SNI on :443 \u2014 upstream flipped from Maddy:993 to Stalwart:2993 per aa-sui_tools-stalwart/build.json _doc_l4_ports (Maddy retired) -- TLS passthrough to maddy"
+  },
+  {
+   "port": 443,
+   "upstream": "oci-mail:2465",
+   "comment": "SMTPS via SNI on :443 \u2014 upstream flipped from Maddy:465 to Stalwart:2465 per aa-sui_tools-stalwart/build.json _doc_l4_ports (Maddy retired) -- TLS passthrough to maddy"
+  }
+ ],
+ "routes": [
+  {
+   "domain": "matrix.diegonmarcos.com",
+   "upstream": "matrix-continuwuity.app:8008",
+   "auth": "none",
+   "comment": "Continuwuity Matrix homeserver (maintained conduwuit fork, Rust/RocksDB) \u2014 central hub for chat bridges. Federation enabled via .well-known delegation over :443."
+  },
+  {
+   "domain": "languagetool.diegonmarcos.com",
+   "upstream": "languagetool.app:8010",
+   "comment": "LanguageTool grammar/spell-check HTTP API \u2014 rules-only, no n-grams, WG-only sidecar on oci-apps"
+  },
+  {
+   "domain": "git.diegonmarcos.com",
+   "upstream": "gitea.app:3002",
+   "comment": "Self-hosted Git service"
+  },
+  {
+   "domain": "mesh.diegonmarcos.com",
+   "upstream": "wireguard-mesh.app:8080",
+   "comment": "Read-only data-driven control panel for the WireGuard mesh + wstunnel TCP/443 fallback. Mimics Headscale's UI shape but holds zero state and exposes zero mutations \u2014 pure observability over the existing declarative VPN data (cloud-data-topology.json + bb-net_vpn/build.json + terraform.json). Snapshot is frozen at deploy time; the page hydrates from PORTAL_DATA, no runtime fetch."
+  },
+  {
+   "domain": "vpn.diegonmarcos.com",
+   "auth": "none",
+   "comment": "WireGuard-over-TCP/443 fallback for hostile networks (airport / hotel / corporate guest Wi-Fi blocking UDP). Sibling to bb-net_wireguard-mesh (the panel) \u2014 this folder owns the wstunnel-server that terminates WSS on gcp-proxy and forwards UDP to the kernel WG listener at 127.0.0.1:51820. UDP/51820 remains the primary transport; this kicks in only when clients can't reach UDP."
+  },
+  {
+   "domain": "workflows.diegonmarcos.com",
+   "upstream": "dagu.app:8070",
+   "comment": "Dagu - Lightweight DAG-based workflow scheduler"
+  },
+  {
+   "domain": "db.diegonmarcos.com",
+   "upstream": "dbgate.app:8086",
+   "comment": "DBGate - Universal database manager for all cloud databases"
+  },
+  {
+   "domain": "auth.diegonmarcos.com",
+   "upstream": "authelia.app:9091",
+   "auth": "none",
+   "comment": "SSO and 2FA authentication portal"
+  },
+  {
+   "domain": "crowdsec.diegonmarcos.com",
+   "comment": "CrowdSec behavioral IDS/IPS engine \u2014 DORMANT placeholder (Cloudflare-off fallback). Container runs but detects/remediates nothing: empty acquisition, online API (CAPI) disabled, no bouncers wired."
+  },
+  {
+   "comment": "OIDC token introspection sidecar for Caddy Bearer auth"
+  },
+  {
+   "comment": "Claude superset API on oci-apps \u2014 one polyglot container: OpenAI /v1 + Ollama /api + Anthropic /v1/messages mimic backed by the subscription `claude` CLI (no metered key), with a vendored Headroom (Apache-2.0) compression hop and a savings dashboard. Successor to kg-bridge; usable as a local/remote fallback. Internal WG-only sidecar, never public."
+  },
+  {
+   "comment": "Nous Research Hermes Agent (autonomous, persistent-memory AI agent) on oci-apps. Messaging gateway (Telegram live, Mattermost scaffolded) backed by claude-superset-api (subscription CLI, no metered key). WG-internal, never public."
+  },
+  {
+   "comment": "my-ai API on oci-apps \u2014 one polyglot container: OpenAI /v1 + Ollama /api + Anthropic /v1/messages mimic backed by OpenRouter (no Claude subscription, no metered Anthropic key), with a vendored Headroom (Apache-2.0) compression hop and a savings dashboard. Sibling of claude-superset-api; the agent face for this stack is goose (my-ai wraps goose, claude-superset keeps claude-cli). Internal WG-only sidecar, never public."
+  },
+  {
+   "comment": "Central SQLite store of all Claude Code session transcripts \u2014 push/list/fetch so a session started on one device can be resumed from any other. WG-only sidecar on oci-apps; Node 22 built-in node:sqlite (phone-portable, no native deps)."
+  },
+  {
+   "domain": "chat.diegonmarcos.com",
+   "upstream": "mattermost.app:8065",
+   "bypass_paths": [
+    "/api/v4/*"
+   ],
+   "comment": "Mattermost team chat (TE 11.x ESR) with ntfy bridge and C3 command bot"
+  },
+  {
+   "domain": "mail-puller.diegonmarcos.com",
+   "comment": "Rust sidecar \u2014 IMAP-IDLE pulls from external providers (Gmail, Outlook/Live, \u2026) and dual-delivers into Maddy + Stalwart via SMTP submission. Declarative source list in src/sources.json; OAuth2 creds via sops."
+  },
+  {
+   "domain": "messenger.diegonmarcos.com",
+   "upstream": "matrix-element.app:8083",
+   "comment": "Element Web \u2014 browser Matrix client for the Continuwuity homeserver. Served at messenger.diegonmarcos.com behind Authelia 2FA."
+  },
+  {
+   "domain": "webmail.diegonmarcos.com",
+   "upstream": "snappymail.app:8888",
+   "comment": "SnappyMail webmail client (mail.diegonmarcos.com/webmail)"
+  },
+  {
+   "domain": "mail.diegonmarcos.com",
+   "upstream": "maddy.app:993",
+   "tls_skip_verify": true,
+   "comment": "Maddy Mail Server (mail.diegonmarcos.com)"
+  },
+  {
+   "domain": "jmap.diegonmarcos.com",
+   "auth": "none",
+   "tls_skip_verify": true,
+   "comment": "Stalwart Mail Server \u2014 JMAP webmail backend (jmap.diegonmarcos.com)"
+  },
+  {
+   "domain": "photos.diegonmarcos.com",
+   "upstream": "photoprism.app:3013",
+   "landing_page": "myphotos",
+   "comment": "PhotoPrism AI-powered photo management (oci-flex-1)"
+  },
+  {
+   "domain": "cal.diegonmarcos.com",
+   "upstream": "calendar.app:5232",
+   "comment": "Radicale CalDAV server (calendars only) \u2014 cal.diegonmarcos.com"
+  },
+  {
+   "domain": "ide.diegonmarcos.com",
+   "upstream": "code-server.app:8443",
+   "comment": "VS Code IDE (ide.diegonmarcos.com)"
+  },
+  {
+   "domain": "contacts.diegonmarcos.com",
+   "upstream": "contacts.app:5233",
+   "comment": "Radicale CardDAV server (contacts / address books) \u2014 contacts.diegonmarcos.com"
+  },
+  {
+   "domain": "sheets.diegonmarcos.com",
+   "upstream": "grist.app:3011",
+   "auth": "none",
+   "comment": "Grist spreadsheet/database (sheets.diegonmarcos.com)"
+  },
+  {
+   "domain": "paca.diegonmarcos.com",
+   "comment": "Paca \u2014 AI-native open-source project management (Jira/Trello alternative). Core stack: Go API + React web + Socket.IO realtime + Postgres + Valkey, behind an nginx gateway. MinIO + ai-agent intentionally dropped (S3 = OCI; no LLM agent in v1)."
+  },
+  {
+   "domain": "send.diegonmarcos.com",
+   "upstream": "send.app:3016",
+   "auth": "none",
+   "comment": "Send \u2014 self-hosted end-to-end encrypted ephemeral file sharing (timvisee/send, Firefox Send fork). Files encrypted client-side; server sees only ciphertext. Links self-destruct after configured downloads or time."
+  },
+  {
+   "domain": "vault.diegonmarcos.com",
+   "upstream": "vaultwarden.app:8880",
+   "auth": "none",
+   "comment": "Bitwarden password manager"
+  }
+ ],
+ "path_routes": [
+  {
+   "parent_domain": "api.diegonmarcos.com",
+   "paths": [
+    {
+     "base_path": "/c3-infra-api",
+     "upstream": "c3-infra-api.app:8081",
+     "comment": "C3 REST API \u2014 Cloud Control Center Fastify API"
+    },
+    {
+     "base_path": "/pub",
+     "upstream": "c3-public-api.app:8087",
+     "comment": "C3 Public API \u2014 single public-edge listener on oci-analytics. Consolidates http-to-smtp-proxy-api (Bearer-gated /mail/*) and c3-analytics-api passthrough (public /analytics/*). Replaces split listeners across gcp-proxy + oci-analytics so gcp-proxy becomes a pure wg0 spoke."
+    },
+    {
+     "base_path": "/c3-services-api",
+     "upstream": "c3-services-api.app:8082",
+     "public_paths": [
+      "/c3-services-api/docs/json"
+     ],
+     "comment": "C3 Services REST API \u2014 service API gateway Fastify API"
+    },
+    {
+     "base_path": "/http-to-smtp-proxy-api",
+     "upstream": "http-to-smtp-proxy-api.app:8090",
+     "comment": "HTTP-to-SMTP bridge sidecar of Caddy on gcp-proxy. CF Worker POSTs JSON email payloads to this container (because GCP blocks outbound TCP/25); container speaks SMTP over WG to maddy:25 + stalwart:2025 on oci-mail. Public path: api.diegonmarcos.com/http-to-smtp-proxy-api/ [DECOMMISSIONED 2026-05-21]"
+    },
+    {
+     "base_path": "/scrappers",
+     "upstream": "scrappers-api.app:3020",
+     "comment": "Unified scrapers API (Instagram / Pinterest / LinkedIn / generic crawl) \u2014 retires crawlee-cloud. Lean single-container FastAPI, on-demand, flat-JSON output."
+    },
+    {
+     "base_path": "/fin-api",
+     "upstream": "fin-api.app:8340",
+     "public_paths": [
+      "/fin-api/health"
+     ],
+     "comment": "Fincept Terminal backend (fin-api) \u2014 REST + WebSocket over DataHub, 35 data connectors, 7 analytics, 17 brokers, 6 investor personas, MCP tools"
+    }
+   ]
+  },
+  {
+   "parent_domain": "cloud.diegonmarcos.com",
+   "paths": [
+    {
+     "base_path": "/spec",
+     "upstream": "c3-spec.app:3080",
+     "comment": "Unified Cloud Documentation Portal"
+    }
+   ]
+  },
+  {
+   "parent_domain": "analytics.diegonmarcos.com",
+   "paths": [
+    {
+     "base_path": "/openobserve",
+     "upstream": "openobserve.app:5080",
+     "comment": "OpenObserve - single-binary observability platform (logs + traces + metrics + RUM). Replaces LGTM stack."
+    }
+   ]
+  },
+  {
+   "parent_domain": "app.diegonmarcos.com",
+   "paths": [
+    {
+     "base_path": "/etherpad",
+     "upstream": "etherpad.app:3012",
+     "comment": "Etherpad collaborative editor"
+    },
+    {
+     "base_path": "/filebrowser",
+     "upstream": "filebrowser.app:3015",
+     "comment": "FileBrowser web file manager (NEW - not deployed yet)"
+    },
+    {
+     "base_path": "/hedgedoc",
+     "upstream": "hedgedoc.app:3018",
+     "comment": "Collaborative markdown editor"
+    }
+   ]
+  }
+ ],
+ "github_pages_proxies": [],
+ "mcp_routes": [
+  {
+   "parent_domain": "mcp.diegonmarcos.com",
+   "endpoints": [
+    {
+     "base_path": "/c3-infra-mcp",
+     "upstream": "c3-infra-mcp.app:3100"
+    },
+    {
+     "base_path": "/c3-services-mcp",
+     "upstream": "c3-services-mcp.app:3101"
+    },
+    {
+     "base_path": "/g-personal",
+     "upstream": "g-personal-mcp.app:3106"
+    },
+    {
+     "base_path": "/g-workspace",
+     "upstream": "g-workspace-mcp.app:3104"
+    },
+    {
+     "base_path": "/mail-mcp",
+     "upstream": "mail-mcp.app:3103"
+    },
+    {
+     "base_path": "/mattermost-mcp",
+     "upstream": "mattermost-mcp.app:3102"
+    },
+    {
+     "base_path": "/cloud-cgc-mcp",
+     "upstream": "cloud-cgc-mcp.app:3105"
+    }
+   ]
+  }
+ ],
+ "special": {
+  "ntfy": {
+   "domain": "rss.diegonmarcos.com",
+   "upstream": "ntfy.app:8090",
+   "comment": "ntfy notifications -- 3-tier auth: JWT bearer, tk_ bearer, cookie"
+  },
+  "analytics": {
+   "domain": "analytics.diegonmarcos.com/matomo",
+   "comment": "Matomo (public tracking + protected admin) + Umami (path-based)",
+   "umami_upstream": "umami.app:3006",
+   "public_tracking_paths": [
+    "/matomo.js",
+    "/matomo.php",
+    "/piwik.js",
+    "/piwik.php",
+    "/collect.php",
+    "/api.php",
+    "/track.php",
+    "/js/*"
+   ],
+   "umami_public_paths": [
+    "/umami/script.js",
+    "/umami/api/send"
+   ]
+  }
+ }
+};
+})();

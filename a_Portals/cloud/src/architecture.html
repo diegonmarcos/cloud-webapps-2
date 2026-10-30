@@ -1,0 +1,2352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Architecture | Cloud Portal</title>
+    <meta name="description" content="Cloud Architecture - Security, Server, AI diagrams">
+
+    <!-- Matomo Tag Manager -->
+    <script>
+      var _mtm = window._mtm = window._mtm || [];
+      _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+      (function() {
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.async=true; g.src='https://analytics.diegonmarcos.com/matomo/js/container_odwLIyPV.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
+
+    <link rel="stylesheet" href="styles.css">
+    <script>
+      (function() {
+        var theme = localStorage.getItem('cloud-dashboard-theme') || 'blurred';
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
+
+<!-- Umami Analytics -->
+<script async src="https://analytics.diegonmarcos.com/umami/script.js" data-website-id="937cbde7-5ec2-450c-9d6a-8117423ac12f"></script>
+<!-- End Umami Analytics -->
+</head>
+<body>
+    <button class="theme-toggle" id="theme-toggle" title="Switch theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <span class="theme-label">Blurred</span>
+    </button>
+
+    <div class="container">
+        <header>
+            <h1>Cloud Portal</h1>
+            <!-- Cloud Infrastructure Banner -->
+            <div class="header-banner">
+                <svg viewBox="0 0 800 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgba(56,189,248,0.1)"/>
+                            <stop offset="50%" style="stop-color:rgba(139,92,246,0.15)"/>
+                            <stop offset="100%" style="stop-color:rgba(56,189,248,0.1)"/>
+                        </linearGradient>
+                        <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:rgba(56,189,248,0.3)"/>
+                            <stop offset="50%" style="stop-color:rgba(139,92,246,0.5)"/>
+                            <stop offset="100%" style="stop-color:rgba(56,189,248,0.3)"/>
+                        </linearGradient>
+                    </defs>
+                    <path d="M50 60 L150 40 L250 70 L350 35 L450 60 L550 30 L650 55 L750 45" stroke="url(#lineGrad)" stroke-width="1.5" fill="none" opacity="0.6"/>
+                    <path d="M50 80 L150 90 L250 75 L350 95 L450 80 L550 100 L650 85 L750 90" stroke="url(#lineGrad)" stroke-width="1.5" fill="none" opacity="0.4"/>
+                    <circle cx="150" cy="40" r="8" fill="rgba(56,189,248,0.8)" opacity="0.9"/>
+                    <circle cx="350" cy="35" r="10" fill="rgba(139,92,246,0.8)" opacity="0.9"/>
+                    <circle cx="550" cy="30" r="7" fill="rgba(56,189,248,0.8)" opacity="0.9"/>
+                    <circle cx="250" cy="70" r="6" fill="rgba(56,189,248,0.6)" opacity="0.8"/>
+                    <circle cx="450" cy="60" r="9" fill="rgba(139,92,246,0.7)" opacity="0.85"/>
+                    <circle cx="650" cy="55" r="7" fill="rgba(56,189,248,0.7)" opacity="0.85"/>
+                    <rect x="140" y="75" width="20" height="30" rx="2" fill="rgba(56,189,248,0.3)" stroke="rgba(56,189,248,0.6)" stroke-width="1"/>
+                    <line x1="143" y1="82" x2="157" y2="82" stroke="rgba(56,189,248,0.8)" stroke-width="1"/>
+                    <line x1="143" y1="88" x2="157" y2="88" stroke="rgba(56,189,248,0.6)" stroke-width="1"/>
+                    <rect x="340" y="70" width="20" height="30" rx="2" fill="rgba(139,92,246,0.3)" stroke="rgba(139,92,246,0.6)" stroke-width="1"/>
+                    <line x1="343" y1="77" x2="357" y2="77" stroke="rgba(139,92,246,0.8)" stroke-width="1"/>
+                    <line x1="343" y1="83" x2="357" y2="83" stroke="rgba(139,92,246,0.6)" stroke-width="1"/>
+                    <rect x="540" y="65" width="20" height="30" rx="2" fill="rgba(56,189,248,0.3)" stroke="rgba(56,189,248,0.6)" stroke-width="1"/>
+                    <line x1="543" y1="72" x2="557" y2="72" stroke="rgba(56,189,248,0.8)" stroke-width="1"/>
+                    <line x1="543" y1="78" x2="557" y2="78" stroke="rgba(56,189,248,0.6)" stroke-width="1"/>
+                    <circle cx="350" cy="35" r="15" fill="none" stroke="rgba(139,92,246,0.4)" stroke-width="1" opacity="0.5"/>
+                    <circle cx="450" cy="60" r="14" fill="none" stroke="rgba(139,92,246,0.3)" stroke-width="1" opacity="0.4"/>
+                </svg>
+            </div>
+            <div class="nav-level1">
+                <a href="products.html" class="nav-main-btn">User</a>
+                <a href="cloud_control.html" class="nav-main-btn">Cloud Control</a>
+                <a href="cloud_control_center.html" class="nav-main-btn">Cloud Control Center</a>
+                <a href="architecture.html" class="nav-main-btn active">Architecture</a>
+            </div>
+            <!-- Level 2: Architecture Tabs -->
+            <div class="nav-level2 active" id="nav-architecture">
+                <button class="view-btn active" data-arch="infra">Infra</button>
+                <button class="view-btn" data-arch="data-mcp">Data</button>
+                <button class="view-btn" data-arch="security">Security</button>
+                <button class="view-btn" data-arch="ai">AI</button>
+            </div>
+        </header>
+
+
+        <!-- SECURITY SECTION -->
+        <div class="arch-section" id="section-security">
+            <div class="diagram-embed">
+    <div class="main-container">
+        <!-- Security Architecture Master Title -->
+        <div class="sec-header">
+            <h2 class="sec-title">Security Architecture <span class="version-badge">v2.1</span></h2>
+            <p class="subtitle">Defense in Depth - OIDC Passwordless Front Gate (GitHub SSO + TOTP + Passkey + VPN)</p>
+        </div>
+
+        <!-- Security Sub-Navigation -->
+        <div class="sec-nav">
+            <a href="#sec-vps" class="sec-nav-btn vps">1) Secure VPS Arch</a>
+            <a href="#sec-cloud" class="sec-nav-btn cloud">2) Cloud Security Arch</a>
+        </div>
+
+        <!-- ============================================
+             SECTION 1: SECURE VPS ARCHITECTURE
+             ============================================ -->
+        <div id="sec-vps" class="sec-vps">
+            <div class="sec-intro">
+                <h3 class="sec-intro-title public">1) Secure VPS Architecture</h3>
+                <p class="sec-intro-desc">Single VPS Security Model - Network Isolation & Container Hardening</p>
+            </div>
+
+    <!-- ============================================
+         SECTION 1: INTERNET CLOUD
+         ============================================ -->
+    <div class="internet-zone">
+        <div class="cloud-icon">☁️</div>
+        <div class="internet-label">Internet Traffic</div>
+
+        <div class="traffic-labels">
+            <div class="traffic-type">
+                <span class="traffic-dot http"></span>
+                <span>HTTP/HTTPS (Web)</span>
+            </div>
+            <div class="traffic-type">
+                <span class="traffic-dot ssh"></span>
+                <span>SSH (Admin)</span>
+            </div>
+            <div class="traffic-type">
+                <span class="traffic-dot mail"></span>
+                <span>SMTP/IMAP (Mail)</span>
+            </div>
+            <div class="traffic-type">
+                <span class="traffic-dot blocked"></span>
+                <span>All Other (Blocked)</span>
+            </div>
+        </div>
+
+        <div class="arrow-stream">
+            <span class="arrow-particle">⬇️</span>
+            <span class="arrow-particle">⬇️</span>
+            <span class="arrow-particle">⬇️</span>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SECTION 2: SERVER DOORS (PORTS)
+         ============================================ -->
+    <div class="doors-layer">
+        <div class="doors-grid">
+            <!-- SSH Door -->
+            <div class="door-box ssh" onclick="openModal('ssh')">
+                <div class="door-status open"></div>
+                <div class="door-icon">🔐</div>
+                <div class="door-port">:22</div>
+                <div class="door-label">SSH (Key Only)</div>
+                <div class="door-connector ssh">↓</div>
+            </div>
+
+            <!-- HTTP Door -->
+            <div class="door-box web" onclick="openModal('http')">
+                <div class="door-status open"></div>
+                <div class="door-icon">🌐</div>
+                <div class="door-port">:80</div>
+                <div class="door-label">HTTP → HTTPS</div>
+                <div class="door-connector web">↓</div>
+            </div>
+
+            <!-- HTTPS Door -->
+            <div class="door-box web" onclick="openModal('https')">
+                <div class="door-status open"></div>
+                <div class="door-icon">🔒</div>
+                <div class="door-port">:443</div>
+                <div class="door-label">HTTPS (TLS)</div>
+                <div class="door-connector web">↓</div>
+            </div>
+
+            <!-- SMTP Door -->
+            <div class="door-box mail" onclick="openModal('mail')">
+                <div class="door-status open"></div>
+                <div class="door-icon">📤</div>
+                <div class="door-port">:25/587</div>
+                <div class="door-label">SMTP (Mail Out)</div>
+                <div class="door-connector mail">↓</div>
+            </div>
+
+            <!-- IMAP Door -->
+            <div class="door-box mail" onclick="openModal('mail')">
+                <div class="door-status open"></div>
+                <div class="door-icon">📥</div>
+                <div class="door-port">:993</div>
+                <div class="door-label">IMAPS (Mail In)</div>
+                <div class="door-connector mail">↓</div>
+            </div>
+
+            <!-- Blocked Door -->
+            <div class="door-box blocked">
+                <div class="door-status closed"></div>
+                <div class="door-icon">🚫</div>
+                <div class="door-port">:*</div>
+                <div class="door-label">All Other Ports</div>
+            </div>
+        </div>
+
+        <div class="security-comment">
+            <strong>⚠️ SECURITY:</strong> Only these 6 ports are exposed. All others are DROP by default.
+            Direct access to :8080 (Matomo), :3306 (MySQL), :27017 (MongoDB) is <strong>BLOCKED</strong> from internet.
+        </div>
+    </div>
+
+    <!-- ============================================
+         SECTION 3: FIREWALL (UFW)
+         ============================================ -->
+    <div class="firewall-layer">
+        <div class="firewall-title">
+            <span class="icon">🛡️</span>
+            <span>UFW FIREWALL</span>
+        </div>
+
+        <div class="firewall-stats">
+            <div class="firewall-stat">
+                <div class="value">6</div>
+                <div class="label">Ports Open</div>
+            </div>
+            <div class="firewall-stat">
+                <div class="value">65529</div>
+                <div class="label">Ports Blocked</div>
+            </div>
+            <div class="firewall-stat">
+                <div class="value">DROP</div>
+                <div class="label">Default Policy</div>
+            </div>
+        </div>
+
+        <button class="info-btn" onclick="openModal('firewall')">i</button>
+    </div>
+
+    <div class="arrow-stream arrow-stream-short">
+        <span class="arrow-particle text-success">✓</span>
+        <span class="arrow-particle text-success">✓</span>
+        <span class="arrow-particle text-success">✓</span>
+    </div>
+
+    <!-- ============================================
+         SECTION 4: VPS SERVER BOX
+         ============================================ -->
+    <div class="vps-box">
+        <div class="vps-label">
+            <span>🖥️ VPS SERVER</span>
+            <span class="ip">130.110.251.193</span>
+            <button class="info-btn" onclick="openModal('server')">i</button>
+        </div>
+
+        <!-- Hardware Specs -->
+        <div class="hardware-specs">
+            <div class="hw-spec provider">
+                <span class="icon">☁️</span>
+                <span class="label">Provider:</span>
+                <span class="value">Oracle Cloud</span>
+            </div>
+            <div class="hw-spec arch">
+                <span class="icon">🔧</span>
+                <span class="label">Arch:</span>
+                <span class="value">x86 AMD EPYC</span>
+            </div>
+            <div class="hw-spec cpu">
+                <span class="icon">⚡</span>
+                <span class="label">CPU:</span>
+                <span class="value">1 OCPU (1/8 core)</span>
+            </div>
+            <div class="hw-spec ram">
+                <span class="icon">🧠</span>
+                <span class="label">RAM:</span>
+                <span class="value">1 GB</span>
+            </div>
+            <div class="hw-spec storage">
+                <span class="icon">💾</span>
+                <span class="label">Storage:</span>
+                <span class="value">47 GB</span>
+            </div>
+        </div>
+
+        <!-- SSH Direct Path -->
+        <div class="ssh-direct-path">
+            <div class="ssh-line"></div>
+            <div class="ssh-badge">DIRECT SSH</div>
+            <div class="ssh-target">
+                <div class="icon">🐧</div>
+                <div>Ubuntu 24.04</div>
+                <div class="text-ssh">Host OS</div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             NGINX REVERSE PROXY
+             ============================================ -->
+        <div class="nginx-layer">
+            <div class="nginx-header">
+                <div class="nginx-title">
+                    <span class="icon">⚙️</span>
+                    <span>NGINX Reverse Proxy</span>
+                </div>
+                <button class="info-btn" onclick="openModal('nginx')">i</button>
+            </div>
+
+            <div class="nginx-routes">
+                <div class="route-box">
+                    <span class="domain">diegonmarcos.com</span>
+                    <span class="arrow">→</span>
+                    <span class="target">127.0.0.1:8081</span>
+                </div>
+                <div class="route-box">
+                    <span class="domain">analytics.*.com</span>
+                    <span class="arrow">→</span>
+                    <span class="target">127.0.0.1:8080</span>
+                </div>
+                <div class="route-box">
+                    <span class="domain">cloud.*.com</span>
+                    <span class="arrow">→</span>
+                    <span class="target">127.0.0.1:8082</span>
+                </div>
+                <div class="route-box">
+                    <span class="domain">mail.*.com</span>
+                    <span class="arrow">→</span>
+                    <span class="target">127.0.0.1:8025</span>
+                </div>
+            </div>
+
+            <div class="nginx-flow-arrows">
+                <div class="flow-arrow public">
+                    <div class="line"></div>
+                    <span class="label">Public</span>
+                </div>
+                <div class="flow-arrow public">
+                    <div class="line"></div>
+                    <span class="label">Analytics</span>
+                </div>
+                <div class="flow-arrow private">
+                    <div class="line"></div>
+                    <span class="label">Private</span>
+                </div>
+                <div class="flow-arrow mail">
+                    <div class="line"></div>
+                    <span class="label">Mail</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             DOCKER ENVIRONMENT
+             ============================================ -->
+        <div class="docker-env">
+            <div class="docker-label">
+                <span class="whale">🐳</span>
+                <span>DOCKER COMPOSE</span>
+            </div>
+
+            <div class="network-zones">
+                <!-- PUBLIC ZONE -->
+                <div class="zone-column public">
+                    <div class="zone-header">
+                        <div class="zone-title">🌐 Public Zone</div>
+                        <div class="zone-network">network: public_net</div>
+                    </div>
+
+                    <div class="container-box public">
+                        <div class="container-header">
+                            <span class="container-name"><span class="icon">🌍</span> Web Server</span>
+                            <span class="container-port">:8081</span>
+                        </div>
+                        <div class="container-desc">Static website hosting (GitHub Pages replacement)</div>
+                        <div class="container-tech">
+                            <span class="tech-tag">nginx:alpine</span>
+                            <span class="tech-tag">read-only</span>
+                        </div>
+                    </div>
+
+                    <div class="connector">⬇</div>
+
+                    <div class="container-box public">
+                        <div class="container-header">
+                            <span class="container-name"><span class="icon">📊</span> Matomo</span>
+                            <span class="container-port">:8080</span>
+                        </div>
+                        <div class="container-desc">Privacy-focused analytics platform</div>
+                        <div class="container-tech">
+                            <span class="tech-tag">matomo:fpm</span>
+                            <span class="tech-tag">PHP 8.4</span>
+                        </div>
+                    </div>
+
+                    <div class="connector">⬇</div>
+
+                    <div class="container-box db-sql">
+                        <div class="container-header">
+                            <span class="container-name"><span class="icon">🛢️</span> Matomo DB</span>
+                            <span class="db-type sql">SQL</span>
+                        </div>
+                        <div class="container-desc">Analytics data storage</div>
+                        <div class="container-tech">
+                            <span class="tech-tag">MariaDB 11.4</span>
+                            <span class="tech-tag">InnoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PRIVATE ZONE -->
+                <div class="zone-column private">
+                    <div class="zone-header">
+                        <div class="zone-title">🔒 Private Zone</div>
+                        <div class="zone-network">network: private_net (internal)</div>
+                    </div>
+
+                    <div class="container-box private">
+                        <div class="container-header">
+                            <span class="container-name"><span class="icon">☁️</span> NextCloud</span>
+                            <span class="container-port">:8082</span>
+                        </div>
+                        <div class="container-desc">Private file sync & storage</div>
+                        <div class="container-tech">
+                            <span class="tech-tag">nextcloud:fpm</span>
+                            <span class="tech-tag">auth-only</span>
+                        </div>
+                    </div>
+
+                    <div class="connector">⬇</div>
+
+                    <div class="container-box db-sql">
+                        <div class="container-header">
+                            <span class="container-name"><span class="icon">🛢️</span> NextCloud DB</span>
+                            <span class="db-type sql">SQL</span>
+                        </div>
+                        <div class="container-desc">User data & metadata</div>
+                        <div class="container-tech">
+                            <span class="tech-tag">PostgreSQL 16</span>
+                            <span class="tech-tag">Encrypted</span>
+                        </div>
+                    </div>
+
+                    <div class="connector">⬇</div>
+
+                    <div class="container-box db-nosql">
+                        <div class="container-header">
+                            <span class="container-name"><span class="icon">🍃</span> Cache/Search</span>
+                            <span class="db-type nosql">NoSQL</span>
+                        </div>
+                        <div class="container-desc">Redis cache + search index</div>
+                        <div class="container-tech">
+                            <span class="tech-tag">Redis 7</span>
+                            <span class="tech-tag">memory-only</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MAIL ZONE -->
+                <div class="zone-column mail">
+                    <div class="zone-header">
+                        <div class="zone-title">📧 Mail Zone</div>
+                        <div class="zone-network">network: mail_net (isolated)</div>
+                    </div>
+
+                    <div class="container-box mail">
+                        <div class="container-header">
+                            <span class="container-name"><span class="icon">📮</span> Mail Server</span>
+                            <span class="container-port">:25/587/993</span>
+                        </div>
+                        <div class="container-desc">Postfix + Dovecot mail stack</div>
+                        <div class="container-tech">
+                            <span class="tech-tag">Mailu</span>
+                            <span class="tech-tag">DKIM</span>
+                            <span class="tech-tag">SPF</span>
+                        </div>
+                    </div>
+
+                    <div class="connector">⬇</div>
+
+                    <div class="container-box db-sql">
+                        <div class="container-header">
+                            <span class="container-name"><span class="icon">🛢️</span> Mail DB</span>
+                            <span class="db-type sql">SQL</span>
+                        </div>
+                        <div class="container-desc">User accounts & aliases</div>
+                        <div class="container-tech">
+                            <span class="tech-tag">SQLite</span>
+                            <span class="tech-tag">Lightweight</span>
+                        </div>
+                    </div>
+
+                    <div class="connector">⬇</div>
+
+                    <div class="container-box db-nosql">
+                        <div class="container-header">
+                            <span class="container-name"><span class="icon">📁</span> Mailboxes</span>
+                            <span class="db-type nosql">Files</span>
+                        </div>
+                        <div class="container-desc">Maildir format storage</div>
+                        <div class="container-tech">
+                            <span class="tech-tag">Maildir++</span>
+                            <span class="tech-tag">Encrypted</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             DOCKER NETWORKS
+             ============================================ -->
+        <div class="networks-layer">
+            <div class="networks-label">🔗 DOCKER NETWORKS (Isolated)</div>
+
+            <div class="networks-grid">
+                <div class="network-badge public-net">
+                    <span class="network-icon">🌐</span>
+                    <div>
+                        <div class="network-name">public_net</div>
+                        <div class="network-members">web, matomo, matomo-db</div>
+                    </div>
+                </div>
+
+                <div class="network-badge private-net">
+                    <span class="network-icon">🔒</span>
+                    <div>
+                        <div class="network-name">private_net</div>
+                        <div class="network-members">nextcloud, nc-db, redis</div>
+                    </div>
+                    <div class="network-isolation" title="Internal Only">🚫</div>
+                </div>
+
+                <div class="network-badge mail-net">
+                    <span class="network-icon">📧</span>
+                    <div>
+                        <div class="network-name">mail_net</div>
+                        <div class="network-members">mailu-front, mailu-admin, mailu-imap</div>
+                    </div>
+                    <div class="network-isolation" title="Isolated">🚫</div>
+                </div>
+
+                <div class="network-badge db-net">
+                    <span class="network-icon">🛢️</span>
+                    <div>
+                        <div class="network-name">db_bridge</div>
+                        <div class="network-members">backup-agent only</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="security-comment" class="mt-3">
+                <strong>⚠️ NETWORK ISOLATION:</strong> Containers in <code>private_net</code> cannot reach <code>public_net</code> and vice versa.
+                A compromised Matomo container <strong>CANNOT</strong> access NextCloud or Mail data.
+            </div>
+        </div>
+
+    </div><!-- End VPS Box -->
+
+        </div><!-- End sec-vps -->
+
+        <!-- ============================================
+             SECTION 2: CLOUD SECURITY ARCHITECTURE
+             ============================================ -->
+        <div id="sec-cloud" class="arch-card-lg">
+            <div class="sec-intro">
+                <h3 class="sec-intro-title auth">2) Cloud Security Architecture</h3>
+                <p class="sec-intro-desc">Multi-Cloud Security Model - Defense in Depth with OIDC Passwordless</p>
+            </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot edge"></div>
+                <span>Edge Security</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot firewall"></div>
+                <span>Host Firewall</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot proxy"></div>
+                <span>TLS/Proxy</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot auth"></div>
+                <span>Authentication</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot network"></div>
+                <span>Network Isolation</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot container"></div>
+                <span>Container Security</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot vpn"></div>
+                <span>VPN Tunnel</span>
+            </div>
+        </div>
+
+        <!-- ============================================
+             DEFENSE IN DEPTH - CONCENTRIC RINGS
+             ============================================ -->
+        <div class="visual-diagram">
+            <div class="diagram-title">Defense in Depth Architecture</div>
+
+            <div class="defense-rings">
+                <div class="ring-container">
+                    <!-- Layer 1: Edge -->
+                    <div class="ring ring-1">
+                        <span class="ring-label">Layer 1: Edge Security</span>
+                        <div class="ring-services">
+                            <span class="service-chip active" class="edge">OCI Security Lists</span>
+                            <span class="service-chip active" class="edge">GCP Firewall</span>
+                            <span class="service-chip" class="edge">Cloudflare</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 2: Firewall -->
+                    <div class="ring ring-2">
+                        <span class="ring-label">Layer 2: Host Firewall</span>
+                        <div class="ring-services">
+                            <span class="service-chip active" class="firewall">UFW</span>
+                            <span class="service-chip active" class="firewall">Fail2Ban</span>
+                            <span class="service-chip active" class="firewall">iptables</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 3: Proxy -->
+                    <div class="ring ring-3">
+                        <span class="ring-label">Layer 3: TLS/Proxy</span>
+                        <div class="ring-services">
+                            <span class="service-chip active" class="proxy">NPM</span>
+                            <span class="service-chip active" class="proxy">Let's Encrypt</span>
+                            <span class="service-chip active" class="proxy">HSTS</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 4: Authentication -->
+                    <div class="ring ring-4">
+                        <span class="ring-label">Layer 4: Auth</span>
+                        <div class="ring-services">
+                            <span class="service-chip active" class="auth-color">GitHub OAuth</span>
+                            <span class="service-chip active" class="auth-color">TOTP</span>
+                            <span class="service-chip active" class="auth-color">Passkey</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer 5: Network -->
+                    <div class="ring ring-5">
+                        <span class="ring-label">Layer 5: Network</span>
+                        <div class="ring-services">
+                            <span class="service-chip active" class="network">Docker</span>
+                        </div>
+                    </div>
+
+                    <!-- Core: Application -->
+                    <div class="ring ring-6">
+                        <span class="core-icon">🔒</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             HORIZONTAL FLOW DIAGRAM
+             ============================================ -->
+        <div class="visual-diagram">
+            <div class="diagram-title">Request Security Flow</div>
+
+            <div class="flow-diagram-horizontal">
+                <!-- Internet -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-edge">
+                        <span class="fl-icon">🌐</span>
+                        <span class="fl-label">Internet</span>
+                        <div class="fl-name">Inbound Request</div>
+                        <div class="fl-desc">"Untrusted Traffic"</div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--edge-color); --conn-color-end: var(--firewall-color);">
+                    <span class="conn-label">HTTPS:443</span>
+                </div>
+
+                <!-- Cloud Firewall -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-firewall">
+                        <span class="fl-icon">🛡️</span>
+                        <span class="fl-label">Edge</span>
+                        <div class="fl-name">Cloud Firewall</div>
+                        <div class="fl-desc">"Security Lists"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">OCI</span>
+                            <span class="provider-chip active">GCP</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--firewall-color); --conn-color-end: var(--proxy-color);">
+                    <span class="conn-label">Allowed</span>
+                </div>
+
+                <!-- UFW + Fail2Ban -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-proxy">
+                        <span class="fl-icon">🔥</span>
+                        <span class="fl-label">Host</span>
+                        <div class="fl-name">UFW + Fail2Ban</div>
+                        <div class="fl-desc">"Rate Limiting"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">UFW</span>
+                            <span class="provider-chip active">Fail2Ban</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--proxy-color); --conn-color-end: var(--proxy-color);">
+                    <span class="conn-label">Not Banned</span>
+                </div>
+
+                <!-- NPM + SSL -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-proxy">
+                        <span class="fl-icon">🔐</span>
+                        <span class="fl-label">TLS</span>
+                        <div class="fl-name">NGINX Proxy</div>
+                        <div class="fl-desc">"SSL Termination"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">NPM</span>
+                            <span class="provider-chip active">Let's Encrypt</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--proxy-color); --conn-color-end: var(--auth-color);">
+                    <span class="conn-label">Forward Auth</span>
+                </div>
+
+                <!-- Triple Auth -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-auth">
+                        <span class="fl-icon">🔑</span>
+                        <span class="fl-label">Triple Auth</span>
+                        <div class="fl-name">OAuth2 + Authelia</div>
+                        <div class="fl-desc">"Passwordless SSO"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">GitHub SSO</span>
+                            <span class="provider-chip active">TOTP</span>
+                            <span class="provider-chip active">Passkey</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--auth-color); --conn-color-end: var(--network-color);">
+                    <span class="conn-label">Verified</span>
+                </div>
+
+                <!-- Docker Network -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-network">
+                        <span class="fl-icon">🐳</span>
+                        <span class="fl-label">Isolated</span>
+                        <div class="fl-name">Docker Network</div>
+                        <div class="fl-desc">"No Cross-Talk"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">public_net</span>
+                            <span class="provider-chip active">private_net</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector -->
+                <div class="flow-connector" style="--conn-color-start: var(--network-color); --conn-color-end: var(--container-color);">
+                    <span class="conn-label">127.0.0.1</span>
+                </div>
+
+                <!-- Application -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-container">
+                        <span class="fl-icon">📦</span>
+                        <span class="fl-label">Container</span>
+                        <div class="fl-name">Application</div>
+                        <div class="fl-desc">"Least Privilege"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">read-only</span>
+                            <span class="provider-chip active">no-root</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             STACKED LAYERS DIAGRAM
+             ============================================ -->
+        <div class="stacked-diagram">
+            <div class="stacked-title">Security Stack Overview</div>
+
+            <div class="stack-container">
+                <!-- Edge Security -->
+                <div class="stack-layer stack-edge">
+                    <div class="stack-label">
+                        <span class="sl-icon">🛡️</span>
+                        <span>Edge</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Cloud Provider Security</div>
+                        <div class="sc-mental">"First line of defense" - Block malicious traffic before it reaches VM</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔵 Oracle Security Lists</span>
+                            <span class="sp-item active">🔵 GCP Firewall Rules</span>
+                            <span class="sp-item">☁️ Cloudflare DDoS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--edge-color); --to-color: var(--firewall-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Allowed ports only (22, 80, 443, 587, 993)</span>
+                </div>
+
+                <!-- Host Firewall -->
+                <div class="stack-layer stack-firewall">
+                    <div class="stack-label">
+                        <span class="sl-icon">🔥</span>
+                        <span>Firewall</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Host-Level Protection</div>
+                        <div class="sc-mental">"Local defense" - UFW rules + brute force protection</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔒 UFW (default deny)</span>
+                            <span class="sp-item active">🚫 Fail2Ban (SSH/Web)</span>
+                            <span class="sp-item active">⛓️ iptables (Docker bypass prevention)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--firewall-color); --to-color: var(--proxy-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Not rate-limited or banned</span>
+                </div>
+
+                <!-- TLS/Proxy Layer -->
+                <div class="stack-layer stack-proxy">
+                    <div class="stack-label">
+                        <span class="sl-icon">🔐</span>
+                        <span>TLS</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">TLS Termination & Reverse Proxy</div>
+                        <div class="sc-mental">"Encryption gate" - HTTPS only, security headers, rate limiting</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔀 NGINX Proxy Manager</span>
+                            <span class="sp-item active">📜 Let's Encrypt SSL</span>
+                            <span class="sp-item active">🛡️ HSTS + CSP Headers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--proxy-color); --to-color: var(--auth-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Forward auth to Authelia</span>
+                </div>
+
+                <!-- Authentication Layer -->
+                <div class="stack-layer stack-auth">
+                    <div class="stack-label">
+                        <span class="sl-icon">🔑</span>
+                        <span>Auth</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Triple Auth - Passwordless SSO</div>
+                        <div class="sc-mental">"Identity verification" - GitHub OAuth (primary) + TOTP/Passkey (backup)</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔗 OAuth2 Proxy (GitHub SSO)</span>
+                            <span class="sp-item active">🔐 Authelia TOTP (Backup)</span>
+                            <span class="sp-item active">🔑 Authelia WebAuthn/Passkey</span>
+                            <span class="sp-item active">🔑 SSH Key-Only Auth</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--auth-color); --to-color: var(--vpn-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Cross-VM secure tunnel</span>
+                </div>
+
+                <!-- VPN Tunnel -->
+                <div class="stack-layer stack-vpn">
+                    <div class="stack-label">
+                        <span class="sl-icon">🔗</span>
+                        <span>VPN</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">WireGuard VPN Tunnel</div>
+                        <div class="sc-mental">"Private network" - Secure cross-VM communication (10.0.0.x)</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔵 WireGuard (GCP ↔ OCI)</span>
+                            <span class="sp-item">🌐 10.0.0.1 (GCP)</span>
+                            <span class="sp-item">🌐 10.0.0.2 (OCI)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--vpn-color); --to-color: var(--network-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Isolated Docker networks</span>
+                </div>
+
+                <!-- Network Isolation -->
+                <div class="stack-layer stack-network">
+                    <div class="stack-label">
+                        <span class="sl-icon">🐳</span>
+                        <span>Network</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Docker Network Isolation</div>
+                        <div class="sc-mental">"Micro-segmentation" - Services can't communicate across networks</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🌐 public_net (web services)</span>
+                            <span class="sp-item active">🔒 private_net (internal)</span>
+                            <span class="sp-item active">💾 db_bridge (databases)</span>
+                            <span class="sp-item active">📧 mail_net (email)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--network-color); --to-color: var(--container-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Container hardening</span>
+                </div>
+
+                <!-- Container Security -->
+                <div class="stack-layer stack-container-layer">
+                    <div class="stack-label">
+                        <span class="sl-icon">📦</span>
+                        <span>Container</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Container Security Hardening</div>
+                        <div class="sc-mental">"Least privilege" - Minimal attack surface per container</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔒 read_only: true</span>
+                            <span class="sp-item active">🚫 no-new-privileges</span>
+                            <span class="sp-item active">📁 tmpfs for temp data</span>
+                            <span class="sp-item active">🔑 127.0.0.1 binding only</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             ATTACK SCENARIOS
+             ============================================ -->
+        <div class="attack-flow">
+            <div class="attack-title">Attack Mitigation Scenarios</div>
+
+            <div class="attack-scenarios">
+                <!-- Brute Force Attack -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">🔨</span> SSH Brute Force Attack</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker sends SSH login attempts to port 22</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">2</span>
+                            <span>Cloud firewall allows port 22 (whitelisted)</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">3</span>
+                            <span>UFW allows SSH from any IP</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">4</span>
+                            <span>Fail2Ban detects 5+ failed attempts → IP banned</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Port Scan Attack -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">🔍</span> Port Scanning</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker scans all ports on VM IP</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">2</span>
+                            <span>Cloud firewall drops all non-whitelisted ports</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                        <div class="attack-step dimmed">
+                            <span class="step-num">3</span>
+                            <span>Only 22, 80, 443, 587, 993 visible</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Docker UFW Bypass -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">🐳</span> Docker UFW Bypass Attempt</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker finds container port (e.g., 8080)</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">2</span>
+                            <span>Attempts direct access to VM:8080</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">3</span>
+                            <span>Container bound to 127.0.0.1:8080 only</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Unauthorized Admin Access -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">👤</span> Unauthorized Admin Access</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker finds admin panel URL</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">2</span>
+                            <span>NPM forwards to OAuth2 Proxy</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">3</span>
+                            <span>GitHub OAuth requires 2FA - attacker blocked</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                        <div class="attack-step faded">
+                            <span class="step-num">4</span>
+                            <span>Backup: Authelia TOTP/Passkey also requires 2FA</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cross-VM Access -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">🔗</span> Cross-VM Service Access</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker discovers internal service on OCI VM</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">2</span>
+                            <span>Attempts direct IP access from internet</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">3</span>
+                            <span>Service bound to WireGuard IP (10.0.0.2) only</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Container Escape -->
+                <div class="attack-card">
+                    <h4><span class="attack-icon">📦</span> Container Escape Attempt</h4>
+                    <div class="attack-steps">
+                        <div class="attack-step">
+                            <span class="step-num">1</span>
+                            <span>Attacker gains shell in container</span>
+                        </div>
+                        <div class="attack-step">
+                            <span class="step-num">2</span>
+                            <span>Attempts to write malicious files</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">3</span>
+                            <span>Container filesystem is read-only</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                        <div class="attack-step blocked">
+                            <span class="step-num">4</span>
+                            <span>no-new-privileges prevents escalation</span>
+                            <span class="block-badge">BLOCKED</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             OIDC AUTHENTICATION FLOW
+             ============================================ -->
+        <div class="arch-card-lg">
+            <div class="diagram-title diagram-title-centered">OIDC Passwordless Authentication Flow</div>
+            <svg viewBox="0 0 900 280" fill="none" xmlns="http://www.w3.org/2000/svg" class="img-full">
+                <!-- Background -->
+                <rect x="10" y="10" width="880" height="260" rx="12" fill="rgba(10,10,15,0.8)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+                <!-- User -->
+                <circle cx="80" cy="140" r="30" fill="rgba(255,255,255,0.1)" stroke="#e8e8f0" stroke-width="2"/>
+                <text x="80" y="145" text-anchor="middle" fill="#e8e8f0" font-size="11" font-weight="600">USER</text>
+
+                <!-- Arrow 1 -->
+                <path d="M115 140 L160 140" stroke="#f39c12" stroke-width="2" marker-end="url(#arrowAuth)"/>
+                <text x="137" y="130" text-anchor="middle" fill="#8888a0" font-size="8">HTTPS</text>
+
+                <!-- Cloudflare -->
+                <rect x="165" y="110" width="80" height="60" rx="8" fill="rgba(139,92,246,0.15)" stroke="#8b5cf6" stroke-width="2"/>
+                <text x="205" y="135" text-anchor="middle" fill="#8b5cf6" font-size="10" font-weight="600">Cloudflare</text>
+                <text x="205" y="150" text-anchor="middle" fill="#8888a0" font-size="8">DNS + WAF</text>
+
+                <!-- Arrow 2 -->
+                <path d="M250 140 L290 140" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrowAuth)"/>
+
+                <!-- NPM -->
+                <rect x="295" y="110" width="80" height="60" rx="8" fill="rgba(243,156,18,0.15)" stroke="#f39c12" stroke-width="2"/>
+                <text x="335" y="135" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="600">NPM</text>
+                <text x="335" y="150" text-anchor="middle" fill="#8888a0" font-size="8">TLS + Proxy</text>
+
+                <!-- Arrow 3 (Forward Auth) -->
+                <path d="M380 140 L420 140" stroke="#f39c12" stroke-width="2" marker-end="url(#arrowAuth)"/>
+                <text x="400" y="130" text-anchor="middle" fill="#8888a0" font-size="7">fwd auth</text>
+
+                <!-- Auth Gateway Box -->
+                <rect x="425" y="80" width="180" height="120" rx="10" fill="rgba(165,94,234,0.08)" stroke="#a55eea" stroke-width="2"/>
+                <text x="515" y="100" text-anchor="middle" fill="#a55eea" font-size="11" font-weight="600">AUTH GATEWAY</text>
+
+                <!-- OAuth2 Proxy -->
+                <rect x="440" y="110" width="65" height="35" rx="5" fill="rgba(165,94,234,0.2)" stroke="#a55eea" stroke-width="1"/>
+                <text x="472" y="128" text-anchor="middle" fill="#a55eea" font-size="8" font-weight="500">OAuth2</text>
+                <text x="472" y="138" text-anchor="middle" fill="#8888a0" font-size="7">GitHub</text>
+
+                <!-- Authelia -->
+                <rect x="520" y="110" width="70" height="35" rx="5" fill="rgba(165,94,234,0.2)" stroke="#a55eea" stroke-width="1"/>
+                <text x="555" y="128" text-anchor="middle" fill="#a55eea" font-size="8" font-weight="500">Authelia</text>
+                <text x="555" y="138" text-anchor="middle" fill="#8888a0" font-size="7">TOTP/Passkey</text>
+
+                <!-- Auth methods icons -->
+                <text x="515" y="175" text-anchor="middle" fill="#00d084" font-size="9">OIDC Passwordless</text>
+                <text x="515" y="190" text-anchor="middle" fill="#555566" font-size="7">No passwords stored locally</text>
+
+                <!-- Arrow 4 -->
+                <path d="M610 140 L650 140" stroke="#a55eea" stroke-width="2" marker-end="url(#arrowAuth)"/>
+                <text x="630" y="130" text-anchor="middle" fill="#8888a0" font-size="7">verified</text>
+
+                <!-- VPN Tunnel -->
+                <rect x="655" y="110" width="80" height="60" rx="8" fill="rgba(0,206,201,0.15)" stroke="#00cec9" stroke-width="2"/>
+                <text x="695" y="130" text-anchor="middle" fill="#00cec9" font-size="10" font-weight="600">WireGuard</text>
+                <text x="695" y="145" text-anchor="middle" fill="#8888a0" font-size="8">VPN Tunnel</text>
+                <text x="695" y="158" text-anchor="middle" fill="#555566" font-size="7">10.0.0.x</text>
+
+                <!-- Arrow 5 -->
+                <path d="M740 140 L780 140" stroke="#00cec9" stroke-width="2" marker-end="url(#arrowAuth)"/>
+
+                <!-- Backend Service -->
+                <rect x="785" y="110" width="80" height="60" rx="8" fill="rgba(0,208,132,0.15)" stroke="#00d084" stroke-width="2"/>
+                <text x="825" y="130" text-anchor="middle" fill="#00d084" font-size="10" font-weight="600">Service</text>
+                <text x="825" y="145" text-anchor="middle" fill="#8888a0" font-size="8">Container</text>
+                <text x="825" y="158" text-anchor="middle" fill="#555566" font-size="7">127.0.0.1</text>
+
+                <!-- Labels at bottom -->
+                <text x="205" y="240" text-anchor="middle" fill="#8888a0" font-size="9">Layer 1: Edge</text>
+                <text x="335" y="240" text-anchor="middle" fill="#8888a0" font-size="9">Layer 3: TLS</text>
+                <text x="515" y="240" text-anchor="middle" fill="#8888a0" font-size="9">Layer 4: Auth</text>
+                <text x="695" y="240" text-anchor="middle" fill="#8888a0" font-size="9">Layer 5: VPN</text>
+                <text x="825" y="240" text-anchor="middle" fill="#8888a0" font-size="9">Layer 6: App</text>
+
+                <!-- Arrow marker -->
+                <defs>
+                    <marker id="arrowAuth" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#8888a0"/>
+                    </marker>
+                </defs>
+            </svg>
+
+            <!-- Auth Methods Summary -->
+            <div class="grid-4-mt">
+                <div class="arch-card-highlight">
+                    <div class="icon-xl">🔗</div>
+                    <div class="ai-provider-label">GitHub SSO</div>
+                    <div class="text-muted fs-xs">Primary (OIDC)</div>
+                </div>
+                <div class="arch-card-highlight">
+                    <div class="icon-xl">📱</div>
+                    <div class="ai-provider-label">TOTP 2FA</div>
+                    <div class="text-muted fs-xs">Backup Method</div>
+                </div>
+                <div class="arch-card-highlight">
+                    <div class="icon-xl">🔑</div>
+                    <div class="ai-provider-label">Passkey</div>
+                    <div class="text-muted fs-xs">WebAuthn/FIDO2</div>
+                </div>
+                <div class="box-vpn">
+                    <div class="icon-xl">🔒</div>
+                    <div class="text-vpn">VPN Tunnel</div>
+                    <div class="text-muted fs-xs">Cross-VM Access</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             SECURITY SERVICES INVENTORY
+             ============================================ -->
+        <div class="stacked-diagram">
+            <div class="stacked-title">Security Services Inventory</div>
+            <table class="security-table">
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Layer</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>OCI Security Lists</td>
+                        <td><span class="layer-badge edge">Edge</span></td>
+                        <td>Cloud Firewall</td>
+                        <td>Ingress/egress rules at cloud level</td>
+                        <td>Oracle Cloud</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>GCP Firewall Rules</td>
+                        <td><span class="layer-badge edge">Edge</span></td>
+                        <td>Cloud Firewall</td>
+                        <td>Network tags + firewall rules</td>
+                        <td>Google Cloud</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>UFW</td>
+                        <td><span class="layer-badge firewall">Firewall</span></td>
+                        <td>Host Firewall</td>
+                        <td>Default deny, explicit allow rules</td>
+                        <td>All VMs</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Fail2Ban</td>
+                        <td><span class="layer-badge firewall">Firewall</span></td>
+                        <td>IPS</td>
+                        <td>Brute force protection for SSH/Web</td>
+                        <td>All VMs</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>NGINX Proxy Manager</td>
+                        <td><span class="layer-badge proxy">TLS</span></td>
+                        <td>Reverse Proxy</td>
+                        <td>TLS termination, routing, headers</td>
+                        <td>GCP Micro 1</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Let's Encrypt</td>
+                        <td><span class="layer-badge proxy">TLS</span></td>
+                        <td>SSL/TLS</td>
+                        <td>Auto-renewed certificates</td>
+                        <td>NPM Container</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>OAuth2 Proxy</td>
+                        <td><span class="layer-badge auth">Auth</span></td>
+                        <td>OAuth SSO</td>
+                        <td>GitHub OAuth (Primary) - 2FA via GitHub</td>
+                        <td>GCP Micro 1</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Authelia TOTP</td>
+                        <td><span class="layer-badge auth">Auth</span></td>
+                        <td>2FA Backup</td>
+                        <td>Time-based OTP (Backup auth method)</td>
+                        <td>GCP Micro 1</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Authelia WebAuthn</td>
+                        <td><span class="layer-badge auth">Auth</span></td>
+                        <td>Passkey</td>
+                        <td>FIDO2/WebAuthn passwordless auth</td>
+                        <td>GCP Micro 1</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>WireGuard</td>
+                        <td><span class="layer-badge vpn">VPN</span></td>
+                        <td>VPN Tunnel</td>
+                        <td>Secure cross-VM communication</td>
+                        <td>GCP ↔ OCI</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>Docker Networks</td>
+                        <td><span class="layer-badge network">Network</span></td>
+                        <td>Micro-segmentation</td>
+                        <td>public_net, private_net, db_bridge</td>
+                        <td>OCI Flex 1</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                    <tr>
+                        <td>SSH Key Auth</td>
+                        <td><span class="layer-badge container">Container</span></td>
+                        <td>Access Control</td>
+                        <td>Key-only auth, no passwords</td>
+                        <td>All VMs</td>
+                        <td class="status-active">Active</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+            </div>
+        </div>
+
+        
+        <!-- SERVICE SECTION STYLES -->
+    </div><!-- End main-container -->
+            </div><!-- End diagram-embed -->
+        </div><!-- End section-security -->
+
+        <!-- INFRA SECTION -->
+        <div class="arch-section active" id="section-infra">
+            <div class="diagram-embed">
+                <div class="main-container">
+                    <!-- Infrastructure Title -->
+                    <div class="sec-box">
+                        <h2 style="font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #38bdf8, #8b5cf6, #f39c12, #00d084); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px;">Infrastructure Architecture <span class="version-badge">v2.0</span></h2>
+                        <p class="subtitle">Multi-Cloud Topology - GCP + Oracle Cloud + Cloudflare</p>
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-dot blue"></div>
+                            <span>Google Cloud (Gateway)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot orange"></div>
+                            <span>Oracle Cloud (Services)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot purple"></div>
+                            <span>Cloudflare (DNS/CDN)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot green"></div>
+                            <span>Free Tier</span>
+                        </div>
+                    </div>
+
+                    <!-- Network Topology Diagram -->
+                    <div class="arch-card-lg">
+                        <svg viewBox="0 0 900 500" fill="none" xmlns="http://www.w3.org/2000/svg" class="img-full">
+                            <!-- Background -->
+                            <rect x="10" y="10" width="880" height="480" rx="12" fill="rgba(10,10,15,0.8)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+                            <!-- User -->
+                            <circle cx="450" cy="50" r="25" fill="rgba(255,255,255,0.1)" stroke="#e8e8f0" stroke-width="2"/>
+                            <text x="450" y="55" text-anchor="middle" fill="#e8e8f0" font-size="11" font-weight="600">USER</text>
+
+                            <!-- Arrow to Cloudflare -->
+                            <path d="M450 80 L450 100" stroke="#8b5cf6" stroke-width="2" marker-end="url(#arrowInfra)"/>
+
+                            <!-- Cloudflare -->
+                            <rect x="350" y="105" width="200" height="50" rx="8" fill="rgba(139,92,246,0.15)" stroke="#8b5cf6" stroke-width="2"/>
+                            <text x="450" y="130" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="600">CLOUDFLARE</text>
+                            <text x="450" y="145" text-anchor="middle" fill="#8888a0" font-size="9">DNS + CDN + DDoS Protection</text>
+
+                            <!-- Arrow to GCP -->
+                            <path d="M450 160 L450 185" stroke="#38bdf8" stroke-width="2" marker-end="url(#arrowInfra)"/>
+
+                            <!-- GCP Box -->
+                            <rect x="280" y="190" width="340" height="100" rx="10" fill="rgba(56,189,248,0.08)" stroke="#38bdf8" stroke-width="2"/>
+                            <text x="450" y="210" text-anchor="middle" fill="#38bdf8" font-size="11" font-weight="600">GOOGLE CLOUD (gcp-f-micro_1) - FREE 24/7</text>
+                            <text x="450" y="225" text-anchor="middle" fill="#555566" font-size="9">34.55.55.234 | 1GB RAM | 30GB</text>
+
+                            <!-- GCP Services -->
+                            <rect x="300" y="235" width="90" height="40" rx="6" fill="rgba(56,189,248,0.2)" stroke="#38bdf8" stroke-width="1"/>
+                            <text x="345" y="255" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="500">NPM</text>
+                            <text x="345" y="268" text-anchor="middle" fill="#8888a0" font-size="8">:80/:443</text>
+
+                            <rect x="405" y="235" width="90" height="40" rx="6" fill="rgba(56,189,248,0.2)" stroke="#38bdf8" stroke-width="1"/>
+                            <text x="450" y="255" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="500">Authelia</text>
+                            <text x="450" y="268" text-anchor="middle" fill="#8888a0" font-size="8">:9091</text>
+
+                            <rect x="510" y="235" width="90" height="40" rx="6" fill="rgba(56,189,248,0.2)" stroke="#38bdf8" stroke-width="1"/>
+                            <text x="555" y="255" text-anchor="middle" fill="#38bdf8" font-size="10" font-weight="500">OAuth2</text>
+                            <text x="555" y="268" text-anchor="middle" fill="#8888a0" font-size="8">:4180</text>
+
+                            <!-- Arrows to Oracle -->
+                            <path d="M350 295 L180 330" stroke="#f39c12" stroke-width="2" marker-end="url(#arrowInfra)"/>
+                            <path d="M450 295 L450 330" stroke="#f39c12" stroke-width="2" marker-end="url(#arrowInfra)"/>
+                            <path d="M550 295 L720 330" stroke="#f39c12" stroke-width="2" marker-end="url(#arrowInfra)"/>
+
+                            <!-- Oracle Boxes -->
+                            <!-- oci-f-micro_1 -->
+                            <rect x="50" y="335" width="200" height="80" rx="10" fill="rgba(243,156,18,0.08)" stroke="#f39c12" stroke-width="2"/>
+                            <text x="150" y="355" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="600">oci-f-micro_1 - FREE</text>
+                            <text x="150" y="368" text-anchor="middle" fill="#555566" font-size="8">130.110.251.193 | 1GB</text>
+                            <rect x="70" y="378" width="160" height="28" rx="4" fill="rgba(243,156,18,0.2)" stroke="#f39c12" stroke-width="1"/>
+                            <text x="150" y="396" text-anchor="middle" fill="#f39c12" font-size="9">Mail (8 containers)</text>
+
+                            <!-- oci-f-micro_2 -->
+                            <rect x="280" y="335" width="200" height="80" rx="10" fill="rgba(243,156,18,0.08)" stroke="#f39c12" stroke-width="2"/>
+                            <text x="380" y="355" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="600">oci-f-micro_2 - FREE</text>
+                            <text x="380" y="368" text-anchor="middle" fill="#555566" font-size="8">129.151.228.66 | 1GB</text>
+                            <rect x="300" y="378" width="160" height="28" rx="4" fill="rgba(243,156,18,0.2)" stroke="#f39c12" stroke-width="1"/>
+                            <text x="380" y="396" text-anchor="middle" fill="#f39c12" font-size="9">Analytics (Matomo)</text>
+
+                            <!-- oci-p-flex_1 (main) -->
+                            <rect x="510" y="335" width="370" height="145" rx="10" fill="rgba(243,156,18,0.08)" stroke="#f39c12" stroke-width="2"/>
+                            <text x="695" y="355" text-anchor="middle" fill="#f39c12" font-size="10" font-weight="600">oci-p-flex_1 - ~$5.50/mo</text>
+                            <text x="695" y="368" text-anchor="middle" fill="#555566" font-size="8">84.235.234.87 | 8GB RAM | 100GB</text>
+
+                            <!-- Fridge -->
+                            <rect x="525" y="378" width="165" height="90" rx="6" fill="rgba(0,208,132,0.1)" stroke="#00d084" stroke-width="1"/>
+                            <text x="607" y="393" text-anchor="middle" fill="#00d084" font-size="9" font-weight="600">FRIDGE (Solutions)</text>
+                            <text x="607" y="408" text-anchor="middle" fill="#8888a0" font-size="8">terminal, ide, ai-chat</text>
+                            <text x="607" y="420" text-anchor="middle" fill="#8888a0" font-size="8">drive, git, photos</text>
+                            <text x="607" y="432" text-anchor="middle" fill="#8888a0" font-size="8">slides, sheets, dashboards</text>
+                            <text x="607" y="444" text-anchor="middle" fill="#8888a0" font-size="8">vault, vpn, calendar</text>
+                            <text x="607" y="460" text-anchor="middle" fill="#555566" font-size="7">~4.1 GB RAM | 49.6 GB</text>
+
+                            <!-- Kitchen -->
+                            <rect x="700" y="378" width="165" height="90" rx="6" fill="rgba(139,92,246,0.1)" stroke="#8b5cf6" stroke-width="1"/>
+                            <text x="782" y="393" text-anchor="middle" fill="#8b5cf6" font-size="9" font-weight="600">KITCHEN (C3)</text>
+                            <text x="782" y="408" text-anchor="middle" fill="#8888a0" font-size="8">uptime-kuma, dockge</text>
+                            <text x="782" y="420" text-anchor="middle" fill="#8888a0" font-size="8">borgmatic, dozzle, trivy</text>
+                            <text x="782" y="432" text-anchor="middle" fill="#8888a0" font-size="8">temporal, langgraph</text>
+                            <text x="782" y="444" text-anchor="middle" fill="#8888a0" font-size="8">redis, api</text>
+                            <text x="782" y="460" text-anchor="middle" fill="#555566" font-size="7">~2.4 GB RAM | 12.9 GB</text>
+
+                            <!-- Arrow marker -->
+                            <defs>
+                                <marker id="arrowInfra" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#8888a0"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <!-- VM Capacity Table -->
+                    <div class="arch-card">
+                        <h3 class="ai-intro">VM Capacity & Headroom</h3>
+                        <table class="arch-table">
+                            <thead>
+                                <tr class="th-highlight">
+                                    <th style="text-align: left; padding: 10px 8px; color: #8888a0;">Host</th>
+                                    <th style="text-align: left; padding: 10px 8px; color: #8888a0;">VM</th>
+                                    <th style="text-align: left; padding: 10px 8px; color: #8888a0;">IP</th>
+                                    <th style="text-align: center; padding: 10px 8px; color: #8888a0;">RAM</th>
+                                    <th style="text-align: center; padding: 10px 8px; color: #8888a0;">Alloc</th>
+                                    <th style="text-align: center; padding: 10px 8px; color: #8888a0;">Disk</th>
+                                    <th style="text-align: center; padding: 10px 8px; color: #8888a0;">Headroom</th>
+                                    <th style="text-align: left; padding: 10px 8px; color: #8888a0;">Services</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr-border">
+                                    <td style="padding: 8px; color: #38bdf8;">GCloud</td>
+                                    <td style="padding: 8px; color: #e8e8f0;">gcp-f-micro_1</td>
+                                    <td style="padding: 8px; color: #8888a0;">34.55.55.234</td>
+                                    <td style="padding: 8px; color: #e8e8f0; text-align: center;">1 GB</td>
+                                    <td style="padding: 8px; color: #8888a0; text-align: center;">576 MB</td>
+                                    <td style="padding: 8px; color: #8888a0; text-align: center;">30 GB</td>
+                                    <td style="padding: 8px; color: #00d084; text-align: center;">42%</td>
+                                    <td style="padding: 8px; color: #555566;">proxy, authelia, oauth2, api</td>
+                                </tr>
+                                <tr class="tr-border">
+                                    <td style="padding: 8px; color: #f39c12;">Oracle</td>
+                                    <td style="padding: 8px; color: #e8e8f0;">oci-f-micro_1</td>
+                                    <td style="padding: 8px; color: #8888a0;">130.110.251.193</td>
+                                    <td style="padding: 8px; color: #e8e8f0; text-align: center;">1 GB</td>
+                                    <td style="padding: 8px; color: #8888a0; text-align: center;">512 MB</td>
+                                    <td style="padding: 8px; color: #8888a0; text-align: center;">47 GB</td>
+                                    <td style="padding: 8px; color: #00d084; text-align: center;">49%</td>
+                                    <td style="padding: 8px; color: #555566;">mail-* (8 containers)</td>
+                                </tr>
+                                <tr class="tr-border">
+                                    <td style="padding: 8px; color: #f39c12;">Oracle</td>
+                                    <td style="padding: 8px; color: #e8e8f0;">oci-f-micro_2</td>
+                                    <td style="padding: 8px; color: #8888a0;">129.151.228.66</td>
+                                    <td style="padding: 8px; color: #e8e8f0; text-align: center;">1 GB</td>
+                                    <td style="padding: 8px; color: #8888a0; text-align: center;">256 MB</td>
+                                    <td style="padding: 8px; color: #8888a0; text-align: center;">47 GB</td>
+                                    <td style="padding: 8px; color: #00d084; text-align: center;">74%</td>
+                                    <td style="padding: 8px; color: #555566;">analytics (Matomo)</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; color: #f39c12;">Oracle</td>
+                                    <td style="padding: 8px; color: #e8e8f0;">oci-p-flex_1</td>
+                                    <td style="padding: 8px; color: #8888a0;">84.235.234.87</td>
+                                    <td style="padding: 8px; color: #e8e8f0; text-align: center;">8 GB</td>
+                                    <td style="padding: 8px; color: #8888a0; text-align: center;">5.1 GB</td>
+                                    <td style="padding: 8px; color: #8888a0; text-align: center;">100 GB</td>
+                                    <td style="padding: 8px; color: #f39c12; text-align: center;">36%</td>
+                                    <td style="padding: 8px; color: #555566;">photos, vault, vpn, C3...</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr style="border-top: 1px solid rgba(255,255,255,0.1);">
+                                    <td colspan="3" style="padding: 10px 8px; color: #e8e8f0; font-weight: 600;">TOTALS</td>
+                                    <td style="padding: 10px 8px; color: #e8e8f0; text-align: center; font-weight: 600;">11 GB</td>
+                                    <td style="padding: 10px 8px; color: #8888a0; text-align: center;">6.4 GB</td>
+                                    <td style="padding: 10px 8px; color: #8888a0; text-align: center;">224 GB</td>
+                                    <td style="padding: 10px 8px; color: #00d084; text-align: center; font-weight: 600;">42%</td>
+                                    <td></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <!-- Two Column: Costs + SSH Access -->
+                    <div class="grid-2">
+                        <!-- Monthly Costs -->
+                        <div style="background: rgba(0,208,132,0.08); border-radius: 12px; padding: 20px; border: 1px solid rgba(0,208,132,0.3);">
+                            <h3 style="color: #00d084; font-size: 14px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                Monthly Costs
+                            </h3>
+                            <table class="arch-table">
+                                <tbody>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">gcp-f-micro_1</td>
+                                        <td style="padding: 6px 4px; color: #00d084; text-align: right;">FREE</td>
+                                        <td style="padding: 6px 4px; color: #555566;">24/7 gateway</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">oci-f-micro_1</td>
+                                        <td style="padding: 6px 4px; color: #00d084; text-align: right;">FREE</td>
+                                        <td style="padding: 6px 4px; color: #555566;">24/7 mail</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">oci-f-micro_2</td>
+                                        <td style="padding: 6px 4px; color: #00d084; text-align: right;">FREE</td>
+                                        <td style="padding: 6px 4px; color: #555566;">24/7 analytics</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">oci-p-flex_1</td>
+                                        <td style="padding: 6px 4px; color: #f39c12; text-align: right;">~$5.50</td>
+                                        <td style="padding: 6px 4px; color: #555566;">wake-on-demand</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">Cloudflare</td>
+                                        <td style="padding: 6px 4px; color: #00d084; text-align: right;">FREE</td>
+                                        <td style="padding: 6px 4px; color: #555566;">DNS + CDN</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">Domain</td>
+                                        <td style="padding: 6px 4px; color: #8888a0; text-align: right;">~$1</td>
+                                        <td style="padding: 6px 4px; color: #555566;">annual/12</td>
+                                    </tr>
+                                    <tr style="border-top: 1px solid rgba(255,255,255,0.1);">
+                                        <td style="padding: 8px 4px; color: #e8e8f0; font-weight: 600;">TOTAL</td>
+                                        <td style="padding: 8px 4px; color: #00d084; text-align: right; font-weight: 600;">~$6.50/mo</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- SSH Access -->
+                        <div style="background: rgba(139,92,246,0.08); border-radius: 12px; padding: 20px; border: 1px solid rgba(139,92,246,0.3);">
+                            <h3 class="ai-desc">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                                SSH Access
+                            </h3>
+                            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #8888a0; line-height: 1.8;">
+                                <div class="mb-2">
+                                    <span style="color: #38bdf8;">gcp-f-micro_1:</span><br/>
+                                    <code class="text-main">gcloud compute ssh arch-1 --zone=us-central1-a</code>
+                                </div>
+                                <div class="mb-2">
+                                    <span class="text-warning">oci-f-micro_1:</span><br/>
+                                    <code class="text-main">ssh ubuntu@130.110.251.193</code>
+                                </div>
+                                <div class="mb-2">
+                                    <span class="text-warning">oci-f-micro_2:</span><br/>
+                                    <code class="text-main">ssh ubuntu@129.151.228.66</code>
+                                </div>
+                                <div>
+                                    <span class="text-warning">oci-p-flex_1:</span><br/>
+                                    <code class="text-main">ssh ubuntu@84.235.234.87</code>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Distribution -->
+                    <div class="grid-4">
+                        <div style="background: rgba(56,189,248,0.1); border-radius: 10px; padding: 15px; border: 1px solid rgba(56,189,248,0.3); text-align: center;">
+                            <div style="font-size: 28px; margin-bottom: 8px; color: #38bdf8;">4</div>
+                            <div style="color: #38bdf8; font-size: 11px; font-weight: 600; margin-bottom: 4px;">VMs Total</div>
+                            <div class="text-muted fs-sm">3 Free + 1 Paid</div>
+                        </div>
+                        <div style="background: rgba(0,208,132,0.1); border-radius: 10px; padding: 15px; border: 1px solid rgba(0,208,132,0.3); text-align: center;">
+                            <div style="font-size: 28px; margin-bottom: 8px; color: #00d084;">11GB</div>
+                            <div style="color: #00d084; font-size: 11px; font-weight: 600; margin-bottom: 4px;">Total RAM</div>
+                            <div class="text-muted fs-sm">42% headroom</div>
+                        </div>
+                        <div style="background: rgba(243,156,18,0.1); border-radius: 10px; padding: 15px; border: 1px solid rgba(243,156,18,0.3); text-align: center;">
+                            <div style="font-size: 28px; margin-bottom: 8px; color: #f39c12;">224GB</div>
+                            <div class="ai-model-label">Total Storage</div>
+                            <div class="text-muted fs-sm">62GB allocated</div>
+                        </div>
+                        <div style="background: rgba(139,92,246,0.1); border-radius: 10px; padding: 15px; border: 1px solid rgba(139,92,246,0.3); text-align: center;">
+                            <div style="font-size: 28px; margin-bottom: 8px; color: #8b5cf6;">$6.50</div>
+                            <div style="color: #8b5cf6; font-size: 11px; font-weight: 600; margin-bottom: 4px;">Monthly Cost</div>
+                            <div class="text-muted fs-sm">~$78/year</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- DATA & MCP SECTION -->
+        <div class="arch-section" id="section-data-mcp">
+            <div class="diagram-embed">
+                <div class="main-container">
+                    <!-- Data Knowledge Center Title -->
+                    <div class="sec-box">
+                        <h2 style="font-size: 24px; font-weight: 700; background: linear-gradient(90deg, #f39c12, #3498db, #9b59b6, #00d084); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px;">Data Knowledge Center <span class="version-badge">v1.0</span></h2>
+                        <p class="subtitle">Unified execution engine - Raw data access for Humans (REST) & AI Agents (MCP)</p>
+                    </div>
+
+                    <!-- Legend -->
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-dot orange"></div>
+                            <span>Collectors (Ingest)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #3498db;"></div>
+                            <span>Converters (Transform)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot" style="background: #9b59b6;"></div>
+                            <span>Storage (Vector + SQL)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot green"></div>
+                            <span>Access Gateway</span>
+                        </div>
+                    </div>
+
+                    <!-- Architecture Overview Diagram -->
+                    <div class="arch-card-lg">
+                        <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="img-full">
+                            <!-- Background -->
+                            <rect x="10" y="10" width="780" height="380" rx="12" fill="rgba(10,10,15,0.8)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+
+                            <!-- Title -->
+                            <text x="400" y="40" text-anchor="middle" fill="#e8e8f0" font-size="16" font-weight="600">DATA KNOWLEDGE CENTER</text>
+
+                            <!-- Pipeline Row -->
+                            <!-- Collectors -->
+                            <rect x="50" y="80" width="140" height="80" rx="8" fill="rgba(243,156,18,0.15)" stroke="#f39c12" stroke-width="2"/>
+                            <text x="120" y="110" text-anchor="middle" fill="#f39c12" font-size="12" font-weight="600">COLLECTORS</text>
+                            <text x="120" y="130" text-anchor="middle" fill="#8888a0" font-size="10">(Ingest)</text>
+                            <text x="120" y="148" text-anchor="middle" fill="#555566" font-size="9">APIs, IMAP, DBs</text>
+
+                            <!-- Arrow 1 -->
+                            <path d="M195 120 L250 120" stroke="#f39c12" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                            <!-- Converters -->
+                            <rect x="255" y="80" width="140" height="80" rx="8" fill="rgba(52,152,219,0.15)" stroke="#3498db" stroke-width="2"/>
+                            <text x="325" y="110" text-anchor="middle" fill="#3498db" font-size="12" font-weight="600">CONVERTERS</text>
+                            <text x="325" y="130" text-anchor="middle" fill="#8888a0" font-size="10">(Transform)</text>
+                            <text x="325" y="148" text-anchor="middle" fill="#555566" font-size="9">JSON, MD, CSV</text>
+
+                            <!-- Arrow 2 -->
+                            <path d="M400 120 L455 120" stroke="#3498db" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                            <!-- Storage -->
+                            <rect x="460" y="80" width="160" height="80" rx="8" fill="rgba(155,89,182,0.15)" stroke="#9b59b6" stroke-width="2"/>
+                            <text x="540" y="110" text-anchor="middle" fill="#9b59b6" font-size="12" font-weight="600">STORAGE</text>
+                            <text x="540" y="130" text-anchor="middle" fill="#8888a0" font-size="10">(Vector + Relational)</text>
+                            <text x="540" y="148" text-anchor="middle" fill="#555566" font-size="9">ChromaDB + PostgreSQL</text>
+
+                            <!-- Arrow down from Storage -->
+                            <path d="M540 165 L540 200" stroke="#9b59b6" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                            <!-- Access Gateway (center) -->
+                            <rect x="300" y="205" width="280" height="60" rx="8" fill="rgba(0,208,132,0.15)" stroke="#00d084" stroke-width="2"/>
+                            <text x="440" y="235" text-anchor="middle" fill="#00d084" font-size="14" font-weight="600">ACCESS GATEWAY</text>
+                            <text x="440" y="252" text-anchor="middle" fill="#8888a0" font-size="10">FastAPI (REST + SSE + MCP)</text>
+
+                            <!-- Arrows down from Gateway -->
+                            <path d="M380 270 L300 310" stroke="#00d084" stroke-width="2" marker-end="url(#arrowhead)"/>
+                            <path d="M500 270 L580 310" stroke="#00d084" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+                            <!-- Humans -->
+                            <rect x="200" y="315" width="140" height="60" rx="8" fill="rgba(56,189,248,0.15)" stroke="#38bdf8" stroke-width="2"/>
+                            <text x="270" y="345" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="600">HUMANS</text>
+                            <text x="270" y="362" text-anchor="middle" fill="#8888a0" font-size="10">(REST API)</text>
+
+                            <!-- AI Agents -->
+                            <rect x="480" y="315" width="140" height="60" rx="8" fill="rgba(139,92,246,0.15)" stroke="#8b5cf6" stroke-width="2"/>
+                            <text x="550" y="345" text-anchor="middle" fill="#8b5cf6" font-size="12" font-weight="600">AI AGENTS</text>
+                            <text x="550" y="362" text-anchor="middle" fill="#8888a0" font-size="10">(MCP Protocol)</text>
+
+                            <!-- Core Components (right side) -->
+                            <rect x="650" y="80" width="120" height="180" rx="8" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+                            <text x="710" y="100" text-anchor="middle" fill="#8888a0" font-size="10" font-weight="600">CORE</text>
+                            <text x="710" y="125" text-anchor="middle" fill="#e8e8f0" font-size="9">Logic Core</text>
+                            <text x="710" y="145" text-anchor="middle" fill="#e8e8f0" font-size="9">Tool Registry</text>
+                            <text x="710" y="165" text-anchor="middle" fill="#e8e8f0" font-size="9">Data Vault</text>
+                            <text x="710" y="185" text-anchor="middle" fill="#e8e8f0" font-size="9">Dispatcher</text>
+                            <text x="710" y="215" text-anchor="middle" fill="#555566" font-size="8">Python</text>
+                            <text x="710" y="230" text-anchor="middle" fill="#555566" font-size="8">Pandas/NumPy</text>
+                            <text x="710" y="245" text-anchor="middle" fill="#555566" font-size="8">FastAPI</text>
+
+                            <!-- Arrowhead marker -->
+                            <defs>
+                                <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                    <polygon points="0 0, 10 3.5, 0 7" fill="#8888a0"/>
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+
+                    <!-- Two Column Layout: MCP Resources & Tools -->
+                    <div class="grid-2">
+                        <!-- MCP Resources (Read) -->
+                        <div style="background: rgba(139,92,246,0.08); border-radius: 12px; padding: 20px; border: 1px solid rgba(139,92,246,0.3);">
+                            <h3 class="ai-desc">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                                RESOURCES (Read) - AI Knowledge & Context
+                            </h3>
+                            <table class="arch-table">
+                                <thead>
+                                    <tr class="th-highlight">
+                                        <th style="text-align: left; padding: 8px 4px; color: #8888a0;">Resource</th>
+                                        <th style="text-align: left; padding: 8px 4px; color: #8888a0;">Purpose</th>
+                                        <th style="text-align: left; padding: 8px 4px; color: #8888a0;">Stack</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">masterplan-rag</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">Knowledge Retrieval</td>
+                                        <td style="padding: 6px 4px; color: #555566;">ChromaDB</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">file-navigator</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">Codebase Navigation</td>
+                                        <td style="padding: 6px 4px; color: #555566;">Python3</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">git-integration</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">History Query</td>
+                                        <td style="padding: 6px 4px; color: #555566;">GitPython</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">secrets-manager</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">Credential Paths</td>
+                                        <td style="padding: 6px 4px; color: #555566;">Python3</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">emails</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">Mail Archive</td>
+                                        <td style="padding: 6px 4px; color: #555566;">ChromaDB + IMAP</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">photos</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">Photo Metadata</td>
+                                        <td style="padding: 6px 4px; color: #555566;">ChromaDB + API</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">monitoring</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">Health & Costs</td>
+                                        <td style="padding: 6px 4px; color: #555566;">Python3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- MCP Tools (Act) -->
+                        <div style="background: rgba(0,208,132,0.08); border-radius: 12px; padding: 20px; border: 1px solid rgba(0,208,132,0.3);">
+                            <h3 style="color: #00d084; font-size: 14px; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                                TOOLS (Act) - AI Actions & Commands
+                            </h3>
+                            <table class="arch-table">
+                                <thead>
+                                    <tr class="th-highlight">
+                                        <th style="text-align: left; padding: 8px 4px; color: #8888a0;">Tool</th>
+                                        <th style="text-align: left; padding: 8px 4px; color: #8888a0;">Purpose</th>
+                                        <th style="text-align: left; padding: 8px 4px; color: #8888a0;">Stack</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">cloud-cli</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">Cloud Commands</td>
+                                        <td style="padding: 6px 4px; color: #555566;">gcloud + oci CLI</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">docker-manager</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">Service Control</td>
+                                        <td style="padding: 6px 4px; color: #555566;">Docker SDK</td>
+                                    </tr>
+                                    <tr class="tr-border">
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">build-orchestrator</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">Build Automation</td>
+                                        <td style="padding: 6px 4px; color: #555566;">Shell + Python3</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 6px 4px; color: #e8e8f0;">github-integration</td>
+                                        <td style="padding: 6px 4px; color: #8888a0;">GitHub API</td>
+                                        <td style="padding: 6px 4px; color: #555566;">PyGithub</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Data Pipeline Table -->
+                    <div class="arch-card">
+                        <h3 class="ai-intro">Data Pipeline</h3>
+                        <table class="arch-table">
+                            <thead>
+                                <tr class="th-highlight">
+                                    <th style="text-align: left; padding: 10px 8px; color: #8888a0;">Stage</th>
+                                    <th style="text-align: left; padding: 10px 8px; color: #8888a0;">Input</th>
+                                    <th style="text-align: left; padding: 10px 8px; color: #8888a0;">Output</th>
+                                    <th style="text-align: left; padding: 10px 8px; color: #8888a0;">Tech</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tr-border">
+                                    <td style="padding: 8px; color: #f39c12; font-weight: 600;">Collect</td>
+                                    <td style="padding: 8px; color: #e8e8f0;">Public APIs, Local DBs</td>
+                                    <td style="padding: 8px; color: #8888a0;">Raw data</td>
+                                    <td style="padding: 8px; color: #555566;">Python, IMAP, REST</td>
+                                </tr>
+                                <tr class="tr-border">
+                                    <td style="padding: 8px; color: #3498db; font-weight: 600;">Convert</td>
+                                    <td style="padding: 8px; color: #e8e8f0;">Raw data</td>
+                                    <td style="padding: 8px; color: #8888a0;">JSON, MD, CSV</td>
+                                    <td style="padding: 8px; color: #555566;">Pandas, custom scripts</td>
+                                </tr>
+                                <tr class="tr-border">
+                                    <td style="padding: 8px; color: #9b59b6; font-weight: 600;">Store</td>
+                                    <td style="padding: 8px; color: #e8e8f0;">Processed data</td>
+                                    <td style="padding: 8px; color: #8888a0;">Indexed records</td>
+                                    <td style="padding: 8px; color: #555566;">PostgreSQL, ChromaDB</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; color: #00d084; font-weight: 600;">Serve</td>
+                                    <td style="padding: 8px; color: #e8e8f0;">Query</td>
+                                    <td style="padding: 8px; color: #8888a0;">Response</td>
+                                    <td style="padding: 8px; color: #555566;">FastAPI, MCP</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Project Structure -->
+                    <div class="arch-card">
+                        <h3 class="ai-intro">Project Structure</h3>
+                        <pre style="font-family: 'JetBrains Mono', 'Fira Code', monospace; font-size: 11px; color: #8888a0; line-height: 1.6; margin: 0; overflow-x: auto;">
+<span class="text-warning">/data-knowledge-center</span>
+├── main.py                      <span class="text-dim"># Entry point</span>
+├── config.py                    <span class="text-dim"># Environment & DB paths</span>
+│
+├── <span class="text-warning">/collectors</span>                  <span class="text-dim"># [INGEST] Data collection</span>
+│   ├── public_apis.py           <span class="text-dim"># External API fetchers</span>
+│   ├── local_servers.py         <span class="text-dim"># Internal service polling</span>
+│   └── scheduled_jobs.py        <span class="text-dim"># Cron-based collection</span>
+│
+├── <span style="color: #3498db;">/converters</span>                  <span class="text-dim"># [TRANSFORM] Data processing</span>
+│   ├── db_to_json.py            <span class="text-dim"># Database exports</span>
+│   ├── json_to_md.py            <span class="text-dim"># Markdown generation</span>
+│   └── json_to_csv.py           <span class="text-dim"># CSV exports</span>
+│
+├── <span style="color: #9b59b6;">/core</span>                        <span class="text-dim"># [LOGIC] Central engine</span>
+│   ├── registry.py              <span class="text-dim"># Tool whitelist</span>
+│   ├── dispatcher.py            <span class="text-dim"># Universal executor</span>
+│   ├── /database
+│   │   ├── vector_store.py      <span class="text-dim"># ChromaDB client</span>
+│   │   └── sql_db.py            <span class="text-dim"># PostgreSQL client</span>
+│   └── /tools
+│       ├── search.py            <span class="text-dim"># Vector search logic</span>
+│       ├── scraper.py           <span class="text-dim"># External data fetch</span>
+│       └── analysis.py          <span class="text-dim"># Pandas processing</span>
+│
+└── <span style="color: #00d084;">/interfaces</span>                  <span class="text-dim"># [SERVE] Access layer</span>
+    ├── api_routes.py            <span class="text-dim"># REST API (FastAPI)</span>
+    └── mcp_server.py            <span class="text-dim"># MCP Server</span></pre>
+                    </div>
+
+                    <!-- Design Principles -->
+                    <div class="grid-4">
+                        <div style="background: rgba(243,156,18,0.1); border-radius: 10px; padding: 15px; border: 1px solid rgba(243,156,18,0.3); text-align: center;">
+                            <div class="icon-lg">🔀</div>
+                            <div class="ai-model-label">Separation</div>
+                            <div class="text-muted fs-sm">Logic isolated from interfaces</div>
+                        </div>
+                        <div style="background: rgba(52,152,219,0.1); border-radius: 10px; padding: 15px; border: 1px solid rgba(52,152,219,0.3); text-align: center;">
+                            <div class="icon-lg">👥</div>
+                            <div style="color: #3498db; font-size: 11px; font-weight: 600; margin-bottom: 4px;">Dual Access</div>
+                            <div class="text-muted fs-sm">Humans (REST) + AI (MCP)</div>
+                        </div>
+                        <div style="background: rgba(155,89,182,0.1); border-radius: 10px; padding: 15px; border: 1px solid rgba(155,89,182,0.3); text-align: center;">
+                            <div class="icon-lg">🔒</div>
+                            <div style="color: #9b59b6; font-size: 11px; font-weight: 600; margin-bottom: 4px;">Security First</div>
+                            <div class="text-muted fs-sm">Whitelist, audit, no cred exposure</div>
+                        </div>
+                        <div style="background: rgba(0,208,132,0.1); border-radius: 10px; padding: 15px; border: 1px solid rgba(0,208,132,0.3); text-align: center;">
+                            <div class="icon-lg">🧩</div>
+                            <div style="color: #00d084; font-size: 11px; font-weight: 600; margin-bottom: 4px;">Extensibility</div>
+                            <div class="text-muted fs-sm">Add collectors without core changes</div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- AI SECTION -->
+        <div class="arch-section" id="section-ai">
+            <div class="diagram-embed">
+        <!-- Original AI Architecture Title -->
+        <div class="sec-box">
+            <h2 style="font-size: 24px; font-weight: 700; background: linear-gradient(90deg, var(--orchestrator-color), var(--brain-color), var(--logic-color), var(--sandbox-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px;">AI Infrastructure Architecture <span class="version-badge">v1.0</span></h2>
+            <p class="subtitle">Serverless AI Stack - From Orchestration to Execution</p>
+        </div>
+
+        <!-- Legend -->
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-dot orchestrator"></div>
+                <span>PaaS - Orchestrator</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot brain"></div>
+                <span>MaaS - Brain/API</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot logic"></div>
+                <span>FaaS - Logic/GPU</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot sandbox"></div>
+                <span>AaaS - Agent Sandbox</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-dot memory"></div>
+                <span>Database - Memory</span>
+            </div>
+        </div>
+
+        <!-- ============================================
+             MAIN VISUAL DIAGRAM - Horizontal Flow
+             ============================================ -->
+        <div class="visual-diagram">
+            <div class="diagram-title">Data Flow Architecture</div>
+
+            <div class="flow-diagram-horizontal">
+                <!-- Orchestrator -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-orchestrator">
+                        <span class="fl-icon">🎯</span>
+                        <span class="fl-label">PaaS</span>
+                        <div class="fl-name">Orchestrator</div>
+                        <div class="fl-desc">"Managed App Host"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">n8n</span>
+                            <span class="provider-chip">HF Spaces</span>
+                            <span class="provider-chip">Railway</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector 1 -->
+                <div class="flow-connector" style="--conn-color-start: var(--orchestrator-color); --conn-color-end: var(--brain-color);">
+                    <span class="conn-label">HTTP</span>
+                </div>
+
+                <!-- Brain -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-brain">
+                        <span class="fl-icon">🧠</span>
+                        <span class="fl-label">MaaS</span>
+                        <div class="fl-name">The Brain</div>
+                        <div class="fl-desc">"Inference API"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip">Groq</span>
+                            <span class="provider-chip">Together</span>
+                            <span class="provider-chip">OpenRouter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector 2 -->
+                <div class="flow-connector" style="--conn-color-start: var(--brain-color); --conn-color-end: var(--logic-color);">
+                    <span class="conn-label">Webhook</span>
+                </div>
+
+                <!-- Logic -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-logic">
+                        <span class="fl-icon">⚡</span>
+                        <span class="fl-label">FaaS</span>
+                        <div class="fl-name">Logic Host</div>
+                        <div class="fl-desc">"Serverless GPU"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip active">GCloud</span>
+                            <span class="provider-chip">Modal</span>
+                            <span class="provider-chip">Beam</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector 3 -->
+                <div class="flow-connector" style="--conn-color-start: var(--logic-color); --conn-color-end: var(--sandbox-color);">
+                    <span class="conn-label">Execute</span>
+                </div>
+
+                <!-- Sandbox -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-sandbox">
+                        <span class="fl-icon">🦾</span>
+                        <span class="fl-label">AaaS</span>
+                        <div class="fl-name">Agent Sandbox</div>
+                        <div class="fl-desc">"Code Execution"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip">E2B</span>
+                            <span class="provider-chip">Relevance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Connector 4 -->
+                <div class="flow-connector" style="--conn-color-start: var(--sandbox-color); --conn-color-end: var(--memory-color);">
+                    <span class="conn-label">Store</span>
+                </div>
+
+                <!-- Memory -->
+                <div class="flow-layer">
+                    <div class="flow-layer-box fl-memory">
+                        <span class="fl-icon">💾</span>
+                        <span class="fl-label">DB</span>
+                        <div class="fl-name">Memory</div>
+                        <div class="fl-desc">"Vector + SQL"</div>
+                        <div class="providers-row">
+                            <span class="provider-chip">Supabase</span>
+                            <span class="provider-chip">Pinecone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============================================
+             STACKED LAYERS DIAGRAM
+             ============================================ -->
+        <div class="stacked-diagram">
+            <div class="stacked-title">Service Stack Overview</div>
+
+            <div class="stack-container">
+                <!-- PaaS Layer -->
+                <div class="stack-layer stack-orchestrator">
+                    <div class="stack-label">
+                        <span class="sl-icon">🎯</span>
+                        <span>PaaS</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Platform-as-a-Service</div>
+                        <div class="sc-mental">"Managed App Host" - Deploy without infrastructure management</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">⚙️ n8n (Self-Hosted)</span>
+                            <span class="sp-item">🤗 HuggingFace Spaces</span>
+                            <span class="sp-item">🚂 Koyeb / Railway</span>
+                            <span class="sp-item">🎨 Render</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--orchestrator-color); --to-color: var(--brain-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Send prompt (HTTP)</span>
+                </div>
+
+                <!-- MaaS Layer -->
+                <div class="stack-layer stack-brain">
+                    <div class="stack-label">
+                        <span class="sl-icon">🧠</span>
+                        <span>MaaS</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Model-as-a-Service (Inference API)</div>
+                        <div class="sc-mental">"The Brain / API" - LLM inference without hosting</div>
+                        <div class="stack-providers">
+                            <span class="sp-item">🤗 HuggingFace API</span>
+                            <span class="sp-item">⚡ Groq (LPU)</span>
+                            <span class="sp-item">🤝 Together AI</span>
+                            <span class="sp-item">🔀 OpenRouter</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--brain-color); --to-color: var(--logic-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Trigger job (Webhook)</span>
+                </div>
+
+                <!-- FaaS Layer -->
+                <div class="stack-layer stack-logic">
+                    <div class="stack-label">
+                        <span class="sl-icon">⚡</span>
+                        <span>FaaS</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Function-as-a-Service (Serverless GPU)</div>
+                        <div class="sc-mental">"Agent Logic Host" - Run code on-demand with GPU</div>
+                        <div class="stack-providers">
+                            <span class="sp-item active">🔵 Google Cloud Functions</span>
+                            <span class="sp-item">⚡ Modal</span>
+                            <span class="sp-item">☁️ Beam.cloud</span>
+                            <span class="sp-item">🚀 RunPod Serverless</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--logic-color); --to-color: var(--sandbox-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Execute agent code</span>
+                </div>
+
+                <!-- AaaS Layer -->
+                <div class="stack-layer stack-sandbox">
+                    <div class="stack-label">
+                        <span class="sl-icon">🦾</span>
+                        <span>AaaS</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Agent-as-a-Service (Agent Infrastructure)</div>
+                        <div class="sc-mental">"Agent Sandbox" - Safe execution environments for AI</div>
+                        <div class="stack-providers">
+                            <span class="sp-item">📦 E2B (Code Execution)</span>
+                            <span class="sp-item">🤖 Relevance AI</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stack-connector" style="--from-color: var(--sandbox-color); --to-color: var(--memory-color);">
+                    <div class="arrow-down">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head"></div>
+                    </div>
+                    <span class="arrow-label">Store/Retrieve data</span>
+                </div>
+
+                <!-- Database Layer -->
+                <div class="stack-layer stack-memory">
+                    <div class="stack-label">
+                        <span class="sl-icon">💾</span>
+                        <span>DB</span>
+                    </div>
+                    <div class="stack-content">
+                        <div class="sc-title">Database & Vector Storage</div>
+                        <div class="sc-mental">"The Memory Layer" - Persistent state and embeddings</div>
+                        <div class="stack-providers">
+                            <span class="sp-item">🗄️ Supabase (PostgreSQL + pgvector)</span>
+                            <span class="sp-item">🔍 Pinecone</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Category Reference Table -->
+        <div class="stacked-diagram">
+            <div class="stacked-title">Service Category Quick Reference</div>
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px;">
+                <thead>
+                    <tr style="border-bottom: 2px solid rgba(255,255,255,0.1);">
+                        <th style="padding: 12px; text-align: left;">Category</th>
+                        <th style="padding: 12px; text-align: left;">Mental Model</th>
+                        <th style="padding: 12px; text-align: left;">Technical Term</th>
+                        <th style="padding: 12px; text-align: left;">Top Providers</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr-border">
+                        <td style="padding: 12px;"><span style="background: var(--iaas-color); color: #000; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;">IaaS</span></td>
+                        <td style="padding: 12px; color: var(--text-muted);">"Raw VPS"</td>
+                        <td style="padding: 12px;">Infrastructure-as-a-Service</td>
+                        <td style="padding: 12px; color: var(--text-muted);">Vast.ai, Oracle (Free), DigitalOcean</td>
+                    </tr>
+                    <tr class="tr-border">
+                        <td style="padding: 12px;"><span style="background: var(--orchestrator-color); color: #000; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;">PaaS</span></td>
+                        <td style="padding: 12px; color: var(--text-muted);">"Managed App Host"</td>
+                        <td style="padding: 12px;">Platform-as-a-Service</td>
+                        <td style="padding: 12px; color: var(--text-muted);">HuggingFace Spaces, Koyeb, Railway, Render</td>
+                    </tr>
+                    <tr class="tr-border">
+                        <td style="padding: 12px;"><span style="background: var(--logic-color); color: #000; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;">FaaS</span></td>
+                        <td style="padding: 12px; color: var(--text-muted);">"Agent Logic Host"</td>
+                        <td style="padding: 12px;">Serverless GPU</td>
+                        <td style="padding: 12px; color: var(--text-muted);">Modal, Beam.cloud, RunPod Serverless</td>
+                    </tr>
+                    <tr class="tr-border">
+                        <td style="padding: 12px;"><span style="background: var(--brain-color); color: #000; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;">MaaS</span></td>
+                        <td style="padding: 12px; color: var(--text-muted);">"The Brain / API"</td>
+                        <td style="padding: 12px;">Inference-as-a-Service</td>
+                        <td style="padding: 12px; color: var(--text-muted);">HuggingFace API, Groq, Together AI, OpenRouter</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px;"><span style="background: var(--sandbox-color); color: #fff; padding: 3px 8px; border-radius: 6px; font-weight: 600; font-size: 11px;">AaaS</span></td>
+                        <td style="padding: 12px; color: var(--text-muted);">"Agent Sandbox"</td>
+                        <td style="padding: 12px;">Agent Infrastructure</td>
+                        <td style="padding: 12px; color: var(--text-muted);">E2B (Code Execution), Relevance AI</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('[data-arch]');
+            const sections = document.querySelectorAll('.arch-section');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    if (this.classList.contains('disabled')) return;
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    const arch = this.getAttribute('data-arch');
+                    sections.forEach(s => s.classList.remove('active'));
+                    const target = document.getElementById('section-' + arch);
+                    if (target) target.classList.add('active');
+                    history.replaceState(null, '', '#' + arch);
+                });
+            });
+            const hash = window.location.hash.slice(1);
+            if (hash) {
+                const tab = document.querySelector('[data-arch="' + hash + '"]');
+                if (tab && !tab.classList.contains('disabled')) tab.click();
+            }
+        });
+    </script>
+
+    <!-- Mobile Desktop Mode -->
+    <script>
+        (function() {
+            function applyMobileScaling() {
+                const desktopWidth = 1200;
+                const screenWidth = window.innerWidth;
+
+                if (screenWidth < desktopWidth) {
+                    const scale = screenWidth / desktopWidth;
+                    document.body.style.width = desktopWidth + 'px';
+                    document.body.style.minWidth = desktopWidth + 'px';
+                    document.body.style.transform = 'scale(' + scale + ')';
+                    document.body.style.transformOrigin = 'top left';
+                    document.documentElement.style.width = screenWidth + 'px';
+                    document.documentElement.style.overflowX = 'hidden';
+                } else {
+                    document.body.style.width = '';
+                    document.body.style.minWidth = '';
+                    document.body.style.transform = '';
+                    document.body.style.transformOrigin = '';
+                    document.documentElement.style.width = '';
+                    document.documentElement.style.overflowX = '';
+                }
+            }
+            applyMobileScaling();
+            window.addEventListener('resize', applyMobileScaling);
+        })();
+    </script>
+
+    <script src="main.js"></script>
+
+    <!-- Footer -->
+    <footer class="cloud-footer">
+        <a href="https://linktree.diegonmarcos.com" target="_blank" title="diegonmarcos" class="linktree-footer-btn">
+            <span class="link-icon">🔗</span>
+            <span class="link-text">LINKTREE</span>
+            <svg class="link-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+            </svg>
+        </a>
+        <div class="footer-github-row">
+            <a href="https://github.com/diegonmarcos/diegonmarcos.github.io/tree/main/a_Portals/cloud" target="_blank" title="Front-end source (this UI)" class="github-footer-btn" aria-label="Front-end repo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </a>
+            <a href="https://github.com/diegonmarcos/cloud-infra" target="_blank" title="Back-end infrastructure source" class="github-footer-btn" aria-label="Back-end repo">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+            </a>
+        </div>
+    </footer>
+</body>
+</html>

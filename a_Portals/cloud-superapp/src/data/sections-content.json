@@ -1,0 +1,2748 @@
+{
+  "_doc": "Suite (its own tiles_shared/tileGroups/appGroups shape, no Apps|Admin tabs) plus every content-only section (mail/rss/calendar/drive/vault/chat/wg/solutions/config). Config carries real per-page row content instead of generic skeletons, since it's a real, fully-enumerable settings screen.",
+  "sections": {
+    "mail": {
+      "label": "Mail",
+      "icon": "mail",
+      "color": "blue",
+      "pages": [
+        {
+          "id": "folders",
+          "label": "Folders",
+          "view": {
+            "type": "list",
+            "lead": "monogram",
+            "trail": "badge",
+            "emptyTitle": "No folders.",
+            "emptyBody": "Folders appear once a JMAP or IMAP account is connected."
+          },
+          "items": [
+            {
+              "title": "Inbox",
+              "meta": "12"
+            },
+            {
+              "title": "Sent"
+            },
+            {
+              "title": "Drafts",
+              "meta": "2"
+            },
+            {
+              "title": "Archive"
+            },
+            {
+              "title": "Spam",
+              "meta": "3"
+            },
+            {
+              "title": "Trash"
+            }
+          ]
+        },
+        {
+          "id": "inbox",
+          "label": "Inbox",
+          "items": [
+            {
+              "title": "GitHub",
+              "subtitle": "[cloud] Deploy succeeded",
+              "meta": "2m"
+            },
+            {
+              "title": "Diego Coelho Marcos",
+              "subtitle": "Re: Weekly sync notes",
+              "meta": "1h"
+            },
+            {
+              "title": "Vaultwarden",
+              "subtitle": "Your vault export is ready",
+              "meta": "3h"
+            },
+            {
+              "title": "Grafana",
+              "subtitle": "Alert resolved: disk usage",
+              "meta": "5h"
+            },
+            {
+              "title": "Mattermost",
+              "subtitle": "New mention in #ops",
+              "meta": "1d"
+            }
+          ]
+        },
+        {
+          "id": "accounts",
+          "label": "Accounts",
+          "items": [
+            {
+              "title": "me@diegonmarcos.com",
+              "subtitle": "IMAP · Personal",
+              "meta": "Default"
+            },
+            {
+              "title": "admin@diegonmarcos.com",
+              "subtitle": "IMAP · Ops"
+            }
+          ]
+        },
+        {
+          "id": "identities",
+          "label": "Identities",
+          "items": [
+            {
+              "title": "Diego Coelho Marcos",
+              "subtitle": "me@diegonmarcos.com"
+            },
+            {
+              "title": "DCM",
+              "subtitle": "admin@diegonmarcos.com"
+            }
+          ]
+        },
+        {
+          "id": "rules",
+          "label": "Rules",
+          "rows": [
+            {
+              "group": "Apply"
+            },
+            [
+              "Re-apply rules to all mail",
+              "commit, push, deploy — then tap",
+              {
+                "target": "action:reapply_mail_rules"
+              }
+            ],
+            {
+              "group": "How routing works"
+            },
+            [
+              "Order",
+              "lowest priority number wins"
+            ],
+            [
+              "First match",
+              "stops — later rules never see the message"
+            ],
+            [
+              "Rules",
+              "100 total, 15 tags"
+            ],
+            [
+              "Undeclared tags",
+              "8 route to no real folder"
+            ],
+            {
+              "group": "11    🛡️ Admin · 1 rule"
+            },
+            [
+              "security accounts",
+              "p90 · from: bitwarden.com, 1password.com +1"
+            ],
+            {
+              "group": "12    💰 Finance · 10 rules"
+            },
+            [
+              "banks es de",
+              "p90 · from: ing.es, ing.de +2"
+            ],
+            [
+              "payments",
+              "p100 · from: paypal.com, stripe.com"
+            ],
+            [
+              "subscriptions",
+              "p100 · from: apple.com, spotify.com +2"
+            ],
+            [
+              "insurance intl",
+              "p100 · from: allianz.com, axa.com"
+            ],
+            [
+              "bank neobank",
+              "p100 · from: n26.com, revolut.com +1"
+            ],
+            [
+              "marketplace",
+              "p100 · from: amazon.com, amazon.de +5"
+            ],
+            [
+              "bank es",
+              "p100 · from: emailing.bancosantander-mail.es, cofidis.es +3"
+            ],
+            [
+              "bank intl",
+              "p100 · from: btgpactual.com, tcbs.com.vn +4"
+            ],
+            [
+              "telecom utilities de",
+              "p100 · from: congstar.de, news.congstar.de +2"
+            ],
+            [
+              "insurance es de",
+              "p100 · from: mapfre.com, huk.de"
+            ],
+            {
+              "group": "21    💼 Career & Network · 2 rules"
+            },
+            [
+              "platforms",
+              "p100 · from: linkedin.com, indeed.com +3"
+            ],
+            [
+              "career de",
+              "p100 · from: indeed.de, xing.com +1"
+            ],
+            {
+              "group": "22    📰 Social & General · 13 rules"
+            },
+            [
+              "tech media",
+              "p100 · from: theregister.com, arstechnica.com +1"
+            ],
+            [
+              "news intl",
+              "p100 · from: bbc.com, reuters.com +2"
+            ],
+            [
+              "newsletters",
+              "p100 · from: substack.com, medium.com +2"
+            ],
+            [
+              "video music",
+              "p100 · from: youtube.com, twitch.tv +5"
+            ],
+            [
+              "books games",
+              "p100 · from: goodreads.com, kindle.amazon.com +7"
+            ],
+            [
+              "social",
+              "p100 · from: twitter.com, x.com +5"
+            ],
+            [
+              "platforms extra",
+              "p100 · from: mail.instagram.com, facebookmail.com +3"
+            ],
+            [
+              "lifestyle extra",
+              "p100 · from: tidal.com, info.tidal.com +6"
+            ],
+            [
+              "health eu",
+              "p100 · from: doctolib.de, doctolib.com"
+            ],
+            [
+              "news es de",
+              "p100 · from: elpais.com, spiegel.de"
+            ],
+            [
+              "wellness",
+              "p110 · from: gympass.com, freeletics.com +1"
+            ],
+            [
+              "events",
+              "p110 · from: eventbrite.com, meetup.com +3"
+            ],
+            [
+              "dating",
+              "p110 · from: tinder.com, bumble.com +2"
+            ],
+            {
+              "group": "23    🧻 Government · 2 rules"
+            },
+            [
+              "tax authorities",
+              "p80 · from: elster.de, agenciatributaria.es +1"
+            ],
+            [
+              "agencies",
+              "p96 · from_domain_suffix: .gov.br or from: dgt.es"
+            ],
+            {
+              "group": "24    🏠 House · 2 rules"
+            },
+            [
+              "housing rental de",
+              "p100 · from: wg-gesucht.de, nachrichten.immobilienscout24.de +2"
+            ],
+            [
+              "housing es de",
+              "p100 · from: idealista.com, fotocasa.es +3"
+            ],
+            {
+              "group": "93    🚫 Junk · 1 rule"
+            },
+            [
+              "spam flagged",
+              "p150 · X-Spam-Status: Yes or X-Spam-Flag: YES or X-Microsoft-Antispam-Message-Info: spam or Authentication-Results: dmarc=fail, spf=fail"
+            ],
+            {
+              "group": "cloud_gh_workflows — no such folder · 1 rule"
+            },
+            [
+              "github ci",
+              "p95 · X-GitHub-Reason: ci_activity or subject: Run failed:, workflow run"
+            ],
+            {
+              "group": "cloud_reports_child — no such folder · 5 rules"
+            },
+            [
+              "homelab",
+              "p90 · from: diegonmarcos.com"
+            ],
+            [
+              "letsencrypt",
+              "p100 · from: letsencrypt.org"
+            ],
+            [
+              "registrars",
+              "p100 · from: namecheap.com, gandi.net +2"
+            ],
+            [
+              "hardware",
+              "p100 · from: hetzner.com, hetzner.de +2"
+            ],
+            [
+              "providers",
+              "p100 · from: cloudflare.com, digitalocean.com"
+            ],
+            {
+              "group": "cloud_rss_notifications — no such folder · 1 rule"
+            },
+            [
+              "notifications",
+              "p100 · from: ntfy.sh, resend.com"
+            ],
+            {
+              "group": "development — no such folder · 9 rules"
+            },
+            [
+              "42 school",
+              "p50 · from: 42berlin.de, 42heilbronn.de +2"
+            ],
+            [
+              "code hosting",
+              "p100 · from: gitlab.com, bitbucket.org +10"
+            ],
+            [
+              "saas productivity",
+              "p100 · from: vercel.com, netlify.com +5"
+            ],
+            [
+              "saas creative",
+              "p100 · from: jetbrains.com, adobe.com +1"
+            ],
+            [
+              "ai llm",
+              "p100 · from: mail.anthropic.com, email.claude.com +2"
+            ],
+            [
+              "tools extra",
+              "p100 · from: unity3d.com, bitwarden.eu +8"
+            ],
+            [
+              "cloud infra extra",
+              "p100 · from: aws.com, amazonaws.com"
+            ],
+            [
+              "misc",
+              "p100 · from: omdbapi.com, outbound.developers.giphy.com +4"
+            ],
+            [
+              "learning",
+              "p110 · from: udemy.com, coursera.org +8"
+            ],
+            {
+              "group": "logistics — no such folder · 9 rules"
+            },
+            [
+              "travel air",
+              "p100 · from: ryanair.com, easyjet.com +6"
+            ],
+            [
+              "rideshare",
+              "p100 · from: uber.com, bolt.eu +3"
+            ],
+            [
+              "lodging",
+              "p100 · from: airbnb.com, booking.com +1"
+            ],
+            [
+              "postal intl",
+              "p100 · from: dhl.com, dhl.de +4"
+            ],
+            [
+              "food delivery",
+              "p100 · from: deliveroo.com, ubereats.com +4"
+            ],
+            [
+              "lodging extra",
+              "p100 · from: info.hostelworld.com, email.hostelworld.com +11"
+            ],
+            [
+              "transport extra",
+              "p100 · from: e.alsa.com, alsa.es +11"
+            ],
+            [
+              "travel misc",
+              "p100 · from: findacrew.com, nomadmania.com +2"
+            ],
+            [
+              "postal es",
+              "p100 · from: correos.es, seur.com +1"
+            ],
+            {
+              "group": "vps_git — no such folder · 1 rule"
+            },
+            [
+              "vps git",
+              "p100 · from: github.com, noreply.github.com"
+            ],
+            {
+              "group": "vps_google — no such folder · 1 rule"
+            },
+            [
+              "vps google",
+              "p100 · from: cloud.google.com, google.cloud"
+            ],
+            {
+              "group": "vps_oracle — no such folder · 1 rule"
+            },
+            [
+              "vps oracle",
+              "p100 · from: oraclecloud.com, oracle.com +1"
+            ]
+          ]
+        },
+        {
+          "id": "answers",
+          "label": "Answers",
+          "items": [
+            {
+              "title": "Out of office",
+              "subtitle": "Thanks for your email…"
+            },
+            {
+              "title": "Meeting confirmation",
+              "subtitle": "Confirming our call…"
+            }
+          ]
+        },
+        {
+          "id": "contacts",
+          "label": "Contacts",
+          "items": [
+            {
+              "title": "Support",
+              "subtitle": "support@diegonmarcos.com"
+            },
+            {
+              "title": "Ops Team",
+              "subtitle": "ops@diegonmarcos.com"
+            }
+          ]
+        },
+        {
+          "id": "settings",
+          "label": "Settings",
+          "rows": [
+            [
+              "Sync",
+              "Every 5 min"
+            ],
+            [
+              "Notifications",
+              "On"
+            ],
+            [
+              "Signature",
+              "Enabled"
+            ]
+          ]
+        },
+        {
+          "id": "more",
+          "label": "More",
+          "rows": [
+            [
+              "Storage used",
+              "1.8 GB / 15 GB"
+            ],
+            [
+              "Backend",
+              "Stalwart JMAP/IMAP"
+            ],
+            [
+              "Outbound relay",
+              "External only — no internal loops"
+            ],
+            [
+              "Spam filter",
+              "On"
+            ],
+            [
+              "Vacation responder",
+              "Off"
+            ]
+          ]
+        }
+      ]
+    },
+    "feed": {
+      "label": "RSS",
+      "icon": "rss",
+      "color": "amber",
+      "pages": [
+        {
+          "id": "all",
+          "label": "All feeds",
+          "view": {
+            "type": "list",
+            "lead": "monogram",
+            "trail": "badge",
+            "emptyTitle": "No feeds yet.",
+            "emptyBody": "Add a subscription to start collecting items."
+          },
+          "items": [
+            {
+              "title": "Hacker News",
+              "subtitle": "news.ycombinator.com",
+              "meta": "24"
+            },
+            {
+              "title": "Kubernetes Blog",
+              "subtitle": "kubernetes.io/blog",
+              "meta": "3"
+            },
+            {
+              "title": "Anthropic News",
+              "subtitle": "anthropic.com/news",
+              "meta": "1"
+            }
+          ]
+        },
+        {
+          "id": "unread",
+          "label": "Unread",
+          "items": [
+            {
+              "title": "Show HN: a self-hosted…",
+              "subtitle": "Hacker News",
+              "meta": "12m"
+            },
+            {
+              "title": "v1.32 release notes",
+              "subtitle": "Kubernetes Blog",
+              "meta": "2h"
+            }
+          ]
+        },
+        {
+          "id": "saved",
+          "label": "Saved",
+          "items": [
+            {
+              "title": "Designing data-driven build pipelines",
+              "subtitle": "Saved 3d ago"
+            }
+          ]
+        },
+        {
+          "id": "subscriptions",
+          "label": "Subscriptions",
+          "items": [
+            {
+              "title": "Hacker News",
+              "meta": "Every 15 min"
+            },
+            {
+              "title": "Kubernetes Blog",
+              "meta": "Daily"
+            },
+            {
+              "title": "Anthropic News",
+              "meta": "Daily"
+            }
+          ]
+        },
+        {
+          "id": "add",
+          "label": "+ Subscribe",
+          "items": [
+            {
+              "title": "Paste a feed URL to add it",
+              "subtitle": "https://…"
+            }
+          ]
+        },
+        {
+          "id": "settings",
+          "label": "Settings",
+          "rows": [
+            [
+              "Refresh",
+              "Every 15 min"
+            ],
+            [
+              "Mark read on open",
+              "On"
+            ]
+          ]
+        }
+      ]
+    },
+    "cal": {
+      "label": "Calendar",
+      "icon": "calendar",
+      "color": "green",
+      "pages": [
+        {
+          "id": "day",
+          "label": "Day",
+          "view": {
+            "type": "agenda"
+          },
+          "items": [
+            {
+              "title": "Standup",
+              "subtitle": "09:00",
+              "meta": "Work"
+            },
+            {
+              "title": "1:1 with Ops",
+              "subtitle": "14:00",
+              "meta": "Work"
+            }
+          ]
+        },
+        {
+          "id": "week",
+          "label": "Week",
+          "items": [
+            {
+              "title": "Standup",
+              "subtitle": "Mon–Fri · 09:00",
+              "meta": "Work"
+            },
+            {
+              "title": "Deploy freeze",
+              "subtitle": "Thu",
+              "meta": "Ops"
+            }
+          ]
+        },
+        {
+          "id": "month",
+          "label": "Month",
+          "items": [
+            {
+              "title": "12 events this month",
+              "subtitle": "3 work · 2 ops · 7 personal"
+            }
+          ]
+        },
+        {
+          "id": "agenda",
+          "label": "Agenda",
+          "items": [
+            {
+              "title": "Standup",
+              "subtitle": "Today · 09:00"
+            },
+            {
+              "title": "1:1 with Ops",
+              "subtitle": "Today · 14:00"
+            },
+            {
+              "title": "Dentist",
+              "subtitle": "Tomorrow · 10:30"
+            }
+          ]
+        },
+        {
+          "id": "calendars",
+          "label": "Calendars",
+          "items": [
+            {
+              "title": "Personal",
+              "meta": "On"
+            },
+            {
+              "title": "Work",
+              "meta": "On"
+            },
+            {
+              "title": "Holidays",
+              "meta": "On"
+            }
+          ]
+        },
+        {
+          "id": "add",
+          "label": "+ Add CalDAV",
+          "items": [
+            {
+              "title": "Server URL",
+              "subtitle": "https://caldav…"
+            }
+          ]
+        },
+        {
+          "id": "settings",
+          "label": "Settings",
+          "rows": [
+            [
+              "Sync",
+              "Every 15 min"
+            ],
+            [
+              "Week starts on",
+              "Monday"
+            ]
+          ]
+        }
+      ]
+    },
+    "drive": {
+      "label": "Drive",
+      "icon": "database",
+      "color": "indigo",
+      "pages": [
+        {
+          "id": "files",
+          "label": "My files",
+          "view": {
+            "type": "list",
+            "lead": "icon",
+            "trail": "meta"
+          },
+          "items": [
+            {
+              "title": "Projects",
+              "subtitle": "Folder",
+              "meta": "24 items",
+              "icon": "database",
+              "group": "Folders"
+            },
+            {
+              "title": "Backups",
+              "subtitle": "Folder",
+              "meta": "6 items",
+              "icon": "database",
+              "group": "Folders"
+            },
+            {
+              "title": "resume.pdf",
+              "subtitle": "412 KB",
+              "meta": "2d ago",
+              "icon": "logs",
+              "group": "Files"
+            }
+          ]
+        },
+        {
+          "id": "photos",
+          "label": "Photos",
+          "items": [
+            {
+              "title": "Camera roll",
+              "meta": "1,204 photos"
+            },
+            {
+              "title": "Screenshots",
+              "meta": "88 photos"
+            }
+          ]
+        },
+        {
+          "id": "connections",
+          "label": "Connections",
+          "items": [
+            {
+              "title": "PhotoPrism",
+              "subtitle": "Self-hosted",
+              "meta": "Connected"
+            },
+            {
+              "title": "Nextcloud",
+              "subtitle": "Self-hosted",
+              "meta": "Connected"
+            }
+          ]
+        },
+        {
+          "id": "recent",
+          "label": "Recent",
+          "items": [
+            {
+              "title": "resume.pdf",
+              "meta": "2d ago"
+            },
+            {
+              "title": "roadmap.md",
+              "meta": "4d ago"
+            }
+          ]
+        },
+        {
+          "id": "shared",
+          "label": "Shared",
+          "items": [
+            {
+              "title": "roadmap.md",
+              "subtitle": "Shared with Ops Team"
+            }
+          ]
+        },
+        {
+          "id": "trash",
+          "label": "Trash",
+          "items": [
+            {
+              "title": "old-notes.txt",
+              "meta": "Deleted 6d ago"
+            }
+          ]
+        },
+        {
+          "id": "backups",
+          "label": "Backups",
+          "items": [
+            {
+              "title": "Nightly snapshot",
+              "subtitle": "2026-08-11",
+              "meta": "4.2 GB"
+            },
+            {
+              "title": "Nightly snapshot",
+              "subtitle": "2026-08-10",
+              "meta": "4.1 GB"
+            }
+          ]
+        },
+        {
+          "id": "upload",
+          "label": "+ Upload",
+          "items": [
+            {
+              "title": "Drop files here or tap to browse"
+            }
+          ]
+        },
+        {
+          "id": "settings",
+          "label": "Settings",
+          "rows": [
+            [
+              "Auto-backup",
+              "Nightly"
+            ],
+            [
+              "Storage used",
+              "48.2 GB / 200 GB"
+            ]
+          ]
+        }
+      ]
+    },
+    "vault": {
+      "label": "Vault",
+      "icon": "lock",
+      "color": "pink",
+      "pages": [
+        {
+          "id": "passwords",
+          "label": "Passwords",
+          "view": {
+            "type": "list",
+            "lead": "monogram",
+            "trail": "meta",
+            "note": "Revealing, copying and autofilling a credential are device actions — available in the Cloud Vault app."
+          },
+          "items": [
+            {
+              "title": "github.com",
+              "subtitle": "diegonmarcos",
+              "meta": "•••• ••••"
+            },
+            {
+              "title": "grafana.diegonmarcos.com",
+              "subtitle": "admin",
+              "meta": "•••• ••••"
+            },
+            {
+              "title": "vault.diegonmarcos.com",
+              "subtitle": "dcm",
+              "meta": "•••• ••••"
+            }
+          ]
+        },
+        {
+          "id": "totp",
+          "label": "TOTP",
+          "items": [
+            {
+              "title": "GitHub",
+              "subtitle": "2FA code",
+              "meta": "482 913"
+            },
+            {
+              "title": "Cloudflare",
+              "subtitle": "2FA code",
+              "meta": "051 774"
+            }
+          ]
+        },
+        {
+          "id": "generator",
+          "label": "Generator",
+          "items": [
+            {
+              "title": "Xk9#mP2$vQr7",
+              "subtitle": "16 chars · upper/lower/digits/symbols"
+            }
+          ]
+        },
+        {
+          "id": "identities",
+          "label": "Identities",
+          "items": [
+            {
+              "title": "Diego Coelho Marcos",
+              "subtitle": "Personal identity"
+            }
+          ]
+        },
+        {
+          "id": "vaults",
+          "label": "Vaults",
+          "items": [
+            {
+              "title": "Personal",
+              "meta": "38 items"
+            },
+            {
+              "title": "Ops",
+              "meta": "14 items"
+            }
+          ]
+        },
+        {
+          "id": "settings",
+          "label": "Settings",
+          "rows": [
+            [
+              "Lock after",
+              "5 min idle"
+            ],
+            [
+              "Biometric unlock",
+              "On"
+            ]
+          ]
+        }
+      ]
+    },
+    "chat": {
+      "label": "Chat",
+      "icon": "chat",
+      "color": "teal",
+      "pages": [
+        {
+          "id": "mattermost",
+          "label": "Mattermost",
+          "view": {
+            "type": "list",
+            "lead": "monogram",
+            "trail": "meta"
+          },
+          "items": [
+            {
+              "title": "#ops",
+              "subtitle": "New mention",
+              "meta": "1d"
+            },
+            {
+              "title": "#general",
+              "meta": "3d"
+            }
+          ]
+        },
+        {
+          "id": "matrix",
+          "label": "Matrix-Bridges",
+          "items": [
+            {
+              "title": "WhatsApp bridge",
+              "meta": "Connected"
+            },
+            {
+              "title": "Telegram bridge",
+              "meta": "Connected"
+            }
+          ]
+        },
+        {
+          "id": "dms",
+          "label": "Direct messages",
+          "items": [
+            {
+              "title": "Ops Team",
+              "subtitle": "Deploy looks good 👍",
+              "meta": "2h"
+            }
+          ]
+        },
+        {
+          "id": "channels",
+          "label": "Channels",
+          "items": [
+            {
+              "title": "#ops"
+            },
+            {
+              "title": "#general"
+            },
+            {
+              "title": "#random"
+            }
+          ]
+        },
+        {
+          "id": "servers",
+          "label": "Servers",
+          "items": [
+            {
+              "title": "chat.diegonmarcos.com",
+              "subtitle": "Mattermost",
+              "meta": "Connected"
+            }
+          ]
+        },
+        {
+          "id": "add",
+          "label": "+ Add server",
+          "items": [
+            {
+              "title": "Server URL",
+              "subtitle": "https://…"
+            }
+          ]
+        },
+        {
+          "id": "settings",
+          "label": "Settings",
+          "rows": [
+            [
+              "Notifications",
+              "Mentions only"
+            ],
+            [
+              "Theme",
+              "Dark"
+            ]
+          ]
+        }
+      ]
+    },
+    "c3": {
+      "label": "C3",
+      "icon": "mesh",
+      "color": "amber",
+      "pages": [
+        {
+          "id": "reports",
+          "label": "Reports",
+          "view": {
+            "type": "list",
+            "lead": "dot",
+            "trail": "pill"
+          },
+          "items": [
+            {
+              "title": "Nightly CRITICAL-only gate",
+              "subtitle": "Dagu · report DAGs",
+              "meta": "green",
+              "tone": "ok"
+            },
+            {
+              "title": "Weekly fleet summary",
+              "subtitle": "6 VMs · 2 architectures",
+              "meta": "sent",
+              "tone": "ok"
+            },
+            {
+              "title": "Cert expiry scan",
+              "subtitle": "Caddy + WG certs",
+              "meta": "0 expiring",
+              "tone": "ok"
+            },
+            {
+              "title": "Backup verification",
+              "subtitle": "oci-mail nightly snapshot",
+              "meta": "OK",
+              "tone": "ok"
+            }
+          ]
+        },
+        {
+          "id": "stack",
+          "label": "Stack",
+          "items": [
+            {
+              "title": "Caddy",
+              "subtitle": "Edge reverse proxy",
+              "meta": "running"
+            },
+            {
+              "title": "Authelia",
+              "subtitle": "SSO + bearer gate",
+              "meta": "running"
+            },
+            {
+              "title": "WireGuard mesh",
+              "subtitle": "wg0 · 7 peers",
+              "meta": "up"
+            },
+            {
+              "title": "Stalwart",
+              "subtitle": "JMAP/IMAP mail store",
+              "meta": "running"
+            },
+            {
+              "title": "Dagu",
+              "subtitle": "Workflow scheduler",
+              "meta": "running"
+            },
+            {
+              "title": "Grafana",
+              "subtitle": "Metrics dashboards",
+              "meta": "running"
+            }
+          ]
+        },
+        {
+          "id": "health",
+          "label": "Health",
+          "items": [
+            {
+              "title": "gcp-proxy",
+              "subtitle": "WireGuard hub · private · 2 vCPU · 4 GB · x86_64",
+              "tone": "ok",
+              "meta": "10.0.0.1"
+            },
+            {
+              "title": "gcp-t4",
+              "subtitle": "GPU worker · x86_64 · 4 vCPU · 16 GB · x86_64",
+              "tone": "ok",
+              "meta": "10.0.0.2"
+            },
+            {
+              "title": "oci-mail",
+              "subtitle": "maddy + stalwart · 2 vCPU · 8 GB · x86_64",
+              "tone": "ok",
+              "meta": "10.0.0.3",
+              "target": "https://mail.diegonmarcos.com"
+            },
+            {
+              "title": "oci-analytics",
+              "subtitle": "public edge · x86_64 · 4 vCPU · 24 GB · x86_64",
+              "tone": "ok",
+              "meta": "10.0.0.4",
+              "target": "https://grafana.diegonmarcos.com"
+            },
+            {
+              "title": "oci-apps",
+              "subtitle": "docker host · aarch64 · 4 vCPU · 24 GB · aarch64",
+              "tone": "warn",
+              "meta": "10.0.0.5"
+            },
+            {
+              "title": "oci-apps-2",
+              "subtitle": "docker host · aarch64 · 4 vCPU · 24 GB · aarch64",
+              "tone": "ok",
+              "meta": "10.0.0.6"
+            }
+          ],
+          "view": {
+            "type": "list",
+            "lead": "dot",
+            "trail": "meta"
+          }
+        },
+        {
+          "id": "workflows",
+          "label": "Workflows",
+          "items": [
+            {
+              "title": "nightly-report-gate",
+              "subtitle": "Dagu DAG · CRITICAL-only",
+              "meta": "success"
+            },
+            {
+              "title": "ship-front",
+              "subtitle": "Dagu DAG · deploy front sites",
+              "meta": "success"
+            },
+            {
+              "title": "ship-infra",
+              "subtitle": "Dagu DAG · VM fleet rollout",
+              "meta": "success"
+            },
+            {
+              "title": "mail-puller-backfill",
+              "subtitle": "Dagu DAG · stalwart backfill",
+              "meta": "running"
+            },
+            {
+              "title": "cert-renew",
+              "subtitle": "Dagu DAG · Caddy/WG certs",
+              "meta": "success"
+            }
+          ]
+        },
+        {
+          "id": "vms",
+          "label": "VMs",
+          "items": [
+            {
+              "title": "gcp-proxy",
+              "subtitle": "2 vCPU · 4 GB RAM",
+              "meta": "x86_64"
+            },
+            {
+              "title": "gcp-t4",
+              "subtitle": "4 vCPU · 16 GB RAM · T4 GPU",
+              "meta": "x86_64"
+            },
+            {
+              "title": "oci-mail",
+              "subtitle": "2 vCPU · 8 GB RAM",
+              "meta": "x86_64"
+            },
+            {
+              "title": "oci-analytics",
+              "subtitle": "4 vCPU · 24 GB RAM",
+              "meta": "x86_64"
+            },
+            {
+              "title": "oci-apps",
+              "subtitle": "4 vCPU · 24 GB RAM",
+              "meta": "aarch64"
+            },
+            {
+              "title": "oci-apps-2",
+              "subtitle": "4 vCPU · 24 GB RAM",
+              "meta": "aarch64"
+            }
+          ]
+        },
+        {
+          "id": "logs",
+          "label": "Logs",
+          "items": [
+            {
+              "title": "caddy access log",
+              "subtitle": "edge · last 15 min",
+              "meta": "1.2k lines"
+            },
+            {
+              "title": "introspect-proxy",
+              "subtitle": "bearer gate audit",
+              "meta": "0 errors"
+            },
+            {
+              "title": "load-shedder",
+              "subtitle": "PSI + RAM floor events",
+              "meta": "0 sheds"
+            },
+            {
+              "title": "wg handshake log",
+              "subtitle": "wg0 · 7 peers",
+              "meta": "all fresh"
+            }
+          ]
+        },
+        {
+          "id": "dagu",
+          "label": "Dagu",
+          "icon": "robot",
+          "hidden": true,
+          "view": {
+            "type": "list",
+            "lead": "dot",
+            "trail": "pill"
+          },
+          "items": [
+            {
+              "title": "report-nightly",
+              "subtitle": "Fleet health digest · 03:00 UTC",
+              "meta": "success",
+              "tone": "ok"
+            },
+            {
+              "title": "report-weekly",
+              "subtitle": "Cost + capacity summary · Mon 06:00",
+              "meta": "success",
+              "tone": "ok"
+            },
+            {
+              "title": "backup-verify",
+              "subtitle": "Restore-test the latest snapshot",
+              "meta": "success",
+              "tone": "ok"
+            },
+            {
+              "title": "cert-scan",
+              "subtitle": "Caddy + WireGuard certificate expiry",
+              "meta": "success",
+              "tone": "ok"
+            }
+          ]
+        },
+        {
+          "id": "gha",
+          "label": "GHA",
+          "icon": "code",
+          "hidden": true,
+          "view": {
+            "type": "list",
+            "lead": "dot",
+            "trail": "pill"
+          },
+          "items": [
+            {
+              "title": "cloud-u-android",
+              "subtitle": "Android constellation build",
+              "meta": "success",
+              "tone": "ok",
+              "target": "https://github.com/diegonmarcos/cloudy-u-android/actions"
+            },
+            {
+              "title": "cloud-infra",
+              "subtitle": "Fleet deploy · 6 VMs",
+              "meta": "success",
+              "tone": "ok",
+              "target": "https://github.com/diegonmarcos/cloud-infra/actions"
+            },
+            {
+              "title": "diegonmarcos.github.io",
+              "subtitle": "front · portal build + publish",
+              "meta": "success",
+              "tone": "ok",
+              "target": "https://github.com/diegonmarcos/diegonmarcos.github.io/actions"
+            }
+          ]
+        }
+      ]
+    },
+    "browser": {
+      "label": "Browser",
+      "icon": "browser",
+      "color": "purple",
+      "pages": [
+        {
+          "id": "all",
+          "label": "Open Tabs",
+          "view": {
+            "type": "grid"
+          },
+          "items": [
+            {
+              "title": "diegonmarcos.com",
+              "subtitle": "Portfolio",
+              "meta": "pinned",
+              "target": "https://diegonmarcos.com"
+            },
+            {
+              "title": "grafana.diegonmarcos.com",
+              "subtitle": "Dashboards",
+              "target": "https://grafana.diegonmarcos.com"
+            },
+            {
+              "title": "github.com/diegonmarcos",
+              "subtitle": "Repos",
+              "target": "https://github.com/diegonmarcos"
+            },
+            {
+              "title": "auth.diegonmarcos.com",
+              "subtitle": "SSO login",
+              "target": "https://auth.diegonmarcos.com"
+            },
+            {
+              "title": "mail.diegonmarcos.com",
+              "subtitle": "Webmail",
+              "target": "https://mail.diegonmarcos.com"
+            }
+          ]
+        },
+        {
+          "id": "linktree",
+          "label": "Linktree",
+          "render": "linktree",
+          "_doc": "Rendered natively from linktree.json (render:linktree) — the same list the APK shows in a WebView."
+        }
+      ]
+    },
+    "wg": {
+      "label": "WG",
+      "icon": "mesh",
+      "color": "amber",
+      "pages": [
+        {
+          "id": "config",
+          "label": "WireGuard",
+          "view": {
+            "type": "list",
+            "lead": "dot",
+            "trail": "pill",
+            "note": "Peer state shown is the profile as declared; a browser cannot read the device tunnel."
+          },
+          "items": [
+            {
+              "title": "phone-mesh",
+              "subtitle": "10.0.0.4",
+              "meta": "Connected",
+              "tone": "ok"
+            },
+            {
+              "title": "laptop-mesh",
+              "subtitle": "10.0.0.7",
+              "meta": "Connected",
+              "tone": "ok"
+            },
+            {
+              "title": "gcp-proxy",
+              "subtitle": "10.0.0.1",
+              "meta": "Connected",
+              "tone": "ok"
+            }
+          ]
+        },
+        {
+          "id": "status",
+          "label": "Mesh",
+          "icon": "mesh",
+          "hidden": true,
+          "view": {
+            "type": "list",
+            "lead": "dot",
+            "trail": "meta",
+            "note": "Handshake ages and transfer counters are device state; a browser cannot read the tunnel, so only the declared mesh is shown."
+          },
+          "items": [
+            {
+              "title": "gcp-proxy",
+              "subtitle": "Hub · WireGuard mesh + public",
+              "meta": "10.0.0.1",
+              "tone": "ok"
+            },
+            {
+              "title": "gcp-t4",
+              "subtitle": "GPU worker",
+              "meta": "10.0.0.2",
+              "tone": "ok"
+            },
+            {
+              "title": "oci-mail",
+              "subtitle": "Mail store",
+              "meta": "10.0.0.3",
+              "tone": "ok"
+            },
+            {
+              "title": "oci-analytics",
+              "subtitle": "Public edge",
+              "meta": "10.0.0.5",
+              "tone": "ok"
+            },
+            {
+              "title": "oci-apps",
+              "subtitle": "Container host · aarch64",
+              "meta": "10.0.0.6",
+              "tone": "ok"
+            },
+            {
+              "title": "this-phone",
+              "subtitle": "Galaxy S21 · mesh peer",
+              "meta": "10.0.0.4",
+              "tone": "ok"
+            }
+          ]
+        }
+      ]
+    },
+    "solutions": {
+      "label": "Solutions",
+      "icon": "briefcase",
+      "color": "purple",
+      "pages": [
+        {
+          "id": "professional",
+          "label": "Professional",
+          "view": {
+            "type": "list",
+            "lead": "accent",
+            "trail": "meta"
+          },
+          "items": [
+            {
+              "title": "Product & Software Engineer"
+            },
+            {
+              "title": "Venture Capital & Portfolio Analyst"
+            },
+            {
+              "title": "Civil Engineer B.Sc."
+            }
+          ]
+        },
+        {
+          "id": "personal",
+          "label": "Personal",
+          "view": {
+            "type": "list",
+            "lead": "accent",
+            "trail": "meta"
+          },
+          "items": [
+            {
+              "title": "Berlin, Germany"
+            },
+            {
+              "title": "diegonmarcos.com"
+            }
+          ]
+        },
+        {
+          "id": "tools",
+          "label": "Tools",
+          "view": {
+            "type": "list",
+            "lead": "accent",
+            "trail": "meta"
+          },
+          "items": [
+            {
+              "title": "Kotlin / Android",
+              "subtitle": "HeliBoard fork, native launchers"
+            },
+            {
+              "title": "TypeScript / SCSS",
+              "subtitle": "Vanilla static-site generators"
+            },
+            {
+              "title": "Nix / NixOS",
+              "subtitle": "Declarative VM + home-manager configs"
+            },
+            {
+              "title": "Rust",
+              "subtitle": "my-ai self-contained binaries"
+            }
+          ]
+        },
+        {
+          "id": "cloud",
+          "label": "Cloud",
+          "view": {
+            "type": "list",
+            "lead": "accent",
+            "trail": "meta"
+          },
+          "items": [
+            {
+              "title": "GCP",
+              "subtitle": "WireGuard hub · GPU worker"
+            },
+            {
+              "title": "OCI",
+              "subtitle": "Mail store · public edge · docker hosts"
+            },
+            {
+              "title": "Cloudflare",
+              "subtitle": "DNS + Workers edge"
+            },
+            {
+              "title": "GitHub Actions",
+              "subtitle": "All builds & deploys — never on-device"
+            }
+          ]
+        },
+        {
+          "id": "other",
+          "label": "Other",
+          "view": {
+            "type": "list",
+            "lead": "accent",
+            "trail": "meta"
+          },
+          "items": [
+            {
+              "title": "Civil Engineering B.Sc.",
+              "subtitle": "Structural design background"
+            },
+            {
+              "title": "Venture Capital & Portfolio Analysis",
+              "subtitle": "Early-stage due diligence"
+            },
+            {
+              "title": "Open source",
+              "subtitle": "github.com/diegonmarcos"
+            }
+          ]
+        }
+      ]
+    },
+    "apptabs": {
+      "label": "Tabs",
+      "icon": "suite",
+      "color": "teal",
+      "pages": [
+        {
+          "id": "grid",
+          "label": "Tabs",
+          "tiles": [
+            {
+              "id": "tab-mail",
+              "label": "Mail",
+              "icon": "mail",
+              "target": "section:mail"
+            },
+            {
+              "id": "tab-chat",
+              "label": "Chat",
+              "icon": "chat",
+              "target": "section:chat"
+            },
+            {
+              "id": "tab-calendar",
+              "label": "Calendar",
+              "icon": "calendar",
+              "target": "section:cal"
+            },
+            {
+              "id": "tab-drive",
+              "label": "Drive",
+              "icon": "database",
+              "target": "section:drive"
+            },
+            {
+              "id": "tab-ide",
+              "label": "IDE",
+              "icon": "code",
+              "target": "extapp:cloud-ide"
+            },
+            {
+              "id": "tab-news",
+              "label": "News",
+              "icon": "rss",
+              "target": "section:feed"
+            },
+            {
+              "id": "tab-wallet",
+              "label": "Wallet",
+              "icon": "wallet",
+              "target": "section:wallet"
+            },
+            {
+              "id": "tab-browser",
+              "label": "Browser",
+              "icon": "browser",
+              "target": "section:browser"
+            }
+          ]
+        }
+      ]
+    },
+    "myfin": {
+      "label": "MyFin",
+      "icon": "chart",
+      "color": "green",
+      "pages": [
+        {
+          "id": "dashboard",
+          "label": "Dashboard",
+          "stack": [
+            {
+              "kind": "stats",
+              "title": "Net Worth",
+              "subtitle": "Personal finance · paper snapshot",
+              "rows": [
+                [
+                  "Net worth",
+                  "€48,210"
+                ],
+                [
+                  "This month",
+                  "+€1,140"
+                ],
+                [
+                  "Spending",
+                  "€2,380"
+                ],
+                [
+                  "Holdings",
+                  "€31,900"
+                ]
+              ]
+            }
+          ],
+          "items": [
+            {
+              "title": "Checking",
+              "subtitle": "Personal account",
+              "meta": "€6,120",
+              "group": "Accounts"
+            },
+            {
+              "title": "Savings",
+              "subtitle": "Emergency fund",
+              "meta": "€10,190",
+              "group": "Accounts"
+            },
+            {
+              "title": "Brokerage",
+              "subtitle": "Paper portfolio",
+              "meta": "€31,900",
+              "group": "Accounts"
+            },
+            {
+              "title": "Rent",
+              "subtitle": "Monthly",
+              "meta": "-€980",
+              "group": "Recent activity"
+            },
+            {
+              "title": "Groceries",
+              "subtitle": "This week",
+              "meta": "-€64",
+              "group": "Recent activity"
+            },
+            {
+              "title": "Salary",
+              "subtitle": "Monthly deposit",
+              "meta": "+€3,400",
+              "group": "Recent activity"
+            },
+            {
+              "title": "GitHub Sponsors",
+              "subtitle": "Open source",
+              "meta": "+€18",
+              "group": "Recent activity"
+            },
+            {
+              "title": "Utilities",
+              "subtitle": "This month",
+              "meta": "-€112",
+              "group": "Recent activity"
+            }
+          ],
+          "view": {
+            "type": "list",
+            "lead": "accent",
+            "trail": "amount",
+            "stats": [
+              {
+                "label": "Net worth",
+                "value": "€48,210"
+              },
+              {
+                "label": "This month",
+                "value": "+€1,240"
+              },
+              {
+                "label": "Spending",
+                "value": "€2,180"
+              },
+              {
+                "label": "Holdings",
+                "value": "12"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "health": {
+      "label": "MyHealth",
+      "icon": "heart",
+      "color": "pink",
+      "pages": [
+        {
+          "id": "summary",
+          "label": "Summary",
+          "stack": [
+            {
+              "kind": "stats",
+              "title": "Today",
+              "subtitle": "Health & fitness",
+              "rows": [
+                [
+                  "Steps",
+                  "8,412"
+                ],
+                [
+                  "Sleep",
+                  "7h 12m"
+                ],
+                [
+                  "Resting HR",
+                  "58 bpm"
+                ],
+                [
+                  "Workouts (wk)",
+                  "3"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "timeline",
+          "label": "Timeline",
+          "items": [
+            {
+              "title": "Morning run",
+              "subtitle": "5.2 km · 27 min",
+              "meta": "07:10"
+            },
+            {
+              "title": "Standing break",
+              "subtitle": "Reminder dismissed",
+              "meta": "11:45"
+            },
+            {
+              "title": "Evening walk",
+              "subtitle": "2.1 km · 20 min",
+              "meta": "19:30"
+            },
+            {
+              "title": "Sleep logged",
+              "subtitle": "7h 12m · 2 wake-ups",
+              "meta": "23:50"
+            }
+          ]
+        },
+        {
+          "id": "configs",
+          "label": "Configs",
+          "items": [
+            {
+              "title": "Data source",
+              "subtitle": "Health Connect (Android)"
+            },
+            {
+              "title": "Sync frequency",
+              "meta": "Every 15 min"
+            },
+            {
+              "title": "Step goal",
+              "meta": "10,000 / day"
+            },
+            {
+              "title": "Sleep goal",
+              "meta": "8h"
+            },
+            {
+              "title": "Share with MyFin dashboard",
+              "meta": "Off"
+            }
+          ]
+        }
+      ]
+    },
+    "wallet": {
+      "label": "Wallet",
+      "icon": "wallet",
+      "color": "indigo",
+      "pages": [
+        {
+          "id": "cards",
+          "label": "Cards",
+          "view": {
+            "type": "cards"
+          },
+          "items": [
+            {
+              "title": "Visa Debit",
+              "subtitle": "•••• 4821 · Personal",
+              "meta": "Default"
+            },
+            {
+              "title": "Mastercard Credit",
+              "subtitle": "•••• 2290 · Ops",
+              "meta": "Active"
+            },
+            {
+              "title": "Add card",
+              "subtitle": "Scan or enter card details",
+              "action": true
+            }
+          ]
+        }
+      ]
+    },
+    "config": {
+      "label": "Configs",
+      "icon": "settings",
+      "color": "blue",
+      "pages": [
+        {
+          "id": "rules",
+          "label": "Rules",
+          "rows": [
+            {
+              "group": "Apply"
+            },
+            [
+              "Re-apply rules to all mail",
+              "commit, push, deploy — then tap",
+              {
+                "target": "action:reapply_mail_rules"
+              }
+            ],
+            {
+              "group": "How routing works"
+            },
+            [
+              "Order",
+              "lowest priority number wins"
+            ],
+            [
+              "First match",
+              "stops — later rules never see the message"
+            ],
+            [
+              "Rules",
+              "100 total, 15 tags"
+            ],
+            [
+              "Undeclared tags",
+              "8 route to no real folder"
+            ],
+            {
+              "group": "11    🛡️ Admin · 1 rule"
+            },
+            [
+              "security accounts",
+              "p90 · from: bitwarden.com, 1password.com +1"
+            ],
+            {
+              "group": "12    💰 Finance · 10 rules"
+            },
+            [
+              "banks es de",
+              "p90 · from: ing.es, ing.de +2"
+            ],
+            [
+              "payments",
+              "p100 · from: paypal.com, stripe.com"
+            ],
+            [
+              "subscriptions",
+              "p100 · from: apple.com, spotify.com +2"
+            ],
+            [
+              "insurance intl",
+              "p100 · from: allianz.com, axa.com"
+            ],
+            [
+              "bank neobank",
+              "p100 · from: n26.com, revolut.com +1"
+            ],
+            [
+              "marketplace",
+              "p100 · from: amazon.com, amazon.de +5"
+            ],
+            [
+              "bank es",
+              "p100 · from: emailing.bancosantander-mail.es, cofidis.es +3"
+            ],
+            [
+              "bank intl",
+              "p100 · from: btgpactual.com, tcbs.com.vn +4"
+            ],
+            [
+              "telecom utilities de",
+              "p100 · from: congstar.de, news.congstar.de +2"
+            ],
+            [
+              "insurance es de",
+              "p100 · from: mapfre.com, huk.de"
+            ],
+            {
+              "group": "21    💼 Career & Network · 2 rules"
+            },
+            [
+              "platforms",
+              "p100 · from: linkedin.com, indeed.com +3"
+            ],
+            [
+              "career de",
+              "p100 · from: indeed.de, xing.com +1"
+            ],
+            {
+              "group": "22    📰 Social & General · 13 rules"
+            },
+            [
+              "tech media",
+              "p100 · from: theregister.com, arstechnica.com +1"
+            ],
+            [
+              "news intl",
+              "p100 · from: bbc.com, reuters.com +2"
+            ],
+            [
+              "newsletters",
+              "p100 · from: substack.com, medium.com +2"
+            ],
+            [
+              "video music",
+              "p100 · from: youtube.com, twitch.tv +5"
+            ],
+            [
+              "books games",
+              "p100 · from: goodreads.com, kindle.amazon.com +7"
+            ],
+            [
+              "social",
+              "p100 · from: twitter.com, x.com +5"
+            ],
+            [
+              "platforms extra",
+              "p100 · from: mail.instagram.com, facebookmail.com +3"
+            ],
+            [
+              "lifestyle extra",
+              "p100 · from: tidal.com, info.tidal.com +6"
+            ],
+            [
+              "health eu",
+              "p100 · from: doctolib.de, doctolib.com"
+            ],
+            [
+              "news es de",
+              "p100 · from: elpais.com, spiegel.de"
+            ],
+            [
+              "wellness",
+              "p110 · from: gympass.com, freeletics.com +1"
+            ],
+            [
+              "events",
+              "p110 · from: eventbrite.com, meetup.com +3"
+            ],
+            [
+              "dating",
+              "p110 · from: tinder.com, bumble.com +2"
+            ],
+            {
+              "group": "23    🧻 Government · 2 rules"
+            },
+            [
+              "tax authorities",
+              "p80 · from: elster.de, agenciatributaria.es +1"
+            ],
+            [
+              "agencies",
+              "p96 · from_domain_suffix: .gov.br or from: dgt.es"
+            ],
+            {
+              "group": "24    🏠 House · 2 rules"
+            },
+            [
+              "housing rental de",
+              "p100 · from: wg-gesucht.de, nachrichten.immobilienscout24.de +2"
+            ],
+            [
+              "housing es de",
+              "p100 · from: idealista.com, fotocasa.es +3"
+            ],
+            {
+              "group": "93    🚫 Junk · 1 rule"
+            },
+            [
+              "spam flagged",
+              "p150 · X-Spam-Status: Yes or X-Spam-Flag: YES or X-Microsoft-Antispam-Message-Info: spam or Authentication-Results: dmarc=fail, spf=fail"
+            ],
+            {
+              "group": "cloud_gh_workflows — no such folder · 1 rule"
+            },
+            [
+              "github ci",
+              "p95 · X-GitHub-Reason: ci_activity or subject: Run failed:, workflow run"
+            ],
+            {
+              "group": "cloud_reports_child — no such folder · 5 rules"
+            },
+            [
+              "homelab",
+              "p90 · from: diegonmarcos.com"
+            ],
+            [
+              "letsencrypt",
+              "p100 · from: letsencrypt.org"
+            ],
+            [
+              "registrars",
+              "p100 · from: namecheap.com, gandi.net +2"
+            ],
+            [
+              "hardware",
+              "p100 · from: hetzner.com, hetzner.de +2"
+            ],
+            [
+              "providers",
+              "p100 · from: cloudflare.com, digitalocean.com"
+            ],
+            {
+              "group": "cloud_rss_notifications — no such folder · 1 rule"
+            },
+            [
+              "notifications",
+              "p100 · from: ntfy.sh, resend.com"
+            ],
+            {
+              "group": "development — no such folder · 9 rules"
+            },
+            [
+              "42 school",
+              "p50 · from: 42berlin.de, 42heilbronn.de +2"
+            ],
+            [
+              "code hosting",
+              "p100 · from: gitlab.com, bitbucket.org +10"
+            ],
+            [
+              "saas productivity",
+              "p100 · from: vercel.com, netlify.com +5"
+            ],
+            [
+              "saas creative",
+              "p100 · from: jetbrains.com, adobe.com +1"
+            ],
+            [
+              "ai llm",
+              "p100 · from: mail.anthropic.com, email.claude.com +2"
+            ],
+            [
+              "tools extra",
+              "p100 · from: unity3d.com, bitwarden.eu +8"
+            ],
+            [
+              "cloud infra extra",
+              "p100 · from: aws.com, amazonaws.com"
+            ],
+            [
+              "misc",
+              "p100 · from: omdbapi.com, outbound.developers.giphy.com +4"
+            ],
+            [
+              "learning",
+              "p110 · from: udemy.com, coursera.org +8"
+            ],
+            {
+              "group": "logistics — no such folder · 9 rules"
+            },
+            [
+              "travel air",
+              "p100 · from: ryanair.com, easyjet.com +6"
+            ],
+            [
+              "rideshare",
+              "p100 · from: uber.com, bolt.eu +3"
+            ],
+            [
+              "lodging",
+              "p100 · from: airbnb.com, booking.com +1"
+            ],
+            [
+              "postal intl",
+              "p100 · from: dhl.com, dhl.de +4"
+            ],
+            [
+              "food delivery",
+              "p100 · from: deliveroo.com, ubereats.com +4"
+            ],
+            [
+              "lodging extra",
+              "p100 · from: info.hostelworld.com, email.hostelworld.com +11"
+            ],
+            [
+              "transport extra",
+              "p100 · from: e.alsa.com, alsa.es +11"
+            ],
+            [
+              "travel misc",
+              "p100 · from: findacrew.com, nomadmania.com +2"
+            ],
+            [
+              "postal es",
+              "p100 · from: correos.es, seur.com +1"
+            ],
+            {
+              "group": "vps_git — no such folder · 1 rule"
+            },
+            [
+              "vps git",
+              "p100 · from: github.com, noreply.github.com"
+            ],
+            {
+              "group": "vps_google — no such folder · 1 rule"
+            },
+            [
+              "vps google",
+              "p100 · from: cloud.google.com, google.cloud"
+            ],
+            {
+              "group": "vps_oracle — no such folder · 1 rule"
+            },
+            [
+              "vps oracle",
+              "p100 · from: oraclecloud.com, oracle.com +1"
+            ]
+          ]
+        },
+        {
+          "id": "profile",
+          "label": "Profile",
+          "rows": [
+            [
+              "Name",
+              "Diego N. Marcos"
+            ],
+            [
+              "Mail",
+              "me@diegonmarcos.com"
+            ],
+            [
+              "Site",
+              "diegonmarcos.com"
+            ],
+            {
+              "group": "Business card"
+            },
+            {
+              "type": "qrcard",
+              "caption": "Scan to save contact"
+            }
+          ]
+        },
+        {
+          "id": "wg",
+          "label": "WireGuard",
+          "target": "section:wg"
+        },
+        {
+          "id": "kde",
+          "label": "KDE",
+          "rows": [
+            [
+              "This device",
+              "cloud-superapp · web"
+            ],
+            [
+              "Paired devices",
+              "0"
+            ],
+            [
+              "Plugins enabled",
+              "0 / 0"
+            ]
+          ]
+        },
+        {
+          "id": "ai",
+          "label": "AI",
+          "rows": [
+            [
+              "Default provider",
+              "Claude"
+            ],
+            [
+              "API keys configured",
+              "—"
+            ],
+            [
+              "Local model",
+              "Off"
+            ]
+          ]
+        },
+        {
+          "id": "launcher",
+          "label": "Launcher",
+          "rows": [
+            {
+              "group": "Theme"
+            },
+            [
+              "Cloud",
+              "3D home · dynamic island · animations",
+              {
+                "active": true
+              }
+            ],
+            [
+              "Cloud Minimalist Black",
+              "terminal aesthetic, no chrome"
+            ],
+            [
+              "Cloud Power Saving",
+              "OLED black, animations off, WG stays on"
+            ],
+            {
+              "group": "Profile"
+            },
+            [
+              "Personal",
+              "default account, full access",
+              {
+                "active": true
+              }
+            ],
+            [
+              "Work",
+              "separate work profile"
+            ],
+            [
+              "Guest",
+              "browser-only, WG off"
+            ],
+            {
+              "group": "Toggles"
+            },
+            [
+              "Pets animation",
+              "On",
+              {
+                "control": "switch",
+                "on": true
+              }
+            ],
+            [
+              "Cube animation",
+              "On",
+              {
+                "control": "switch",
+                "on": true
+              }
+            ],
+            [
+              "Cube interactive",
+              "Off",
+              {
+                "control": "switch",
+                "on": false
+              }
+            ],
+            [
+              "Island animation",
+              "On",
+              {
+                "control": "switch",
+                "on": true
+              }
+            ],
+            [
+              "Stars animation",
+              "On",
+              {
+                "control": "switch",
+                "on": true
+              }
+            ],
+            [
+              "Live status",
+              "On",
+              {
+                "control": "switch",
+                "on": true
+              }
+            ],
+            [
+              "Haptics",
+              "On",
+              {
+                "control": "switch",
+                "on": true
+              }
+            ],
+            [
+              "Eye protection",
+              "Off",
+              {
+                "control": "switch",
+                "on": false
+              }
+            ],
+            [
+              "Star twinkle",
+              "On",
+              {
+                "control": "switch",
+                "on": true
+              }
+            ],
+            [
+              "Fleet check",
+              "On",
+              {
+                "control": "switch",
+                "on": true
+              }
+            ],
+            {
+              "group": "Sliders"
+            },
+            [
+              "Brightness",
+              "80%",
+              {
+                "control": "range",
+                "value": 80,
+                "min": 0,
+                "max": 100
+              }
+            ],
+            [
+              "Screensaver timeout",
+              "5 min",
+              {
+                "control": "range",
+                "value": 5,
+                "min": 1,
+                "max": 30
+              }
+            ]
+          ]
+        },
+        {
+          "id": "import",
+          "label": "Import",
+          "target": "action:import_configs"
+        },
+        {
+          "id": "keyboard",
+          "label": "Keyboard",
+          "target": "extapp:cloud-keyboard"
+        },
+        {
+          "id": "update-all",
+          "label": "Update All",
+          "rows": [
+            [
+              "Cloud SuperApp",
+              "Up to date"
+            ],
+            [
+              "Cloud Mail",
+              "Up to date"
+            ],
+            [
+              "Cloud Chat",
+              "Up to date"
+            ]
+          ]
+        },
+        {
+          "id": "constellation",
+          "label": "Constellation",
+          "constellation": {
+            "autoUpdate": true,
+            "installPermGranted": true,
+            "apps": [
+              {
+                "id": "cloud-mail",
+                "label": "Cloud Mail",
+                "pkg": "com.diegonmarcos.cloudmail",
+                "image": "ghcr.io/diegonmarcos/cloud-mail",
+                "status": "installed",
+                "version": "2.3.1",
+                "versionCode": "14",
+                "sha": "a1b2c3d4e5f6"
+              },
+              {
+                "id": "cloud-chat",
+                "label": "Cloud Chat",
+                "pkg": "com.diegonmarcos.cloudchat",
+                "image": "ghcr.io/diegonmarcos/cloud-chat",
+                "status": "update",
+                "version": "1.0.0",
+                "remoteDigest": "f7e8d9a1b2c3"
+              },
+              {
+                "id": "cloud-matrix",
+                "label": "Cloud Matrix",
+                "pkg": "com.diegonmarcos.cloudmatrix",
+                "image": "ghcr.io/diegonmarcos/cloud-matrix",
+                "status": "missing"
+              },
+              {
+                "id": "cloud-dialer",
+                "label": "Cloud Dialer",
+                "pkg": "com.diegonmarcos.clouddialer",
+                "image": "ghcr.io/diegonmarcos/cloud-dialer",
+                "status": "blocked"
+              },
+              {
+                "id": "cloud-ide",
+                "label": "Cloud IDE",
+                "pkg": "com.diegonmarcos.cloudide",
+                "image": "ghcr.io/diegonmarcos/cloud-ide",
+                "status": "missing"
+              },
+              {
+                "id": "cloud-wallet",
+                "label": "Cloud Wallet",
+                "pkg": "com.diegonmarcos.cloudwallet",
+                "image": "ghcr.io/diegonmarcos/cloud-wallet",
+                "status": "installed",
+                "version": "1.2.0",
+                "versionCode": "8",
+                "sha": "9f8e7d6c5b4a"
+              },
+              {
+                "id": "cloud-nav",
+                "label": "Cloud Nav",
+                "pkg": "com.diegonmarcos.cloudnav",
+                "image": "ghcr.io/diegonmarcos/cloud-nav",
+                "status": "missing"
+              },
+              {
+                "id": "cloud-vault",
+                "label": "Cloud Vault",
+                "pkg": "com.diegonmarcos.cloudvault",
+                "image": "ghcr.io/diegonmarcos/cloud-vault",
+                "status": "missing"
+              },
+              {
+                "id": "cloud-browser",
+                "label": "Cloud Browser",
+                "pkg": "com.diegonmarcos.cloudbrowser",
+                "image": "ghcr.io/diegonmarcos/cloud-browser",
+                "status": "update",
+                "version": "3.1.4",
+                "remoteDigest": "c4d5e6f7a8b9"
+              },
+              {
+                "id": "cloud-keyboard",
+                "label": "Cloud Keyboard",
+                "pkg": "com.diegonmarcos.cloudkeyboard",
+                "image": "ghcr.io/diegonmarcos/cloud-keyboard",
+                "status": "missing"
+              }
+            ]
+          }
+        },
+        {
+          "id": "onehand",
+          "label": "One-Hand",
+          "rows": [
+            [
+              "Edge handles",
+              "On"
+            ],
+            {
+              "group": "Left"
+            },
+            [
+              "Top",
+              "Bitwarden"
+            ],
+            [
+              "Upper",
+              "Brave"
+            ],
+            [
+              "Center",
+              "Back"
+            ],
+            [
+              "Lower",
+              "Gemini"
+            ],
+            [
+              "Bottom",
+              "Google Maps"
+            ],
+            {
+              "group": "Right"
+            },
+            [
+              "Top",
+              "WhatsApp Business"
+            ],
+            [
+              "Upper",
+              "Google Translate"
+            ],
+            [
+              "Center",
+              "Back"
+            ],
+            [
+              "Lower",
+              "Obsidian"
+            ],
+            [
+              "Bottom",
+              "Instagram"
+            ],
+            [
+              "Sirius (circular menu)",
+              "On · radius 130"
+            ],
+            [
+              "Canopus (arc menu)",
+              "On · radius 200 · section config"
+            ],
+            [
+              "Centauri (recent apps)",
+              "On"
+            ],
+            {
+              "group": "Home swipes"
+            },
+            [
+              "Up",
+              "All apps"
+            ],
+            [
+              "Down",
+              "Suite"
+            ],
+            [
+              "Left",
+              "Back"
+            ],
+            [
+              "Right",
+              "Forward"
+            ]
+          ]
+        },
+        {
+          "id": "permissions",
+          "label": "Permissions",
+          "rows": [
+            [
+              "Camera",
+              "Granted"
+            ],
+            [
+              "Microphone",
+              "Granted"
+            ],
+            [
+              "Notifications",
+              "Granted"
+            ],
+            [
+              "Location (fine)",
+              "Ask"
+            ],
+            [
+              "Location (coarse)",
+              "Ask"
+            ],
+            [
+              "Nearby devices",
+              "Ask"
+            ],
+            [
+              "Bluetooth Connect",
+              "Granted"
+            ],
+            [
+              "Contacts",
+              "Ask"
+            ],
+            [
+              "Audio",
+              "Granted"
+            ],
+            [
+              "Images",
+              "Granted"
+            ],
+            [
+              "Video",
+              "Granted"
+            ],
+            [
+              "SMS",
+              "Ask"
+            ],
+            [
+              "Phone",
+              "Ask"
+            ],
+            {
+              "group": "Roles"
+            },
+            [
+              "Default phone app",
+              "Held"
+            ],
+            [
+              "Spam filter (call screening)",
+              "Held"
+            ],
+            {
+              "group": "Actions"
+            },
+            {
+              "type": "permActions",
+              "buttons": [
+                {
+                  "label": "Grant Health Perms",
+                  "granted": false
+                },
+                {
+                  "label": "Set Notif. (read)",
+                  "granted": false
+                },
+                {
+                  "label": "Notif. Access",
+                  "granted": true
+                },
+                {
+                  "label": "Usage Access",
+                  "granted": true
+                },
+                {
+                  "label": "All Files",
+                  "granted": false
+                },
+                {
+                  "label": "Overlay",
+                  "granted": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "about",
+          "label": "About",
+          "rows": [
+            [
+              "Version",
+              "1.0.0"
+            ],
+            [
+              "Build",
+              "cloud-superapp · web"
+            ],
+            [
+              "Source",
+              "aa_cloud-superapp"
+            ]
+          ]
+        }
+      ]
+    }
+  }
+}

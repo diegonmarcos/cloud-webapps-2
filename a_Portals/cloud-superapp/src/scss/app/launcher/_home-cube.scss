@@ -1,0 +1,164 @@
+// ==========================================================================
+// Home cube — Home3DFragment centerpiece: 360dp wireframe cube, CSS 3D
+// transforms standing in for the app's Canvas-drawn version. Home only.
+// Wireframe only (12 edges + 8 corner dots, no faces) — matches the APK,
+// which draws only edges/vertices, fully see-through.
+// ==========================================================================
+
+.home-cube {
+    display: none;
+}
+
+.shell.is-home .home-cube {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px;
+    height: 180px;
+    margin: -90px 0 0 -90px;
+    perspective: 700px;
+    transform-style: preserve-3d;
+    z-index: 0; // behind .star (z-index: 1) — stars float in front of the cube
+    // periodX 23.5s — see Home3DFragment; independent from the inner
+    // element's periodY rotation so the two axes drift out of phase
+    // (organic wobble) instead of spinning in lockstep.
+    animation: home-cube-spin-x 23.5s linear infinite;
+}
+
+.home-cube__inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    // periodY 16s — see Home3DFragment.
+    animation: home-cube-spin-y 16s linear infinite;
+}
+
+.home-cube__edge {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 180px;
+    height: 2px;
+    margin: -1px 0 0 -90px;
+    background: #e9d8fd;
+    box-shadow: 0 0 8px #b794f4;
+}
+
+// four edges along the X axis (top/bottom, front/back)
+.home-cube__edge--xtf {
+    transform: translate3d(0, -90px, 90px);
+}
+
+.home-cube__edge--xtb {
+    transform: translate3d(0, -90px, -90px);
+}
+
+.home-cube__edge--xbf {
+    transform: translate3d(0, 90px, 90px);
+}
+
+.home-cube__edge--xbb {
+    transform: translate3d(0, 90px, -90px);
+}
+
+// four edges along the Y axis (left/right, front/back)
+.home-cube__edge--yfl {
+    transform: translate3d(-90px, 0, 90px) rotateZ(90deg);
+}
+
+.home-cube__edge--yfr {
+    transform: translate3d(90px, 0, 90px) rotateZ(90deg);
+}
+
+.home-cube__edge--ybl {
+    transform: translate3d(-90px, 0, -90px) rotateZ(90deg);
+}
+
+.home-cube__edge--ybr {
+    transform: translate3d(90px, 0, -90px) rotateZ(90deg);
+}
+
+// four edges along the Z axis (top/bottom, left/right) — connect the front
+// ring to the back ring
+.home-cube__edge--ztl {
+    transform: translate3d(-90px, -90px, 0) rotateY(90deg);
+}
+
+.home-cube__edge--ztr {
+    transform: translate3d(90px, -90px, 0) rotateY(90deg);
+}
+
+.home-cube__edge--zbl {
+    transform: translate3d(-90px, 90px, 0) rotateY(90deg);
+}
+
+.home-cube__edge--zbr {
+    transform: translate3d(90px, 90px, 0) rotateY(90deg);
+}
+
+.home-cube__dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    margin: -2.5px 0 0 -2.5px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid #7c3aed;
+    box-shadow: 0 0 6px #b794f4;
+}
+
+.home-cube__dot--tfl {
+    transform: translate3d(-90px, -90px, 90px);
+}
+
+.home-cube__dot--tfr {
+    transform: translate3d(90px, -90px, 90px);
+}
+
+.home-cube__dot--tbl {
+    transform: translate3d(-90px, -90px, -90px);
+}
+
+.home-cube__dot--tbr {
+    transform: translate3d(90px, -90px, -90px);
+}
+
+.home-cube__dot--bfl {
+    transform: translate3d(-90px, 90px, 90px);
+}
+
+.home-cube__dot--bfr {
+    transform: translate3d(90px, 90px, 90px);
+}
+
+.home-cube__dot--bbl {
+    transform: translate3d(-90px, 90px, -90px);
+}
+
+.home-cube__dot--bbr {
+    transform: translate3d(90px, 90px, -90px);
+}
+
+@keyframes home-cube-spin-x {
+    from {
+        transform: rotateX(0);
+    }
+
+    to {
+        transform: rotateX(360deg);
+    }
+}
+
+@keyframes home-cube-spin-y {
+    from {
+        transform: rotateY(0);
+    }
+
+    to {
+        transform: rotateY(360deg);
+    }
+}

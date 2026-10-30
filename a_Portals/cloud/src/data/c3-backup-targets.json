@@ -1,0 +1,186 @@
+{
+ "_generated": "2026-08-02T08:56:30.228Z",
+ "_source": "_cloud-data-consolidated.json via /cloud-data/backup-targets",
+ "targets": [
+  {
+   "service": "matrix-continuwuity",
+   "vm": "oci-apps",
+   "volumes": [
+    "continuwuity_data"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "gitea",
+   "vm": "oci-apps",
+   "volumes": [
+    "gitea_data"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "redis",
+   "vm": "gcp-proxy",
+   "volumes": [],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "dbgate",
+   "vm": "oci-apps",
+   "volumes": [
+    "dbgate_data"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "matomo",
+   "vm": "oci-apps",
+   "volumes": [
+    "matomo_data"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "ntfy",
+   "vm": "oci-apps",
+   "volumes": [],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "umami",
+   "vm": "oci-apps",
+   "volumes": [],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "authelia",
+   "vm": "gcp-proxy",
+   "volumes": [],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "kg-store",
+   "vm": "oci-apps",
+   "volumes": [],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "chat-mattermost",
+   "vm": "oci-apps",
+   "volumes": [
+    "mattermost_data",
+    "mattermost_postgres"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "mail-puller",
+   "vm": "oci-mail",
+   "volumes": [
+    "mail_puller_state"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "matrix-mautrix-whatsapp",
+   "vm": "oci-apps",
+   "volumes": [
+    "mautrix_whatsapp_data"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "maddy",
+   "vm": "oci-mail",
+   "volumes": [
+    "maddy_data"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "stalwart",
+   "vm": "oci-mail",
+   "volumes": [
+    "stalwart_data"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "scrappers-api",
+   "vm": "oci-apps",
+   "volumes": [],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "photoprism",
+   "vm": "oci-apps",
+   "volumes": [
+    "photoprism_originals",
+    "photoprism_storage",
+    "photoprism_import"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "etherpad",
+   "vm": "oci-apps",
+   "volumes": [],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "grist",
+   "vm": "oci-apps",
+   "volumes": [
+    "grist_data"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "hedgedoc",
+   "vm": "oci-apps",
+   "volumes": [],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "paca",
+   "vm": "oci-apps",
+   "volumes": [
+    "paca_postgres",
+    "paca_valkey",
+    "paca_backend_plugins",
+    "paca_frontend_plugins",
+    "paca_mcp_plugins"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  },
+  {
+   "service": "vaultwarden",
+   "vm": "oci-apps",
+   "volumes": [
+    "vaultwarden_data"
+   ],
+   "schedule": "0 3 * * *",
+   "retention": "30d"
+  }
+ ]
+}
