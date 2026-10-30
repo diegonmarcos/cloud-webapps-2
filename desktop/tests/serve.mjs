@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // CI-only static server laying the dists out as GitHub Pages publishes them (#1321):
 //   /cloud-desktop/...  -> sites/cloudy-webdesktop/dist
-//   /cloud-webapps/...  -> .vendor/cloudy-h-webapps/sites/cloudy-webapps/dist (the pinned mobile site the desktop embeds)
+//   /cloud-webapps/...  -> .vendor/cloudy-h-webapps-mob/sites/cloudy-webapps/dist (the pinned mobile site the desktop embeds)
 //   /<suite app>/...    -> ../c_Suite/<app>/dist (movies, music, myfeed, tldraw, myhealth-feedyourself, mymaps-*)
 // Unknown paths get 404. Never run locally (owner rule: CI builds only).
 import { createServer } from 'node:http';
@@ -15,7 +15,7 @@ const TYPES = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '
 const SUITE = ['movies', 'music', 'myfeed', 'tldraw', 'myhealth-feedyourself', 'mymaps-maps', 'mymaps-navigation'];
 const MOUNTS = [
   ['/cloud-desktop/', join(root, 'sites/cloudy-webdesktop/dist')],
-  ['/cloud-webapps/', join(root, '.vendor/cloudy-h-webapps/sites/cloudy-webapps/dist')],
+  ['/cloud-webapps/', join(root, '.vendor/cloudy-h-webapps-mob/sites/cloudy-webapps/dist')],
   ...SUITE.map((s) => [`/${s}/`, join(root, '..', 'c_Suite', s, 'dist')]),
 ];
 function resolveFile(dir, rest) {

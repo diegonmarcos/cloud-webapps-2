@@ -1,5 +1,5 @@
-# cloudy-h-webapps-2 CI (#1321): the desktop site. Builds run here only (owner rule: no local npm).
-#  pin   : @cloudy/ui at cloudy-ui.pin (cloudy-h-webapps) == the package on its main (shared version pin check)
+# cloudy-h-webapps-desk CI (#1321): the desktop site. Builds run here only (owner rule: no local npm).
+#  pin   : @cloudy/ui at cloudy-ui.pin (cloudy-h-webapps-mob) == the package on its main (shared version pin check)
 #  unit  : Vitest (the desktop view model)
 #  build : sites/cloudy-webdesktop (adapter-static, base /cloud-desktop) -> dist; every routes.json path prerendered
 #  e2e   : Playwright desktop 1440x900 + laptop 1280x800 against the dists laid out as Pages serves them
@@ -32,7 +32,7 @@ jobs:
         with: { node-version: 22 }
       - name: Fetch @cloudy/ui at the pin
         run: sh scripts/fetch-cloudy-ui.sh
-      - name: Pin == cloudy-h-webapps main
+      - name: Pin == cloudy-h-webapps-mob main
         run: sh scripts/check-pin.sh
       - name: Install
         run: npm ci --no-audit --no-fund || npm install --no-audit --no-fund

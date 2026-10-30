@@ -2,7 +2,7 @@
   "name": "cloudy-h-webdesktop",
   "private": true,
   "type": "module",
-  "description": "cloudy-webdesktop: the desktop web of the Cloud fleet at /cloud-desktop/ on the same @cloudy/ui as cloudy-webapps (#1321). @cloudy/ui is the cloudy-h-webapps package pinned by commit (cloudy-ui.pin), fetched into .vendor/ by scripts/fetch-cloudy-ui.sh.",
+  "description": "cloudy-webdesktop: the desktop web of the Cloud fleet at /cloud-desktop/ on the same @cloudy/ui as cloudy-webapps (#1321). @cloudy/ui is the cloudy-h-webapps-mob package pinned by commit (cloudy-ui.pin), fetched into .vendor/ by scripts/fetch-cloudy-ui.sh.",
   "workspaces": [
     ".vendor/cloudy-ui",
     "sites/*"

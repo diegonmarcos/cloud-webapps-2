@@ -1,14 +1,14 @@
 {
   "schema": "readme-node/v1",
   "generated_by": "_git-repos-master 0_registry/readme-render.js nodeData() from projects-repos.json; DO NOT EDIT (node 0_registry/repos-sot.js sync-readmes)",
-  "name": "cloudy-h-webapps-2",
-  "label": "cloudy-h-webapps-2",
+  "name": "cloudy-h-webapps-desk",
+  "label": "cloudy-h-webapps-desk",
   "code": "1.1.4.2",
   "kind": "repo",
   "variant": "repo",
   "description": "Front group c_Suite (split from front-projects, #1072)",
   "visibility": "public",
-  "url": "https://github.com/diegonmarcos/cloudy-h-webapps-2",
+  "url": "https://github.com/diegonmarcos/cloudy-h-webapps-desk",
   "developer": "Leaf.y",
   "farm": "1.1.Cloudy",
   "breadcrumb": [
