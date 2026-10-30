@@ -305,13 +305,13 @@
           "id": "nx-cm-mqpm",
           "label": "Nx.z-CM-MQPM",
           "icon": "sa/ic_p_markets_prices",
-          "target": "https://github.com/diegonmarcos/Fin-CM-mqpm"
+          "target": "https://github.com/diegonmarcos/Capital-Macro-Central-Bank"
         },
         {
           "id": "nx-cm-blmbrg",
           "label": "Nx.z-CM-Blmbrg",
           "icon": "sa/ic_p_markets_terminal",
-          "target": "https://github.com/diegonmarcos/Fin-CM-Blmbrg"
+          "target": "https://github.com/diegonmarcos/Capital-Stack-Fin-Terminal"
         },
         {
           "separator": true
@@ -320,7 +320,7 @@
           "id": "st-deepsc-x",
           "label": "St.x-DeepSc-X",
           "icon": "sa/ic_p_sol_tools",
-          "target": "https://github.com/diegonmarcos/DeepSc-X"
+          "target": "https://github.com/diegonmarcos/HardTech-DeepXTech"
         }
       ]
     },
