@@ -1,3 +1,6 @@
+a_Portals/cloud
+a_Portals/cloud-superapp
+a_Portals/cloud-web
 c_Suite/grist
 c_Suite/json-vision
 c_Suite/movies
