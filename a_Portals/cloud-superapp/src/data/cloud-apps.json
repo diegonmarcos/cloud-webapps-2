@@ -170,16 +170,16 @@
           "target": "extapp:cloud-me#page:health/home"
         },
         {
-          "id": "mystudy",
-          "label": "Me-Study",
+          "id": "myexperiences",
+          "label": "Experiences",
           "icon": "sa/ic_file_stack",
-          "target": "extapp:cloud-me#page:study/cv"
+          "target": "extapp:cloud-me#page:experiences/work"
         },
         {
-          "id": "myachieves",
-          "label": "Me-Achieves",
-          "icon": "sa/ic_map_pin",
-          "target": "extapp:cloud-me#page:achieves/personal"
+          "id": "myroadmap",
+          "label": "RoadMap",
+          "icon": "sa/ic_maps",
+          "target": "extapp:cloud-me#page:roadmap/folders"
         },
         {
           "separator": true
