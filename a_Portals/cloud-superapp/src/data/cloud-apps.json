@@ -149,12 +149,6 @@
       "title": "Me",
       "tiles": [
         {
-          "id": "tools-account",
-          "label": "Account",
-          "icon": "sa/ic_p_accounts",
-          "target": "page:config/profile"
-        },
-        {
           "id": "me",
           "label": "Me",
           "icon": "sa/ic_vcard",
@@ -201,6 +195,15 @@
           "label": "Me-LLC",
           "icon": "sa/ic_p_llc",
           "target": "extapp:cloud-me#page:llc/employed"
+        },
+        {
+          "separator": true
+        },
+        {
+          "id": "tools-account",
+          "label": "Account",
+          "icon": "sa/ic_p_accounts",
+          "target": "page:config/profile"
         }
       ]
     },
